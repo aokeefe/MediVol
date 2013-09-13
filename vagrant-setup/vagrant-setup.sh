@@ -47,3 +47,9 @@ sudo apt-get install python-pip -y;
 
 printf '\nInstalling Django...';
 sudo pip install Django;
+
+printf '\nInstalling python-dev...';
+sudo apt-get install python-dev -y;
+
+printf '\nInstalling elaphe...';
+sudo pip install elaphe;
