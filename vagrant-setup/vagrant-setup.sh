@@ -9,8 +9,8 @@ sudo apt-get install vim -y;
 printf "\nInstalling apache2...";
 sudo apt-get install apache2 -y;
 
-print "\nInstalling apache python mod"; 
-sudo apt-get install libapache2-mod-wsgi"; 
+printf "\nInstalling apache python mod"; 
+sudo apt-get install libapache2-mod-wsgi -y; 
 
 printf "\nEnabling ssl on apache"; 
 sudo a2enmod ssl; 
