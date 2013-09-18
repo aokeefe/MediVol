@@ -1,0 +1,10 @@
+<VirtualHost *:80> 
+
+  #This is very basic apache config we will need to customize this   
+  #Such as setting an SSL host, etc
+  
+  ServerName medivol.se.rit.edu 
+  WSGIScriptAlias /var/www/MediVol/MediVol/index.wsgi
+  
+  #Will need to add some other stuff for static files
+</VirtualHost>
