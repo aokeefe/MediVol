@@ -9,13 +9,35 @@ sudo apt-get install vim -y;
 printf "\nInstalling apache2...";
 sudo apt-get install apache2 -y;
 
-printf "\nInstalling apache python mod"; 
+printf "\nInstalling apache python mod..."; 
 sudo apt-get install libapache2-mod-wsgi -y; 
 
-printf "\nEnabling ssl on apache"; 
+printf "\nEnabling ssl on apache...";
 sudo a2enmod ssl; 
 
-printf "\nRestarting apache";
+if [ -f /etc/apache2/sites-available/default ];
+then
+printf "\nDisabling default...";
+sudo a2dissite default;
+sudo service apache2 reload;
+sudo rm /etc/apache2/sites-available/default;
+fi
+
+if [ -f /etc/apache2/sites-available/default-ssl ];
+then
+printf "\nDeleting default-ssl...";
+sudo rm /etc/apache2/sites-available/default-ssl;
+fi
+
+if [ ! -f /etc/apache2/sites-available/medivol ];
+then
+printf "\nAdding medivol config...";
+sudo cp /var/www/medivol_apache_conf /etc/apache2/sites-available/medivol;
+sudo a2ensite medivol;
+sudo service apache2 reload;
+fi
+
+printf "\nRestarting apache...";
 sudo service apache2 restart; 
 
 printf "\nInstalling php5...";
