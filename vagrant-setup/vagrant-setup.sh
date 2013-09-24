@@ -86,4 +86,4 @@ printf '\nInstalling elaphe...';
 sudo pip install elaphe;
 
 printf '\nInstalling python-mysqldb';
-sudo apt-get install python-mysqldb;
+sudo apt-get install python-mysqldb -y;
