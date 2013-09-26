@@ -5,5 +5,6 @@
   ServerName localhost 
   WSGIScriptAlias / /var/www/MediVol/MediVol/MediVol.wsgi
   
+  Alias /static/ /var/www/Medivol/static/
   #Will need to add some other stuff for static files
 </VirtualHost>
