@@ -87,3 +87,6 @@ sudo pip install elaphe;
 
 printf '\nInstalling python-mysqldb';
 sudo apt-get install python-mysqldb -y;
+
+printf '\nInstalling django-jenkins';
+sudo pip install django-jenkins;
