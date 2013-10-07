@@ -90,3 +90,6 @@ sudo apt-get install python-mysqldb -y;
 
 printf '\nInstalling django-jenkins';
 sudo pip install django-jenkins;
+
+printf '\nCreating database for inventory';
+mysql -u root --password=root -e 'create database inventory;'
