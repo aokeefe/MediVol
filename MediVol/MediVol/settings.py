@@ -157,3 +157,11 @@ LOGGING = {
         },
     }
 }
+
+#Django Jenkins Configuration
+ 
+JENKINS_TASKS= ('django_jenkins.tasks.run_pylint',
+    'django_jenkins.tasks.with_coverage',
+)
+PROJECT_APPS = ['']
+
