@@ -13,7 +13,7 @@ class Box(models.Model):
     box_id = models.CharField(max_length=4)
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN)
     weight = models.DecimalField(max_digits=5, decimal_places=2) 
-    box_contents = models.CharField(max_length=300)
+    contents = models.CharField(max_length=300)
     experation = models.DateTimeField('experation date')
     entered_date = models.DateTimeField('experation date')
     reserved_for = models.CharField(max_length=300)
