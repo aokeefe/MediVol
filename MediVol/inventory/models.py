@@ -14,11 +14,12 @@ class Box(models.Model):
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN)
     weight = models.DecimalField(max_digits=5, decimal_places=2) 
     contents = models.CharField(max_length=300)
-    experation = models.DateTimeField('experation date')
-    entered_date = models.DateTimeField('experation date')
+    expiration = models.DateTimeField('expiration date')
+    entered_date = models.DateTimeField('date the box was entered')
     reserved_for = models.CharField(max_length=300)
     shipped_to = models.CharField(max_length=300)
-    box_date = models.DateTimeField('experation date')
+    #TODO: Ask Amy what this could mean
+    box_date = models.DateTimeField('Box date')
     audit = models.IntegerField(default=1)
     #location = models.CharField(max_length=300)
 	
