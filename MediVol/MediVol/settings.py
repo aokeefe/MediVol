@@ -128,6 +128,7 @@ INSTALLED_APPS = (
     'django_jenkins',
     # place MediVol specific apps below this
     'inventory',
+    'catalog',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
