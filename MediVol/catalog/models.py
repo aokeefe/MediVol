@@ -7,10 +7,10 @@ class Letter(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
 
 class Category(models.Model):
-	letter = models.ForeignKey(Letter)
-	name = models.CharField(max_length=NAME_LENGTH)
+    letter = models.ForeignKey(Letter)
+    name = models.CharField(max_length=NAME_LENGTH)
 
 class Item(models.Model):
-	category = models.ForeignKey(Category)
-	name = models.CharField(max_length=NAME_LENGTH)
-	description = models.CharField(max_length = 500)
+    catagory = models.ForeignKey(Catagory)
+    name = models.CharField(max_length=NAME_LENGTH)
+    description = models.CharField(max_length = 500)
