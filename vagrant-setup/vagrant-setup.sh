@@ -94,4 +94,4 @@ sudo pip install django-jenkins;
 printf '\nCreating database for inventory';
 mysql -u root --password=root -e 'create database MediVolDB;';
 
-python /var/www/MediVol/syncdb_script.py
+python /var/www/MediVol/syncdb_script.py;
