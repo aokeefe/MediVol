@@ -11,6 +11,6 @@ class Category(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
 
 class Item(models.Model):
-    catagory = models.ForeignKey(Catagory)
-    name = models.CharField(max_length=NAME_LENGTH)
-    description = models.CharField(max_length = 500)
+	category = models.ForeignKey(Category)
+	name = models.CharField(max_length=NAME_LENGTH)
+	description = models.CharField(max_length = 500)
