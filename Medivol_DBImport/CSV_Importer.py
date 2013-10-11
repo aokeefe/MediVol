@@ -2,6 +2,7 @@ import csv
 import MySQLdb as db
 import time
 import re
+import sys
 
 #Title: CSV Importer 
 #Description: Takes an existing CSV file containing inventory information and loads 
@@ -10,9 +11,7 @@ import re
 
 #This is the importer method which establishes a connection with the MySQL Database and 
 #tries to perform an import of a CSV file.
-def Importer():
-  
-  fullfilepath = 'old_inventory_3.csv'
+def Importer(filepath):
   
   starttime = time.time()
   
@@ -22,7 +21,7 @@ def Importer():
     cursor = mysqldb.cursor() 
     
     #Python complains without the rU(universal new line) option when opening the CSV file so this needs to be there. 
-    csvData = csv.reader(file(fullfilepath, 'rU'), delimiter = ',', dialect=csv.excel_tab)
+    csvData = csv.reader(file(filepath, 'rU'), delimiter = ',', dialect=csv.excel_tab)
   
     print("Starting CSV File Import to MySQL Database")
   
@@ -167,7 +166,15 @@ def validateAndConvertDate(date):
   return validatedDate
 
 def main():
-  Importer()
+  
+  counter = 0 
+  for arg in sys.argv: 
+    
+    if (counter != 0): #Skip the first index of the argument list because it is the script name
+      if (".csv" in arg): #Check if file is of csv format otherwise don't try to parse it 
+        Importer(arg)
+      else: 
+        print("WARNING - File is of not .csv format, skipping parse.")
   
 #Specifying entry point to the script
 if __name__ == '__main__':
