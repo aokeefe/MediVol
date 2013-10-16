@@ -11,7 +11,7 @@ import sys
 
 #This is the importer method which establishes a connection with the MySQL Database and 
 #tries to perform an import of a CSV file.
-def Importer(filepath):
+def importer(filepath):
   
   starttime = time.time()
   
@@ -30,7 +30,7 @@ def Importer(filepath):
     for row in csvData: 
     
       if (rownum != 1):
-        validatedRow = ValidateImportRow(row, rownum)
+        validatedRow = validate_import_row(row, rownum)
         if (validatedRow != None):  
           cursor.execute("INSERT INTO TestTable(BoxId, BoxSize, BoxWeight, Contents, Expiration, \
           Entered, ReservedFor, ShippedTo, Date, Audit) VALUES (%s, %s, %s, %s, %s, %s, %s ,%s, %s, %s)", validatedRow)
@@ -62,7 +62,7 @@ def Importer(filepath):
 #for the Importer method to use it to insert into the MySQL Database  
 #The indexing of the row variable passed in is in accordance with the excel 
 #headers in the old excel based storage of the inventory. 
-def ValidateImportRow(row, rownum):
+def validate_import_row(row, rownum):
   
   validRow = [None]*10
   print("Validating Row...")
@@ -123,10 +123,10 @@ def ValidateImportRow(row, rownum):
     if ("NO EXP" in row[3] or row[3] == ""):
       validRow[4] = None
     else: 
-      validRow[4] = validateAndConvertDate(row[3])
+      validRow[4] = validate_and_convert_date(row[3])
     
     #Validating Entered Field 
-    validRow[5] = validateAndConvertDate(row[4])
+    validRow[5] = validate_and_convert_date(row[4])
     
     #No validation checking for reserved for
     validRow[6] = row[5]
@@ -135,7 +135,7 @@ def ValidateImportRow(row, rownum):
     validRow[7] = row[6]
     
     #Validating Date Field 
-    validRow[8] = validateAndConvertDate(row[7])
+    validRow[8] = validate_and_convert_date(row[7])
       
     validRow[9] = ""  
       
@@ -147,7 +147,7 @@ def ValidateImportRow(row, rownum):
 #This methods check for two date formats of mm/dd/yyyy and mm/yyyy. 
 #If the input matches any of the two formats then it will convert that into a valid
 #MySQL datetime string
-def validateAndConvertDate(date):  
+def validate_and_convert_date(date):  
   
   validatedDate = None
   match = re.match("^\d+\W+\d+\W+\d+\Z", date) #Testing by regular expression here for format of mm/dd/yyyy
@@ -172,7 +172,7 @@ def main():
     
     if (counter != 0): #Skip the first index of the argument list because it is the script name
       if (".csv" in arg): #Check if file is of csv format otherwise don't try to parse it 
-        Importer(arg)
+        importer(arg)
       else: 
         print("WARNING - File is of not .csv format, skipping parse.")
   
