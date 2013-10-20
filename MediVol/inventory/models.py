@@ -14,16 +14,26 @@ class Box(models.Model):
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN)
     weight = models.DecimalField(max_digits=5, decimal_places=2) 
     contents = models.CharField(max_length=300)
+    #zero time is no_exp
+    #None is unknown
     expiration = models.DateTimeField('expiration date')
     entered_date = models.DateTimeField('date the box was entered')
     reserved_for = models.CharField(max_length=300)
     shipped_to = models.CharField(max_length=300)
     #TODO: Ask Amy what this could mean
     box_date = models.DateTimeField('Box date')
+    #TODO what does this mean?
     audit = models.IntegerField(default=1)
+    #TODO add the following
+    #barcode_value
+    #old_box_flag
+    #wholesale_value
+    #initials
     #location = models.CharField(max_length=300)
+    def __unicode__(self):
+        return self.box_id
 	
-
+#TODO update
 class Box_Contents(models.Model):
     box_within = models.ForeignKey(Box)
     item = models.ForeignKey(Item)
