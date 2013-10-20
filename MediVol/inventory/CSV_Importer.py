@@ -3,6 +3,13 @@ import MySQLdb as db
 import time
 import re
 import sys
+import os, sys
+sys.path.append('/var/www/MediVol/')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
+from django.db import models
+from inventory.models import Box
+
+dummy_time = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime("01 01 1970", "%m %d %Y"))
 
 #Title: CSV Importer 
 #Description: Takes an existing CSV file containing inventory information and loads 
@@ -14,11 +21,11 @@ import sys
 def importer(filepath):
   
   starttime = time.time()
-  
+  mysqldb = None
   try: 
     print("Opening database connection")
-    mysqldb = db.connect(host='localhost', user='testbot', passwd='123456', db='testdb')
-    cursor = mysqldb.cursor() 
+    #mysqldb = db.connect(host='localhost', user='root', passwd='root', db='MediVolDB')
+    #cursor = mysqldb.cursor() 
     
     #Python complains without the rU(universal new line) option when opening the CSV file so this needs to be there. 
     csvData = csv.reader(file(filepath, 'rU'), delimiter = ',', dialect=csv.excel_tab)
@@ -32,13 +39,17 @@ def importer(filepath):
       if (rownum != 1):
         validatedRow = validate_import_row(row, rownum)
         if (validatedRow != None):  
-          cursor.execute("INSERT INTO TestTable(BoxId, BoxSize, BoxWeight, Contents, Expiration, \
-          Entered, ReservedFor, ShippedTo, Date, Audit) VALUES (%s, %s, %s, %s, %s, %s, %s ,%s, %s, %s)", validatedRow)
-          mysqldb.commit()  
+          box = Box(box_id=validatedRow[0], box_size=validatedRow[1], weight=validatedRow[2], contents=validatedRow[3],
+            expiration=validatedRow[4], entered_date=validatedRow[5], reserved_for=validatedRow[6], shipped_to=validatedRow[7],
+            box_date=validatedRow[8])#, audit=validatedRow[9])
+          box.save()
+          #cursor.execute("INSERT INTO inventory_box(BoxId, BoxSize, BoxWeight, Contents, Expiration, \
+          #Entered, ReservedFor, ShippedTo, Date, Audit) VALUES (%s, %s, %s, %s, %s, %s, %s ,%s, %s, %s)", validatedRow)
+          #mysqldb.commit()  
 
       rownum += 1
     
-    cursor.close()
+    #cursor.close()
     
     endtime = time.time()
     totaltime = endtime - starttime #To have some insight into the total import time, it is not totally accurate but a good estimate.
@@ -54,7 +65,7 @@ def importer(filepath):
     
   finally: 
     
-    if mysqldb: 
+    if mysqldb is not None: 
       mysqldb.close()
   
 #This method runs a validation on all the column data of a row in a CSV file 
@@ -121,7 +132,8 @@ def validate_import_row(row, rownum):
       
     #Validating Expiration Field
     if ("NO EXP" in row[3] or row[3] == ""):
-      validRow[4] = None
+      #dummy data for now
+      validRow[4] = dummy_time
     else: 
       validRow[4] = validate_and_convert_date(row[3])
     
@@ -154,7 +166,7 @@ def validate_and_convert_date(date):
   match2 = re.match("^\d+\W+\d+\Z", date) #Testing by regular expression here for format of mm/yyyy
   
   if (match is None):
-    validatedDate = None
+    validatedDate = dummy_time
   else:
     formattedTime = time.strptime(date, "%m/%d/%Y")
     validatedDate = time.strftime('%Y-%m-%d %H:%M:%S', formattedTime) #Convert to mysql datetime
@@ -166,17 +178,15 @@ def validate_and_convert_date(date):
   return validatedDate
 
 def main():
-  
   counter = 0 
   for arg in sys.argv: 
-    
     if (counter != 0): #Skip the first index of the argument list because it is the script name
       if (".csv" in arg): #Check if file is of csv format otherwise don't try to parse it 
         importer(arg)
       else: 
         print("WARNING - File is of not .csv format, skipping parse.")
+    counter+=1
   
 #Specifying entry point to the script
 if __name__ == '__main__':
   main()
-  
