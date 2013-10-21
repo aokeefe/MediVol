@@ -10,6 +10,7 @@ from django.db import models
 from inventory.models import Box
 
 NO_EXPERATION = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime("01 01 1970", "%m %d %Y"))
+
 #Title: CSV Importer 
 #Description: Takes an existing CSV file containing inventory information and loads 
 #the information into a MySQL Database 
