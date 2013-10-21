@@ -24,8 +24,6 @@ def importer(filepath):
   mysqldb = None
   try: 
     print("Opening database connection")
-    #mysqldb = db.connect(host='localhost', user='root', passwd='root', db='MediVolDB')
-    #cursor = mysqldb.cursor() 
     
     #Python complains without the rU(universal new line) option when opening the CSV file so this needs to be there. 
     csvData = csv.reader(file(filepath, 'rU'), delimiter = ',', dialect=csv.excel_tab)
@@ -42,15 +40,10 @@ def importer(filepath):
           box = Box(box_id=validatedRow[0], box_size=validatedRow[1], weight=validatedRow[2], contents=validatedRow[3],
             expiration=validatedRow[4], entered_date=validatedRow[5], reserved_for=validatedRow[6], shipped_to=validatedRow[7],
             box_date=validatedRow[8])#, audit=validatedRow[9])
-          box.save()
-          #cursor.execute("INSERT INTO inventory_box(BoxId, BoxSize, BoxWeight, Contents, Expiration, \
-          #Entered, ReservedFor, ShippedTo, Date, Audit) VALUES (%s, %s, %s, %s, %s, %s, %s ,%s, %s, %s)", validatedRow)
-          #mysqldb.commit()  
+          box.save() 
 
       rownum += 1
-    
-    #cursor.close()
-    
+        
     endtime = time.time()
     totaltime = endtime - starttime #To have some insight into the total import time, it is not totally accurate but a good estimate.
     
@@ -101,8 +94,8 @@ def validate_import_row(row, rownum):
     splitString = None
     
     if (boxSizeWeight == ""): 
-      validRow[1] = ""
-      validRow[2] = ""
+      validRow[1] = "U"
+      validRow[2] = "0.0"
     else:
       if ("-" in boxSizeWeight): 
         splitString = boxSizeWeight.split('-')
