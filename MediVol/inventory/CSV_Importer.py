@@ -19,6 +19,7 @@ NO_EXPERATION = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime("01 01 1970", "
 #tries to perform an import of a CSV file.
 def importer(filepath):
     starttime = time.time()
+
     #Python complains without the rU(universal new line) option when opening the CSV file so this needs to be there. 
     csvData = csv.reader(file(filepath, 'rU'), delimiter = ',', dialect=csv.excel_tab)
 
