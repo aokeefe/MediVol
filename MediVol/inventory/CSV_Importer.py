@@ -21,46 +21,32 @@ NO_EXPERATION = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime("01 01 1970", "
 def importer(filepath):
   
   starttime = time.time()
-  mysqldb = None
-  try: 
-    print("Opening database connection")
-    
-    #Python complains without the rU(universal new line) option when opening the CSV file so this needs to be there. 
-    csvData = csv.reader(file(filepath, 'rU'), delimiter = ',', dialect=csv.excel_tab)
-  
-    print("Starting CSV File Import to MySQL Database")
-  
-    #for each row in the csv file add a row to the databasa column 
-    rownum = 1 
-    for row in csvData: 
-    
-      if (rownum != 1):
-        validatedRow = validate_import_row(row, rownum)
-        if (validatedRow != None):  
-          print (validatedRow[9])
-          box = Box(box_id=validatedRow[0], box_size=validatedRow[1], weight=validatedRow[2], contents=validatedRow[3],
-            expiration=validatedRow[4], entered_date=validatedRow[5], reserved_for=validatedRow[6], shipped_to=validatedRow[7],
-            box_date=validatedRow[8], audit=validatedRow[9])
-          box.save() 
+  #Python complains without the rU(universal new line) option when opening the CSV file so this needs to be there. 
+  csvData = csv.reader(file(filepath, 'rU'), delimiter = ',', dialect=csv.excel_tab)
 
-      rownum += 1
-        
-    endtime = time.time()
-    totaltime = endtime - starttime #To have some insight into the total import time, it is not totally accurate but a good estimate.
+  print("Starting CSV File Import to MySQL Database")
+
+  #for each row in the csv file add a row to the databasa column 
+  rownum = 1 
+  for row in csvData: 
+    if (rownum != 1):
+      validatedRow = validate_import_row(row, rownum)
+      if (validatedRow != None):  
+        print (validatedRow[9])
+        box = Box(box_id=validatedRow[0], box_size=validatedRow[1], weight=validatedRow[2], contents=validatedRow[3],
+          expiration=validatedRow[4], entered_date=validatedRow[5], reserved_for=validatedRow[6], shipped_to=validatedRow[7],
+          box_date=validatedRow[8], audit=validatedRow[9])
+        box.save() 
+    rownum += 1
+
+  endtime = time.time()
+  totaltime = endtime - starttime #To have some insight into the total import time, it is not totally accurate but a good estimate.
     
-    print("Import complete")
-    print ("Import Statistics:")
-    print ("Imported " + str(rownum) + " rows")
-    print ("Total time " + str(totaltime))
+  print("Import complete")
+  print ("Import Statistics:")
+  print ("Imported " + str(rownum) + " rows")
+  print ("Total time " + str(totaltime))
     
-  except db.Error, exception: 
-    
-    print("Error encountered importing data!! %s" % str(exception))
-    
-  finally: 
-    
-    if mysqldb is not None: 
-      mysqldb.close()
   
 #This method runs a validation on all the column data of a row in a CSV file 
 #If the column is deemed valid then it will be added to a list that is returned 
