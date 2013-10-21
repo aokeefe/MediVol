@@ -9,5 +9,3 @@ def generate_csv():
   csv_file = open(time.strftime("%B_%d_%Y")+".csv", 'w')
   for box in Box.objects.all():
     csv_file.write(box.to_csv())
-
-generate_csv()
