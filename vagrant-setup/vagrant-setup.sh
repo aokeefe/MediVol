@@ -95,3 +95,4 @@ printf '\nCreating database for inventory';
 mysql -u root --password=root -e 'create database MediVolDB;';
 
 python /var/www/MediVol/syncdb_script.py;
+python /var/www/MediVol/inventory/CSV_Importer.py /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_1.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_2.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_3.csv
