@@ -9,7 +9,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
 from django.db import models
 from inventory.models import Box
 
-dummy_time = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime("01 01 1970", "%m %d %Y"))
+NO_EXPERATION = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime("01 01 1970", "%m %d %Y"))
 
 #Title: CSV Importer 
 #Description: Takes an existing CSV file containing inventory information and loads 
@@ -37,9 +37,10 @@ def importer(filepath):
       if (rownum != 1):
         validatedRow = validate_import_row(row, rownum)
         if (validatedRow != None):  
+          print (validatedRow[9])
           box = Box(box_id=validatedRow[0], box_size=validatedRow[1], weight=validatedRow[2], contents=validatedRow[3],
             expiration=validatedRow[4], entered_date=validatedRow[5], reserved_for=validatedRow[6], shipped_to=validatedRow[7],
-            box_date=validatedRow[8])#, audit=validatedRow[9])
+            box_date=validatedRow[8], audit=validatedRow[9])
           box.save() 
 
       rownum += 1
@@ -125,8 +126,8 @@ def validate_import_row(row, rownum):
       
     #Validating Expiration Field
     if ("NO EXP" in row[3] or row[3] == ""):
-      #dummy data for now
-      validRow[4] = dummy_time
+      #TODO Split NO_EXP and unknow exp
+      validRow[4] = NO_EXPERATION
     else: 
       validRow[4] = validate_and_convert_date(row[3])
     
@@ -142,7 +143,8 @@ def validate_import_row(row, rownum):
     #Validating Date Field 
     validRow[8] = validate_and_convert_date(row[7])
       
-    validRow[9] = ""  
+    #TODO read from documents instead
+    validRow[9] = 1
       
     print("Row Validation Complete\n")
     print(validRow)
@@ -159,7 +161,8 @@ def validate_and_convert_date(date):
   match2 = re.match("^\d+\W+\d+\Z", date) #Testing by regular expression here for format of mm/yyyy
   
   if (match is None):
-    validatedDate = dummy_time
+    #TODO figure out if any of this case exist
+    validatedDate = NO_EXPERATION
   else:
     formattedTime = time.strptime(date, "%m/%d/%Y")
     validatedDate = time.strftime('%Y-%m-%d %H:%M:%S', formattedTime) #Convert to mysql datetime
