@@ -9,7 +9,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
 from django.db import models
 from inventory.models import Box
 
-NO_EXPERATION = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime("01 01 1970", "%m %d %Y"))
+NO_EXPIRATION = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime("01 01 1970", "%m %d %Y"))
 
 #Title: CSV Importer 
 #Description: Takes an existing CSV file containing inventory information and loads 
@@ -20,7 +20,6 @@ NO_EXPERATION = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime("01 01 1970", "
 #tries to perform an import of a CSV file.
 def importer(filepath):
     starttime = time.time()
-
     #Python complains without the rU(universal new line) option when opening the CSV file so this needs to be there. 
     csvData = csv.reader(file(filepath, 'rU'), delimiter = ',', dialect=csv.excel_tab)
 
@@ -46,7 +45,7 @@ def importer(filepath):
     print ("Import Statistics:")
     print ("Imported " + str(rownum) + " rows")
     print ("Total time " + str(totaltime))
-  
+
 #This method runs a validation on all the column data of a row in a CSV file 
 #If the column is deemed valid then it will be added to a list that is returned 
 #for the Importer method to use it to insert into the MySQL Database  
@@ -62,7 +61,6 @@ def validate_import_row(row, rownum):
     if (row[0] == ""):
         print("Row %s is missing fields and will not be processed for validation. \n" % (rownum))
         validRow = None
-
     elif(row[1] == '' and row[2] == '' and row[3] == ''):
         print("Row %s is missing fields and will not be processed for validation. \n" % (rownum))
         validRow = None
@@ -75,7 +73,7 @@ def validate_import_row(row, rownum):
 
         #Validating BoxSizeWeightField
         splitString = None
-    
+
         if (boxSizeWeight == ""): 
             validRow[1] = "U"
             validRow[2] = "0.0"
@@ -84,32 +82,32 @@ def validate_import_row(row, rownum):
                 splitString = boxSizeWeight.split('-')
             else: 
                 splitString = boxSizeWeight.split(' ')  
-      
+    
             boxSize = splitString[0].strip()
             boxWeight = splitString[1].replace('lbs', '').replace(' .', '').strip()
     
             if ("?" in boxSize or boxSize == ""):
                 boxSize = "" 
-
+    
             if ("?" in boxWeight or boxWeight == ""): 
                 boxWeight = 0
         
             validRow[1] = boxSize 
             validRow[2] = boxWeight
-      
+    
         #Validating Box Contents Field 
         if ("?" not in row[2]):
             validRow[3] = row[2]
         else: 
             validRow[3] = ""
-      
+    
         if (row[2] != ""): 
             validRow[3] = row[2]
-      
+
         #Validating Expiration Field
         if ("NO EXP" in row[3] or row[3] == ""):
             #TODO Split NO_EXP and unknow exp
-            validRow[4] = NO_EXPERATION
+            validRow[4] = NO_EXPIRATION
         else: 
             validRow[4] = validate_and_convert_date(row[3])
     
@@ -124,27 +122,27 @@ def validate_import_row(row, rownum):
     
         #Validating Date Field 
         validRow[8] = validate_and_convert_date(row[7])
-      
+
         #TODO read from documents instead
         validRow[9] = 1
-      
+
         print("Row Validation Complete\n")
         print(validRow)
-  
+
     return validRow 
-  
+
 #This methods check for two date formats of mm/dd/yyyy and mm/yyyy. 
 #If the input matches any of the two formats then it will convert that into a valid
 #MySQL datetime string
-def validate_and_convert_date(date):  
+def validate_and_convert_date(date):
+
     validatedDate = None
     match = re.match("^\d+\W+\d+\W+\d+\Z", date) #Testing by regular expression here for format of mm/dd/yyyy
     match2 = re.match("^\d+\W+\d+\Z", date) #Testing by regular expression here for format of mm/yyyy
-  
+
     if (match is None):
         #TODO figure out if any of this case exist
-        validatedDate = NO_EXPERATION
-
+        validatedDate = NO_EXPIRATION
     else:
         formattedTime = time.strptime(date, "%m/%d/%Y")
         validatedDate = time.strftime('%Y-%m-%d %H:%M:%S', formattedTime) #Convert to mysql datetime
@@ -164,7 +162,7 @@ def main():
             else: 
                 print("WARNING - File is of not .csv format, skipping parse.")
         counter+=1
-  
+
 #Specifying entry point to the script
 if __name__ == '__main__':
     main()
