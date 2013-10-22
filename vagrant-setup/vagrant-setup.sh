@@ -85,13 +85,16 @@ sudo apt-get install python-dev -y;
 printf '\nInstalling elaphe...';
 sudo pip install elaphe;
 
-printf '\nInstalling python-mysqldb';
+printf '\nInstalling python-mysqldb...';
 sudo apt-get install python-mysqldb -y;
 
-printf '\nInstalling django-jenkins';
+printf '\nInstalling django-jenkins...';
 sudo pip install django-jenkins;
 
-printf '\nCreating database for inventory';
+printf '\nInstalling django_dajax...';
+sudo pip install django_dajax;
+
+printf '\nCreating database for inventory...';
 mysql -u root --password=root -e 'create database MediVolDB;';
 
 python /var/www/MediVol/syncdb_script.py;
