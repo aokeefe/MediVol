@@ -52,6 +52,9 @@ USE_TZ = True
 # Example: "/var/www/example.com/media/"
 MEDIA_ROOT = ''
 
+# URL of the Login Page 
+LOGIN_URL ='/login/'
+
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
@@ -125,10 +128,11 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'django_jenkins',
+    #'django_jenkins',
     # place MediVol specific apps below this
     'inventory',
     'catalog',
+    'administration',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
