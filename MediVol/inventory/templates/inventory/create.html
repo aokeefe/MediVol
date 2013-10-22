@@ -11,30 +11,41 @@
         <form action='{% url "inventory:create" %}' method='post'>
             {% csrf_token %}
             
-            Initials: <input type='text' name='initials' /><br />
-            Weight: <input type='text' name='weight' /><br />
-            Size: <input type='radio' name='size' value='small'> Small
-                    <input type='radio' name='size' value='large'> Large<br />
+            <div style='float: left; width: 100%'>
+                Initials: <input type='text' name='initials' /><br />
+                Weight: <input type='text' name='weight' /><br />
+                Size: <input type='radio' name='size' value='small'> Small
+                        <input type='radio' name='size' value='large'> Large<br />
+                
+                <hr />
+            </div>
+            
+            <div style='float: left; width: 100%'>
+                <h3>Add Inventory</h3>
+                
+                <div style='float: left; width: 150px'>
+                    Category<br />
+                    <select id='categories' size=10 style='width: 125px'>
+                        {% for category in categories %}
+                            <option>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div style='float: left; width: 150px'>
+                    Box Name<br />
+                    <select id='box_names' size=10 style='width: 125px'>
                     
-            <hr />
-            <h3>Add Inventory</h3>
-            
-            Category<br />
-            <select id='category' size=10>
-                {% for category in categories %}
-                    <option>{{ category.name }}</option>
-                {% endfor %}
-            </select><br />
-            
-            Box Name<br />
-            <select id='box_name' size=10>
-            
-            </select><br />
-            
-            Item<br />
-            <select id='item' size=10>
-            
-            </select><br />
+                    </select>
+                </div>
+                
+                <div style='float: left; width: 150px'>
+                    Item<br />
+                    <select id='items' size=10 style='width: 125px'>
+                    
+                    </select>
+                </div>
+            </div>
             
             <input type='submit' value='Create' />
         </form>

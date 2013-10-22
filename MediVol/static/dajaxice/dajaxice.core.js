@@ -9,8 +9,12 @@ var Dajaxice = {
     
     inventory: {
     
+    get_items: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('inventory.get_items', 'GET', callback_function, argv, custom_settings);
+    },
+
     get_box_names: function(callback_function, argv, custom_settings){
-        return Dajaxice.call('inventory.get_box_names', 'POST', callback_function, argv, custom_settings);
+        return Dajaxice.call('inventory.get_box_names', 'GET', callback_function, argv, custom_settings);
     }
 
 
