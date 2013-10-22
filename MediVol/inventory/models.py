@@ -22,7 +22,9 @@ class Box(models.Model):
     box_date = models.DateTimeField('Box date')
     audit = models.IntegerField(default=1)
     #location = models.CharField(max_length=300)
-	
+
+    def to_csv(self):
+        return self.box_id + ", " + self.box_size + ", " + str(self.weight) + ", " + self.contents + ", " + str(self.expiration) + ", " + str(self.entered_date) + ", " + self.reserved_for + ", " + self.shipped_to + ", " + str(self.box_date) + ", " + str(self.audit) + "\n"
 
 class Box_Contents(models.Model):
     box_within = models.ForeignKey(Box)
