@@ -19,7 +19,6 @@ NO_EXPIRATION = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime("01 01 1970", "
 #This is the importer method which establishes a connection with the MySQL Database and 
 #tries to perform an import of a CSV file.
 def importer(filepath):
-
     starttime = time.time()
     #Python complains without the rU(universal new line) option when opening the CSV file so this needs to be there. 
     csvData = csv.reader(file(filepath, 'rU'), delimiter = ',', dialect=csv.excel_tab)
@@ -156,6 +155,8 @@ def validate_and_convert_date(date):
     return validatedDate
 
 def main():
+    for box in Box.objects.all():
+        box.delete()
     counter = 0 
     for arg in sys.argv: 
         if (counter != 0): #Skip the first index of the argument list because it is the script name
