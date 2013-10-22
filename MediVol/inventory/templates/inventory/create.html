@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Intervol - Inventory</title>
+    </head>
+    
+    <body>
+        <h2>Create Box</h2>
+        {{ test }}
+        <form action='{% url "inventory:create" %}' method='post'>
+            {% csrf_token %}
+            
+            Initials: <input type='text' name='initials' /><br />
+            Weight: <input type='text' name='weight' /><br />
+            Size: <input type='radio' name='size' value='small'> Small
+                    <input type='radio' name='size' value='large'> Large<br />
+                    
+            <hr />
+            <h3>Add Inventory</h3>
+            
+            Category<br />
+            <select id='category' size=10>
+                {% for category in categories %}
+                    <option>{{ category.name }}</option>
+                {% endfor %}
+            </select><br />
+            
+            Box Name<br />
+            <select id='box_name' size=10>
+            
+            </select><br />
+            
+            Item<br />
+            <select id='item' size=10>
+            
+            </select><br />
+            
+            <input type='submit' value='Create' />
+        </form>
+        
+        <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+        <script>window.jQuery || document.write('<script src="{{STATIC_URL}}js/jquery.min.js"><\/script>')</script>
+        <script type='text/javascript' src='{{STATIC_URL}}inventory/js/main.js'></script>
+    </body>
+</html>
