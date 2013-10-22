@@ -1,14 +1,10 @@
+function getBoxNames(response) {
+    console.log(response.message);
+}
+
 $(document).ready(function() {
     $('#category').change(function() {
         var selectedCategory = $('#category option:selected').val();
-        
-        $.ajax({
-            url: '/static/inventory/ajax/getBoxNames.py',
-            type: 'POST',
-            data: { category: selectedCategory },
-            success: function(response){
-                console.log(response);
-            }
-        });
+        Dajaxice.inventory.get_box_names(getBoxNames);
     });
 });

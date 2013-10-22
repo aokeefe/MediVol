@@ -3,11 +3,11 @@
 <html>
     <head>
         <title>Intervol - Inventory</title>
+        {% load dajaxice_templatetags %}
     </head>
     
     <body>
         <h2>Create Box</h2>
-        {{ test }}
         <form action='{% url "inventory:create" %}' method='post'>
             {% csrf_token %}
             
@@ -39,6 +39,7 @@
             <input type='submit' value='Create' />
         </form>
         
+        {% dajaxice_js_import %}
         <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
         <script>window.jQuery || document.write('<script src="{{STATIC_URL}}js/jquery.min.js"><\/script>')</script>
         <script type='text/javascript' src='{{STATIC_URL}}inventory/js/main.js'></script>
