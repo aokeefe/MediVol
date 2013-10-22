@@ -154,6 +154,8 @@ def validate_and_convert_date(date):
     return validatedDate
 
 def main():
+    for box in Box.objects.all():
+        box.delete()
     counter = 0 
     for arg in sys.argv: 
         if (counter != 0): #Skip the first index of the argument list because it is the script name
