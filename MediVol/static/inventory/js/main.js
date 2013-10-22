@@ -4,7 +4,16 @@ var ITEM_TEMPLATE = '<tr>' +
         '<td style="border: 1px solid black">{item}</td>' + 
         '<td style="border: 1px solid black">{expiration}</td>' + 
         '<td style="border: 1px solid black">{count}</td>' + 
+        '<td style="border: 1px solid black"><a class="remove_item" href="javascript:void(0)">Remove</a></td>' + 
     '</tr>';
+    
+var BLANK_ROW = "<tr id='placeholder_row'>" + 
+                    "<td style='border: 1px solid black'></td>" + 
+                    "<td style='border: 1px solid black'></td>" + 
+                    "<td style='border: 1px solid black'></td>" + 
+                    "<td style='border: 1px solid black'></td>" + 
+                    "<td style='border: 1px solid black'>&nbsp;</td>" + 
+                "</tr>";
 
 function getBoxNames(response) {
     $('#box_names').empty();
@@ -60,5 +69,13 @@ $(document).ready(function() {
                 .replace('{expiration}', expiration)
                 .replace('{count}', count)
         );
+        
+        $('.remove_item').click(function() {
+            $(this).parent().parent().remove();
+            
+            if ($('#items_added tr').length == 1) {
+                $('#items_added').append(BLANK_ROW);
+            }
+        });
     });
 });
