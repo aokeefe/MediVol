@@ -1,3 +1,11 @@
+var ITEM_TEMPLATE = '<tr>' + 
+        '<td style="border: 1px solid black">{category}</td>' + 
+        '<td style="border: 1px solid black">{box_name}</td>' + 
+        '<td style="border: 1px solid black">{item}</td>' + 
+        '<td style="border: 1px solid black">{expiration}</td>' + 
+        '<td style="border: 1px solid black">{count}</td>' + 
+    '</tr>';
+
 function getBoxNames(response) {
     $('#box_names').empty();
     $('#items').empty();
@@ -25,5 +33,32 @@ $(document).ready(function() {
         var selectedBoxName = $('#box_names option:selected').val();
        
         Dajaxice.inventory.get_items(getItems, { 'box_name': selectedBoxName });
+    });
+    
+    $('#add_item').click(function(e) {
+        e.preventDefault();
+        
+        var category = $('#categories option:selected').val();
+        var boxName = $('#box_names option:selected').val();
+        var item = $('#items option:selected').val();
+        var expiration = ($('#expiration').val() == '') ? 'Never' : $('#expiration').val();
+        var count = $('#count').val();
+        
+        if (typeof(category) == 'undefined' || 
+                typeof(boxName) == 'undefined' || 
+                typeof(item) == 'undefined' || 
+                count == '') {
+            return;
+        }
+        
+        $('#placeholder_row').remove();
+        
+        $('#items_added').append(
+            ITEM_TEMPLATE.replace('{category}', category)
+                .replace('{box_name}', boxName)
+                .replace('{item}', item)
+                .replace('{expiration}', expiration)
+                .replace('{count}', count)
+        );
     });
 });

@@ -12,15 +12,20 @@
             {% csrf_token %}
             
             <div style='float: left; width: 100%'>
-                Initials: <input type='text' name='initials' /><br />
-                Weight: <input type='text' name='weight' /><br />
-                Size: <input type='radio' name='size' value='small'> Small
-                        <input type='radio' name='size' value='large'> Large<br />
+                <div style='float: left'>
+                    Initials: <input type='text' name='initials' /><br />
+                    Weight: <input type='text' name='weight' /><br />
+                    Size: <input type='radio' name='size' value='small'> Small
+                            <input type='radio' name='size' value='large'> Large
+                </div>
                 
-                <hr />
+                <div style='float: left; padding-left: 25px'>
+                    Note: <br /><textarea name='note' style='width: 150px; height: 75px'></textarea>
+                </div>
             </div>
             
-            <div style='float: left; width: 100%'>
+            <div style='float: left; width: 100%; margin-bottom: 25px'>
+                <hr />
                 <h3>Add Inventory</h3>
                 
                 <div style='float: left; width: 150px'>
@@ -45,9 +50,34 @@
                     
                     </select>
                 </div>
+                
+                <div style='float: left;'>
+                    Expiration: <input type='text' id='expiration' /><br />
+                    Count: <input type='text' id='count' /><br />
+                    <button id='add_item'>Add Item(s)</button>
+                </div>
             </div>
             
-            <input type='submit' value='Create' />
+            <table id='items_added' 
+                style='border: 1px solid black; border-collapse: collapse; text-align: center; width: 50%'>
+                <tr>
+                    <td style='border: 1px solid black; font-weight: bold'>Category</td>
+                    <td style='border: 1px solid black; font-weight: bold'>Box Name</td>
+                    <td style='border: 1px solid black; font-weight: bold'>Item</td>
+                    <td style='border: 1px solid black; font-weight: bold'>Expiration</td>
+                    <td style='border: 1px solid black; font-weight: bold'>Count</td>
+                </tr>
+                
+                <tr id='placeholder_row'>
+                    <td style='border: 1px solid black'></td>
+                    <td style='border: 1px solid black'></td>
+                    <td style='border: 1px solid black'></td>
+                    <td style='border: 1px solid black'></td>
+                    <td style='border: 1px solid black'>&nbsp;</td>
+                </tr>
+            </table>
+            
+            <input type='submit' value='Create Box' />
         </form>
         
         {% dajaxice_js_import %}
