@@ -2,12 +2,12 @@ import csv
 import MySQLdb as db
 import time
 import re
-import sys
 import os, sys
 sys.path.append('/var/www/MediVol/')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
 from django.db import models
 from inventory.models import Box
+from catalog.models import Category
 
 NO_EXPIRATION = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime("01 01 1970", "%m %d %Y"))
 
@@ -31,10 +31,9 @@ def importer(filepath):
         if (rownum != 1):
             validatedRow = validate_import_row(row, rownum)
             if (validatedRow != None):  
-                print (validatedRow[9])
                 box = Box(box_id=validatedRow[0], box_size=validatedRow[1], weight=validatedRow[2], contents=validatedRow[3],
                     expiration=validatedRow[4], entered_date=validatedRow[5], reserved_for=validatedRow[6], shipped_to=validatedRow[7],
-                    box_date=validatedRow[8], audit=validatedRow[9])
+                    box_date=validatedRow[8], audit=validatedRow[9], box_category=Category.objects.filter(letter=validatedRow[10])[0])
                 box.save() 
         rownum += 1
 
@@ -52,7 +51,7 @@ def importer(filepath):
 #The indexing of the row variable passed in is in accordance with the excel 
 #headers in the old excel based storage of the inventory. 
 def validate_import_row(row, rownum):
-    validRow = [None]*10
+    validRow = [None]*11
     print("Validating Row...")
 
     boxSizeWeight = row[1]
@@ -125,6 +124,9 @@ def validate_import_row(row, rownum):
 
         #TODO read from documents instead
         validRow[9] = 1
+
+        #Set the category to the first letter in the id
+        validRow[10] = row[0].strip('0123456789')
 
         print("Row Validation Complete\n")
         print(validRow)

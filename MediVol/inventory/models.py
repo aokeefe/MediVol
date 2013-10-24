@@ -1,5 +1,5 @@
 from django.db import models
-from catalog.models import Item;
+from catalog.models import Item, Category;
 
 class Box(models.Model):
     SMALL = 'S'
@@ -11,6 +11,7 @@ class Box(models.Model):
         (UNKNOWN, 'Unknown'),
     )
     box_id = models.CharField(max_length=4)
+    box_category = models.ForeignKey(Category)
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN)
     weight = models.DecimalField(max_digits=5, decimal_places=2) 
     contents = models.CharField(max_length=300)
