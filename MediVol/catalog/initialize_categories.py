@@ -6,7 +6,7 @@ from catalog.models import Category
 
 letter_mapping = (
     ('A', 'Mother and Child'),
-    ('B', 'Peronal Care'),
+    ('B', 'Personal Care'),
     ('C', 'Patient Care'),
     ('D', 'Laboratory'),
     ('E', 'Provider Protection'),
