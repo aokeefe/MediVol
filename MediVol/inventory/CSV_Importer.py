@@ -75,7 +75,7 @@ def validate_import_row(row, rownum):
 
         if (boxSizeWeight == ""): 
             validRow[1] = "U"
-            validRow[2] = "0.0"
+            validRow[2] = None
         else:
             if ("-" in boxSizeWeight): 
                 splitString = boxSizeWeight.split('-')
@@ -86,10 +86,10 @@ def validate_import_row(row, rownum):
             boxWeight = splitString[1].replace('lbs', '').replace(' .', '').strip()
     
             if ("?" in boxSize or boxSize == ""):
-                boxSize = "" 
+                boxSize = "U" 
     
             if ("?" in boxWeight or boxWeight == ""): 
-                boxWeight = 0
+                boxWeight = None
         
             validRow[1] = boxSize 
             validRow[2] = boxWeight
@@ -104,9 +104,9 @@ def validate_import_row(row, rownum):
             validRow[3] = row[2]
 
         #Validating Expiration Field
-        if ("NO EXP" in row[3] or row[3] == ""):
+        if ("NO EXP" in row[3].upper() or row[3].strip() == ""):
             #TODO Split NO_EXP and unknow exp
-            validRow[4] = NO_EXPIRATION
+            validRow[4] = None#NO_EXPIRATION
         else: 
             validRow[4] = validate_and_convert_date(row[3])
     
@@ -137,21 +137,23 @@ def validate_import_row(row, rownum):
 #If the input matches any of the two formats then it will convert that into a valid
 #MySQL datetime string
 def validate_and_convert_date(date):
-
     validatedDate = None
     match = re.match("^\d+\W+\d+\W+\d+\Z", date) #Testing by regular expression here for format of mm/dd/yyyy
     match2 = re.match("^\d+\W+\d+\Z", date) #Testing by regular expression here for format of mm/yyyy
 
-    if (match is None):
-        #TODO figure out if any of this case exist
+    if(date is None or date.strip() is ""):
+        print('blank')
         validatedDate = NO_EXPIRATION
-    else:
+    elif (match is not None):
         formattedTime = time.strptime(date, "%m/%d/%Y")
         validatedDate = time.strftime('%Y-%m-%d %H:%M:%S', formattedTime) #Convert to mysql datetime
-
-    if (match2 is not None):  
+    elif (match2 is not None):  
         formattedTime = time.strptime(date, "%m/%Y")
         validatedDate = time.strftime('%Y-%m-%d %H:%M:%S', formattedTime) #Convert to mysql datetime
+    else:
+        #TODO figure out if any of this case exist
+        print('HERE: else:' + date)
+        validatedDate = NO_EXPIRATION
 
     return validatedDate
 
