@@ -106,7 +106,7 @@ def validate_import_row(row, rownum):
         #Validating Expiration Field
         if ("NO EXP" in row[3].upper() or row[3].strip() == ""):
             #TODO Split NO_EXP and unknow exp
-            validRow[4] = None#NO_EXPIRATION
+            validRow[4] = NO_EXPIRATION
         else: 
             validRow[4] = validate_and_convert_date(row[3])
     
@@ -142,7 +142,6 @@ def validate_and_convert_date(date):
     match2 = re.match("^\d+\W+\d+\Z", date) #Testing by regular expression here for format of mm/yyyy
 
     if(date is None or date.strip() is ""):
-        print('blank')
         validatedDate = NO_EXPIRATION
     elif (match is not None):
         formattedTime = time.strptime(date, "%m/%d/%Y")
@@ -152,7 +151,6 @@ def validate_and_convert_date(date):
         validatedDate = time.strftime('%Y-%m-%d %H:%M:%S', formattedTime) #Convert to mysql datetime
     else:
         #TODO figure out if any of this case exist
-        print('HERE: else:' + date)
         validatedDate = NO_EXPIRATION
 
     return validatedDate

@@ -22,7 +22,7 @@ class Box(models.Model):
     reserved_for = models.CharField(max_length=300)
     shipped_to = models.CharField(max_length=300)
     #TODO: Ask Amy what this could mean
-    box_date = models.DateTimeField('Box date')
+    box_date = models.DateTimeField('Box date', null=True)
     #TODO what does this mean?
     audit = models.IntegerField(default=1)
     #TODO add the following
