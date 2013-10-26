@@ -6,9 +6,9 @@ class Category(models.Model):
     letter = models.CharField(max_length=1)
     name = models.CharField(max_length=NAME_LENGTH)
     def __unicode__(self):
-        return self.letter + " - " + self.name
+        return self.name + " - " + self.letter  
 
-class Box_name(models.Model):
+class BoxName(models.Model):
     letter = models.ForeignKey(Category)
     name = models.CharField(max_length=NAME_LENGTH)
 
