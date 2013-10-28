@@ -32,9 +32,24 @@ function getItems(response) {
     }
 }
 
+function createBox(response) {
+    console.log(response);
+}
+
+function setRemoveButton() {
+    $('.remove_item').click(function() {
+        $(this).parent().parent().remove();
+        
+        if ($('#items_added tr').length == 1) {
+            $('#items_added').append(BLANK_ROW);
+        }
+    });
+}
+
 $(document).ready(function() {
     $('#categories').change(function() {
         var selectedCategory = $('#categories option:selected').val();
+        
         Dajaxice.inventory.get_box_names(getBoxNames, { 'category_name': selectedCategory });
     });
     
@@ -45,6 +60,7 @@ $(document).ready(function() {
     });
     
     $('#add_item').click(function(e) {
+        // Prevent button from submitting form.
         e.preventDefault();
         
         var category = $('#categories option:selected').val();
@@ -53,14 +69,19 @@ $(document).ready(function() {
         var expiration = ($('#expiration').val() == '') ? 'Never' : $('#expiration').val();
         var count = $('#count').val();
         
+        // Required fields to add an item.
         if (typeof(category) == 'undefined' || 
                 typeof(boxName) == 'undefined' || 
                 typeof(item) == 'undefined' || 
-                count == '') {
+                count == '' || 
+                count < 1) {
             return;
         }
         
         $('#placeholder_row').remove();
+        
+        $('#count').val('');
+        $('#expiration').val('');
         
         $('#items_added').append(
             ITEM_TEMPLATE.replace('{category}', category)
@@ -70,12 +91,51 @@ $(document).ready(function() {
                 .replace('{count}', count)
         );
         
-        $('.remove_item').click(function() {
-            $(this).parent().parent().remove();
+        setRemoveButton();
+    });
+    
+    $('#submit').click(function(e) {
+        e.preventDefault();
+        
+        var initials = $('input[name=initials]').val();
+        var weight = $('input[name=weight]').val();
+        var size = $('input[name=size]:checked').val();
+        var note = $('textarea[name=note]').val();
+        
+        // Required fields.
+        if (initials == '' || weight == '' || typeof(size) == 'undefined') {
+            return;
+        }
+        
+        var items = [];
+        
+        $('#items_added tr').each(function(index, element) {
+            element = $(element);
             
-            if ($('#items_added tr').length == 1) {
-                $('#items_added').append(BLANK_ROW);
+            if (element.attr('id') != 'placeholder_row' && 
+                    element.attr('id') != 'table_header') {
+                var itemInfo = element.children('td');
+                var itemName = $(itemInfo[2]).html();
+                var expiration = $(itemInfo[3]).html();
+                var count = $(itemInfo[4]).html();
+                
+                items.push([ itemName, expiration, count ]);
             }
         });
+        
+        // Can't have 0 items.
+        if (items.length == 0) {
+            return;
+        }
+        
+        Dajaxice.inventory.create_box(createBox, 
+            {
+                'initials': initials,
+                'weight': weight,
+                'size': size,
+                'items': items,
+                'note': note
+            }
+        );
     });
 });

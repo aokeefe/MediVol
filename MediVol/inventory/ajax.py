@@ -26,3 +26,12 @@ def get_items(request, box_name):
         items_array.append(item.name)
     
     return simplejson.dumps(items_array)
+
+@dajaxice_register
+def create_box(request, initials, weight, size, items, note=''):
+    items_array = []
+    
+    for item in items:
+        items_array.append(Item.objects.get(name=item[0]))
+
+    return simplejson.dumps(items_array)
