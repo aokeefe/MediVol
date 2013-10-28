@@ -9,7 +9,7 @@ class Category(models.Model):
         return self.name + " - " + self.letter
 
     def to_csv(self):
-    	return self.letter + ", " + self.name
+        return self.letter + ", " + self.name
 
 class BoxName(models.Model):
     letter = models.ForeignKey(Category)
