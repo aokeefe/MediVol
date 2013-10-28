@@ -14,7 +14,12 @@ class Category(models.Model):
 class BoxName(models.Model):
     letter = models.ForeignKey(Category)
     name = models.CharField(max_length=NAME_LENGTH)
+    def __unicode__(self):
+        return self.name
 
+    def to_csv(self):
+        return self.letter + ", " + self.name
+        
 #TODO remove in favor of a multi Catagory implementation
 class Item(models.Model):
     category = models.ForeignKey(Category)
