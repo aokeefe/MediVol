@@ -6,7 +6,10 @@ class Category(models.Model):
     letter = models.CharField(max_length=1)
     name = models.CharField(max_length=NAME_LENGTH)
     def __unicode__(self):
-        return self.name + " - " + self.letter  
+        return self.name + " - " + self.letter
+
+    def to_csv(self):
+    	return self.letter + ", " + self.name
 
 class BoxName(models.Model):
     letter = models.ForeignKey(Category)
