@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
-from catalog.models import Letter
+from catalog.models import Category
 
 def create(request):
-    context = { 'categories': Letter.objects.all() }
+    context = { 'categories': Category.objects.all() }
     
     return render(request, 'inventory/create.html', context)

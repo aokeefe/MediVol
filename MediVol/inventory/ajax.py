@@ -1,12 +1,12 @@
 from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 
-from catalog.models import Letter, Category, Item
+from catalog.models import Category, BoxName, Item
 
 @dajaxice_register(method='GET')
 def get_box_names(request, category_name):
-    category = Letter.objects.get(name=category_name)
-    box_names = Category.objects.filter(letter=category)
+    category = Category.objects.get(name=category_name)
+    box_names = BoxName.objects.filter(letter=category)
     
     box_names_array = []
     
@@ -17,7 +17,7 @@ def get_box_names(request, category_name):
     
 @dajaxice_register(method='GET')
 def get_items(request, box_name):
-    box_name = Category.objects.get(name=box_name)
+    box_name = BoxName.objects.get(name=box_name)
     items = Item.objects.filter(category=box_name)
     
     items_array = []
@@ -33,5 +33,7 @@ def create_box(request, initials, weight, size, items, note=''):
     
     for item in items:
         items_array.append(Item.objects.get(name=item[0]))
+        
+    
 
     return simplejson.dumps(items_array)
