@@ -241,5 +241,5 @@ box_name_mapping = (
     )
 
 for pair in box_name_mapping:
-    box_name = BoxName(name=pair[0], letter=Category.objects.get(letter=pair[1]))
+    box_name = BoxName(name=pair[0], category=Category.objects.get(letter=pair[1]))
     box_name.save()
