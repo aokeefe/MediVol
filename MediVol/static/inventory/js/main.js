@@ -14,6 +14,9 @@ var BLANK_ROW = "<tr id='placeholder_row'>" +
                     "<td style='border: 1px solid black'></td>" + 
                     "<td style='border: 1px solid black'>&nbsp;</td>" + 
                 "</tr>";
+                
+var boxNameToChoose = '';
+var itemToChoose = '';
 
 function getBoxNames(response) {
     $('#box_names').empty();
@@ -22,13 +25,25 @@ function getBoxNames(response) {
     for (var i = 0; i < response.length; i++) {
         $('#box_names').append('<option>' + response[i] + '</option>');
     }
+    
+    if (boxNameToChoose != '') {
+        $('#box_names').val(boxNameToChoose);
+        boxNameToChoose = '';
+        $('#box_names').change();
+    }
 }
 
 function getItems(response) {
-    $('items').empty();
+    $('#items').empty();
     
     for (var i = 0; i < response.length; i++) {
         $('#items').append('<option>' + response[i] + '</option>');
+    }
+    
+    if (itemToChoose != '') {
+        $('#items').val(itemToChoose);
+        itemToChoose = '';
+        $('#items').change();
     }
 }
 
@@ -46,7 +61,67 @@ function setRemoveButton() {
     });
 }
 
+function getAutocompleteCallback(response){
+    var object = {
+        response: response, 
+        theCallback: function(returned) {
+            response(returned);
+        }
+    };
+    
+    return object;
+}
+
+function autocompleteCallback(request, response) {
+    dajaxiceAutocomplete = getAutocompleteCallback(response);
+    
+    Dajaxice.inventory.get_search_results(dajaxiceAutocomplete.theCallback, { 'query': request.term });
+}
+
 $(document).ready(function() {
+    $('#itemSearch').autocomplete(
+        {
+            source: autocompleteCallback,
+            messages: {
+                noResults: '',
+                results: function() {}
+            },
+            close: function() {
+                var query = $('#itemSearch').val();
+                var actualQuery = query;
+                
+                if (query.lastIndexOf('> ') != -1) {
+                    actualQuery = query.substr(query.lastIndexOf('> ') + 2, query.length);
+                }
+                
+                $('#itemSearch').val(actualQuery);
+                
+                var queryArray = query.split(' > ');
+                var category = queryArray[0];
+                var boxName = '';
+                var item = '';
+                
+                if (queryArray.length > 1) {
+                    boxName = queryArray[1];
+                }
+                
+                if (queryArray.length > 2) {
+                    item = queryArray[2];
+                }
+                
+                $('#categories').val(category).change();
+                
+                if (boxName != '') {
+                    boxNameToChoose = boxName;
+                }
+                
+                if (item != '') {
+                    itemToChoose = item;
+                }
+            }
+        }
+    );
+
     $('#categories').change(function() {
         var selectedCategory = $('#categories option:selected').val();
         
@@ -58,6 +133,10 @@ $(document).ready(function() {
        
         Dajaxice.inventory.get_items(getItems, { 'box_name': selectedBoxName });
     });
+    
+    $('#items').change(function() {
+        
+    })
     
     $('#add_item').click(function(e) {
         // Prevent button from submitting form.

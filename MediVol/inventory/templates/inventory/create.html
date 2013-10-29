@@ -3,6 +3,8 @@
 <html>
     <head>
         <title>Intervol - Inventory</title>
+        <link rel='stylesheet' href='{{STATIC_URL}}css/ui-lightness/jquery-ui.min.css' />
+        <link rel='stylesheet' href='{{STATIC_URL}}css/ui-lightness/jquery.ui.theme.css' />
         {% load dajaxice_templatetags %}
     </head>
     
@@ -52,6 +54,7 @@
                 </div>
                 
                 <div style='float: left;'>
+                    Search: <input type='text' id='itemSearch' /><br />
                     Expiration: <input type='date' id='expiration' /><br />
                     Count: <input type='number' min=1 id='count' /><br />
                     <button id='add_item'>Add Item(s)</button>
@@ -83,6 +86,8 @@
         {% dajaxice_js_import %}
         <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
         <script>window.jQuery || document.write('<script src="{{STATIC_URL}}js/jquery.min.js"><\/script>')</script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{STATIC_URL}}js/jquery-ui.min.js"><\/script>')</script>
         <script type='text/javascript' src='{{STATIC_URL}}inventory/js/main.js'></script>
     </body>
 </html>

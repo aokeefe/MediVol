@@ -17,6 +17,10 @@ var Dajaxice = {
         return Dajaxice.call('inventory.create_box', 'POST', callback_function, argv, custom_settings);
     },
 
+    get_search_results: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('inventory.get_search_results', 'GET', callback_function, argv, custom_settings);
+    },
+
     get_box_names: function(callback_function, argv, custom_settings){
         return Dajaxice.call('inventory.get_box_names', 'GET', callback_function, argv, custom_settings);
     }
