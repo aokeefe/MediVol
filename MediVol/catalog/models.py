@@ -22,6 +22,6 @@ class BoxName(models.Model):
         
 #TODO remove in favor of a multi Catagory implementation
 class Item(models.Model):
-    category = models.ForeignKey(Category)
+    box_name = models.ForeignKey(BoxName)
     name = models.CharField(max_length=NAME_LENGTH)
     description = models.CharField(max_length = 500)
