@@ -27,4 +27,7 @@ urlpatterns = patterns('',
 
     #Routing for Administration Main Page 
     url(r'^administration/', include('administration.urls')),
+    
+    #Routing for Inventory
+    url(r'^inventory/', include('inventory.urls')),
 )

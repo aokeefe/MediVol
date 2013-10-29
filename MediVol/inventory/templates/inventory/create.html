@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Intervol - Inventory</title>
+        <link rel='stylesheet' href='{{STATIC_URL}}css/ui-lightness/jquery-ui.min.css' />
+        <link rel='stylesheet' href='{{STATIC_URL}}css/ui-lightness/jquery.ui.theme.css' />
+        {% load dajaxice_templatetags %}
+    </head>
+    
+    <body>
+        <h2>Create Box</h2>
+        <form id='create_box_form' action='' method='post'>
+            {% csrf_token %}
+            
+            <div style='float: left; width: 100%'>
+                <div style='float: left'>
+                    Initials: <input type='text' name='initials' /><br />
+                    Weight: <input type='number' name='weight' /><br />
+                    Size: <input type='radio' name='size' value='small'> Small
+                            <input type='radio' name='size' value='large'> Large
+                </div>
+                
+                <div style='float: left; padding-left: 25px'>
+                    Note: <br /><textarea name='note' style='width: 150px; height: 75px'></textarea>
+                </div>
+            </div>
+            
+            <div style='float: left; width: 100%; margin-bottom: 25px'>
+                <hr />
+                <h3>Add Inventory</h3>
+                
+                <div style='float: left; width: 150px'>
+                    Category<br />
+                    <select id='categories' size=10 style='width: 125px'>
+                        {% for category in categories %}
+                            <option>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div style='float: left; width: 150px'>
+                    Box Name<br />
+                    <select id='box_names' size=10 style='width: 125px'>
+                    
+                    </select>
+                </div>
+                
+                <div style='float: left; width: 150px'>
+                    Item<br />
+                    <select id='items' size=10 style='width: 125px'>
+                    
+                    </select>
+                </div>
+                
+                <div style='float: left;'>
+                    Search: <input type='text' id='itemSearch' /><br />
+                    Expiration: <input type='date' id='expiration' /><br />
+                    Count: <input type='number' min=1 id='count' /><br />
+                    <button id='add_item'>Add Item(s)</button>
+                </div>
+            </div>
+            
+            <table id='items_added' 
+                style='border: 1px solid black; border-collapse: collapse; text-align: center; width: 50%'>
+                <tr id='table_header'>
+                    <td style='border: 1px solid black; font-weight: bold'>Category</td>
+                    <td style='border: 1px solid black; font-weight: bold'>Box Name</td>
+                    <td style='border: 1px solid black; font-weight: bold'>Item</td>
+                    <td style='border: 1px solid black; font-weight: bold'>Expiration</td>
+                    <td style='border: 1px solid black; font-weight: bold'>Count</td>
+                </tr>
+                
+                <tr id='placeholder_row'>
+                    <td style='border: 1px solid black'></td>
+                    <td style='border: 1px solid black'></td>
+                    <td style='border: 1px solid black'></td>
+                    <td style='border: 1px solid black'></td>
+                    <td style='border: 1px solid black'>&nbsp;</td>
+                </tr>
+            </table>
+            
+            <input type='submit' id='submit' value='Create Box' />
+        </form>
+        
+        {% dajaxice_js_import %}
+        <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+        <script>window.jQuery || document.write('<script src="{{STATIC_URL}}js/jquery.min.js"><\/script>')</script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{STATIC_URL}}js/jquery-ui.min.js"><\/script>')</script>
+        <script type='text/javascript' src='{{STATIC_URL}}inventory/js/main.js'></script>
+    </body>
+</html>
