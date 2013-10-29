@@ -12,7 +12,7 @@ class Category(models.Model):
         return self.letter + ", " + self.name
 
 class BoxName(models.Model):
-    letter = models.ForeignKey(Category)
+    category = models.ForeignKey(Category)
     name = models.CharField(max_length=NAME_LENGTH)
     def __unicode__(self):
         return self.name
