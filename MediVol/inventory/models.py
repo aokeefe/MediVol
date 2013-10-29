@@ -13,16 +13,16 @@ class Box(models.Model):
     box_id = models.CharField(max_length=4)
     box_category = models.ForeignKey(Category)
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN)
-    weight = models.DecimalField(max_digits=5, decimal_places=2) 
+    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True) 
     contents = models.CharField(max_length=300)
     #zero time is no_exp
     #None is unknown
-    expiration = models.DateTimeField('expiration date')
+    expiration = models.DateTimeField('expiration date', null=True)
     entered_date = models.DateTimeField('date the box was entered')
     reserved_for = models.CharField(max_length=300)
     shipped_to = models.CharField(max_length=300)
     #TODO: Ask Amy what this could mean
-    box_date = models.DateTimeField('Box date')
+    box_date = models.DateTimeField('Box date', null=True)
     #TODO what does this mean?
     audit = models.IntegerField(default=1)
     #TODO add the following
