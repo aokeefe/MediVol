@@ -1,5 +1,7 @@
+import pytz
 from django.db import models
-from catalog.models import Item, Category;
+from catalog.models import Item, Category
+from datetime import datetime
 
 class Box(models.Model):
     SMALL = 'S'
@@ -39,9 +41,12 @@ class Box(models.Model):
         return self.box_id
 
     def get_expiration(self):
-        expiration = None
-        for item in this.boxcontents_set:
-            expiration = item.expiration
+        NOT_EXPIRING_IN_THIS_CENTURY = datetime(3013,1,1,0,0,0,0,pytz.UTC)
+        expiration = NOT_EXPIRING_IN_THIS_CENTURY
+        for item in self.boxcontents_set.all():
+            #if the item has an expiration that is older than the oldest replace it
+            if item.expiration < expiration:
+                expiration = item.expiration
         return expiration
 
 class BoxContents(models.Model):
