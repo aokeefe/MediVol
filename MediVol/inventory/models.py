@@ -17,6 +17,7 @@ class Box(models.Model):
     contents = models.CharField(max_length=300, null=True)
     #zero time is no_exp
     #None is unknown
+    #TODO remove
     expiration = models.DateTimeField('expiration date', null=True)
     entered_date = models.DateTimeField('date the box was entered', null=True)
     reserved_for = models.CharField(max_length=300, null=True)
@@ -36,11 +37,17 @@ class Box(models.Model):
 
     def __unicode__(self):
         return self.box_id
-	
-#TODO update
-class Box_Contents(models.Model):
+
+    def get_expiration(self):
+        expiration = None
+        for item in this.boxcontents_set:
+            expiration = item.expiration
+        return expiration
+
+class BoxContents(models.Model):
     box_within = models.ForeignKey(Box)
     item = models.ForeignKey(Item)
     quantity = models.IntegerField(default=0)
+    expiration = models.DateTimeField('expiration date', null=True)
 
 #class Order(models.Model):
