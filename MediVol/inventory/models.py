@@ -16,7 +16,7 @@ class Box(models.Model):
     box_category = models.ForeignKey(Category, null=True)
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
     weight = models.DecimalField(max_digits=5, decimal_places=2, null=True) 
-    contents = models.CharField(max_length=300, null=True)
+    old_contents = models.CharField(max_length=300, null=True)
     #zero time is no_exp
     #None is unknown
     #TODO remove
@@ -41,18 +41,27 @@ class Box(models.Model):
         return self.box_id
 
     def get_expiration(self):
-        NOT_EXPIRING_IN_THIS_CENTURY = datetime(3013,1,1,0,0,0,0,pytz.UTC)
-        expiration = NOT_EXPIRING_IN_THIS_CENTURY
-        for item in self.boxcontents_set.all():
+        NOT_EXPIRING_IN_THIS_MILLENIUM = datetime(3013,1,1,0,0,0,0,pytz.UTC)
+        expiration = NOT_EXPIRING_IN_THIS_MILLENIUM
+        for item in self.contents_set.all():
             #if the item has an expiration that is older than the oldest replace it
-            if item.expiration < expiration:
+            if item.expiration is not None and item.expiration < expiration:
                 expiration = item.expiration
+        if expiration is NOT_EXPIRING_IN_THIS_MILLENIUM:
+            return None
         return expiration
 
-class BoxContents(models.Model):
+class Contents(models.Model):
     box_within = models.ForeignKey(Box)
     item = models.ForeignKey(Item)
     quantity = models.IntegerField(default=0)
     expiration = models.DateTimeField('expiration date', null=True)
+
+    #TODO test
+    def to_csv(self):
+        return self.box_within.box_id + ", " + self.item.name + ", " + self.quantity + ", " + self.expiration
+
+    def __unicode__(self):
+        return self.item.name
 
 #class Order(models.Model):
