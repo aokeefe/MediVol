@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+
+{% block head %} 
+	<title>Prototype ordering app</title> 
+{% endblock %} 
+
+{% block body %} 
+	<header> 
+		<h1>Prototype ordering </h1>
+		<h2>Step 1 of 3</h2>
+	</header>
+
+	<section> 
+		<p>What would you like to order? </p>
+		<p>Please select an item</p>
+		<p>Enter item </p>
+		<input type="text" id="item_field"><br/>
+		<p> -- OR --</p>
+		<p>View available inventory</p>
+		<textarea rows="5" cols="50"> 
+			Load this with dummy data
+		</textarea>
+	</section>
+
+	<section> 
+		<button type="button" onclick="alert("Item added to shopping cart!")">Add Item to Cart</button>
+		<button type="button">Remove Item</button>
+		<button type="button">Empty Cart</button> 
+		<button type="button">View Cart</button>
+		<button type="button">Checkout</button>
+	</section>
+{% endblock %}
+
