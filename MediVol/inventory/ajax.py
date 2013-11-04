@@ -26,15 +26,6 @@ def get_items(request, box_name):
         items_array.append(item.name)
     
     return simplejson.dumps(items_array)
-
-@dajaxice_register
-def create_box(request, initials, weight, size, items, note=''):
-    items_array = []
-    
-    for item in items:
-        items_array.append(Item.objects.get(name=item[0]))
-    
-    return simplejson.dumps(items_array)
     
 @dajaxice_register(method='GET')
 def get_search_results(request, query):
@@ -54,3 +45,9 @@ def get_search_results(request, query):
         results_array.append(item.box_name.category.name + ' > ' + item.box_name.name + ' > ' + item.name)
     
     return simplejson.dumps(results_array)
+
+@dajaxice_register
+def create_box(request, initials, weight, size, items, note=''):
+    new_box = Box()
+    
+    return simplejson.dumps(items_array)
