@@ -5,5 +5,4 @@ urlpatterns = patterns ('',
 	
 	#Orders Main Page 
 	url(r'^$', orders_main), 
-
 )
