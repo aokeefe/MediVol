@@ -31,7 +31,7 @@ def importer(filepath):
         if (rownum != 1):
             validatedRow = validate_import_row(row, rownum)
             if (validatedRow != None):  
-                box = Box(box_id=validatedRow[0], box_size=validatedRow[1], weight=validatedRow[2], contents=validatedRow[3],
+                box = Box(box_id=validatedRow[0], box_size=validatedRow[1], weight=validatedRow[2], old_contents=validatedRow[3],
                     expiration=validatedRow[4], entered_date=validatedRow[5], reserved_for=validatedRow[6], shipped_to=validatedRow[7],
                     box_date=validatedRow[8], audit=validatedRow[9], box_category=Category.objects.filter(letter=validatedRow[10])[0])
                 box.save() 
