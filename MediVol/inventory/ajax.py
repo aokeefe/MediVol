@@ -1,7 +1,10 @@
 from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
+from datetime import datetime
+from random import randint
 
 from catalog.models import Category, BoxName, Item
+from inventory.models import Box, Box_Contents
 
 @dajaxice_register(method='GET')
 def get_box_names(request, category_name):
@@ -48,6 +51,15 @@ def get_search_results(request, query):
 
 @dajaxice_register
 def create_box(request, initials, weight, size, items, note=''):
-    new_box = Box()
+    # TODO: how do we generate a box ID?
+    box_id = randint(100, 999)
+
+    new_box = Box(box_id=box_id, box_size=size[:1], weight=weight, entered_date=datetime.today(), initials=initials)
     
-    return simplejson.dumps(items_array)
+    new_box.save()
+    
+    for item in items:
+        contents = Box_Contents(box_within=new_box, item=Item.objects.get(name=item[0]), quantity=item[2])
+        contents.save()
+    
+    return True
