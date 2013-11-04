@@ -14,7 +14,7 @@ def main_page(request):
     return render_to_response('administration/index.html')
 
 def access_forbidden(request): 
-	  return render_to_response('administration/forbidden.html')
+    return render_to_response('administration/forbidden.html')
 
 #Logout View
 def logout(request):
