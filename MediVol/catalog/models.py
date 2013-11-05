@@ -48,7 +48,7 @@ class Item(models.Model):
     box_name = models.ForeignKey(BoxName)
     name = models.CharField(max_length=NAME_LENGTH)
     description = models.CharField(max_length = 500)
-
+    
     @classmethod
     def from_csv(cls, csv):
         values = csv.split("&&&")
@@ -63,3 +63,4 @@ class Item(models.Model):
 
     def to_csv(self):
         return self.name + "&&&" + self.box_name.name + "&&&" + self.description
+
