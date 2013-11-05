@@ -23,7 +23,6 @@ class Box(models.Model):
     initials = models.CharField(max_length=5, default="")
     entered_date = models.DateTimeField('date the box was entered', null=True)
     #location = models.CharField(max_length=300)
-    
     #None is no expiration
     #TODO remove
     old_expiration = models.DateTimeField('expiration date', null=True)
