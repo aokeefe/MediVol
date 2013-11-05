@@ -13,28 +13,36 @@ class Box(models.Model):
         (LARGE, 'Large'),
         (UNKNOWN, 'Unknown'),
     )
-    box_id = models.CharField(max_length=4, null=True)
     box_category = models.ForeignKey(Category, null=True)
+    box_id = models.CharField(max_length=4, null=True)
+
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
     weight = models.DecimalField(max_digits=5, decimal_places=2, null=True) 
+<<<<<<< HEAD
     old_contents = models.CharField(max_length=300, null=True)
     barcode = models.CharField(max_length=8)
+=======
+    initials = models.CharField(max_length=5, default="")
+    entered_date = models.DateTimeField('date the box was entered', null=True)
+    #location = models.CharField(max_length=300)
+    
+>>>>>>> made changes so that the database can be easily exported
     #None is no expiration
     #TODO remove
     old_expiration = models.DateTimeField('expiration date', null=True)
-    entered_date = models.DateTimeField('date the box was entered', null=True)
-    #TODO: remove
-    reserved_for = models.CharField(max_length=300, null=True)
+    old_contents = models.CharField(max_length=300, null=True)
     shipped_to = models.CharField(max_length=300, null=True)
+    reserved_for = models.CharField(max_length=300, null=True)
+
     #TODO: Ask Amy what this could mean
     box_date = models.DateTimeField('Box date', null=True)
     #TODO what does this mean?
     audit = models.IntegerField(default=1, null=True)
+    
     #TODO add the following
     #old_box_flag
     #wholesale_value
-    initials = models.CharField(max_length=5, null=True)
-    #location = models.CharField(max_length=300)
+    
     def to_csv(self):
         """
         Returns a string containing all the CSV information of the Box.  Used in creating database backups
