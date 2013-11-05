@@ -18,15 +18,11 @@ class Box(models.Model):
 
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
     weight = models.DecimalField(max_digits=5, decimal_places=2, null=True) 
-<<<<<<< HEAD
     old_contents = models.CharField(max_length=300, null=True)
     barcode = models.CharField(max_length=8)
-=======
     initials = models.CharField(max_length=5, default="")
     entered_date = models.DateTimeField('date the box was entered', null=True)
     #location = models.CharField(max_length=300)
-    
->>>>>>> made changes so that the database can be easily exported
     #None is no expiration
     #TODO remove
     old_expiration = models.DateTimeField('expiration date', null=True)
@@ -47,9 +43,9 @@ class Box(models.Model):
         """
         Returns a string containing all the CSV information of the Box.  Used in creating database backups
         """
-        return self.box_id + ", " + self.box_size + ", " + str(self.weight) + ", " + self.old_contents + ", " + \
-               str(self.old_expiration) + ", " + str(self.entered_date) + ", " + self.reserved_for + ", " + \
-               self.shipped_to + ", " + str(self.box_date) + ", " + str(self.audit) + "\n"
+        return self.box_category.letter + ", " + self.box_id + ", " + self.box_size + ", " + str(self.weight) + ", " +\
+        self.initials + ", " + str(self.entered_date) + ", " + str(self.old_expiration) + ", " + self.old_contents + \
+        ", " + str(self.box_date) + ", " + str(self.audit) + ", " + self.shipped_to + ", " + self.reserved_for
 
     """
     During that save process we will assign a barcode to the Box, if it does not already have one (ie a new box)
@@ -81,8 +77,16 @@ class Box(models.Model):
     returned
     """
     def get_expiration(self):
+<<<<<<< HEAD
         if self.old_expiration is not None:
             return self.old_expiration
+=======
+        """
+        Finds the oldest date amoung the contents of a Box, and return it.
+        For example if an item is expireing on 01-01-2014 and another is expireing on 01-01-2012, 01-01-2012 will be 
+        returned
+        """
+>>>>>>> made changes so that the database can be easily exported
         NOT_EXPIRING_IN_THIS_MILLENIUM = datetime(3013,1,1,0,0,0,0,pytz.UTC)
         expiration = NOT_EXPIRING_IN_THIS_MILLENIUM
         for item in self.contents_set.all():
