@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     # place MediVol specific apps below this
     'inventory',
     'catalog',
+    'search',
     'dajaxice',
 )
 

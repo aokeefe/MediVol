@@ -30,4 +30,7 @@ urlpatterns = patterns('',
     
     #Routing for Inventory
     url(r'^inventory/', include('inventory.urls')),
+    
+    #Routing for Search
+    url(r'^search/', include('search.urls', namespace='search')),
 )
