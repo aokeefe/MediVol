@@ -18,7 +18,7 @@ class BoxName(models.Model):
         return self.name
 
     def to_csv(self):
-        return self.letter + ", " + self.name
+        return self.category.letter + ", " + self.name
         
 #TODO remove in favor of a multi Catagory implementation
 class Item(models.Model):
