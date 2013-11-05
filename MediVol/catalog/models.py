@@ -68,7 +68,7 @@ class Item(models.Model):
     box_name = models.ForeignKey(BoxName)
     name = models.CharField(max_length=NAME_LENGTH)
     description = models.CharField(max_length = 500)
-
+    
     @classmethod
     def create_from_csv(cls, csv):
         values = csv.split(",")
