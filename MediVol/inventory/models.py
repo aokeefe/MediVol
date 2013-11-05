@@ -79,5 +79,3 @@ class Contents(models.Model):
         Returns a printable, human readable, string to represent the Contents
         """
         return self.item.name
-
-#class Order(models.Model):
