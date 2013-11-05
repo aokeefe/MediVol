@@ -1,0 +1,111 @@
+nav ul ul {
+	display: none;
+    }
+
+nav ul li:hover > ul {
+	display: block;
+    }
+        
+nav ul {
+        border-bottom:1px solid #000000;
+        border-top:1px solid #000000;
+	background: #ffffff; 
+	list-style: none;
+	position: relative;
+	display: inline-table;
+        font:12px Arial,Helvetica,sans-serif;
+    }
+    
+nav ul:after {
+	content: ""; clear: both; display: block;
+    }
+    
+nav ul li {
+	float: left;
+    }
+    
+nav ul li:hover a {
+        color: #F9BF51;
+    }
+	
+nav ul li a {
+        display: block; padding: 14px 40px;
+        color: #000000; text-decoration: none;
+        
+        /* First we need to help some browsers along for this to work.
+           Just because a vendor prefix is there, doesn't mean it will
+           work in a browser made by that vendor either, it's just for
+           future-proofing purposes I guess. */
+        -o-transition:.4s;
+        -ms-transition:.4s;
+        -moz-transition:.4s;
+        -webkit-transition:.4s;
+        /* ...and now for the proper property */
+        transition:.4s;
+    }
+
+nav ul ul {
+	background: #ffffff; border-radius: 0px; padding: 0;
+        color: #000000;
+	position: absolute; top: 100%;
+    }
+    
+nav ul ul li {
+        margin-top: 7px;
+        float: none; 
+        box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.6);
+        position: relative;
+        color: #000000;
+    }
+    
+nav ul ul li a {
+        color: #000000; text-decoration: none;
+        padding: 15px 40px;
+    }
+    
+nav ul ul li a:hover {
+        color: #F9BF51;
+        background: #ffffff;
+    }
+
+nav li.current  {
+	background-color:#121212;
+    }
+
+.active {
+    color: #F9BF51;
+    /* First we need to help some browsers along for this to work.
+           Just because a vendor prefix is there, doesn't mean it will
+           work in a browser made by that vendor either, it's just for
+           future-proofing purposes I guess. */
+        -o-transition:.0s;
+        -ms-transition:.0s;
+        -moz-transition:.0s;
+        -webkit-transition:.0s;
+        /* ...and now for the proper property */
+        transition:.0s;
+    }
+
+h1, h2, h3{
+	font: 28px/1.1em fredericka the great,fantasy;
+	color: #000000;
+	margin-top: 25px;
+	margin-bottom: 5px;
+    }
+
+body{
+	font: 13px/1.3em Tahoma, Geneva, sans-serif;
+	width:980px;
+    }
+
+.bodyContent{
+	margin-left: 40px;
+    }
+    
+#items_added{
+	margin-top: 25px;
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+	width: 50%;
+}

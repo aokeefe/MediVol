@@ -94,6 +94,9 @@ sudo pip install django-jenkins;
 printf '\nInstalling django_dajax...';
 sudo pip install django_dajax;
 
+printf '\nInstalling pytz...';
+sudo pip install pytz;
+
 printf '\nCreating database for inventory...';
 mysql -u root --password=root -e 'create database MediVolDB;';
 
