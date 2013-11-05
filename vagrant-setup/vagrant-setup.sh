@@ -97,6 +97,9 @@ sudo pip install django_dajax;
 printf '\nInstalling pytz...';
 sudo pip install pytz;
 
+printf '\nInstalling Mandrill..';
+sudo pip install mandrill;
+
 printf '\nCreating database for inventory...';
 mysql -u root --password=root -e 'create database MediVolDB;';
 
