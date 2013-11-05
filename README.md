@@ -16,3 +16,4 @@ Steps
 Important Urls
 =======
 * localhost:8888/admin - Opens the admin panel
+* localhost:8888/inventory/create - The create box page
