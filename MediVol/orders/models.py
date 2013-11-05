@@ -1,6 +1,4 @@
 from django.db import models
-# Create your models here.
-=======
 from inventory.models import Box
 
 class Order(models.Model):
