@@ -18,22 +18,22 @@ def log_notification(subject, message, recipient_email, recipient_name):
 #Fetches message from Mandrill using the 
 #tag attribute to search for the specific email.
 def fetch_message(tag):
-	pass 
+    pass 
     
 #This method communicates to Mandrill via their API to send out emails  
 def send_message(notification): 
-
-	#The API key will need to be changed to InterVols own account. Currently it is using my API key
+    
+    #The API key will need to be changed to InterVols own account. Currently it is using my API key
     api_key = 'x9AjbnyiNKtL0Avv1N7oCw'
     subject = notification.subject
     recipient_email = notification.recipient_email
     recipient_name = notification.recipient_name
     email_id = notification.id 
     message = notification.message
-
+    
     try:
-    	mandrill_client = mandrill.Mandrill(api_key)
-    	message = {'from_email': sender_email,
+        mandrill_client = mandrill.Mandrill(api_key)
+        message = {'from_email': sender_email,
             'from_name': 'MediVol Test User',
             'global_merge_vars': [{'content': 'merge1 content', 'name': 'merge1'}],
             'headers': {'Reply-To': sender_email},
@@ -56,12 +56,11 @@ def send_message(notification):
         print (result)
            
     except mandrill.Error, e:
-    	print 'Mandrill Error Occurred: %s - %s' % (e.__class__, e)
-    	raise 
+        print 'Mandrill Error Occurred: %s - %s' % (e.__class__, e)
+        raise 
 
 #This method can be removed next PR as it is only for testing 
 def main(): 
-
     subject_input = raw_input('Enter Email Subject: ')
     email_message = raw_input('Enter Email Message: ')
     recipient_email2 = raw_input('Enter Recipient Email: ')
