@@ -112,12 +112,6 @@ class Box(models.Model):
             return self.box_id
         return self.box_category.letter + self.box_id
 
-    def __unicode__(self):
-        """
-        Returns a printable, human readable, string to represent the Box
-        """
-        return self.box_id
-
     """
     Finds the oldest date amoung the contents of a Box, and return it.
     For example if an item is expireing on 01-01-2014 and another is expireing on 01-01-2012, 01-01-2012 will be 
