@@ -9,13 +9,17 @@ class Category(models.Model):
         return self.name + " - " + self.letter
 
     def to_csv(self):
-        return self.letter + ", " + self.name
+        return self.letter + "&&&" + self.name
+
+    def __eq__(self, other):
+        return self.letter == other.letter and self.name == other.name
 
     @classmethod
     def from_csv(cls, csv):
-        values = csv.split(", ")
+        values = csv.split("&&&")
         category = Category(letter=str(values[0]), name=values[1])
         category.save()
+        return category
 
 class BoxName(models.Model):
     category = models.ForeignKey(Category)
@@ -24,7 +28,13 @@ class BoxName(models.Model):
         return self.name
 
     def to_csv(self):
-        return self.category.letter + ", " + self.name
+        return self.category.letter + "&&&" + self.name
+
+    @classmethod
+    def from_csv(cls, csv):
+        values = csv.split("&&&")
+        box_name = BoxName(category=Category.objects.get(letter=values[0]), name=values[1])
+        box_name.save()
         
 #TODO remove in favor of a multi Catagory implementation
 class Item(models.Model):
@@ -35,5 +45,10 @@ class Item(models.Model):
         return self.name
 
     def to_csv(self):
-        return self.name + ", " + self.box_name.name + ", " + self.description
+        return self.name + "&&&" + self.box_name.name + "&&&" + self.description
 
+    @classmethod
+    def from_csv(cls, csv):
+        values = csv.split("&&&")
+        item = Item(name=values[0], description=values[2], box_name=BoxName.objects.get(name=values[1]))
+        item.save()
