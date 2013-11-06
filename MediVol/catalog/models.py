@@ -30,8 +30,9 @@ class BoxName(models.Model):
     @classmethod
     def from_csv(cls, csv):
         values = csv.split("&&&")
-        box_name = BoxName(category=Category.objects.get(letter=values[0]), name=values[1])
+        box_name = BoxName(category=Category.objects.filter(letter=values[0])[0], name=values[1])
         box_name.save()
+        return box_name
 
     def __unicode__(self):
         return self.name
