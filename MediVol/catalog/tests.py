@@ -4,13 +4,20 @@ when you run "manage.py test".
 
 Replace this with more appropriate tests for your application.
 """
+from catalog.models import Category
+import unittest
 
-from django.test import TestCase
+class CategoryTest(unittest.TestCase):
+    def setUp(self):
+        Category.objects.create(letter="B", name="Mother and Child")
+        self.category_csv = "B&&&Mother and Child"
+        self.test_csv = "T&&&Test"
 
+    def test_category_export(self):
+        mother = Category.objects.get(letter="B")
+        csv = mother.to_csv()
+        self.assertTrue(csv == self.category_csv)
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+    def test_category_import(self):
+        csv = Category.from_csv(self.test_csv)
+        self.assertTrue(Category.objects.get(letter="T") is not None)
