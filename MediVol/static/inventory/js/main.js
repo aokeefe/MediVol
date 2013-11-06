@@ -1,3 +1,4 @@
+// Template for adding new item to the table.
 var ITEM_TEMPLATE = '<tr>' + 
         '<td style="border: 1px solid black">{category}</td>' + 
         '<td style="border: 1px solid black">{box_name}</td>' + 
@@ -7,6 +8,8 @@ var ITEM_TEMPLATE = '<tr>' +
         '<td style="border: 1px solid black"><a class="remove_item" href="javascript:void(0)">Remove</a></td>' + 
     '</tr>';
     
+// Simple template used to insert a blank row below the table header 
+// when there are no items in the box.
 var BLANK_ROW = "<tr id='placeholder_row'>" + 
                     "<td style='border: 1px solid black'></td>" + 
                     "<td style='border: 1px solid black'></td>" + 
@@ -14,18 +17,25 @@ var BLANK_ROW = "<tr id='placeholder_row'>" +
                     "<td style='border: 1px solid black'></td>" + 
                     "<td style='border: 1px solid black'>&nbsp;</td>" + 
                 "</tr>";
-                
+
+// Need these to update lists for box names and items.
 var boxNameToChoose = '';
 var itemToChoose = '';
 
+/**
+* Callback for get_box_names AJAX call.
+*/
 function getBoxNames(response) {
     $('#box_names').empty();
     $('#items').empty();
     
+    // Add the box names to the list of box names.
     for (var i = 0; i < response.length; i++) {
         $('#box_names').append('<option>' + response[i] + '</option>');
     }
     
+    // If this was a search, we have to select the right box name 
+    // and trigger the change event so it will populate the items list.
     if (boxNameToChoose != '') {
         $('#box_names').val(boxNameToChoose);
         boxNameToChoose = '';
@@ -33,6 +43,10 @@ function getBoxNames(response) {
     }
 }
 
+/**
+* Callback for the get_items AJAX call. Does the same things as 
+* the getBoxNames callback, just for items instead.
+*/
 function getItems(response) {
     $('#items').empty();
     
@@ -47,97 +61,127 @@ function getItems(response) {
     }
 }
 
+/**
+* Callback for create_box AJAX call.
+*/
 function createBox(response) {
-    console.log(response);
+    if (response == 'True') {
+        location.reload();
+    }
 }
 
+/**
+* Sets the event for clicking the remove button next to an item.
+*/
 function setRemoveButton() {
     $('.remove_item').click(function() {
+        // Remove the row for the item.
         $(this).parent().parent().remove();
         
+        // If there are no items, append the empty placeholder row.
         if ($('#items_added tr').length == 1) {
             $('#items_added').append(BLANK_ROW);
         }
     });
 }
 
-function getAutocompleteCallback(response){
-    var object = {
-        response: response, 
-        theCallback: function(returned) {
-            response(returned);
-        }
-    };
-    
-    return object;
-}
-
-function autocompleteCallback(request, response) {
-    dajaxiceAutocomplete = getAutocompleteCallback(response);
-    
-    Dajaxice.inventory.get_search_results(dajaxiceAutocomplete.theCallback, { 'query': request.term });
-}
-
 $(document).ready(function() {
+    // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
         {
-            source: autocompleteCallback,
+            // The 'source' attribute is a function that is called 
+            // which provides the data for the autocomplete. It passes 
+            // in request, which provides the search query, and the response 
+            // callback, which we are expected to give an array of relevant 
+            // search results.
+            source: function(request, response) {
+                // Call the get_search_results AJAX function.
+                Dajaxice.inventory.get_search_results(function(returned) {
+                    // 'returned' is passed to us from the AJAX function. 
+                    // It is an array of relevant search results which we pass 
+                    // to the 'response' callback.
+                    response(returned);
+                }, { 'query': request.term });
+            },
+            // This is just a setting so that the autocomplete plugin doesn't 
+            // add any messages next to our search field.
             messages: {
                 noResults: '',
                 results: function() {}
             },
+            // This is a callback that says what to do when the autocomplete 
+            // dropdown is closed.
             close: function() {
+                // This is the search result given by the AJAX function. 
+                // It is of one of the following forms: 
+                // Category > Box Name > Item
+                // Category > Box Name
+                // Category
                 var query = $('#itemSearch').val();
                 var actualQuery = query;
                 
+                // We want to get what the user was actually searching for, so we 
+                // find last term after the last '> '.
                 if (query.lastIndexOf('> ') != -1) {
                     actualQuery = query.substr(query.lastIndexOf('> ') + 2, query.length);
                 }
                 
+                // Then we put the actual query back into the field.
                 $('#itemSearch').val(actualQuery);
                 
+                // Here we want to split up the returned search result so 
+                // we can find the category, box name, and item.
                 var queryArray = query.split(' > ');
                 var category = queryArray[0];
                 var boxName = '';
                 var item = '';
                 
+                // If the array has two phrases, then it has a Category and 
+                // Box Name, so we set the box name. We also set the boxNameToChoose 
+                // so the box name can be autoselected in the list.
                 if (queryArray.length > 1) {
                     boxName = queryArray[1];
-                }
-                
-                if (queryArray.length > 2) {
-                    item = queryArray[2];
-                }
-                
-                $('#categories').val(category).change();
-                
-                if (boxName != '') {
                     boxNameToChoose = boxName;
                 }
                 
-                if (item != '') {
+                // If it has three phrases, it also has an item so we 
+                // can set the item name too. We also set the itemToChoose so 
+                // the item can be autoselected in the list.
+                if (queryArray.length > 2) {
+                    item = queryArray[2];
                     itemToChoose = item;
                 }
+                
+                // Now we set the selected category in the list and trigger the 
+                // change event for the categories list, so the box name field will be 
+                // autopopulated and that will cascade down to the item list if necessary.
+                $('#categories').val(category).change();
             }
         }
     );
-
+    
+    // Set the 'on change' event for the categories list.
     $('#categories').change(function() {
         var selectedCategory = $('#categories option:selected').val();
         
+        // Get the list of box names for the selected category.
         Dajaxice.inventory.get_box_names(getBoxNames, { 'category_name': selectedCategory });
     });
     
+    // Set the 'on change' event for the box names list.
     $('#box_names').change(function() {
         var selectedBoxName = $('#box_names option:selected').val();
        
+        // Get the list of items for the selected box name.
         Dajaxice.inventory.get_items(getItems, { 'box_name': selectedBoxName });
     });
     
+    // Set the 'on change' event for the items list.
     $('#items').change(function() {
         
     })
     
+    // Set the 'on click' event for the add item button.
     $('#add_item').click(function(e) {
         // Prevent button from submitting form.
         e.preventDefault();
@@ -154,14 +198,18 @@ $(document).ready(function() {
                 typeof(item) == 'undefined' || 
                 count == '' || 
                 count < 1) {
+            // TODO: some kind of alert
             return;
         }
         
+        // Remove the placeholder row if it's there.
         $('#placeholder_row').remove();
         
+        // Reset the count and expiration fields.
         $('#count').val('');
         $('#expiration').val('');
         
+        // Add the item to the list using the ITEM_TEMPLATE.
         $('#items_added').append(
             ITEM_TEMPLATE.replace('{category}', category)
                 .replace('{box_name}', boxName)
@@ -170,9 +218,12 @@ $(document).ready(function() {
                 .replace('{count}', count)
         );
         
+        // Set the remove button again. We need to do this every time we 
+        // add another remove button.
         setRemoveButton();
     });
     
+    // Set the 'on click' event for creating a box.
     $('#submit').click(function(e) {
         e.preventDefault();
         
@@ -183,11 +234,15 @@ $(document).ready(function() {
         
         // Required fields.
         if (initials == '' || weight == '' || typeof(size) == 'undefined') {
+            // TODO: add some sort of alert
             return;
         }
         
         var items = [];
         
+        // Go through each item in the table and add it to the items array. 
+        // Each item is added as an array with the following format: 
+        // [ item_name, item_expiration, item_count ]
         $('#items_added tr').each(function(index, element) {
             element = $(element);
             
@@ -204,9 +259,11 @@ $(document).ready(function() {
         
         // Can't have 0 items.
         if (items.length == 0) {
+            // TODO: add some sort of alert
             return;
         }
         
+        // Call the create_box AJAX function.
         Dajaxice.inventory.create_box(createBox, 
             {
                 'initials': initials,
