@@ -106,7 +106,7 @@ class Contents(models.Model):
     #TODO test
     def to_csv(self):
         """
-        Returns a printable, human readable, string to represent the Contents
+        Returns a string containing all the CSV information of the Contents.  Used in creating database backups
         """
         return self.box_within.box_id + "&&&" + self.item.name + "&&&" + self.quantity + "&&&" + self.expiration
 
