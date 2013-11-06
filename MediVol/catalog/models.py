@@ -1,5 +1,6 @@
 from django.db import models
 
+#TODO is this a valid number?
 NAME_LENGTH = 128
 
 class Category(models.Model):
