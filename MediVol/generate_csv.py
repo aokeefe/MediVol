@@ -3,14 +3,14 @@ sys.path.append('/var/www/MediVol/')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
 from django.db import models
 from catalog.models import Category, BoxName, Item
-from inventory.models import Box
+from inventory.models import Box, Contents
 
 def generate_csv():
     print("start")
     time = datetime.datetime.now()
     csv_file = open(time.strftime("%B_%d_%Y")+".csv", 'w')
     #TODO: might want to make this an import to keep it the same across importer and exporter
-    models = [Category, BoxName, Item, Box]
+    models = [Category, BoxName, Item, Box, Contents]
     for model in models:
         for node in model.objects.all():
             csv_file.write(node.to_csv() +"\n")
