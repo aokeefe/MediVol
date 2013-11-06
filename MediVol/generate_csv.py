@@ -12,6 +12,7 @@ def generate_csv():
     #TODO Move to ensure import/export order
     models = [Category, BoxName, Item, Box, Contents]
     for model in models:
+        print('exporting ' + model.__name__)
         for node in model.objects.all():
             csv_file.write(node.to_csv() +"\n")
         csv_file.write("-----\n")

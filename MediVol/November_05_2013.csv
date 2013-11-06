@@ -1,557 +1,555 @@
-A, Mother and Child
-B, Personal Care
-C, Patient Care
-D, Laboratory
-E, Provider Protection
-F, Pertaining to the Head
-G, Respiratory: Tracheostomy
-H, Respiratory: Oxygen
-I, Cardiovascular
-J, Digestive System
-K, Urinary
-L, Drains and Suction
-M, Dressings
-O, Syringes
-P, Needles
-Q, IV Supplies
-R, Anesthesia
-S, Sutures
-T, Cautery
-U, Surgical Linens
-V, Surgical Miscellanea
-W, Surgical Supplies
-X, Plastic
-Y, UNKNOWN
-Z, LittleThings
+A&&&Mother and Child
+B&&&Personal Care
+C&&&Patient Care
+D&&&Laboratory
+E&&&Provider Protection
+F&&&Pertaining to the Head
+G&&&Respiratory: Tracheostomy
+H&&&Respiratory: Oxygen
+I&&&Cardiovascular
+J&&&Digestive System
+K&&&Urinary
+L&&&Drains and Suction
+M&&&Dressings
+O&&&Syringes
+P&&&Needles
+Q&&&IV Supplies
+R&&&Anesthesia
+S&&&Sutures
+T&&&Cautery
+U&&&Surgical Linens
+V&&&Surgical Miscellanea
+W&&&Surgical Supplies
+X&&&Plastic
+Y&&&UNKNOWN
+Z&&&LittleThings
+B&&& Bill
 -----
-B, Adult Diapers
-A, OB Pads
-A, OB/GYN Mix
-A, Pediatric Diapers
-A, Pediatric Supplies
-A, Speculums
-B, Anti-Embolism Stockings
-B, Oral Care
-B, Personal Care
-B, Slippers
-B, Under Pads/Chux (Cloth)
-B, Under Pads/Chux (Disposable)
-C, Blood Pressure Cuffs/Stethoscopes
-C, Diabetic Glucometers
-C, Diabetic Supplies
-C, Foam
-C, Patient Care
-C, Probe Covers
-C, Bed Linens
-C, Immobilizers
-C, Patient Gowns
-C, Poseys (Vest, Wrist)
-C, Positioning Devices
-C, Shrouds
-D, Blood Collection/Vacutainer Supplies
-C, Exam Table Paper
-E, Hats/Head Covers
-D, Lab Supplies
-E, Masks
-D, Specimen Containers
-E, Gloves (Sterile)
-E, Gloves (Unsterile, Boxed)
-E, Gloves (Unsterile, Loose)
-E, Gowns (Unsterile, Paper)
-E, Shoe Covers
-F, Dental Surgery
-F, ENT (Ears, Nose, Throat)
-F, Eye Care
-E, Gowns (Sterile, Paper)
-F, Ophthalmic Surgery
-G, Misc. Tracheostomy Supplies
-H, Respiratory Mix
-G, Tracheostomy Care Kits
-G, Tracheostomy Tubes
-H, Ambu Bags (Adult)
-H, Ambu Bags (Pediatric)
-H, Bronchoscopy Biopsy Forceps/Brushes
-H, O2 Nasal Cannulas & Masks
-H, Oxygen Tubing
-H, Airway
-H, CPAP
-H, Humidifiers
-H, Nebulizers
-H, O2 Gauges & Supplies
-I, Cardiovascular Mix
-I, Defibrillator Pads
-I, EKG Electrodes
-J, Endoscopy
-I, Heart Cannulas
-J, Enema
-J, Feeding & Kangaroo Bags
-J, Feeding Tubes
-K, Misc. Urine Collection
-J, Ostomy Care Supplies
-J, Ostomy Supplies
-K, Catheters (Foley, Straight, Texas)
-K, Dialysis
-J, Nasogastric (NG) Tubes
-K, Urinary Catheter Trays/Kits
-K, Urinary Drainage Bags
-K, Urology Mix
-L, Chest Drains
-L, Jackson-Pratt Drains
-L, Suction Canisters
-L, Suction Catheters
-L, Suction Tubing
-L, Yankauer/Frazier Tips
-L, Bulb Syr inges/Funnels
-L, Drainage Kits
-L, Drains
-T, Irrigation
-M, Roll Gauze
-M, Wound Care
-M, Ace Bandages
-M, Coban
-M, Dressings (Sterile, Non-medicated)
-M, Dressings (Sterile, Treated/Medicated)
-M, Dressings (Unsterile)
-M, Tegaderm
-Y, Cast Padding
-Y, Casting Tape
-Y, Ortho Drills & Saw Blades
-Y, Orthopedic Mix
-Y, Shoulder/Elbow Suspension Kits
-Y, Tan Stockinettes
-O, Insulin Syringes
-O, Syringes - 1-3cc (Sterile)
-O, Syringes - 10cc (Sterile)
-O, Syringes - 20-60cc (Sterile)
-O, Syringes - 5cc (Sterile)
-O, Oral Dosing Syringes
-P, Port Access Needles
-P, Angio-Catheters
-P, Butterfly Catheters
-P, Needles
-P, Spinal Needles
-O, Syringes-All Sizes (Unsterile)
-Q, Central Line & Swan Ganz Kits
-Q, Central Line Supplies
-Q, IV Mix
-Q, IV Starter Kits
-Q, IV Tubing
-R, Anestesia Masks/Circuits
-R, Anesthesia Mix
-R, Endotracheal Tubes/LMAs/ Stylettes
-R, Esmark for Tourniquets
-R, Tourniquet Cuffs
-R, Ventilator Tubing
-S, Needle Box
-T, Skin Staplers (Sterile)
-T, Skin Staplers (Unsterile)
-S, Suture/Staple Removal
-S, Sutures (Expired)
-S, Sutures (Unexpired)
-T, Cautery Supplies
-T, Laceration Kits
-U, Surgical Drapes (Sterile)
-W, Surgical Packs (Sterile)
-W, Misc. OR Supplies (Sterile)
-W, OR Suction Supplies (Sterile)
-T, Skin Markers
-U, Surgical Sheets (Sterile)
-U, Autoclave Wraps
-U, Mayo Stand Covers (Unsterile)
-U, Sheets (Unsterile, Paper)
-U, Sheets (Unsterile, Plastic)
-U, Under Buttocks Drapes
-U, Drapes (Unsterile, Large)
-U, Drapes (Unsterile, Small)
-U, Quarter Drapes
-U, Tail Drapes
-V, Lap Sponges (Sterile)
-V, Lap Sponges (Unsterile)
-V, Raytex (Sterile)
-V, Raytex (Unsterile)
-V, Towels (Unsterile, Cloth)
-V, Towels (Unsterile, Paper)
-W, Foam Sponges
-W, Impervious Stockinettes (Unsterile)
-W, Magnetic Instrument Pads
-W, Scrub Brushes
-W, Skin Prep
-P, Biopsy Kits
-W, Mesh Mix
-W, Neurology Mix
-W, Steri-Drapes/Ioban
-W, Sterilization Pouches
-W, Surgical Patties/Tonsil Sponges
-X, Other Plastics
-X, Pill Bottles
-X, Plastic Trays
-Z, Cautery Sticks
-Z, Tourniquets
-Z, Batteries
-Z, Peanuts, Kitners (Sterile)
-Z, Applicator Appliers & Clips (Hemo Clips)
-Z, DermaHooks
-Z, Mastisol/ Dermabond
-Z, Safety Pins, Sterile Rubber Bands, Suture Aid Booties
-Z, Tape & Tape Remover
-Z, Umbilical Tape, Polyester Tape, Silicone Clamp Covers, Retro Tape
-Z, Bone Wax, Gelfoam, Surgifoam, Avitene, Surgicel
-Z, Alcohol Prep Pads & Swabsticks
-Z, Antiseptic Gel Hand Rinse
-Z, Cotton Balls
-Z, Povidone-Iodine & Swabstick
-Z, Povidone-Iodine Pads
-Z, Povidone-Iodine Solution & Ointment
-Z, Povidone-Iodine Sponges & Sponges w/ Sticks
-Z, Thermometers
-Z, Chlorascrub Swabs & Swabsticks
-Z, Antiseptic  & Cleansing Towelettes
-Z, Compound Benzoin Tincture Swabsticks
-Z, Skin Protectant Swabsticks
-Z, Skin Prep Pads & Protective Barrier Wipes
-Z, Petroleum Jelly
-Z, Q-Tips & Cotton-Tipped Applicators
-Z, Tongue Depressors
-Z, Band-Aids, Steri-Strips
-Z, Blades/Scalpels
-Z, Fish/Bowel Protector
-Z, Goggles
-Z, Hot/Cold Packs
-Z, Lubricating Gel & Surgical Lubricant
-Z, Spill Kits
-Z, Ultrasound Gel
+B&&&Adult Diapers
+A&&&OB Pads
+A&&&OB/GYN Mix
+A&&&Pediatric Diapers
+A&&&Pediatric Supplies
+A&&&Speculums
+B&&&Anti-Embolism Stockings
+B&&&Oral Care
+B&&&Personal Care
+B&&&Slippers
+B&&&Under Pads/Chux (Cloth)
+B&&&Under Pads/Chux (Disposable)
+C&&&Blood Pressure Cuffs/Stethoscopes
+C&&&Diabetic Glucometers
+C&&&Diabetic Supplies
+C&&&Foam
+C&&&Patient Care
+C&&&Probe Covers
+C&&&Bed Linens
+C&&&Immobilizers
+C&&&Patient Gowns
+C&&&Poseys (Vest, Wrist)
+C&&&Positioning Devices
+C&&&Shrouds
+D&&&Blood Collection/Vacutainer Supplies
+C&&&Exam Table Paper
+E&&&Hats/Head Covers
+D&&&Lab Supplies
+E&&&Masks
+D&&&Specimen Containers
+E&&&Gloves (Sterile)
+E&&&Gloves (Unsterile, Boxed)
+E&&&Gloves (Unsterile, Loose)
+E&&&Gowns (Unsterile, Paper)
+E&&&Shoe Covers
+F&&&Dental Surgery
+F&&&ENT (Ears, Nose, Throat)
+F&&&Eye Care
+E&&&Gowns (Sterile, Paper)
+F&&&Ophthalmic Surgery
+G&&&Misc. Tracheostomy Supplies
+H&&&Respiratory Mix
+G&&&Tracheostomy Care Kits
+G&&&Tracheostomy Tubes
+H&&&Ambu Bags (Adult)
+H&&&Ambu Bags (Pediatric)
+H&&&Bronchoscopy Biopsy Forceps/Brushes
+H&&&O2 Nasal Cannulas & Masks
+H&&&Oxygen Tubing
+H&&&Airway
+H&&&CPAP
+H&&&Humidifiers
+H&&&Nebulizers
+H&&&O2 Gauges & Supplies
+I&&&Cardiovascular Mix
+I&&&Defibrillator Pads
+I&&&EKG Electrodes
+J&&&Endoscopy
+I&&&Heart Cannulas
+J&&&Enema
+J&&&Feeding & Kangaroo Bags
+J&&&Feeding Tubes
+K&&&Misc. Urine Collection
+J&&&Ostomy Care Supplies
+J&&&Ostomy Supplies
+K&&&Catheters (Foley, Straight, Texas)
+K&&&Dialysis
+J&&&Nasogastric (NG) Tubes
+K&&&Urinary Catheter Trays/Kits
+K&&&Urinary Drainage Bags
+K&&&Urology Mix
+L&&&Chest Drains
+L&&&Jackson-Pratt Drains
+L&&&Suction Canisters
+L&&&Suction Catheters
+L&&&Suction Tubing
+L&&&Yankauer/Frazier Tips
+L&&&Bulb Syr inges/Funnels
+L&&&Drainage Kits
+L&&&Drains
+T&&&Irrigation
+M&&&Roll Gauze
+M&&&Wound Care
+M&&&Ace Bandages
+M&&&Coban
+M&&&Dressings (Sterile, Non-medicated)
+M&&&Dressings (Sterile, Treated/Medicated)
+M&&&Dressings (Unsterile)
+M&&&Tegaderm
+Y&&&Cast Padding
+Y&&&Casting Tape
+Y&&&Ortho Drills & Saw Blades
+Y&&&Orthopedic Mix
+Y&&&Shoulder/Elbow Suspension Kits
+Y&&&Tan Stockinettes
+O&&&Insulin Syringes
+O&&&Syringes - 1-3cc (Sterile)
+O&&&Syringes - 10cc (Sterile)
+O&&&Syringes - 20-60cc (Sterile)
+O&&&Syringes - 5cc (Sterile)
+O&&&Oral Dosing Syringes
+P&&&Port Access Needles
+P&&&Angio-Catheters
+P&&&Butterfly Catheters
+P&&&Needles
+P&&&Spinal Needles
+O&&&Syringes-All Sizes (Unsterile)
+Q&&&Central Line & Swan Ganz Kits
+Q&&&Central Line Supplies
+Q&&&IV Mix
+Q&&&IV Starter Kits
+Q&&&IV Tubing
+R&&&Anestesia Masks/Circuits
+R&&&Anesthesia Mix
+R&&&Endotracheal Tubes/LMAs/ Stylettes
+R&&&Esmark for Tourniquets
+R&&&Tourniquet Cuffs
+R&&&Ventilator Tubing
+S&&&Needle Box
+T&&&Skin Staplers (Sterile)
+T&&&Skin Staplers (Unsterile)
+S&&&Suture/Staple Removal
+S&&&Sutures (Expired)
+S&&&Sutures (Unexpired)
+T&&&Cautery Supplies
+T&&&Laceration Kits
+U&&&Surgical Drapes (Sterile)
+W&&&Surgical Packs (Sterile)
+W&&&Misc. OR Supplies (Sterile)
+W&&&OR Suction Supplies (Sterile)
+T&&&Skin Markers
+U&&&Surgical Sheets (Sterile)
+U&&&Autoclave Wraps
+U&&&Mayo Stand Covers (Unsterile)
+U&&&Sheets (Unsterile, Paper)
+U&&&Sheets (Unsterile, Plastic)
+U&&&Under Buttocks Drapes
+U&&&Drapes (Unsterile, Large)
+U&&&Drapes (Unsterile, Small)
+U&&&Quarter Drapes
+U&&&Tail Drapes
+V&&&Lap Sponges (Sterile)
+V&&&Lap Sponges (Unsterile)
+V&&&Raytex (Sterile)
+V&&&Raytex (Unsterile)
+V&&&Towels (Unsterile, Cloth)
+V&&&Towels (Unsterile, Paper)
+W&&&Foam Sponges
+W&&&Impervious Stockinettes (Unsterile)
+W&&&Magnetic Instrument Pads
+W&&&Scrub Brushes
+W&&&Skin Prep
+P&&&Biopsy Kits
+W&&&Mesh Mix
+W&&&Neurology Mix
+W&&&Steri-Drapes/Ioban
+W&&&Sterilization Pouches
+W&&&Surgical Patties/Tonsil Sponges
+X&&&Other Plastics
+X&&&Pill Bottles
+X&&&Plastic Trays
+Z&&&Cautery Sticks
+Z&&&Tourniquets
+Z&&&Batteries
+Z&&&Peanuts, Kitners (Sterile)
+Z&&&Applicator Appliers & Clips (Hemo Clips)
+Z&&&DermaHooks
+Z&&&Mastisol/ Dermabond
+Z&&&Safety Pins, Sterile Rubber Bands, Suture Aid Booties
+Z&&&Tape & Tape Remover
+Z&&&Umbilical Tape, Polyester Tape, Silicone Clamp Covers, Retro Tape
+Z&&&Bone Wax, Gelfoam, Surgifoam, Avitene, Surgicel
+Z&&&Alcohol Prep Pads & Swabsticks
+Z&&&Antiseptic Gel Hand Rinse
+Z&&&Cotton Balls
+Z&&&Povidone-Iodine & Swabstick
+Z&&&Povidone-Iodine Pads
+Z&&&Povidone-Iodine Solution & Ointment
+Z&&&Povidone-Iodine Sponges & Sponges w/ Sticks
+Z&&&Thermometers
+Z&&&Chlorascrub Swabs & Swabsticks
+Z&&&Antiseptic  & Cleansing Towelettes
+Z&&&Compound Benzoin Tincture Swabsticks
+Z&&&Skin Protectant Swabsticks
+Z&&&Skin Prep Pads & Protective Barrier Wipes
+Z&&&Petroleum Jelly
+Z&&&Q-Tips & Cotton-Tipped Applicators
+Z&&&Tongue Depressors
+Z&&&Band-Aids, Steri-Strips
+Z&&&Blades/Scalpels
+Z&&&Fish/Bowel Protector
+Z&&&Goggles
+Z&&&Hot/Cold Packs
+Z&&&Lubricating Gel & Surgical Lubricant
+Z&&&Spill Kits
+Z&&&Ultrasound Gel
 -----
-<<<<<<< HEAD
 -----
-=======
->>>>>>> 4be35bea7a4ed199e5711a2896bad5d754cceced
-A, A32, L, None, old, 1970-01-01 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Drapers, 1970-01-01 05:00:00+00:00, 1, , 
-A, A33, S, None, old, 1970-01-01 05:00:00+00:00, 2012-04-01 04:00:00+00:00, Endoscopy, 1970-01-01 05:00:00+00:00, 1, , 
-A, A40, L, None, old, 2012-01-18 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Autoscopy Kit, 1970-01-01 05:00:00+00:00, 1, , 
-A, A45, L, None, old, 2012-03-23 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Dental Mix, 1970-01-01 05:00:00+00:00, 1, , 
-A, A46, S, None, old, 2012-05-23 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Dental Exam Capes, 1970-01-01 05:00:00+00:00, 1, , 
-A, A47, S, None, old, 2012-05-23 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Dental Exam Capes, 1970-01-01 05:00:00+00:00, 1, , 
-A, A48, L, 19.00, old, 2012-10-21 04:00:00+00:00, 2014-06-01 04:00:00+00:00, OB Supplies, 1970-01-01 05:00:00+00:00, 1, , 
-A, A49, L, 23.00, old, 2012-10-21 04:00:00+00:00, 2014-01-01 05:00:00+00:00, OB/GYN Supplies, 1970-01-01 05:00:00+00:00, 1, , 
-A, A50, L, 22.50, old, 2012-10-24 04:00:00+00:00, 2016-06-01 04:00:00+00:00, Pediatric Chest Drains, 1970-01-01 05:00:00+00:00, 1, , 
-A, A51, S, 7.00, old, 2012-10-25 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Multivent Oxygen Masks, 1970-01-01 05:00:00+00:00, 1, , 
-A, A54, L, 17.00, old, 2012-10-31 04:00:00+00:00, 2014-02-01 05:00:00+00:00, Pediatric Respiratory Supplies: Breathing Circuits (14); O2 Masks (45); Suction Catheters; Tracheostomy Tubes, 1970-01-01 05:00:00+00:00, 1, , 
-A, A55, L, 20.00, old, 2012-10-31 04:00:00+00:00, 2014-02-01 05:00:00+00:00, Pediatric Supplies: Umbilical Clamps; Tape Measures; Nipples; Feeding Bottles; Electrodes (6 Bags), 1970-01-01 05:00:00+00:00, 1, , 
-A, A56, S, 6.00, old, 2012-10-31 04:00:00+00:00, 2016-03-01 05:00:00+00:00, OB/GYN: Sterile Swabs, 1970-01-01 05:00:00+00:00, 1, , 
-A, A57, S, 6.50, old, 2012-10-31 04:00:00+00:00, 2016-11-01 04:00:00+00:00, OB/GYN: Sterile Swabs, 1970-01-01 05:00:00+00:00, 1, , 
-A, A58, S, 8.00, old, 2012-10-31 04:00:00+00:00, 2016-08-01 04:00:00+00:00, OB/GYN: Sterile Swabs (~2000), 1970-01-01 05:00:00+00:00, 1, , 
-A, A59, S, 7.00, old, 2012-10-31 04:00:00+00:00, 2016-01-01 05:00:00+00:00, OB/GYN: Sterile Swabs (~1800), 1970-01-01 05:00:00+00:00, 1, , 
-A, A60, S, 9.50, old, 2012-11-02 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Nebulizers: 23 Neb-U-Mask Systems, 1970-01-01 05:00:00+00:00, 1, , 
-A, A61, S, 5.50, old, 2012-11-02 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Nebulizers w/ Mask (45), 1970-01-01 05:00:00+00:00, 1, , 
-A, A62, L, 19.00, old, 2012-11-19 05:00:00+00:00, 2014-05-01 04:00:00+00:00, GYN Mix, 1970-01-01 05:00:00+00:00, 1, , 
-A, A62, S, 5.50, old, 2012-11-19 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Nebulizer w/ Masks, 1970-01-01 05:00:00+00:00, 1, , 
-A, A63, L, 17.00, old, 2012-11-19 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Diapers (Preemie & Small), 1970-01-01 05:00:00+00:00, 1, , 
-A, A64, L, 16.50, old, 2012-11-26 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 23 Pediatric Breathing Circuits, 1970-01-01 05:00:00+00:00, 1, , 
-A, A66, L, 23.00, old, 2012-12-03 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Mix, 1970-01-01 05:00:00+00:00, 1, , 
-A, A67, S, 7.00, old, 2012-12-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 46 Plastic Vaginal Speculums, 1970-01-01 05:00:00+00:00, 1, , 
-A, A68, L, 14.00, old, 2012-12-14 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Diapers: Preemie Size 1, 1970-01-01 05:00:00+00:00, 1, , 
-A, A69, L, 22.00, old, 2012-12-14 05:00:00+00:00, 2015-12-01 05:00:00+00:00, Pediatric Supplies: Trays; OR Shoes; Endotracheal Tubes; etc., 1970-01-01 05:00:00+00:00, 1, , 
-A, A70, L, 29.00, old, 2013-01-04 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Diapers: Preemie & Pediatric, 1970-01-01 05:00:00+00:00, 1, , 
-A, A71, L, 22.00, old, 2013-01-08 05:00:00+00:00, 2014-02-01 05:00:00+00:00, Pediatric Supplies: Trach. Tubes; Feeders; Post-Op Bots; Slings; etc., 1970-01-01 05:00:00+00:00, 1, , 
-A, A72, L, 23.00, old, 2013-01-08 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Pedatrics Supplies: 100 Electrodes; 50 O2 Probes; 25 Feeding Syringes; etc., 1970-01-01 05:00:00+00:00, 1, , 
-A, A73, L, 18.00, old, 2013-01-28 05:00:00+00:00, 2015-05-01 04:00:00+00:00, OB/Gyn Mix: Umbilical clamps; Cord Blood Collection, 1970-01-01 05:00:00+00:00, 1, , 
-A, A74, L, 22.40, old, 1970-01-01 05:00:00+00:00, 1970-01-01 05:00:00+00:00, OB Pads (Incontinence & Postpartum) ~300; 1 Bag Misc. Pads, 1970-01-01 05:00:00+00:00, 1, , 
-A, A75, L, 15.50, old, 2013-01-28 05:00:00+00:00, 2014-09-01 04:00:00+00:00, Pediatric Supplies: Trach Trays; Holders; Masks, 1970-01-01 05:00:00+00:00, 1, , 
-A, A76, L, 22.00, old, 2013-01-28 05:00:00+00:00, 2015-08-01 04:00:00+00:00, Pediatric Supplies: Chest Drains; Circumsion Kits; Respiratory Mix, 1970-01-01 05:00:00+00:00, 1, , 
-A, A77, L, 26.00, old, 1970-01-01 05:00:00+00:00, 1970-01-01 05:00:00+00:00, OB Pads for Incontinence ~390, 1970-01-01 05:00:00+00:00, 1, , 
-A, A78, L, 19.00, old, 2013-02-07 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-A, A79, L, 16.00, old, 2013-03-05 05:00:00+00:00, 1970-01-01 05:00:00+00:00, OB Speculums x94, 1970-01-01 05:00:00+00:00, 1, , 
-A, A80, L, 12.00, old, 2013-03-05 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Urine Collectors, Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-A, A81, L, 18.00, old, 2013-03-15 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatic Supplies: Respiratory; Cardiac; IV, 1970-01-01 05:00:00+00:00, 1, , 
-A, A82, L, 17.00, old, 2013-03-05 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Supplies: Blood Collection; Feeding Bottles, 1970-01-01 05:00:00+00:00, 1, , 
-A, A83, S, 8.50, old, 2013-03-15 04:00:00+00:00, 2016-11-01 04:00:00+00:00, OB/GYN Mix: Vaginal Swabs, 1970-01-01 05:00:00+00:00, 1, , 
-A, A84, S, 7.00, old, 2013-04-01 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Vaginal Speculums (Disposable): Med. x35; Lg. x15, 1970-01-01 05:00:00+00:00, 1, , 
-A, A85, L, 23.00, old, 2013-04-26 04:00:00+00:00, 1970-01-01 05:00:00+00:00, 100 Pediatric O2 Masks w/ Tubing, 1970-01-01 05:00:00+00:00, 1, , 
-A, A86, L, 27.00, old, 2013-04-26 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Nebulizers: 100 Pediatric Sets, 1970-01-01 05:00:00+00:00, 1, , 
-A, A87, S, 17.00, old, 2013-04-26 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Vaginal Speculums: 40 Metal; 15 Disposable, 1970-01-01 05:00:00+00:00, 1, , 
-A, A88, L, 14.40, old, 2013-05-13 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Suction Catheters, 1970-01-01 05:00:00+00:00, 1, , 
-A, A89, L, 22.40, old, 2013-06-03 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Supplies: Circumsion Trays; ET Tubes; LMAs; Masks; Colostomy Supplies, 1970-01-01 05:00:00+00:00, 1, , 
-A, A90, L, 15.60, old, 2013-06-03 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Supplies, 1970-01-01 05:00:00+00:00, 1, , 
-A, A91, L, 17.00, old, 2013-07-11 04:00:00+00:00, 2016-05-01 04:00:00+00:00, Pediatric Supplies: Bottles; Nipples; Breast Milk Containers; Dosing Syringes, 1970-01-01 05:00:00+00:00, 1, , 
-A, A92, L, 28.00, old, 2013-07-11 04:00:00+00:00, 2016-10-01 04:00:00+00:00, Pediatric Supplies: Respiratory; ID Bands; Urinary; Feeding Tubes, 1970-01-01 05:00:00+00:00, 1, , 
-A, A93, L, 15.60, old, 2013-07-11 04:00:00+00:00, 2015-01-01 05:00:00+00:00, Pediatric Cardiac Surgical Pack Parts A & B (Sterile), 1970-01-01 05:00:00+00:00, 1, , 
-A, A94, L, 20.00, old, 2013-08-07 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-A, A95, L, 30.20, old, 2013-08-07 04:00:00+00:00, 2015-08-01 04:00:00+00:00, OB/GYN Mix, 1970-01-01 05:00:00+00:00, 1, , 
-A, A96, L, 10.60, old, 2013-08-07 04:00:00+00:00, 2017-10-01 04:00:00+00:00, OB/GYN: Disposable Briefs; VP III Swabs, 1970-01-01 05:00:00+00:00, 1, , 
-A, A97, L, 20.80, old, 2013-08-07 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Vaginal Speculums (Disposable), 1970-01-01 05:00:00+00:00, 1, , 
-A, A98, S, 19.20, old, 2013-08-07 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Vaginal Speculums (Metal), 1970-01-01 05:00:00+00:00, 1, , 
-B, B4, U, None, old, 1970-01-01 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Feeding Bags, 1970-01-01 05:00:00+00:00, 1, , 
-B, B188, U, None, old, 2011-10-19 04:00:00+00:00, 1970-01-01 05:00:00+00:00, 100 Kangaroo Feeding Bags, 1970-01-01 05:00:00+00:00, 1, , 
-B, B189, U, None, old, 2011-11-03 04:00:00+00:00, 1970-01-01 05:00:00+00:00, 110 Kangaroo Feeding Bags, 1970-01-01 05:00:00+00:00, 1, , 
-B, B190, U, None, old, 2011-11-03 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Nutrition Bags x84, 1970-01-01 05:00:00+00:00, 1, , 
-B, B191, U, None, old, 2011-11-03 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Ostomy (Convatec), 1970-01-01 05:00:00+00:00, 1, , 
-B, B192, U, None, old, 2011-11-03 04:00:00+00:00, 2014-01-01 05:00:00+00:00, Ostomy: Convatec 13/4" Pouches & Seals, 1970-01-01 05:00:00+00:00, 1, , 
-B, B193, U, None, old, 2011-11-03 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Ostomy: Flex Seal & Hollister, 1970-01-01 05:00:00+00:00, 1, , 
-B, B194, U, None, old, 2011-11-02 04:00:00+00:00, 2013-12-01 05:00:00+00:00, Enema Anascopes, 1970-01-01 05:00:00+00:00, 1, , 
-B, B195, U, None, old, 2011-12-13 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Kangaroo Feeding Pump (Use w/ Box of Pump Bags), 1970-01-01 05:00:00+00:00, 1, , 
-B, B196, U, None, old, 2011-12-13 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Kangaroo Feeding Pump Bags, 1970-01-01 05:00:00+00:00, 1, , 
-B, B197, U, None, old, 2011-12-22 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 35 Kangaroo Pump Bags (Must Use w/ Machine), 1970-01-01 05:00:00+00:00, 1, , 
-B, B198, U, None, old, 2012-01-12 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 80 Kangaroo Feeding Bags, 1970-01-01 05:00:00+00:00, 1, , 
-B, B200, U, None, old, 2012-01-18 05:00:00+00:00, 2014-03-01 05:00:00+00:00, 110 Kangaroo Bags (Pump Set), 1970-01-01 05:00:00+00:00, 1, , 
-B, B201, U, None, old, 2012-02-13 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 110 Unsterile Gravity & Pump Feeding Tubes/Bags, External Lite Kangaroo, 1970-01-01 05:00:00+00:00, 1, , 
-B, B202, U, None, old, 2012-02-20 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Genairex Ostomy Pouches, Skin Barrier 1-3/4", 1970-01-01 05:00:00+00:00, 1, , 
-B, B203, U, None, old, 2012-02-20 05:00:00+00:00, 2014-01-01 05:00:00+00:00, Hollister & Assura Ostomy Supply, 1970-01-01 05:00:00+00:00, 1, , 
-B, B204, U, None, old, 2012-02-20 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Hollister & Assura Ostomy Supply & Skin Barrier, 1970-01-01 05:00:00+00:00, 1, , 
-B, B205, U, None, old, 2012-02-20 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Hollister & Assura Ostomy Supply & Skin Barrier (Assorted Sizes), 1970-01-01 05:00:00+00:00, 1, , 
-B, B208, U, None, old, 2012-02-20 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 60 Feeding Central Bags (Gravity), 1970-01-01 05:00:00+00:00, 1, , 
-B, B209, U, None, old, 2012-03-01 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 98 Kangaroo Tube Feeding Bags, 1970-01-01 05:00:00+00:00, 1, , 
-B, B211, U, None, old, 2012-04-12 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Enteral Feeding 60cc. Syringe, 1970-01-01 05:00:00+00:00, 1, , 
-B, B212, U, None, old, 2012-04-17 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Enteral Pumps, 1970-01-01 05:00:00+00:00, 1, , 
-B, B213, U, None, old, 2012-05-18 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Colonoscopy Supplies, 1970-01-01 05:00:00+00:00, 1, , 
-B, B214, U, None, old, 2012-05-23 04:00:00+00:00, 1970-01-01 05:00:00+00:00, 70 Kangaroo Bags, 30 Feeding Bags, 1970-01-01 05:00:00+00:00, 1, , 
-B, B215, U, None, old, 2012-05-23 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Enteral Feeding Adult, Button Feeding Peds., 1970-01-01 05:00:00+00:00, 1, , 
-B, B217, U, None, old, 2012-05-23 04:00:00+00:00, 2014-03-01 05:00:00+00:00, Colostomy Supplies, 1970-01-01 05:00:00+00:00, 1, , 
-B, B220, U, None, old, 2012-06-20 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Enteral Irrigation Sets, 1970-01-01 05:00:00+00:00, 1, , 
-B, B221, U, None, old, 2012-07-03 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Kangaroo Bags x100, 1970-01-01 05:00:00+00:00, 1, , 
-B, B223, U, 23.00, old, 2012-10-05 04:00:00+00:00, 2013-07-01 04:00:00+00:00, Ostomy Supplies, 1970-01-01 05:00:00+00:00, 1, , 
-B, B224, U, 24.50, old, 2012-10-05 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Ostomy Drainage Bags, Skin Barrier Cream, 1970-01-01 05:00:00+00:00, 1, , 
-B, B225, U, 16.00, old, 2012-10-10 04:00:00+00:00, 2014-05-01 04:00:00+00:00, Personal Cleansing Cloths x40 pkgs., 1970-01-01 05:00:00+00:00, 1, , 
-B, B226, U, 7.00, old, 2012-10-10 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Urostomy Bags x8 boxes; 1 box Fecal Collector, 1970-01-01 05:00:00+00:00, 1, , 
-B, B227, U, 7.00, old, 2012-10-10 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Hollister Ostomy: Assorted Pouches & Stoma Adhesive, 1970-01-01 05:00:00+00:00, 1, , 
-B, B229, U, None, old, 2012-10-10 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Covatec Assorted Ostomy Pouches & Stoma Adhesive, 1970-01-01 05:00:00+00:00, 1, , 
-B, B230, U, 9.00, old, 2012-10-10 04:00:00+00:00, 2014-05-01 04:00:00+00:00, Covatec Assorted Ostomy Pouches & Stoma Adhesive x40 pkgs., 1970-01-01 05:00:00+00:00, 1, , 
-B, B233, U, 16.00, old, 2012-10-12 04:00:00+00:00, 1970-01-01 05:00:00+00:00, 76 Enteral Pump Delivery Sets; 29 Safety Screw Spike Sets; 27 Enteral Feeding Spike Adapter; 4 Cont. Feeding Set (All Unsterile), 1970-01-01 05:00:00+00:00, 1, , 
-B, B234, U, 20.00, old, 2012-10-12 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Enteral Pump Delivery Sets x111 (Unsterile), 1970-01-01 05:00:00+00:00, 1, , 
-B, B235, U, 5.00, old, 2012-10-12 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Enteral Gravity Feeding Bags x24; Rt. Angle Feeding Sets Y-Port x111; Mickey BDust Extension Sets x16 (Unsterile), 1970-01-01 05:00:00+00:00, 1, , 
-B, B236, U, 13.00, old, 2012-10-18 04:00:00+00:00, 2014-07-01 04:00:00+00:00, 1000ml. External Gravity Bags x86, 1970-01-01 05:00:00+00:00, 1, , 
-B, B237, U, 19.50, old, 2012-10-21 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Underpads Disposable x151, 1970-01-01 05:00:00+00:00, 1, , 
-B, B238, U, 19.50, old, 2012-10-21 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Underpads Disposable x400, 1970-01-01 05:00:00+00:00, 1, , 
-B, B239, U, 22.00, old, 2012-10-31 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Handicare Liners Extra Absorbent (10x24 Liners), 1970-01-01 05:00:00+00:00, 1, , 
-B, B240, S, 14.60, old, 1970-01-01 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: Bath Cloths (50); Shampoo Caps (10), 1970-01-01 05:00:00+00:00, 1, , 
-B, B241, L, 21.00, old, 2012-11-02 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B242, L, 21.50, old, 2012-11-02 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Chux Underpads (Disposable), 1970-01-01 05:00:00+00:00, 1, , 
-B, B243, L, 21.00, old, 2012-11-02 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Chux Underpads (Disposable), 1970-01-01 05:00:00+00:00, 1, , 
-B, B244, L, 19.00, old, 2012-11-02 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B245, L, 24.50, old, 2012-11-02 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: Hipsters (5); Rupture Easer (2); Razors (50); SaniCloth (202); 1 Pillow; 1 Gel; CPR Barriers (3); Abdominal Binders (2), 1970-01-01 05:00:00+00:00, 1, , 
-B, B246, L, 14.00, old, 2012-11-08 05:00:00+00:00, 2014-04-01 04:00:00+00:00, Oral Care: Toothettes & Suction Swabs, 1970-01-01 05:00:00+00:00, 1, , 
-B, B247, L, 16.50, old, 2012-11-19 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 150 Underpads Disposable, 1970-01-01 05:00:00+00:00, 1, , 
-B, B248, L, 21.00, old, 2012-11-19 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 185 Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B249, L, 21.50, old, 2012-11-19 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Disposable Underpads, 1970-01-01 05:00:00+00:00, 1, , 
-B, B252, L, 15.50, old, 2012-11-26 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Disposable Underpads, 1970-01-01 05:00:00+00:00, 1, , 
-B, B254, L, 9.00, old, 2012-11-26 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 5 Pillows, 1970-01-01 05:00:00+00:00, 1, , 
-B, B255, L, 10.00, old, 2012-11-26 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 4 Pillows; 1 Mattress Pads; 1 Sheet, 1970-01-01 05:00:00+00:00, 1, , 
-B, B256, L, 8.00, old, 2012-11-27 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 60 Anti-Embolism Stockings, 1970-01-01 05:00:00+00:00, 1, , 
-B, B258, L, 29.00, old, 2012-11-27 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: Bottles Soap Gel, etc., 1970-01-01 05:00:00+00:00, 1, , 
-B, B259, L, 19.00, old, 2012-11-27 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B260, L, 19.00, old, 2012-11-27 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Disposable Underpads, 1970-01-01 05:00:00+00:00, 1, , 
-B, B261, L, 21.00, old, 2012-11-27 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers 6 pkgs. (4 sm.; 2 lg.), 1970-01-01 05:00:00+00:00, 1, , 
-B, B263, L, 24.00, old, 2012-12-03 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B264, L, 29.50, old, 2012-12-03 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: Bodywash, Mouthwash, etc., 1970-01-01 05:00:00+00:00, 1, , 
-B, B265, L, 28.00, old, 2012-12-06 05:00:00+00:00, 2014-04-01 04:00:00+00:00, Personal Care: Wipes, Shampoo, Oral Care, Denture Cups, Drinking Cups, 1970-01-01 05:00:00+00:00, 1, , 
-B, B266, L, 18.50, old, 2012-12-14 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Underpads Chux, 1970-01-01 05:00:00+00:00, 1, , 
-B, B267, L, 20.50, old, 2012-12-14 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Underpads Paper, 1970-01-01 05:00:00+00:00, 1, , 
-B, B269, L, 20.50, old, 2013-01-04 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B270, L, 28.50, old, 2013-01-07 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: Denture Cups, Lotion, Tissues, Oral Care, Shampoo, etc., 1970-01-01 05:00:00+00:00, 1, , 
-B, B271, L, 24.00, old, 2013-01-07 05:00:00+00:00, 2014-05-01 04:00:00+00:00, Personal Care, 1970-01-01 05:00:00+00:00, 1, , 
-B, B272, L, 20.00, old, 2013-01-07 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B273, L, 19.50, old, 2013-01-11 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Underpads/Chux x87, 1970-01-01 05:00:00+00:00, 1, , 
-B, B274, L, 19.00, old, 2013-01-18 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B275, L, 16.00, old, 2013-01-28 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Underpads, 1970-01-01 05:00:00+00:00, 1, , 
-B, B276, L, 17.50, old, 2013-01-28 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B277, L, 18.00, old, 2013-01-28 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Underpads/Chux Disposable x121, 1970-01-01 05:00:00+00:00, 1, , 
-B, B278, L, 22.50, old, 2013-01-28 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B279, L, 16.50, old, 2013-01-28 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B280, S, 7.80, old, 1970-01-01 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: Denture Cups (153); Facial Tissues (12 Boxes), 1970-01-01 05:00:00+00:00, 1, , 
-B, B281, S, 23.00, old, 2013-02-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care, 1970-01-01 05:00:00+00:00, 1, , 
-B, B282, L, 23.00, old, 2013-02-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 9 Packages Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B283, L, 17.50, old, 2013-02-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B284, L, 17.50, old, 2013-02-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B285, L, 19.00, old, 2013-02-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B286, L, 16.00, old, 2013-02-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B287, L, 21.00, old, 2013-02-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Disposable Chux x21 Packs, 1970-01-01 05:00:00+00:00, 1, , 
-B, B288, L, 20.00, old, 2013-02-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B289, L, 16.50, old, 2013-02-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B290, L, 18.00, old, 2013-02-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Underpads/Chux x70, 1970-01-01 05:00:00+00:00, 1, , 
-B, B291, L, 14.50, old, 2013-02-07 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B292, L, 20.50, old, 2013-02-07 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B293, L, 17.00, old, 2013-02-07 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Disposable Underpads/Chux, 1970-01-01 05:00:00+00:00, 1, , 
-B, B294, L, 15.50, old, 2013-02-11 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Disposable Underpads/Chux, 1970-01-01 05:00:00+00:00, 1, , 
-B, B295, L, 14.50, old, 2013-02-11 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Disposable Underpads/Chux, 1970-01-01 05:00:00+00:00, 1, , 
-B, B296, L, 15.50, old, 2013-02-11 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Disposable Underpads/Chux, 1970-01-01 05:00:00+00:00, 1, , 
-B, B297, L, 32.00, old, 2013-02-11 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care, 1970-01-01 05:00:00+00:00, 1, , 
-B, B298, L, 32.00, old, 2013-02-27 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care, 1970-01-01 05:00:00+00:00, 1, , 
-B, B299, L, 23.50, old, 2013-02-27 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Underpads/Chux x200, 1970-01-01 05:00:00+00:00, 1, , 
-B, B300, L, 20.00, old, 2013-03-05 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B301, L, 14.50, old, 2013-03-05 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Disposable Underpads/Chux, 1970-01-01 05:00:00+00:00, 1, , 
-B, B303, L, 31.00, old, 2013-03-26 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: 12 Hipster Pads; 4 Abd. Binders; 36 Toilet Liners; 62 Scrub Tops; Sneakers (Size 12); Body Wash; Shampoo; Hand Sanitizer, 1970-01-01 05:00:00+00:00, 1, , 
-B, B304, L, 20.00, old, 2013-03-26 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Anti-Embolism Stockings: Assorted Sizes (S-XL) x210, 1970-01-01 05:00:00+00:00, 1, , 
-B, B305, L, 24.00, old, 2013-03-26 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: Lotions; Shower Cap; Powder; Mouth Wash, 1970-01-01 05:00:00+00:00, 1, , 
-B, B306, S, 9.20, old, 2013-06-03 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Slippers: 50 Pair, 1970-01-01 05:00:00+00:00, 1, , 
-B, B307, L, 22.60, old, 2013-06-03 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Underpads (Cloth), 1970-01-01 05:00:00+00:00, 1, , 
-B, B308, L, 22.00, old, 2013-06-03 04:00:00+00:00, 2014-08-01 04:00:00+00:00, Oral Care: Including Toothbrushes, Toothpaste, 1970-01-01 05:00:00+00:00, 1, , 
-B, B309, L, 20.40, old, 2013-06-03 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Underpads/Chux (Disposable), 1970-01-01 05:00:00+00:00, 1, , 
-B, B310, L, 19.40, old, 2013-06-03 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B311, L, 19.40, old, 2013-06-03 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Pediatric Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B312, L, 32.00, old, 2013-06-07 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: Tissues; Razors; Body Wash; Shampoo; Baby Powder; Lotion, 1970-01-01 05:00:00+00:00, 1, , 
-B, B313, S, 17.00, old, 2013-06-07 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: Body Wipes; Shampoo Cleaning Cloths, 1970-01-01 05:00:00+00:00, 1, , 
-B, B314, S, 16.00, old, 2013-06-07 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: Body Wipes; Shampoo Cleaning Cloths, 1970-01-01 05:00:00+00:00, 1, , 
-B, B315, L, 19.20, old, 2013-07-11 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B316, L, 17.40, old, 2013-07-12 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Underpads/Chux (Disposable) x188, 1970-01-01 05:00:00+00:00, 1, , 
-B, B317, L, 10.00, old, 2013-07-12 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Oral Care, 1970-01-01 05:00:00+00:00, 1, , 
-B, B318, S, 20.40, old, 2013-07-16 04:00:00+00:00, 2014-08-01 04:00:00+00:00, Personal Care: Barrier Cream Wipes x41 Packs of 8, 1970-01-01 05:00:00+00:00, 1, , 
-B, B319, S, 13.20, old, 2013-07-17 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: 100 Plastic Cups; 1 Pair Men's PJ Bottoms; 6 Men's T-Shirts; 4 Wash Cloths; 13 Weekly Pill Containers; 22 Combs; 20 Pair Ear Plugs; 10 Pair Ear Phones; 67 Bath Towelettes; 18 Nail Polish Remover Pads, 1970-01-01 05:00:00+00:00, 1, , 
-B, B320, S, 18.40, old, 2013-07-17 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: 255 Disposable Razors; Skin Protectant Wipes x15 Packs of 8, 1970-01-01 05:00:00+00:00, 1, , 
-B, B321, S, 21.40, old, 2013-07-17 04:00:00+00:00, 2014-08-01 04:00:00+00:00, Personal Care: 24 Denture Cleaner Tablets; 14 Mouth Moisturizer; 43 Mouth Wash; 6 Body/Shampoo Wipes; 2 Bottles Skin Conditioner; 12 Comfort Care Kits, 1970-01-01 05:00:00+00:00, 1, , 
-B, B322, S, 32.20, old, 2013-07-17 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: 72 Body Wash/Shampoo Wipes; 13 Shave Cream; 20 Hand Sanitizer; 11 Bars Soap; 4 Deodorant; 3 Baby Shampoo, 1970-01-01 05:00:00+00:00, 1, , 
-B, B323, L, 21.40, old, 1970-01-01 05:00:00+00:00, 2016-07-01 04:00:00+00:00, Underpads/Chux x10 Packs of 15 + 48 Loose, 1970-01-01 05:00:00+00:00, 1, , 
-B, B324, L, 20.10, old, 1970-01-01 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Underpads/Chux x10 Packs of 15 + 48 Loose, 1970-01-01 05:00:00+00:00, 1, , 
-B, B325, L, 21.10, old, 2013-08-07 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B326, L, 18.40, old, 2013-08-07 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B327, L, 22.20, old, 2013-08-07 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Adult Diapers, 1970-01-01 05:00:00+00:00, 1, , 
-B, B328, L, 16.80, old, 2013-08-12 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Underpads/Chux (Disposable) x207, 1970-01-01 05:00:00+00:00, 1, , 
-B, B329, S, 20.60, old, 1970-01-01 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Personal Care: Barrier Cream Cloths; Bath Cloths; Body Wash & Shampoo; Mouthwash; Hand Sanitizer; Eye Shades; Etc., 1970-01-01 05:00:00+00:00, 1, , 
-B, B330, S, 21.00, old, 2013-08-12 04:00:00+00:00, 2015-04-01 04:00:00+00:00, Personal Care: Barrier Cream Cloths; Bath Cloths; Body Wash & Shampoo; Mouthwash; Toothpaste; Baby Powder; Body Lotion; Deodorant, 1970-01-01 05:00:00+00:00, 1, , 
-C, C32, L, None, old, 1970-01-01 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Urine Collection (24 hour) x17, 1970-01-01 05:00:00+00:00, 1, , 
-C, C83, L, None, old, 1970-01-01 05:00:00+00:00, 2014-10-01 04:00:00+00:00, Texas Catheters: 184 Lg., 319 Med., 6 Sm., 87 23mm.; 5 Urinary Drainage Bags; 4 Catheter Trays, 1970-01-01 05:00:00+00:00, 1, , 
-C, C357, L, None, old, 2012-01-12 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Urinary Drainage Bags, 1970-01-01 05:00:00+00:00, 1, , 
-C, C362, L, None, old, 2012-01-18 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 10 Sterile Cystoscopy Irrigantion Sets; 20 Sterile Irrigation Spike Adaptors; 100 Condom Catheters; 10 Sterile Piston Irrigation Trays, 1970-01-01 05:00:00+00:00, 1, , 
-C, C368, U, None, old, 2012-02-20 05:00:00+00:00, 2014-08-01 04:00:00+00:00, Self-Catherization Sets, 1970-01-01 05:00:00+00:00, 1, , 
-C, C369, L, None, old, 2012-02-22 05:00:00+00:00, 2016-06-01 04:00:00+00:00, Misc. Urine Collection, 1970-01-01 05:00:00+00:00, 1, , 
-C, C371, L, None, old, 2012-03-07 05:00:00+00:00, 2014-03-01 05:00:00+00:00, Urinary Catheters (Assorted Sizes), 1970-01-01 05:00:00+00:00, 1, , Rwanda
-C, C372, S, None, old, 2012-03-07 05:00:00+00:00, 2014-02-01 05:00:00+00:00, French Self-Catheter Kits x100, 1970-01-01 05:00:00+00:00, 1, , 
-C, C373, L, None, old, 2012-03-12 04:00:00+00:00, 2014-07-01 04:00:00+00:00, Foley Catheter Kits and Drainage Tubing, 1970-01-01 05:00:00+00:00, 1, , AJC
-C, C374, L, None, old, 2012-03-12 04:00:00+00:00, 2014-07-01 04:00:00+00:00, Foley Catheter Kits and Drainage Tubing, 1970-01-01 05:00:00+00:00, 1, , 
-C, C375, L, None, old, 2012-03-12 04:00:00+00:00, 2013-07-01 04:00:00+00:00, Urology Mix, 1970-01-01 05:00:00+00:00, 1, , 
-C, C376, L, None, old, 2012-03-12 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Urinary Drainage Bags x52, 1970-01-01 05:00:00+00:00, 1, , 
-C, C377, L, None, old, 2012-03-21 04:00:00+00:00, 1970-01-01 05:00:00+00:00, 40 Single Hand Breast Pumps; 3 Boxes OB Towelettes, 1970-01-01 05:00:00+00:00, 1, , 
-C, C379, L, None, old, 2012-04-12 04:00:00+00:00, 2015-08-01 04:00:00+00:00, Urinary Drainage Bags, 1970-01-01 05:00:00+00:00, 1, , 
-C, C380, L, None, old, 2012-04-30 04:00:00+00:00, 2014-09-01 04:00:00+00:00, Catheter Trays x8 (Sterile); 25 Foley Bags (Unsterile), 1970-01-01 05:00:00+00:00, 1, , 
-C, C381, L, None, old, 2012-04-30 04:00:00+00:00, 2014-07-01 04:00:00+00:00, U Cath Kits x25, 1970-01-01 05:00:00+00:00, 1, , 
-C, C382, L, None, old, 2012-05-07 04:00:00+00:00, 1970-01-01 05:00:00+00:00, U Cath Kits x48, 1970-01-01 05:00:00+00:00, 1, , 
-C, C383, U, 11.00, old, 1970-01-01 05:00:00+00:00, 2014-04-01 04:00:00+00:00, U Cath Kits x34, 1970-01-01 05:00:00+00:00, 1, , 
-C, C384, L, None, old, 2012-05-07 04:00:00+00:00, 2014-03-01 05:00:00+00:00, U Cath Trays x38, 1970-01-01 05:00:00+00:00, 1, , 
-C, C385, L, None, old, 2012-05-07 04:00:00+00:00, 2014-03-01 05:00:00+00:00, U Cath Trays x38, 1970-01-01 05:00:00+00:00, 1, , 
-C, C386, L, None, old, 2012-05-07 04:00:00+00:00, 2014-04-01 04:00:00+00:00, U Cath Trays x45, 1970-01-01 05:00:00+00:00, 1, , 
-C, C387, L, None, old, 2012-05-07 04:00:00+00:00, 2014-03-01 05:00:00+00:00, U Cath Trays x22, 1970-01-01 05:00:00+00:00, 1, , 
-C, C389, L, None, old, 2012-05-18 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Texas Catheters, 1970-01-01 05:00:00+00:00, 1, , 
-C, C390, U, None, old, 2012-05-18 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Catheter Kits; Catheters, 1970-01-01 05:00:00+00:00, 1, , 
-C, C391, L, None, old, 2012-05-23 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Urinary Drainage Bags x60, 1970-01-01 05:00:00+00:00, 1, , 
-C, C393, S, None, old, 2012-06-20 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Urinary Leg Bags w/ Tubing, 1970-01-01 05:00:00+00:00, 1, , 
-C, C394, L, None, old, 2012-06-20 04:00:00+00:00, 2015-02-01 05:00:00+00:00, Urinary Catheters, 1970-01-01 05:00:00+00:00, 1, , Rwanda
-C, C395, L, None, old, 2012-06-20 04:00:00+00:00, 2014-09-01 04:00:00+00:00, Self-Catherization Supplies, 1970-01-01 05:00:00+00:00, 1, , 
-C, C396, L, None, old, 2012-06-20 04:00:00+00:00, 2014-04-01 04:00:00+00:00, Foley Catheter Mix, 1970-01-01 05:00:00+00:00, 1, , 
-C, C398, L, None, old, 2012-07-03 04:00:00+00:00, 2014-01-01 05:00:00+00:00, Urinary Drainage Bags x55; Texas Catheters x200, 1970-01-01 05:00:00+00:00, 1, , 
-C, C399, L, None, old, 2012-07-16 04:00:00+00:00, 2014-07-01 04:00:00+00:00, Catheters: 65 Texas; 350 Self-Cath; 80 Foley, 1970-01-01 05:00:00+00:00, 1, , 
-C, C400, U, None, old, 2012-07-16 04:00:00+00:00, 2014-01-01 05:00:00+00:00, Urinary Drainage Bags x70, 1970-01-01 05:00:00+00:00, 1, , 
-C, C401, L, None, old, 2012-08-13 04:00:00+00:00, 2014-10-01 04:00:00+00:00, Foley Catheter Trays x12, 1970-01-01 05:00:00+00:00, 1, , 
-C, C402, L, 14.00, old, 2012-09-13 04:00:00+00:00, 2014-08-01 04:00:00+00:00, Catheter Tray Kits (Sterile), 1970-01-01 05:00:00+00:00, 1, , 
-C, C403, L, 17.00, old, 2012-09-14 04:00:00+00:00, 2014-07-01 04:00:00+00:00, Urinary Catheter Trays x18, 1970-01-01 05:00:00+00:00, 1, , 
-C, C404, L, 13.00, old, 2012-09-17 04:00:00+00:00, 1970-01-01 05:00:00+00:00, U-Cath Trays x15, 1970-01-01 05:00:00+00:00, 1, , 
-C, C405, L, 24.00, old, 2012-09-18 04:00:00+00:00, 2014-05-01 04:00:00+00:00, Urinary Catheters: 16 Texas; 23 Clean; 61 Self, Straight; 332 Sterile Foleys, 1970-01-01 05:00:00+00:00, 1, , 
-C, C406, S, 12.50, old, 2012-09-18 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Under Buttocks Drapes x49, 1970-01-01 05:00:00+00:00, 1, , 
-C, C407, S, 17.00, old, 2012-09-18 04:00:00+00:00, 2016-01-01 05:00:00+00:00, Under Buttocks Drapes x29, 1970-01-01 05:00:00+00:00, 1, , 
-C, C408, L, 16.00, old, 2012-09-18 04:00:00+00:00, 2014-10-01 04:00:00+00:00, 15 Urinary Catheter Insertion Kits, 1970-01-01 05:00:00+00:00, 1, , 
-C, C409, L, 17.50, old, 2012-09-18 04:00:00+00:00, 2014-11-01 04:00:00+00:00, 19 Catheterization Kits, 1970-01-01 05:00:00+00:00, 1, , 
-C, C410, L, 40.00, old, 2012-09-28 04:00:00+00:00, 2015-10-01 04:00:00+00:00, Urethral Catheter Trays, 1970-01-01 05:00:00+00:00, 1, , 
-C, C411, L, 13.00, old, 2012-09-28 04:00:00+00:00, 2014-01-01 05:00:00+00:00, Urinary Catheter Trays: 65 Ped. Foley; 20 Ped. Self-Cath; 2 Foley Cath., 1970-01-01 05:00:00+00:00, 1, , 
-C, C412, L, 17.00, old, 2012-10-01 04:00:00+00:00, 2014-10-01 04:00:00+00:00, 15 Urinary Catheterization Trays, 1970-01-01 05:00:00+00:00, 1, , 
-C, C413, L, 29.00, old, 2012-10-05 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Urinary Drainage Bags, 1970-01-01 05:00:00+00:00, 1, , 
-C, C414, L, 30.50, old, 2012-10-05 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Urinary Drainage Bags, 1970-01-01 05:00:00+00:00, 1, , 
-C, C415, L, 16.50, old, 2012-10-08 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Urinary Catheter Trays and Kits x21, 1970-01-01 05:00:00+00:00, 1, , 
-C, C416, L, 23.50, old, 2012-10-08 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Urinary Drainage Bags, 1970-01-01 05:00:00+00:00, 1, , 
-C, C417, L, 20.00, old, 2012-10-17 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 12 Boot; 2 Cervical; 2 Slings; 1 Wrist; 1 Knee, 1970-01-01 05:00:00+00:00, 1, , 
-C, C418, L, 16.00, old, 2012-10-17 04:00:00+00:00, 2014-12-01 05:00:00+00:00, Misc. Urinary, 1970-01-01 05:00:00+00:00, 1, , 
-C, C419, L, 18.50, old, 2012-10-17 04:00:00+00:00, 2014-12-01 05:00:00+00:00, Misc. Urinary, 1970-01-01 05:00:00+00:00, 1, , 
-C, C420, L, 13.50, old, 2012-10-18 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Urinary Supplies, 1970-01-01 05:00:00+00:00, 1, , 
-C, C421, L, 9.50, old, 2012-10-18 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Foam Positioners: Assorted, 1970-01-01 05:00:00+00:00, 1, , 
-C, C422, S, 12.50, old, 2012-10-21 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Exam Table Paper: 11 Rolls (14.5"x125' ), 1970-01-01 05:00:00+00:00, 1, , Rwanda
-C, C424, S, 15.00, old, 2012-10-21 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Diabetic Lancets x10,000 (Unsterile), 1970-01-01 05:00:00+00:00, 1, , 
-C, C425, S, 19.00, old, 2012-10-21 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Diabetic Glcometers x50 (Unsterile), 1970-01-01 05:00:00+00:00, 1, , 
-C, C426, L, 6.00, old, 2012-10-24 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Foam, 1970-01-01 05:00:00+00:00, 1, , 
-C, C427, S, 16.50, old, 2012-10-25 04:00:00+00:00, 1970-01-01 05:00:00+00:00, 55  Glucometers (No Test Strips), 1970-01-01 05:00:00+00:00, 1, , 
-C, C428, L, 18.00, old, 2012-10-26 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 6 Foot; 4 Knee; 1 Heel; 5 Neck; 5 Wrist; 1 Arm Sling, 1970-01-01 05:00:00+00:00, 1, , 
-C, C429, U, 12.00, old, 2012-10-26 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: Wrist, Hand, Foot, etc., 1970-01-01 05:00:00+00:00, 1, , 
-C, C430, L, 18.00, old, 2012-10-31 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 6 Foot; 5 Neck; 4 Knee; 5 Wrist; 1 Heel; Arm Sling, 1970-01-01 05:00:00+00:00, 1, , 
-C, C431, L, 12.00, old, 2012-10-31 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: Shoulder (2); Wrist/Arm (5); Collar (1); Knee (3); Foot (2); Hand (1), 1970-01-01 05:00:00+00:00, 1, , 
-C, C432, L, 12.50, old, 2012-10-31 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: Knee braces (4); Shoulder Stabilizer (1); "Ultra sling" (1); Heel Protector (1); Abdominal Bands (2), 1970-01-01 05:00:00+00:00, 1, , 
-C, C433, S, 8.00, old, 2012-11-02 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: 7 Hipster Pads; 9 Abdominal Bands, 1970-01-01 05:00:00+00:00, 1, , 
-C, C434, L, 19.00, old, 2012-11-02 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: Neck (2); Leg (3); Knee (3); Arm (10); Foot (2), 1970-01-01 05:00:00+00:00, 1, , 
-C, C435, L, 16.00, old, 2012-11-07 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: Knee (5); Ankle (1); Shoulder (1); Wrist (1), 1970-01-01 05:00:00+00:00, 1, , 
-C, C436, L, 10.00, old, 2012-11-08 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 7 Shoulder; 4 Traction, 1970-01-01 05:00:00+00:00, 1, , 
-C, C437, L, 16.00, old, 2012-11-19 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 7 Foot; 4 Knee; 6 Shoulder, 1970-01-01 05:00:00+00:00, 1, , 
-C, C438, L, 14.00, old, 2012-11-20 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 2 Knee; 2 Helmet; 9 Slings; 4 Shoulder; 5 Ankle, 1970-01-01 05:00:00+00:00, 1, , 
-C, C439, L, 5.50, old, 2012-11-26 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 4 Foot Pressure Relief; 1 Arm Immobilizer, 1970-01-01 05:00:00+00:00, 1, , 
-C, C441, S, 13.50, old, 1970-01-01 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 14 BP Cuffs, 1970-01-01 05:00:00+00:00, 1, , 
-C, C442, S, 12.00, old, 2012-12-03 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 11 BP Cuffs, 3 Stethoscopes, 1970-01-01 05:00:00+00:00, 1, , 
-C, C443, S, 12.50, old, 1970-01-01 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 14 BP Cuffs, 1970-01-01 05:00:00+00:00, 1, , 
-C, C444, L, 19.50, old, 2012-12-03 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 6 Foot; 3 Knee; 3 Arm; 2 Colla; 3 Wrist; 1 Ankle, 1970-01-01 05:00:00+00:00, 1, , 
-C, C445, L, 26.50, old, 2012-12-03 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Med. Cups; Hipsters; Vests; etc., 1970-01-01 05:00:00+00:00, 1, , 
-C, C446, L, 9.00, old, 2012-12-03 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Foam: Assorted Sizes, 1970-01-01 05:00:00+00:00, 1, , 
-C, C447, L, 8.00, old, 2012-12-03 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 30 Positioning Heel Pads; 2 Pillows, 1970-01-01 05:00:00+00:00, 1, , 
-C, C448, L, 9.00, old, 2012-12-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 5 Bed Pillows, 1970-01-01 05:00:00+00:00, 1, , 
-C, C449, L, 9.00, old, 2012-12-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 5 Bed Pillows, 1970-01-01 05:00:00+00:00, 1, , 
-C, C450, S, 14.00, old, 2012-12-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Air Mattress w/ Pump, 1970-01-01 05:00:00+00:00, 1, , 
-C, C451, L, 20.00, old, 2012-12-14 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: Post OP Shoe x16; Sling x5; Knee x1; Shoulder x2, 1970-01-01 05:00:00+00:00, 1, , 
-C, C452, L, 15.00, old, 2013-01-04 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 3 Foot; 3 Knee; 5 Arm/Shoulder; 6 Cervical Collar, 1970-01-01 05:00:00+00:00, 1, , 
-C, C453, L, 17.00, old, 2013-01-04 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 5 Foot; 15 Arm; 3 Cervical; 2 Ankle; 7 Shoulder, 1970-01-01 05:00:00+00:00, 1, , 
-C, C454, L, 17.00, old, 2013-01-04 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 8 Foot; 8 Walking Boot; 1 Shoulder; 15 Arm; 1 Cervical, 1970-01-01 05:00:00+00:00, 1, , 
-C, C455, L, 7.00, old, 2013-01-08 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 4 Bed Pillows, 1970-01-01 05:00:00+00:00, 1, , 
-C, C456, L, 7.50, old, 2013-01-08 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 4 Bed Pillows, 1970-01-01 05:00:00+00:00, 1, , 
-C, C457, L, 21.00, old, 2013-01-08 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 8 Shoulder; 6 Wrist; 4 Slings; Post-OP Shoe, 1970-01-01 05:00:00+00:00, 1, , 
-C, C458, L, 31.00, old, 2013-01-11 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Lab Supplies: Pipets; Slides, 1970-01-01 05:00:00+00:00, 1, , 
-C, C459, S, 13.00, old, 2013-01-11 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Alternating Pressure Mattress w/ Pump, 1970-01-01 05:00:00+00:00, 1, , 
-C, C460, L, 18.50, old, 2013-01-11 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 4 Shoulder; 4 Cervical; 2 Shoe; 5 Slings; 2 Knee; 5 Abdominal; 3 Wrist, 1970-01-01 05:00:00+00:00, 1, , 
-C, C461, L, 17.00, old, 2013-01-16 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 1 Shoulder; 5 Neck; 6 Boot; 3 Back; 5 Arm; 2 Elbow; 4 Abdominal, 1970-01-01 05:00:00+00:00, 1, , 
-C, C462, L, 8.00, old, 2013-01-16 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 4 Bed Pillows, 1970-01-01 05:00:00+00:00, 1, , 
-C, C463, L, 8.00, old, 2013-01-16 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 5 Bed Pillows, 1970-01-01 05:00:00+00:00, 1, , 
-C, C464, L, 7.50, old, 2013-01-16 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 4 Bed Pillows, 1970-01-01 05:00:00+00:00, 1, , 
-C, C465, S, 12.00, old, 2013-01-18 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 9 Blood Pressure Cuffs; 4 Stethoscopes, 1970-01-01 05:00:00+00:00, 1, , 
-C, C466, S, 12.00, old, 2013-01-18 05:00:00+00:00, 1970-01-01 05:00:00+00:00, BP Cuffs: 2 Wall Mount; 6 Regular
-4 Stethoscopes, 1970-01-01 05:00:00+00:00, 1, , 
-C, C467, L, 13.00, old, 2013-01-28 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 16 Sitz Baths, 1970-01-01 05:00:00+00:00, 1, , 
-C, C468, L, 8.00, old, 2013-02-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Lambs Wool, 1970-01-01 05:00:00+00:00, 1, , 
-C, C469, L, 26.00, old, 2013-02-06 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Plastic Cups; Packs; Supporters; etc., 1970-01-01 05:00:00+00:00, 1, , 
-C, C470, S, 6.00, old, 2013-02-07 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: 10 Hip Protectors, 1970-01-01 05:00:00+00:00, 1, , 
-C, C471, S, 8.00, old, 2013-02-07 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Lymphodema Gloves; Abd. Binders, 1970-01-01 05:00:00+00:00, 1, , 
-C, C472, S, 15.00, old, 2013-02-07 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Gait Belts, 1970-01-01 05:00:00+00:00, 1, , 
-C, C473, S, 6.00, old, 2013-02-07 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Elbow/Heel Protectors, 1970-01-01 05:00:00+00:00, 1, , 
-C, C474, L, 13.00, old, 2013-02-07 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: Cervical Collars; Arm Slings, 1970-01-01 05:00:00+00:00, 1, , 
-C, C475, S, 12.50, old, 2013-02-07 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 11 BP Cuffs; 10 Stethoscopes, 1970-01-01 05:00:00+00:00, 1, , 
-C, C476, L, 26.00, old, 2013-02-11 05:00:00+00:00, 2014-10-01 04:00:00+00:00, Patient Care: Gait Belts; Sitz Baths; Back Supports, 1970-01-01 05:00:00+00:00, 1, , 
-C, C477, L, 4.00, old, 2013-02-18 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Foam Arm Board Covers, 1970-01-01 05:00:00+00:00, 1, , 
-C, C478, L, 28.00, old, 2013-02-20 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: Knee; Ankle; Shoulder, 1970-01-01 05:00:00+00:00, 1, , 
-C, C479, S, 9.00, old, 2013-02-20 05:00:00+00:00, 2015-05-01 04:00:00+00:00, Lancets, 1970-01-01 05:00:00+00:00, 1, , 
-C, C480, L, 20.00, old, 2013-02-27 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Gowns: Patient, Paper x54; Jackets, Paper x50, 1970-01-01 05:00:00+00:00, 1, , 
-C, C481, L, 16.00, old, 2013-02-27 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 2 Knee; 10 Elbow; 1 Back; 7 Sling; 2 Ankle; 3 Thumb; 3 Finger; 6 Wrist, 1970-01-01 05:00:00+00:00, 1, , 
-C, C482, L, 20.00, old, 2013-03-05 05:00:00+00:00, 1970-01-01 05:00:00+00:00, 20 Patient Warming Gowns, 1970-01-01 05:00:00+00:00, 1, , 
-C, C483, L, 20.00, old, 2013-03-05 05:00:00+00:00, 1970-01-01 05:00:00+00:00, Plastic Gowns x167; Aprons x108, 1970-01-01 05:00:00+00:00, 1, , 
-C, C484, L, 6.00, old, 2013-03-15 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Positioning Devices: Knee Pillows; Elbow/Heel, 1970-01-01 05:00:00+00:00, 1, , 
-C, C485, L, 13.50, old, 2013-03-26 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 4 Foot; 1 Collar; 1 Back; 2 Sling, 1970-01-01 05:00:00+00:00, 1, , 
-C, C486, L, 12.50, old, 2013-03-26 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 1 Foot; 5 Collar; 2 Leg; 1 Back; 1 Sling; 5 Elbow, 1970-01-01 05:00:00+00:00, 1, , 
-C, C487, S, 10.00, old, 2013-04-01 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Alternating Pressure Mattresses x2, 1970-01-01 05:00:00+00:00, 1, , 
-C, C488, S, 10.00, old, 2013-04-01 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Alternating Pressure Mattresses x2, 1970-01-01 05:00:00+00:00, 1, , 
-C, C489, S, 10.00, old, 2013-04-01 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Alternating Pressure Mattresses x2, 1970-01-01 05:00:00+00:00, 1, , 
-C, C490, S, 10.00, old, 2013-04-01 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Alternating Pressure Mattresses x2, 1970-01-01 05:00:00+00:00, 1, , 
-C, C491, S, 10.00, old, 2013-04-01 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Alternating Pressure Mattresses x2, 1970-01-01 05:00:00+00:00, 1, , 
-C, C492, S, 10.00, old, 2013-04-01 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Alternating Pressure Mattresses x2, 1970-01-01 05:00:00+00:00, 1, , 
-C, C493, S, 18.50, old, 2013-04-01 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Medicine Cups, 1970-01-01 05:00:00+00:00, 1, , 
-C, C494, S, 19.00, old, 2013-04-01 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Medicine Cups, 1970-01-01 05:00:00+00:00, 1, , 
-C, C495, S, 20.00, old, 2013-04-01 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Medicine Cups, 1970-01-01 05:00:00+00:00, 1, , 
-C, C496, S, 21.00, old, 2013-04-01 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Medicine Cups, 1970-01-01 05:00:00+00:00, 1, , 
-C, C497, L, 5.20, old, 2013-04-10 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Pillows x3, 1970-01-01 05:00:00+00:00, 1, , 
-C, C498, L, 16.00, old, 2013-04-10 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient Care: Seat Cushions; Elbow/Heel Protectors; Orthotic Arch Supports, 1970-01-01 05:00:00+00:00, 1, , 
-C, C499, L, 21.00, old, 2013-04-12 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Disposable BP Cuffs (Only), 1970-01-01 05:00:00+00:00, 1, , 
-C, C500, L, 11.50, old, 2013-04-26 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: Cervical Collars; Shoulder; Wrist, 1970-01-01 05:00:00+00:00, 1, , 
-C, C501, L, 21.60, old, 2013-04-26 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: 13 Cast Boots; 2 Ankle; 4 Wrist, 1970-01-01 05:00:00+00:00, 1, , 
-C, C502, L, 4.80, old, 2013-05-13 04:00:00+00:00, 1970-01-01 05:00:00+00:00, 7 Foam Pillows; 6 Elbow/Heel Protectors, 1970-01-01 05:00:00+00:00, 1, , 
-C, C503, L, 6.00, old, 2013-05-13 04:00:00+00:00, 1970-01-01 05:00:00+00:00, 6 Foam Pillows; 12 Elbow/Heel Protectors, 1970-01-01 05:00:00+00:00, 1, , 
-C, C504, L, 7.40, old, 2013-05-13 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Bed Linens; Pillows, 1970-01-01 05:00:00+00:00, 1, , 
-C, C505, L, 16.40, old, 2013-05-13 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: Wrist; Knee; Shoulder, 1970-01-01 05:00:00+00:00, 1, , 
-C, C506, L, 5.00, old, 2013-05-13 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Abduction Pillow; 3 Neck Pillows, 1970-01-01 05:00:00+00:00, 1, , 
-C, C507, S, 5.80, old, 2013-05-13 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Elbow/Heel, Hip Protectors, 1970-01-01 05:00:00+00:00, 1, , 
-C, C508, L, 13.00, old, 2013-06-03 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: Shoulder; Cervical; Clavical, 1970-01-01 05:00:00+00:00, 1, , 
-C, C509, L, 20.80, old, 2013-06-07 04:00:00+00:00, 2017-12-01 05:00:00+00:00, Patient Care: Abd. Binders; Leg Lifters; Bedside Bags; Sitz Bath; Gait Belt; Med Cups; Lamb's Wool, 1970-01-01 05:00:00+00:00, 1, , 
-C, C510, S, 31.00, old, 2013-07-12 04:00:00+00:00, 1970-01-01 05:00:00+00:00, XL Post-Mortem Shroud Packs, 1970-01-01 05:00:00+00:00, 1, , 
-C, C511, S, 2.80, old, 2013-08-07 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: Cervical Collars, 1970-01-01 05:00:00+00:00, 1, , 
-C, C512, L, 12.40, old, 2013-08-07 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: Knee; Ankle; Cast Boots, 1970-01-01 05:00:00+00:00, 1, , 
-C, C513, L, 10.80, old, 2013-08-07 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Elbow/Heel, Hip Protectors, 1970-01-01 05:00:00+00:00, 1, , 
-C, C514, L, 12.00, old, 2013-08-07 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Immobilizers: Shoulder; Arm; Wrist, 1970-01-01 05:00:00+00:00, 1, , 
-C, C515, L, 5.00, old, 2013-08-28 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Patient care: Foam, 1970-01-01 05:00:00+00:00, 1, , 
-C, C516, L, 16.60, old, 2013-08-28 04:00:00+00:00, 1970-01-01 05:00:00+00:00, Exam table paper x 100, 1970-01-01 05:00:00+00:00, 1, , 
+A&&&A32&&&L&&&None&&&old&&&1970-01-01 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Drapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A33&&&S&&&None&&&old&&&1970-01-01 05:00:00+00:00&&&2012-04-01 04:00:00+00:00&&&Endoscopy&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A40&&&L&&&None&&&old&&&2012-01-18 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Autoscopy Kit&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A45&&&L&&&None&&&old&&&2012-03-23 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Dental Mix&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A46&&&S&&&None&&&old&&&2012-05-23 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Dental Exam Capes&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A47&&&S&&&None&&&old&&&2012-05-23 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Dental Exam Capes&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A48&&&L&&&19.00&&&old&&&2012-10-21 04:00:00+00:00&&&2014-06-01 04:00:00+00:00&&&OB Supplies&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A49&&&L&&&23.00&&&old&&&2012-10-21 04:00:00+00:00&&&2014-01-01 05:00:00+00:00&&&OB/GYN Supplies&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A50&&&L&&&22.50&&&old&&&2012-10-24 04:00:00+00:00&&&2016-06-01 04:00:00+00:00&&&Pediatric Chest Drains&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A51&&&S&&&7.00&&&old&&&2012-10-25 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Multivent Oxygen Masks&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A54&&&L&&&17.00&&&old&&&2012-10-31 04:00:00+00:00&&&2014-02-01 05:00:00+00:00&&&Pediatric Respiratory Supplies: Breathing Circuits (14); O2 Masks (45); Suction Catheters; Tracheostomy Tubes&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A55&&&L&&&20.00&&&old&&&2012-10-31 04:00:00+00:00&&&2014-02-01 05:00:00+00:00&&&Pediatric Supplies: Umbilical Clamps; Tape Measures; Nipples; Feeding Bottles; Electrodes (6 Bags)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A56&&&S&&&6.00&&&old&&&2012-10-31 04:00:00+00:00&&&2016-03-01 05:00:00+00:00&&&OB/GYN: Sterile Swabs&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A57&&&S&&&6.50&&&old&&&2012-10-31 04:00:00+00:00&&&2016-11-01 04:00:00+00:00&&&OB/GYN: Sterile Swabs&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A58&&&S&&&8.00&&&old&&&2012-10-31 04:00:00+00:00&&&2016-08-01 04:00:00+00:00&&&OB/GYN: Sterile Swabs (~2000)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A59&&&S&&&7.00&&&old&&&2012-10-31 04:00:00+00:00&&&2016-01-01 05:00:00+00:00&&&OB/GYN: Sterile Swabs (~1800)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A60&&&S&&&9.50&&&old&&&2012-11-02 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Nebulizers: 23 Neb-U-Mask Systems&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A61&&&S&&&5.50&&&old&&&2012-11-02 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Nebulizers w/ Mask (45)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A62&&&L&&&19.00&&&old&&&2012-11-19 05:00:00+00:00&&&2014-05-01 04:00:00+00:00&&&GYN Mix&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A62&&&S&&&5.50&&&old&&&2012-11-19 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Nebulizer w/ Masks&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A63&&&L&&&17.00&&&old&&&2012-11-19 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Diapers (Preemie & Small)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A64&&&L&&&16.50&&&old&&&2012-11-26 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&23 Pediatric Breathing Circuits&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A66&&&L&&&23.00&&&old&&&2012-12-03 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Mix&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A67&&&S&&&7.00&&&old&&&2012-12-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&46 Plastic Vaginal Speculums&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A68&&&L&&&14.00&&&old&&&2012-12-14 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Diapers: Preemie Size 1&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A69&&&L&&&22.00&&&old&&&2012-12-14 05:00:00+00:00&&&2015-12-01 05:00:00+00:00&&&Pediatric Supplies: Trays; OR Shoes; Endotracheal Tubes; etc.&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A70&&&L&&&29.00&&&old&&&2013-01-04 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Diapers: Preemie & Pediatric&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A71&&&L&&&22.00&&&old&&&2013-01-08 05:00:00+00:00&&&2014-02-01 05:00:00+00:00&&&Pediatric Supplies: Trach. Tubes; Feeders; Post-Op Bots; Slings; etc.&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A72&&&L&&&23.00&&&old&&&2013-01-08 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pedatrics Supplies: 100 Electrodes; 50 O2 Probes; 25 Feeding Syringes; etc.&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A73&&&L&&&18.00&&&old&&&2013-01-28 05:00:00+00:00&&&2015-05-01 04:00:00+00:00&&&OB/Gyn Mix: Umbilical clamps; Cord Blood Collection&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A74&&&L&&&22.40&&&old&&&1970-01-01 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&OB Pads (Incontinence & Postpartum) ~300; 1 Bag Misc. Pads&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A75&&&L&&&15.50&&&old&&&2013-01-28 05:00:00+00:00&&&2014-09-01 04:00:00+00:00&&&Pediatric Supplies: Trach Trays; Holders; Masks&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A76&&&L&&&22.00&&&old&&&2013-01-28 05:00:00+00:00&&&2015-08-01 04:00:00+00:00&&&Pediatric Supplies: Chest Drains; Circumsion Kits; Respiratory Mix&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A77&&&L&&&26.00&&&old&&&1970-01-01 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&OB Pads for Incontinence ~390&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A78&&&L&&&19.00&&&old&&&2013-02-07 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A79&&&L&&&16.00&&&old&&&2013-03-05 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&OB Speculums x94&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A80&&&L&&&12.00&&&old&&&2013-03-05 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Urine Collectors, Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A81&&&L&&&18.00&&&old&&&2013-03-15 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatic Supplies: Respiratory; Cardiac; IV&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A82&&&L&&&17.00&&&old&&&2013-03-05 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Supplies: Blood Collection; Feeding Bottles&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A83&&&S&&&8.50&&&old&&&2013-03-15 04:00:00+00:00&&&2016-11-01 04:00:00+00:00&&&OB/GYN Mix: Vaginal Swabs&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A84&&&S&&&7.00&&&old&&&2013-04-01 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Vaginal Speculums (Disposable): Med. x35; Lg. x15&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A85&&&L&&&23.00&&&old&&&2013-04-26 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&100 Pediatric O2 Masks w/ Tubing&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A86&&&L&&&27.00&&&old&&&2013-04-26 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Nebulizers: 100 Pediatric Sets&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A87&&&S&&&17.00&&&old&&&2013-04-26 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Vaginal Speculums: 40 Metal; 15 Disposable&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A88&&&L&&&14.40&&&old&&&2013-05-13 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Suction Catheters&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A89&&&L&&&22.40&&&old&&&2013-06-03 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Supplies: Circumsion Trays; ET Tubes; LMAs; Masks; Colostomy Supplies&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A90&&&L&&&15.60&&&old&&&2013-06-03 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Supplies&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A91&&&L&&&17.00&&&old&&&2013-07-11 04:00:00+00:00&&&2016-05-01 04:00:00+00:00&&&Pediatric Supplies: Bottles; Nipples; Breast Milk Containers; Dosing Syringes&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A92&&&L&&&28.00&&&old&&&2013-07-11 04:00:00+00:00&&&2016-10-01 04:00:00+00:00&&&Pediatric Supplies: Respiratory; ID Bands; Urinary; Feeding Tubes&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A93&&&L&&&15.60&&&old&&&2013-07-11 04:00:00+00:00&&&2015-01-01 05:00:00+00:00&&&Pediatric Cardiac Surgical Pack Parts A & B (Sterile)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A94&&&L&&&20.00&&&old&&&2013-08-07 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A95&&&L&&&30.20&&&old&&&2013-08-07 04:00:00+00:00&&&2015-08-01 04:00:00+00:00&&&OB/GYN Mix&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A96&&&L&&&10.60&&&old&&&2013-08-07 04:00:00+00:00&&&2017-10-01 04:00:00+00:00&&&OB/GYN: Disposable Briefs; VP III Swabs&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A97&&&L&&&20.80&&&old&&&2013-08-07 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Vaginal Speculums (Disposable)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+A&&&A98&&&S&&&19.20&&&old&&&2013-08-07 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Vaginal Speculums (Metal)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B4&&&U&&&None&&&old&&&1970-01-01 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Feeding Bags&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B188&&&U&&&None&&&old&&&2011-10-19 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&100 Kangaroo Feeding Bags&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B189&&&U&&&None&&&old&&&2011-11-03 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&110 Kangaroo Feeding Bags&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B190&&&U&&&None&&&old&&&2011-11-03 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Nutrition Bags x84&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B191&&&U&&&None&&&old&&&2011-11-03 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Ostomy (Convatec)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B192&&&U&&&None&&&old&&&2011-11-03 04:00:00+00:00&&&2014-01-01 05:00:00+00:00&&&Ostomy: Convatec 13/4" Pouches & Seals&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B193&&&U&&&None&&&old&&&2011-11-03 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Ostomy: Flex Seal & Hollister&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B194&&&U&&&None&&&old&&&2011-11-02 04:00:00+00:00&&&2013-12-01 05:00:00+00:00&&&Enema Anascopes&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B195&&&U&&&None&&&old&&&2011-12-13 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Kangaroo Feeding Pump (Use w/ Box of Pump Bags)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B196&&&U&&&None&&&old&&&2011-12-13 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Kangaroo Feeding Pump Bags&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B197&&&U&&&None&&&old&&&2011-12-22 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&35 Kangaroo Pump Bags (Must Use w/ Machine)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B198&&&U&&&None&&&old&&&2012-01-12 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&80 Kangaroo Feeding Bags&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B200&&&U&&&None&&&old&&&2012-01-18 05:00:00+00:00&&&2014-03-01 05:00:00+00:00&&&110 Kangaroo Bags (Pump Set)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B201&&&U&&&None&&&old&&&2012-02-13 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&110 Unsterile Gravity & Pump Feeding Tubes/Bags, External Lite Kangaroo&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B202&&&U&&&None&&&old&&&2012-02-20 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Genairex Ostomy Pouches, Skin Barrier 1-3/4"&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B203&&&U&&&None&&&old&&&2012-02-20 05:00:00+00:00&&&2014-01-01 05:00:00+00:00&&&Hollister & Assura Ostomy Supply&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B204&&&U&&&None&&&old&&&2012-02-20 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Hollister & Assura Ostomy Supply & Skin Barrier&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B205&&&U&&&None&&&old&&&2012-02-20 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Hollister & Assura Ostomy Supply & Skin Barrier (Assorted Sizes)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B208&&&U&&&None&&&old&&&2012-02-20 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&60 Feeding Central Bags (Gravity)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B209&&&U&&&None&&&old&&&2012-03-01 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&98 Kangaroo Tube Feeding Bags&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B211&&&U&&&None&&&old&&&2012-04-12 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Enteral Feeding 60cc. Syringe&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B212&&&U&&&None&&&old&&&2012-04-17 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Enteral Pumps&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B213&&&U&&&None&&&old&&&2012-05-18 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Colonoscopy Supplies&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B214&&&U&&&None&&&old&&&2012-05-23 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&70 Kangaroo Bags, 30 Feeding Bags&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B215&&&U&&&None&&&old&&&2012-05-23 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Enteral Feeding Adult, Button Feeding Peds.&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B217&&&U&&&None&&&old&&&2012-05-23 04:00:00+00:00&&&2014-03-01 05:00:00+00:00&&&Colostomy Supplies&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B220&&&U&&&None&&&old&&&2012-06-20 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Enteral Irrigation Sets&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B221&&&U&&&None&&&old&&&2012-07-03 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Kangaroo Bags x100&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B223&&&U&&&23.00&&&old&&&2012-10-05 04:00:00+00:00&&&2013-07-01 04:00:00+00:00&&&Ostomy Supplies&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B224&&&U&&&24.50&&&old&&&2012-10-05 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Ostomy Drainage Bags, Skin Barrier Cream&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B225&&&U&&&16.00&&&old&&&2012-10-10 04:00:00+00:00&&&2014-05-01 04:00:00+00:00&&&Personal Cleansing Cloths x40 pkgs.&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B226&&&U&&&7.00&&&old&&&2012-10-10 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Urostomy Bags x8 boxes; 1 box Fecal Collector&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B227&&&U&&&7.00&&&old&&&2012-10-10 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Hollister Ostomy: Assorted Pouches & Stoma Adhesive&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B229&&&U&&&None&&&old&&&2012-10-10 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Covatec Assorted Ostomy Pouches & Stoma Adhesive&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B230&&&U&&&9.00&&&old&&&2012-10-10 04:00:00+00:00&&&2014-05-01 04:00:00+00:00&&&Covatec Assorted Ostomy Pouches & Stoma Adhesive x40 pkgs.&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B233&&&U&&&16.00&&&old&&&2012-10-12 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&76 Enteral Pump Delivery Sets; 29 Safety Screw Spike Sets; 27 Enteral Feeding Spike Adapter; 4 Cont. Feeding Set (All Unsterile)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B234&&&U&&&20.00&&&old&&&2012-10-12 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Enteral Pump Delivery Sets x111 (Unsterile)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B235&&&U&&&5.00&&&old&&&2012-10-12 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Enteral Gravity Feeding Bags x24; Rt. Angle Feeding Sets Y-Port x111; Mickey BDust Extension Sets x16 (Unsterile)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B236&&&U&&&13.00&&&old&&&2012-10-18 04:00:00+00:00&&&2014-07-01 04:00:00+00:00&&&1000ml. External Gravity Bags x86&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B237&&&U&&&19.50&&&old&&&2012-10-21 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Underpads Disposable x151&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B238&&&U&&&19.50&&&old&&&2012-10-21 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Underpads Disposable x400&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B239&&&U&&&22.00&&&old&&&2012-10-31 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Handicare Liners Extra Absorbent (10x24 Liners)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B240&&&S&&&14.60&&&old&&&1970-01-01 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: Bath Cloths (50); Shampoo Caps (10)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B241&&&L&&&21.00&&&old&&&2012-11-02 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B242&&&L&&&21.50&&&old&&&2012-11-02 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Chux Underpads (Disposable)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B243&&&L&&&21.00&&&old&&&2012-11-02 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Chux Underpads (Disposable)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B244&&&L&&&19.00&&&old&&&2012-11-02 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B245&&&L&&&24.50&&&old&&&2012-11-02 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: Hipsters (5); Rupture Easer (2); Razors (50); SaniCloth (202); 1 Pillow; 1 Gel; CPR Barriers (3); Abdominal Binders (2)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B246&&&L&&&14.00&&&old&&&2012-11-08 05:00:00+00:00&&&2014-04-01 04:00:00+00:00&&&Oral Care: Toothettes & Suction Swabs&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B247&&&L&&&16.50&&&old&&&2012-11-19 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&150 Underpads Disposable&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B248&&&L&&&21.00&&&old&&&2012-11-19 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&185 Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B249&&&L&&&21.50&&&old&&&2012-11-19 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Disposable Underpads&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B252&&&L&&&15.50&&&old&&&2012-11-26 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Disposable Underpads&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B254&&&L&&&9.00&&&old&&&2012-11-26 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&5 Pillows&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B255&&&L&&&10.00&&&old&&&2012-11-26 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&4 Pillows; 1 Mattress Pads; 1 Sheet&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B256&&&L&&&8.00&&&old&&&2012-11-27 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&60 Anti-Embolism Stockings&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B258&&&L&&&29.00&&&old&&&2012-11-27 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: Bottles Soap Gel, etc.&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B259&&&L&&&19.00&&&old&&&2012-11-27 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B260&&&L&&&19.00&&&old&&&2012-11-27 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Disposable Underpads&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B261&&&L&&&21.00&&&old&&&2012-11-27 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers 6 pkgs. (4 sm.; 2 lg.)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B263&&&L&&&24.00&&&old&&&2012-12-03 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B264&&&L&&&29.50&&&old&&&2012-12-03 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: Bodywash, Mouthwash, etc.&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B265&&&L&&&28.00&&&old&&&2012-12-06 05:00:00+00:00&&&2014-04-01 04:00:00+00:00&&&Personal Care: Wipes, Shampoo, Oral Care, Denture Cups, Drinking Cups&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B266&&&L&&&18.50&&&old&&&2012-12-14 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Underpads Chux&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B267&&&L&&&20.50&&&old&&&2012-12-14 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Underpads Paper&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B269&&&L&&&20.50&&&old&&&2013-01-04 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B270&&&L&&&28.50&&&old&&&2013-01-07 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: Denture Cups, Lotion, Tissues, Oral Care, Shampoo, etc.&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B271&&&L&&&24.00&&&old&&&2013-01-07 05:00:00+00:00&&&2014-05-01 04:00:00+00:00&&&Personal Care&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B272&&&L&&&20.00&&&old&&&2013-01-07 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B273&&&L&&&19.50&&&old&&&2013-01-11 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Underpads/Chux x87&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B274&&&L&&&19.00&&&old&&&2013-01-18 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B275&&&L&&&16.00&&&old&&&2013-01-28 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Underpads&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B276&&&L&&&17.50&&&old&&&2013-01-28 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B277&&&L&&&18.00&&&old&&&2013-01-28 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Underpads/Chux Disposable x121&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B278&&&L&&&22.50&&&old&&&2013-01-28 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B279&&&L&&&16.50&&&old&&&2013-01-28 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B280&&&S&&&7.80&&&old&&&1970-01-01 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: Denture Cups (153); Facial Tissues (12 Boxes)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B281&&&S&&&23.00&&&old&&&2013-02-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B282&&&L&&&23.00&&&old&&&2013-02-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&9 Packages Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B283&&&L&&&17.50&&&old&&&2013-02-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B284&&&L&&&17.50&&&old&&&2013-02-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B285&&&L&&&19.00&&&old&&&2013-02-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B286&&&L&&&16.00&&&old&&&2013-02-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B287&&&L&&&21.00&&&old&&&2013-02-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Disposable Chux x21 Packs&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B288&&&L&&&20.00&&&old&&&2013-02-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B289&&&L&&&16.50&&&old&&&2013-02-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B290&&&L&&&18.00&&&old&&&2013-02-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Underpads/Chux x70&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B291&&&L&&&14.50&&&old&&&2013-02-07 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B292&&&L&&&20.50&&&old&&&2013-02-07 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B293&&&L&&&17.00&&&old&&&2013-02-07 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Disposable Underpads/Chux&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B294&&&L&&&15.50&&&old&&&2013-02-11 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Disposable Underpads/Chux&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B295&&&L&&&14.50&&&old&&&2013-02-11 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Disposable Underpads/Chux&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B296&&&L&&&15.50&&&old&&&2013-02-11 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Disposable Underpads/Chux&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B297&&&L&&&32.00&&&old&&&2013-02-11 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B298&&&L&&&32.00&&&old&&&2013-02-27 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B299&&&L&&&23.50&&&old&&&2013-02-27 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Underpads/Chux x200&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B300&&&L&&&20.00&&&old&&&2013-03-05 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B301&&&L&&&14.50&&&old&&&2013-03-05 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Disposable Underpads/Chux&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B303&&&L&&&31.00&&&old&&&2013-03-26 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: 12 Hipster Pads; 4 Abd. Binders; 36 Toilet Liners; 62 Scrub Tops; Sneakers (Size 12); Body Wash; Shampoo; Hand Sanitizer&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B304&&&L&&&20.00&&&old&&&2013-03-26 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Anti-Embolism Stockings: Assorted Sizes (S-XL) x210&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B305&&&L&&&24.00&&&old&&&2013-03-26 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: Lotions; Shower Cap; Powder; Mouth Wash&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B306&&&S&&&9.20&&&old&&&2013-06-03 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Slippers: 50 Pair&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B307&&&L&&&22.60&&&old&&&2013-06-03 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Underpads (Cloth)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B308&&&L&&&22.00&&&old&&&2013-06-03 04:00:00+00:00&&&2014-08-01 04:00:00+00:00&&&Oral Care: Including Toothbrushes, Toothpaste&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B309&&&L&&&20.40&&&old&&&2013-06-03 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Underpads/Chux (Disposable)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B310&&&L&&&19.40&&&old&&&2013-06-03 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B311&&&L&&&19.40&&&old&&&2013-06-03 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pediatric Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B312&&&L&&&32.00&&&old&&&2013-06-07 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: Tissues; Razors; Body Wash; Shampoo; Baby Powder; Lotion&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B313&&&S&&&17.00&&&old&&&2013-06-07 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: Body Wipes; Shampoo Cleaning Cloths&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B314&&&S&&&16.00&&&old&&&2013-06-07 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: Body Wipes; Shampoo Cleaning Cloths&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B315&&&L&&&19.20&&&old&&&2013-07-11 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B316&&&L&&&17.40&&&old&&&2013-07-12 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Underpads/Chux (Disposable) x188&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B317&&&L&&&10.00&&&old&&&2013-07-12 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Oral Care&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B318&&&S&&&20.40&&&old&&&2013-07-16 04:00:00+00:00&&&2014-08-01 04:00:00+00:00&&&Personal Care: Barrier Cream Wipes x41 Packs of 8&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B319&&&S&&&13.20&&&old&&&2013-07-17 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: 100 Plastic Cups; 1 Pair Men's PJ Bottoms; 6 Men's T-Shirts; 4 Wash Cloths; 13 Weekly Pill Containers; 22 Combs; 20 Pair Ear Plugs; 10 Pair Ear Phones; 67 Bath Towelettes; 18 Nail Polish Remover Pads&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B320&&&S&&&18.40&&&old&&&2013-07-17 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: 255 Disposable Razors; Skin Protectant Wipes x15 Packs of 8&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B321&&&S&&&21.40&&&old&&&2013-07-17 04:00:00+00:00&&&2014-08-01 04:00:00+00:00&&&Personal Care: 24 Denture Cleaner Tablets; 14 Mouth Moisturizer; 43 Mouth Wash; 6 Body/Shampoo Wipes; 2 Bottles Skin Conditioner; 12 Comfort Care Kits&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B322&&&S&&&32.20&&&old&&&2013-07-17 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: 72 Body Wash/Shampoo Wipes; 13 Shave Cream; 20 Hand Sanitizer; 11 Bars Soap; 4 Deodorant; 3 Baby Shampoo&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B323&&&L&&&21.40&&&old&&&1970-01-01 05:00:00+00:00&&&2016-07-01 04:00:00+00:00&&&Underpads/Chux x10 Packs of 15 + 48 Loose&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B324&&&L&&&20.10&&&old&&&1970-01-01 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Underpads/Chux x10 Packs of 15 + 48 Loose&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B325&&&L&&&21.10&&&old&&&2013-08-07 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B326&&&L&&&18.40&&&old&&&2013-08-07 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B327&&&L&&&22.20&&&old&&&2013-08-07 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Adult Diapers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B328&&&L&&&16.80&&&old&&&2013-08-12 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Underpads/Chux (Disposable) x207&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B329&&&S&&&20.60&&&old&&&1970-01-01 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Personal Care: Barrier Cream Cloths; Bath Cloths; Body Wash & Shampoo; Mouthwash; Hand Sanitizer; Eye Shades; Etc.&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+B&&&B330&&&S&&&21.00&&&old&&&2013-08-12 04:00:00+00:00&&&2015-04-01 04:00:00+00:00&&&Personal Care: Barrier Cream Cloths; Bath Cloths; Body Wash & Shampoo; Mouthwash; Toothpaste; Baby Powder; Body Lotion; Deodorant&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C32&&&L&&&None&&&old&&&1970-01-01 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Urine Collection (24 hour) x17&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C83&&&L&&&None&&&old&&&1970-01-01 05:00:00+00:00&&&2014-10-01 04:00:00+00:00&&&Texas Catheters: 184 Lg., 319 Med., 6 Sm., 87 23mm.; 5 Urinary Drainage Bags; 4 Catheter Trays&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C357&&&L&&&None&&&old&&&2012-01-12 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Urinary Drainage Bags&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C362&&&L&&&None&&&old&&&2012-01-18 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&10 Sterile Cystoscopy Irrigantion Sets; 20 Sterile Irrigation Spike Adaptors; 100 Condom Catheters; 10 Sterile Piston Irrigation Trays&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C368&&&U&&&None&&&old&&&2012-02-20 05:00:00+00:00&&&2014-08-01 04:00:00+00:00&&&Self-Catherization Sets&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C369&&&L&&&None&&&old&&&2012-02-22 05:00:00+00:00&&&2016-06-01 04:00:00+00:00&&&Misc. Urine Collection&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C371&&&L&&&None&&&old&&&2012-03-07 05:00:00+00:00&&&2014-03-01 05:00:00+00:00&&&Urinary Catheters (Assorted Sizes)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&Rwanda
+C&&&C372&&&S&&&None&&&old&&&2012-03-07 05:00:00+00:00&&&2014-02-01 05:00:00+00:00&&&French Self-Catheter Kits x100&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C373&&&L&&&None&&&old&&&2012-03-12 04:00:00+00:00&&&2014-07-01 04:00:00+00:00&&&Foley Catheter Kits and Drainage Tubing&&&1970-01-01 05:00:00+00:00&&&1&&&&&&AJC
+C&&&C374&&&L&&&None&&&old&&&2012-03-12 04:00:00+00:00&&&2014-07-01 04:00:00+00:00&&&Foley Catheter Kits and Drainage Tubing&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C375&&&L&&&None&&&old&&&2012-03-12 04:00:00+00:00&&&2013-07-01 04:00:00+00:00&&&Urology Mix&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C376&&&L&&&None&&&old&&&2012-03-12 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Urinary Drainage Bags x52&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C377&&&L&&&None&&&old&&&2012-03-21 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&40 Single Hand Breast Pumps; 3 Boxes OB Towelettes&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C379&&&L&&&None&&&old&&&2012-04-12 04:00:00+00:00&&&2015-08-01 04:00:00+00:00&&&Urinary Drainage Bags&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C380&&&L&&&None&&&old&&&2012-04-30 04:00:00+00:00&&&2014-09-01 04:00:00+00:00&&&Catheter Trays x8 (Sterile); 25 Foley Bags (Unsterile)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C381&&&L&&&None&&&old&&&2012-04-30 04:00:00+00:00&&&2014-07-01 04:00:00+00:00&&&U Cath Kits x25&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C382&&&L&&&None&&&old&&&2012-05-07 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&U Cath Kits x48&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C383&&&U&&&11.00&&&old&&&1970-01-01 05:00:00+00:00&&&2014-04-01 04:00:00+00:00&&&U Cath Kits x34&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C384&&&L&&&None&&&old&&&2012-05-07 04:00:00+00:00&&&2014-03-01 05:00:00+00:00&&&U Cath Trays x38&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C385&&&L&&&None&&&old&&&2012-05-07 04:00:00+00:00&&&2014-03-01 05:00:00+00:00&&&U Cath Trays x38&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C386&&&L&&&None&&&old&&&2012-05-07 04:00:00+00:00&&&2014-04-01 04:00:00+00:00&&&U Cath Trays x45&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C387&&&L&&&None&&&old&&&2012-05-07 04:00:00+00:00&&&2014-03-01 05:00:00+00:00&&&U Cath Trays x22&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C389&&&L&&&None&&&old&&&2012-05-18 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Texas Catheters&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C390&&&U&&&None&&&old&&&2012-05-18 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Catheter Kits; Catheters&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C391&&&L&&&None&&&old&&&2012-05-23 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Urinary Drainage Bags x60&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C393&&&S&&&None&&&old&&&2012-06-20 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Urinary Leg Bags w/ Tubing&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C394&&&L&&&None&&&old&&&2012-06-20 04:00:00+00:00&&&2015-02-01 05:00:00+00:00&&&Urinary Catheters&&&1970-01-01 05:00:00+00:00&&&1&&&&&&Rwanda
+C&&&C395&&&L&&&None&&&old&&&2012-06-20 04:00:00+00:00&&&2014-09-01 04:00:00+00:00&&&Self-Catherization Supplies&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C396&&&L&&&None&&&old&&&2012-06-20 04:00:00+00:00&&&2014-04-01 04:00:00+00:00&&&Foley Catheter Mix&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C398&&&L&&&None&&&old&&&2012-07-03 04:00:00+00:00&&&2014-01-01 05:00:00+00:00&&&Urinary Drainage Bags x55; Texas Catheters x200&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C399&&&L&&&None&&&old&&&2012-07-16 04:00:00+00:00&&&2014-07-01 04:00:00+00:00&&&Catheters: 65 Texas; 350 Self-Cath; 80 Foley&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C400&&&U&&&None&&&old&&&2012-07-16 04:00:00+00:00&&&2014-01-01 05:00:00+00:00&&&Urinary Drainage Bags x70&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C401&&&L&&&None&&&old&&&2012-08-13 04:00:00+00:00&&&2014-10-01 04:00:00+00:00&&&Foley Catheter Trays x12&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C402&&&L&&&14.00&&&old&&&2012-09-13 04:00:00+00:00&&&2014-08-01 04:00:00+00:00&&&Catheter Tray Kits (Sterile)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C403&&&L&&&17.00&&&old&&&2012-09-14 04:00:00+00:00&&&2014-07-01 04:00:00+00:00&&&Urinary Catheter Trays x18&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C404&&&L&&&13.00&&&old&&&2012-09-17 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&U-Cath Trays x15&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C405&&&L&&&24.00&&&old&&&2012-09-18 04:00:00+00:00&&&2014-05-01 04:00:00+00:00&&&Urinary Catheters: 16 Texas; 23 Clean; 61 Self, Straight; 332 Sterile Foleys&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C406&&&S&&&12.50&&&old&&&2012-09-18 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Under Buttocks Drapes x49&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C407&&&S&&&17.00&&&old&&&2012-09-18 04:00:00+00:00&&&2016-01-01 05:00:00+00:00&&&Under Buttocks Drapes x29&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C408&&&L&&&16.00&&&old&&&2012-09-18 04:00:00+00:00&&&2014-10-01 04:00:00+00:00&&&15 Urinary Catheter Insertion Kits&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C409&&&L&&&17.50&&&old&&&2012-09-18 04:00:00+00:00&&&2014-11-01 04:00:00+00:00&&&19 Catheterization Kits&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C410&&&L&&&40.00&&&old&&&2012-09-28 04:00:00+00:00&&&2015-10-01 04:00:00+00:00&&&Urethral Catheter Trays&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C411&&&L&&&13.00&&&old&&&2012-09-28 04:00:00+00:00&&&2014-01-01 05:00:00+00:00&&&Urinary Catheter Trays: 65 Ped. Foley; 20 Ped. Self-Cath; 2 Foley Cath.&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C412&&&L&&&17.00&&&old&&&2012-10-01 04:00:00+00:00&&&2014-10-01 04:00:00+00:00&&&15 Urinary Catheterization Trays&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C413&&&L&&&29.00&&&old&&&2012-10-05 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Urinary Drainage Bags&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C414&&&L&&&30.50&&&old&&&2012-10-05 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Urinary Drainage Bags&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C415&&&L&&&16.50&&&old&&&2012-10-08 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Urinary Catheter Trays and Kits x21&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C416&&&L&&&23.50&&&old&&&2012-10-08 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Urinary Drainage Bags&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C417&&&L&&&20.00&&&old&&&2012-10-17 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 12 Boot; 2 Cervical; 2 Slings; 1 Wrist; 1 Knee&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C418&&&L&&&16.00&&&old&&&2012-10-17 04:00:00+00:00&&&2014-12-01 05:00:00+00:00&&&Misc. Urinary&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C419&&&L&&&18.50&&&old&&&2012-10-17 04:00:00+00:00&&&2014-12-01 05:00:00+00:00&&&Misc. Urinary&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C420&&&L&&&13.50&&&old&&&2012-10-18 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Urinary Supplies&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C421&&&L&&&9.50&&&old&&&2012-10-18 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Foam Positioners: Assorted&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C422&&&S&&&12.50&&&old&&&2012-10-21 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Exam Table Paper: 11 Rolls (14.5"x125' )&&&1970-01-01 05:00:00+00:00&&&1&&&&&&Rwanda
+C&&&C424&&&S&&&15.00&&&old&&&2012-10-21 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Diabetic Lancets x10,000 (Unsterile)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C425&&&S&&&19.00&&&old&&&2012-10-21 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Diabetic Glcometers x50 (Unsterile)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C426&&&L&&&6.00&&&old&&&2012-10-24 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Foam&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C427&&&S&&&16.50&&&old&&&2012-10-25 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&55  Glucometers (No Test Strips)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C428&&&L&&&18.00&&&old&&&2012-10-26 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 6 Foot; 4 Knee; 1 Heel; 5 Neck; 5 Wrist; 1 Arm Sling&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C429&&&U&&&12.00&&&old&&&2012-10-26 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: Wrist, Hand, Foot, etc.&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C430&&&L&&&18.00&&&old&&&2012-10-31 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 6 Foot; 5 Neck; 4 Knee; 5 Wrist; 1 Heel; Arm Sling&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C431&&&L&&&12.00&&&old&&&2012-10-31 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: Shoulder (2); Wrist/Arm (5); Collar (1); Knee (3); Foot (2); Hand (1)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C432&&&L&&&12.50&&&old&&&2012-10-31 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: Knee braces (4); Shoulder Stabilizer (1); "Ultra sling" (1); Heel Protector (1); Abdominal Bands (2)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C433&&&S&&&8.00&&&old&&&2012-11-02 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: 7 Hipster Pads; 9 Abdominal Bands&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C434&&&L&&&19.00&&&old&&&2012-11-02 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: Neck (2); Leg (3); Knee (3); Arm (10); Foot (2)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C435&&&L&&&16.00&&&old&&&2012-11-07 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: Knee (5); Ankle (1); Shoulder (1); Wrist (1)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C436&&&L&&&10.00&&&old&&&2012-11-08 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 7 Shoulder; 4 Traction&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C437&&&L&&&16.00&&&old&&&2012-11-19 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 7 Foot; 4 Knee; 6 Shoulder&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C438&&&L&&&14.00&&&old&&&2012-11-20 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 2 Knee; 2 Helmet; 9 Slings; 4 Shoulder; 5 Ankle&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C439&&&L&&&5.50&&&old&&&2012-11-26 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&4 Foot Pressure Relief; 1 Arm Immobilizer&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C441&&&S&&&13.50&&&old&&&1970-01-01 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&14 BP Cuffs&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C442&&&S&&&12.00&&&old&&&2012-12-03 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&11 BP Cuffs, 3 Stethoscopes&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C443&&&S&&&12.50&&&old&&&1970-01-01 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&14 BP Cuffs&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C444&&&L&&&19.50&&&old&&&2012-12-03 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 6 Foot; 3 Knee; 3 Arm; 2 Colla; 3 Wrist; 1 Ankle&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C445&&&L&&&26.50&&&old&&&2012-12-03 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Med. Cups; Hipsters; Vests; etc.&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C446&&&L&&&9.00&&&old&&&2012-12-03 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Foam: Assorted Sizes&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C447&&&L&&&8.00&&&old&&&2012-12-03 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&30 Positioning Heel Pads; 2 Pillows&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C448&&&L&&&9.00&&&old&&&2012-12-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&5 Bed Pillows&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C449&&&L&&&9.00&&&old&&&2012-12-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&5 Bed Pillows&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C450&&&S&&&14.00&&&old&&&2012-12-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Air Mattress w/ Pump&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C451&&&L&&&20.00&&&old&&&2012-12-14 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: Post OP Shoe x16; Sling x5; Knee x1; Shoulder x2&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C452&&&L&&&15.00&&&old&&&2013-01-04 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 3 Foot; 3 Knee; 5 Arm/Shoulder; 6 Cervical Collar&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C453&&&L&&&17.00&&&old&&&2013-01-04 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 5 Foot; 15 Arm; 3 Cervical; 2 Ankle; 7 Shoulder&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C454&&&L&&&17.00&&&old&&&2013-01-04 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 8 Foot; 8 Walking Boot; 1 Shoulder; 15 Arm; 1 Cervical&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C455&&&L&&&7.00&&&old&&&2013-01-08 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&4 Bed Pillows&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C456&&&L&&&7.50&&&old&&&2013-01-08 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&4 Bed Pillows&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C457&&&L&&&21.00&&&old&&&2013-01-08 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 8 Shoulder; 6 Wrist; 4 Slings; Post-OP Shoe&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C458&&&L&&&31.00&&&old&&&2013-01-11 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Lab Supplies: Pipets; Slides&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C459&&&S&&&13.00&&&old&&&2013-01-11 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Alternating Pressure Mattress w/ Pump&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C460&&&L&&&18.50&&&old&&&2013-01-11 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 4 Shoulder; 4 Cervical; 2 Shoe; 5 Slings; 2 Knee; 5 Abdominal; 3 Wrist&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C461&&&L&&&17.00&&&old&&&2013-01-16 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 1 Shoulder; 5 Neck; 6 Boot; 3 Back; 5 Arm; 2 Elbow; 4 Abdominal&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C462&&&L&&&8.00&&&old&&&2013-01-16 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&4 Bed Pillows&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C463&&&L&&&8.00&&&old&&&2013-01-16 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&5 Bed Pillows&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C464&&&L&&&7.50&&&old&&&2013-01-16 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&4 Bed Pillows&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C465&&&S&&&12.00&&&old&&&2013-01-18 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&9 Blood Pressure Cuffs; 4 Stethoscopes&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C466&&&S&&&12.00&&&old&&&2013-01-18 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&BP Cuffs: 2 Wall Mount; 6 Regular
+4 Stethoscopes&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C467&&&L&&&13.00&&&old&&&2013-01-28 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&16 Sitz Baths&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C468&&&L&&&8.00&&&old&&&2013-02-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Lambs Wool&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C469&&&L&&&26.00&&&old&&&2013-02-06 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Plastic Cups; Packs; Supporters; etc.&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C470&&&S&&&6.00&&&old&&&2013-02-07 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: 10 Hip Protectors&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C471&&&S&&&8.00&&&old&&&2013-02-07 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Lymphodema Gloves; Abd. Binders&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C472&&&S&&&15.00&&&old&&&2013-02-07 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Gait Belts&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C473&&&S&&&6.00&&&old&&&2013-02-07 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Elbow/Heel Protectors&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C474&&&L&&&13.00&&&old&&&2013-02-07 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: Cervical Collars; Arm Slings&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C475&&&S&&&12.50&&&old&&&2013-02-07 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&11 BP Cuffs; 10 Stethoscopes&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C476&&&L&&&26.00&&&old&&&2013-02-11 05:00:00+00:00&&&2014-10-01 04:00:00+00:00&&&Patient Care: Gait Belts; Sitz Baths; Back Supports&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C477&&&L&&&4.00&&&old&&&2013-02-18 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Foam Arm Board Covers&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C478&&&L&&&28.00&&&old&&&2013-02-20 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: Knee; Ankle; Shoulder&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C479&&&S&&&9.00&&&old&&&2013-02-20 05:00:00+00:00&&&2015-05-01 04:00:00+00:00&&&Lancets&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C480&&&L&&&20.00&&&old&&&2013-02-27 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Gowns: Patient, Paper x54; Jackets, Paper x50&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C481&&&L&&&16.00&&&old&&&2013-02-27 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 2 Knee; 10 Elbow; 1 Back; 7 Sling; 2 Ankle; 3 Thumb; 3 Finger; 6 Wrist&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C482&&&L&&&20.00&&&old&&&2013-03-05 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&20 Patient Warming Gowns&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C483&&&L&&&20.00&&&old&&&2013-03-05 05:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Plastic Gowns x167; Aprons x108&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C484&&&L&&&6.00&&&old&&&2013-03-15 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Positioning Devices: Knee Pillows; Elbow/Heel&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C485&&&L&&&13.50&&&old&&&2013-03-26 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 4 Foot; 1 Collar; 1 Back; 2 Sling&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C486&&&L&&&12.50&&&old&&&2013-03-26 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 1 Foot; 5 Collar; 2 Leg; 1 Back; 1 Sling; 5 Elbow&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C487&&&S&&&10.00&&&old&&&2013-04-01 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Alternating Pressure Mattresses x2&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C488&&&S&&&10.00&&&old&&&2013-04-01 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Alternating Pressure Mattresses x2&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C489&&&S&&&10.00&&&old&&&2013-04-01 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Alternating Pressure Mattresses x2&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C490&&&S&&&10.00&&&old&&&2013-04-01 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Alternating Pressure Mattresses x2&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C491&&&S&&&10.00&&&old&&&2013-04-01 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Alternating Pressure Mattresses x2&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C492&&&S&&&10.00&&&old&&&2013-04-01 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Alternating Pressure Mattresses x2&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C493&&&S&&&18.50&&&old&&&2013-04-01 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Medicine Cups&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C494&&&S&&&19.00&&&old&&&2013-04-01 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Medicine Cups&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C495&&&S&&&20.00&&&old&&&2013-04-01 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Medicine Cups&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C496&&&S&&&21.00&&&old&&&2013-04-01 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Medicine Cups&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C497&&&L&&&5.20&&&old&&&2013-04-10 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Pillows x3&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C498&&&L&&&16.00&&&old&&&2013-04-10 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient Care: Seat Cushions; Elbow/Heel Protectors; Orthotic Arch Supports&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C499&&&L&&&21.00&&&old&&&2013-04-12 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Disposable BP Cuffs (Only)&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C500&&&L&&&11.50&&&old&&&2013-04-26 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: Cervical Collars; Shoulder; Wrist&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C501&&&L&&&21.60&&&old&&&2013-04-26 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: 13 Cast Boots; 2 Ankle; 4 Wrist&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C502&&&L&&&4.80&&&old&&&2013-05-13 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&7 Foam Pillows; 6 Elbow/Heel Protectors&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C503&&&L&&&6.00&&&old&&&2013-05-13 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&6 Foam Pillows; 12 Elbow/Heel Protectors&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C504&&&L&&&7.40&&&old&&&2013-05-13 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Bed Linens; Pillows&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C505&&&L&&&16.40&&&old&&&2013-05-13 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: Wrist; Knee; Shoulder&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C506&&&L&&&5.00&&&old&&&2013-05-13 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Abduction Pillow; 3 Neck Pillows&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C507&&&S&&&5.80&&&old&&&2013-05-13 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Elbow/Heel, Hip Protectors&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C508&&&L&&&13.00&&&old&&&2013-06-03 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: Shoulder; Cervical; Clavical&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C509&&&L&&&20.80&&&old&&&2013-06-07 04:00:00+00:00&&&2017-12-01 05:00:00+00:00&&&Patient Care: Abd. Binders; Leg Lifters; Bedside Bags; Sitz Bath; Gait Belt; Med Cups; Lamb's Wool&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C510&&&S&&&31.00&&&old&&&2013-07-12 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&XL Post-Mortem Shroud Packs&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C511&&&S&&&2.80&&&old&&&2013-08-07 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: Cervical Collars&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C512&&&L&&&12.40&&&old&&&2013-08-07 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: Knee; Ankle; Cast Boots&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C513&&&L&&&10.80&&&old&&&2013-08-07 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Elbow/Heel, Hip Protectors&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C514&&&L&&&12.00&&&old&&&2013-08-07 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Immobilizers: Shoulder; Arm; Wrist&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C515&&&L&&&5.00&&&old&&&2013-08-28 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Patient care: Foam&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
+C&&&C516&&&L&&&16.60&&&old&&&2013-08-28 04:00:00+00:00&&&1970-01-01 05:00:00+00:00&&&Exam table paper x 100&&&1970-01-01 05:00:00+00:00&&&1&&&&&&
 -----
 -----
