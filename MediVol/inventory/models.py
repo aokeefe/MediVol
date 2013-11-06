@@ -43,9 +43,9 @@ class Box(models.Model):
         """
         Returns a string containing all the CSV information of the Box.  Used in creating database backups
         """
-        return self.box_category.letter + ", " + self.box_id + ", " + self.box_size + ", " + str(self.weight) + ", " +\
-        self.initials + ", " + str(self.entered_date) + ", " + str(self.old_expiration) + ", " + self.old_contents + \
-        ", " + str(self.box_date) + ", " + str(self.audit) + ", " + self.shipped_to + ", " + self.reserved_for
+        return self.box_category.letter + "&&&" + self.box_id + "&&&" + self.box_size + "&&&" + str(self.weight) + "&&&" +\
+        self.initials + "&&&" + str(self.entered_date) + "&&&" + str(self.old_expiration) + "&&&" + self.old_contents + \
+        "&&&" + str(self.box_date) + "&&&" + str(self.audit) + "&&&" + self.shipped_to + "&&&" + self.reserved_for
 
     """
     During that save process we will assign a barcode to the Box, if it does not already have one (ie a new box)
@@ -107,7 +107,7 @@ class Contents(models.Model):
         """
         Returns a printable, human readable, string to represent the Contents
         """
-        return self.box_within.box_id + ", " + self.item.name + ", " + self.quantity + ", " + self.expiration
+        return self.box_within.box_id + "&&&" + self.item.name + "&&&" + self.quantity + "&&&" + self.expiration
 
     def __unicode__(self):
         """
