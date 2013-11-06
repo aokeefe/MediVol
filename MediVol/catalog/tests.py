@@ -2,7 +2,6 @@
 Sorry for the derp in naming, django testing is derped
 The testing framework generates a new test database before running tests
 """
-<<<<<<< HEAD
 from catalog.models import Category, BoxName
 import unittest
 
