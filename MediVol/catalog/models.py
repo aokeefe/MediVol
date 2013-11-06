@@ -35,9 +35,10 @@ class Category(models.Model):
 
     @classmethod
     def from_csv(cls, csv):
-        values = csv.split(", ")
+        values = csv.split("&&&")
         category = Category(letter=str(values[0]), name=values[1])
         category.save()
+        return category
 
 class BoxName(models.Model):
     category = models.ForeignKey(Category)
