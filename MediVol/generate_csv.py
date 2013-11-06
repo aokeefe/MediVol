@@ -12,6 +12,7 @@ def generate_csv():
     #TODO: might want to make this an import to keep it the same across importer and exporter
     models = [Category, BoxName, Item, Box, Contents]
     for model in models:
+        print('exporting ' + model.__name__)
         for node in model.objects.all():
             csv_file.write(node.to_csv() +"\n")
         csv_file.write("-----\n")
