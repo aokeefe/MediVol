@@ -46,6 +46,7 @@ class BoxName(models.Model):
         box_name = BoxName(category=Category.objects.get(letter=filtered_values[0]), 
                            name=filtered_values[1])
         box_name.save()
+        return box_name
 
     def __unicode__(self):
         return self.name
