@@ -23,13 +23,6 @@ class Category(models.Model):
     def to_csv(self):
         return self.letter + "&&&" + self.name
 
-    @classmethod
-    def from_csv(cls, csv):
-        values = csv.split("&&&")
-        category = Category(letter=str(values[0]), name=values[1])
-        category.save()
-        return category
-
 class BoxName(models.Model):
     category = models.ForeignKey(Category)
     name = models.CharField(max_length=NAME_LENGTH)
@@ -37,9 +30,8 @@ class BoxName(models.Model):
     @classmethod
     def from_csv(cls, csv):
         values = csv.split("&&&")
-        box_name = BoxName(category=Category.objects.filter(letter=values[0])[0], name=values[1])
+        box_name = BoxName(category=Category.objects.get(letter=values[0]), name=values[1])
         box_name.save()
-        return box_name
 
     def __unicode__(self):
         return self.name
@@ -49,15 +41,6 @@ class BoxName(models.Model):
 
     def to_csv(self):
         return self.category.letter + "&&&" + self.name
-<<<<<<< HEAD
-=======
-
-    @classmethod
-    def from_csv(cls, csv):
-        values = csv.split("&&&")
-        box_name = BoxName(category=Category.objects.get(letter=values[0]), name=values[1])
-        box_name.save()
->>>>>>> Now with 200000000000000000100000000000000000000000000000000% more tests
         
 #TODO update to a multi Catagory implementation
 class Item(models.Model):
@@ -79,9 +62,3 @@ class Item(models.Model):
 
     def to_csv(self):
         return self.name + "&&&" + self.box_name.name + "&&&" + self.description
-
-    @classmethod
-    def from_csv(cls, csv):
-        values = csv.split("&&&")
-        item = Item(name=values[0], description=values[2], box_name=BoxName.objects.get(name=values[1]))
-        item.save()
