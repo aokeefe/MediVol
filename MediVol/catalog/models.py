@@ -33,13 +33,6 @@ class Category(models.Model):
             filtered_values.append(value.replace(',', '<CMA>'))
         return ','.join(filtered_values)
 
-    @classmethod
-    def from_csv(cls, csv):
-        values = csv.split("&&&")
-        category = Category(letter=str(values[0]), name=values[1])
-        category.save()
-        return category
-
 class BoxName(models.Model):
     category = models.ForeignKey(Category)
     name = models.CharField(max_length=NAME_LENGTH)
@@ -53,7 +46,6 @@ class BoxName(models.Model):
         box_name = BoxName(category=Category.objects.get(letter=filtered_values[0]), 
                            name=filtered_values[1])
         box_name.save()
-        return box_name
 
     def __unicode__(self):
         return self.name
@@ -69,7 +61,7 @@ class BoxName(models.Model):
         for value in values:
             filtered_values.append(value.replace(',', '<CMA>'))
         return ','.join(filtered_values)
-        
+
 #TODO update to a multi Catagory implementation
 class Item(models.Model):
     box_name = models.ForeignKey(BoxName)
