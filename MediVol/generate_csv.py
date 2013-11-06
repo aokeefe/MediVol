@@ -6,7 +6,7 @@ from catalog.models import Category, BoxName, Item
 from inventory.models import Box, Contents
 
 def generate_csv():
-    print("start")
+    print("starting export of database")
     time = datetime.datetime.now()
     csv_file = open(time.strftime("%B_%d_%Y")+".csv", 'w')
     #TODO: might want to make this an import to keep it the same across importer and exporter
