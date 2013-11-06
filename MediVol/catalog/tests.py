@@ -1,10 +1,8 @@
 """
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
+Sorry for the derp in naming, django testing is derped
+The testing framework generates a new test database before running tests
 """
-from catalog.models import Category
+from catalog.models import Category, BoxName
 import unittest
 
 class CategoryTest(unittest.TestCase):
@@ -21,3 +19,19 @@ class CategoryTest(unittest.TestCase):
     def test_category_import(self):
         csv = Category.from_csv(self.test_csv)
         self.assertTrue(Category.objects.get(letter="T") is not None)
+
+class BoxNameTest(unittest.TestCase):
+    def setUp(self):
+        self.cat = Category(letter="C", name="Mother and Child")
+        self.cat.save()
+        self.data = BoxName.objects.create(category=self.cat, name="Data")
+
+    def test_box_name_export(self):
+        test = self.data
+        csv = test.to_csv()
+        self.assertTrue(csv=="C&&&Data")
+
+    def test_box_name_import(self):
+        data = "C&&&Test"
+        csv = BoxName.from_csv(data)
+        self.assertTrue(csv in list(BoxName.objects.all()))
