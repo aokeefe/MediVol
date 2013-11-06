@@ -27,6 +27,12 @@ class BoxName(models.Model):
     category = models.ForeignKey(Category)
     name = models.CharField(max_length=NAME_LENGTH)
 
+    @classmethod
+    def from_csv(cls, csv):
+        values = csv.split("&&&")
+        box_name = BoxName(category=Category.objects.get(letter=values[0]), name=values[1])
+        box_name.save()
+
     def __unicode__(self):
         return self.name
 
@@ -35,12 +41,6 @@ class BoxName(models.Model):
 
     def to_csv(self):
         return self.category.letter + "&&&" + self.name
-
-    @classmethod
-    def from_csv(cls, csv):
-        values = csv.split("&&&")
-        box_name = BoxName(category=Category.objects.get(letter=values[0]), name=values[1])
-        box_name.save()
         
 #TODO update to a multi Catagory implementation
 class Item(models.Model):
