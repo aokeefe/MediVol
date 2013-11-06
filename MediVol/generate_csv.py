@@ -9,7 +9,7 @@ def generate_csv():
     print("start")
     time = datetime.datetime.now()
     csv_file = open(time.strftime("%B_%d_%Y")+".csv", 'w')
-    #TODO: might want to make this an import to keep it the same across importer and exporter
+    #TODO Move to ensure import/export order
     models = [Category, BoxName, Item, Box, Contents]
     for model in models:
         for node in model.objects.all():
