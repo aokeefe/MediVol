@@ -11,6 +11,12 @@ class Category(models.Model):
     def to_csv(self):
         return self.letter + ", " + self.name
 
+    @classmethod
+    def from_csv(cls, csv):
+        values = csv.split(", ")
+        category = Category(letter=str(values[0]), name=values[1])
+        category.save()
+
 class BoxName(models.Model):
     category = models.ForeignKey(Category)
     name = models.CharField(max_length=NAME_LENGTH)

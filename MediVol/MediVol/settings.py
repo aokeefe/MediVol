@@ -137,6 +137,8 @@ INSTALLED_APPS = (
     'inventory',
     'catalog',
     'dajaxice',
+    'orders',
+    'administration',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
