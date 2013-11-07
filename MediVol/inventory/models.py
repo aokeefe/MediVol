@@ -55,7 +55,7 @@ class Box(models.Model):
     def get_expiration(self):
         """
         Finds the oldest date amoung the contents of a Box, and return it.
-        For example if an item is expireing on 01-01-2014 and another is expireing on 01-01-2012, 01-01-2012 will be 
+        For example if an item is expireing on 01-01-2014 and another is expiring on 01-01-2012, 01-01-2012 will be 
         returned
         """
         NOT_EXPIRING_IN_THIS_MILLENIUM = datetime(3013,1,1,0,0,0,0,pytz.UTC)
