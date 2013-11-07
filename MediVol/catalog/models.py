@@ -29,7 +29,9 @@ class BoxName(models.Model):
 
     @classmethod
     def create_from_csv(cls, csv):
-        values = csv.split("&&&")
+        values = csv.split(",")
+        for value in values:
+            value.replace('<CMA>', ',')
         box_name = BoxName(category=Category.objects.filter(letter=values[0])[0], name=values[1])
         box_name.save()
         return box_name
@@ -41,7 +43,12 @@ class BoxName(models.Model):
         return self.category == other.category and self.name == other.name
 
     def to_csv(self):
-        return self.category.letter + "&&&" + self.name
+        values = [self.category.letter,
+                  self.name]
+        filtered_values = []
+        for value in values:
+            filtered_values.append(value.replace(',', '<CMA>'))
+        return ','.join(filtered_values)
         
 #TODO update to a multi Catagory implementation
 class Item(models.Model):
