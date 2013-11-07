@@ -9,7 +9,10 @@ class Category(models.Model):
     
     @classmethod
     def create_from_csv(cls, csv):
-        values = csv.split("&&&")
+        values = csv.split(",")
+        filtered_values = []
+        for value in values:
+            filtered_values.append(value.replace('<CMA>', ','))
         category = Category(letter=str(values[0]), name=values[1])
         category.save()
         return category
@@ -21,7 +24,12 @@ class Category(models.Model):
         return self.letter == other.letter and self.name == other.name
 
     def to_csv(self):
-        return self.letter + "&&&" + self.name
+        values = [self.letter,
+                  self.name]
+        filtered_values = []
+        for value in values:
+            filtered_values.append(value.replace(',', '<CMA>'))
+        return ','.join(filtered_values)
 
 class BoxName(models.Model):
     category = models.ForeignKey(Category)
@@ -30,9 +38,10 @@ class BoxName(models.Model):
     @classmethod
     def create_from_csv(cls, csv):
         values = csv.split(",")
+        filtered_values = []
         for value in values:
-            value.replace('<CMA>', ',')
-        box_name = BoxName(category=Category.objects.filter(letter=values[0])[0], name=values[1])
+            filtered_values.append(value.replace('<CMA>', ','))
+        box_name = BoxName(category=Category.objects.get(letter=values[0]), name=values[1])
         box_name.save()
         return box_name
 
@@ -58,7 +67,10 @@ class Item(models.Model):
 
     @classmethod
     def create_from_csv(cls, csv):
-        values = csv.split("&&&")
+        values = csv.split(",")
+        filtered_values = []
+        for value in values:
+            filtered_values.append(value.replace('<CMA>', ','))
         item = Item(name=values[0], description=values[2], box_name=BoxName.objects.get(name=values[1]))
         item.save()
 
@@ -69,4 +81,10 @@ class Item(models.Model):
         return self.box_name == other.box_name and self.name == other.name and self.description == other.description
 
     def to_csv(self):
-        return self.name + "&&&" + self.box_name.name + "&&&" + self.description
+        values = [self.name,
+                  self.box_name.name, 
+                  self.description]
+        filtered_values = []
+        for value in values:
+            filtered_values.append(value.replace(',', '<CMA>'))
+        return ','.join(filtered_values)
