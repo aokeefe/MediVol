@@ -17,6 +17,6 @@ def import_csv():
         splitlines = models_csv[x].splitlines()
         for y in splitlines:
             print(y)
-            models[x].from_csv(y)
+            models[x].create_from_csv(y)
 
 import_csv()
