@@ -62,7 +62,7 @@ class BoxName(models.Model):
         for value in values:
             filtered_values.append(value.replace(',', '<CMA>'))
         return ','.join(filtered_values)
-
+        
 #TODO update to a multi Catagory implementation
 class Item(models.Model):
     box_name = models.ForeignKey(BoxName)
