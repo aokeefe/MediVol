@@ -8,7 +8,7 @@ class Category(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
     
     @classmethod
-    def from_csv(cls, csv):
+    def create_from_csv(cls, csv):
         values = csv.split("&&&")
         category = Category(letter=str(values[0]), name=values[1])
         category.save()
@@ -28,7 +28,7 @@ class BoxName(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
 
     @classmethod
-    def from_csv(cls, csv):
+    def create_from_csv(cls, csv):
         values = csv.split("&&&")
         box_name = BoxName(category=Category.objects.filter(letter=values[0])[0], name=values[1])
         box_name.save()
@@ -50,7 +50,7 @@ class Item(models.Model):
     description = models.CharField(max_length = 500)
 
     @classmethod
-    def from_csv(cls, csv):
+    def create_from_csv(cls, csv):
         values = csv.split("&&&")
         item = Item(name=values[0], description=values[2], box_name=BoxName.objects.get(name=values[1]))
         item.save()

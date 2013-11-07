@@ -34,7 +34,7 @@ def importer(filepath):
                 box = Box(box_id=validatedRow[0], box_size=validatedRow[1], weight=validatedRow[2], 
                     old_contents=validatedRow[3], old_expiration=validatedRow[4], entered_date=validatedRow[5], 
                     reserved_for=validatedRow[6], shipped_to=validatedRow[7], box_date=validatedRow[8], 
-                    audit=validatedRow[9], box_category=Category.objects.filter(letter=validatedRow[10])[0], 
+                    audit=validatedRow[9], box_category=Category.objects.get(letter=validatedRow[10]), 
                     initials='old')
                 box.save() 
         rownum += 1
