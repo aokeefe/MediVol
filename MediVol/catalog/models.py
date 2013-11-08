@@ -13,7 +13,8 @@ class Category(models.Model):
         filtered_values = []
         for value in values:
             filtered_values.append(value.replace('<CMA>', ','))
-        category = Category(letter=str(values[0]), name=values[1])
+        category = Category(letter=str(filtered_values[0]), 
+                            name=filtered_values[1])
         category.save()
         return category
 
@@ -21,7 +22,8 @@ class Category(models.Model):
         return self.name + " - " + self.letter
 
     def __eq__(self, other):
-        return self.letter == other.letter and self.name == other.name
+        return self.letter == other.letter 
+           and self.name == other.name
 
     def to_csv(self):
         values = [self.letter,
@@ -41,7 +43,8 @@ class BoxName(models.Model):
         filtered_values = []
         for value in values:
             filtered_values.append(value.replace('<CMA>', ','))
-        box_name = BoxName(category=Category.objects.get(letter=values[0]), name=values[1])
+        box_name = BoxName(category=Category.objects.get(letter=filtered_values[0]), 
+                           name=filtered_values[1])
         box_name.save()
         return box_name
 
@@ -49,7 +52,8 @@ class BoxName(models.Model):
         return self.name
 
     def __eq__(self, other):
-        return self.category == other.category and self.name == other.name
+        return self.category == other.category 
+           and self.name == other.name
 
     def to_csv(self):
         values = [self.category.letter,
@@ -71,14 +75,18 @@ class Item(models.Model):
         filtered_values = []
         for value in values:
             filtered_values.append(value.replace('<CMA>', ','))
-        item = Item(name=values[0], description=values[2], box_name=BoxName.objects.get(name=values[1]))
+        item = Item(name=filtered_values[0], 
+                    description=filtered_values[2], 
+                    box_name=BoxName.objects.get(name=filtered_values[1]))
         item.save()
 
     def __unicode__(self):
         return self.name
 
     def __eq__(self, other):
-        return self.box_name == other.box_name and self.name == other.name and self.description == other.description
+        return self.box_name == other.box_name 
+           and self.name == other.name 
+           and self.description == other.description
 
     def to_csv(self):
         values = [self.name,
