@@ -38,14 +38,47 @@ class Box(models.Model):
     #TODO add the following
     #old_box_flag
     #wholesale_value
-    
+
+    @classmethod
+    def create_from_csv(cls, csv):
+        values = csv.split(",")
+        filtered_values = []
+        for value in values:
+            filtered_values.append(value.replace('<CMA>', ','))
+        box = Box(box_category=Category.objects.get(letter=filtered_values[0]),
+                  box_id=filtered_values[1],
+                  weight=filtered_values[2],
+                  initials=filtered_values[3],
+                  entered_date=filtered_values[4],
+                  old_expiration=filtered_values[5],
+                  old_contents=filtered_values[6],
+                  box_date=filtered_values[7],
+                  audit=filtered_values[8],
+                  shipped_to=filtered_values[9],
+                  reserved_for=filtered_values[10])
+        box.save()
+        return box
+
     def to_csv(self):
         """
         Returns a string containing all the CSV information of the Box.  Used in creating database backups
         """
-        return self.box_category.letter + "&&&" + self.box_id + "&&&" + self.box_size + "&&&" + str(self.weight) + "&&&" +\
-        self.initials + "&&&" + str(self.entered_date) + "&&&" + str(self.old_expiration) + "&&&" + self.old_contents + \
-        "&&&" + str(self.box_date) + "&&&" + str(self.audit) + "&&&" + self.shipped_to + "&&&" + self.reserved_for
+        values = [self.box_category.letter,
+                  self.box_id, 
+                  self.box_size, 
+                  str(self.weight),
+                  self.initials,
+                  str(self.entered_date),
+                  str(self.old_expiration),
+                  self.old_contents,
+                  str(self.box_date),
+                  str(self.audit),
+                  self.shipped_to,
+                  self.reserved_for]
+        filtered_values = []
+        for value in values:
+            filtered_values.append(value.replace(',', '<CMA>'))
+        return ','.join(filtered_values)
 
     """
     During that save process we will assign a barcode to the Box, if it does not already have one (ie a new box)
@@ -102,12 +135,32 @@ class Contents(models.Model):
         box.box_category = item.box_name.category
         box.save()
 
+    @classmethod
+    def create_from_csv(cls, csv):
+        values = csv.split(",")
+        filtered_values = []
+        for value in values:
+            filtered_values.append(value.replace('<CMA>', ','))
+        contents = Contents(box_within=Box.objects.get(box_id=filtered_values[0]),
+                            item=Item.objects.get(name=filtered_values[1]),
+                            quantity=filtered_values[2],
+                            expiration=filtered_values[3])
+        contents.save()
+        return contents
+
     #TODO test
     def to_csv(self):
         """
         Returns a string containing all the CSV information of the Contents.  Used in creating database backups
         """
-        return self.box_within.box_id + "&&&" + self.item.name + "&&&" + self.quantity + "&&&" + self.expiration
+        values = [self.box_within.box_id,
+                  self.item.name,
+                  self.quantity,
+                  self.expiration]
+        filtered_values = []
+        for value in values:
+            filtered_values.append(value.replace(',', '<CMA>'))
+        return ','.join(filtered_values)
 
     def __unicode__(self):
         """
