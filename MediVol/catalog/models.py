@@ -22,7 +22,7 @@ class Category(models.Model):
         return self.name + " - " + self.letter
 
     def __eq__(self, other):
-        return self.letter == other.letter 
+        return self.letter == other.letter \
            and self.name == other.name
 
     def to_csv(self):
@@ -52,7 +52,7 @@ class BoxName(models.Model):
         return self.name
 
     def __eq__(self, other):
-        return self.category == other.category 
+        return self.category == other.category \
            and self.name == other.name
 
     def to_csv(self):
@@ -84,8 +84,8 @@ class Item(models.Model):
         return self.name
 
     def __eq__(self, other):
-        return self.box_name == other.box_name 
-           and self.name == other.name 
+        return self.box_name == other.box_name \
+           and self.name == other.name \
            and self.description == other.description
 
     def to_csv(self):
