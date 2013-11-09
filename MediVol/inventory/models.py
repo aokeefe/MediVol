@@ -93,6 +93,7 @@ class Box(models.Model):
             filtered_values.append(value.replace(',', '<CMA>'))
         return ','.join(filtered_values)
 
+<<<<<<< HEAD
     """
     During that save process we will assign a barcode to the Box, if it does not already have one (ie a new box)
     To make a barcode this method will generate an 8 digit number (with leading zeros), then validate that the 
@@ -116,6 +117,8 @@ class Box(models.Model):
     For example if an item is expireing on 01-01-2014 and another is expireing on 01-01-2012, 01-01-2012 will be 
     returned
     """
+=======
+>>>>>>> import/export works
     def get_expiration(self):
         if self.old_expiration is not None:
             return self.old_expiration
