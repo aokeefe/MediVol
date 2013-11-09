@@ -45,19 +45,32 @@ class Box(models.Model):
         filtered_values = []
         for value in values:
             filtered_values.append(value.replace('<CMA>', ','))
+
+        if filtered_values[3] == "None":
+            box_weight = None
+        else:
+            box_weight = float(filtered_values[3])
+
         box = Box(box_category=Category.objects.get(letter=filtered_values[0]),
                   box_id=filtered_values[1],
-                  weight=filtered_values[2],
-                  initials=filtered_values[3],
-                  entered_date=filtered_values[4],
-                  old_expiration=filtered_values[5],
-                  old_contents=filtered_values[6],
-                  box_date=filtered_values[7],
-                  audit=filtered_values[8],
-                  shipped_to=filtered_values[9],
-                  reserved_for=filtered_values[10])
+                  box_size=filtered_values[2],
+                  weight=box_weight,
+                  initials=filtered_values[4],
+                  entered_date=filtered_values[5],
+                  old_expiration=filtered_values[6],
+                  old_contents=filtered_values[7],
+                  box_date=filtered_values[8],
+                  audit=filtered_values[9],
+                  shipped_to=filtered_values[10],
+                  reserved_for=filtered_values[11])
         box.save()
         return box
+
+    def __unicode__(self):
+        """
+        Returns a printable, human readable, string to represent the Box
+        """
+        return self.box_id
 
     def to_csv(self):
         """
@@ -80,6 +93,7 @@ class Box(models.Model):
             filtered_values.append(value.replace(',', '<CMA>'))
         return ','.join(filtered_values)
 
+<<<<<<< HEAD
     """
     During that save process we will assign a barcode to the Box, if it does not already have one (ie a new box)
     To make a barcode this method will generate an 8 digit number (with leading zeros), then validate that the 
@@ -109,6 +123,8 @@ class Box(models.Model):
     For example if an item is expireing on 01-01-2014 and another is expireing on 01-01-2012, 01-01-2012 will be 
     returned
     """
+=======
+>>>>>>> import/export works
     def get_expiration(self):
         if self.old_expiration is not None:
             return self.old_expiration
@@ -148,6 +164,12 @@ class Contents(models.Model):
         contents.save()
         return contents
 
+    def __unicode__(self):
+        """
+        Returns a printable, human readable, string to represent the Contents
+        """
+        return self.item.name
+
     #TODO test
     def to_csv(self):
         """
@@ -161,9 +183,3 @@ class Contents(models.Model):
         for value in values:
             filtered_values.append(value.replace(',', '<CMA>'))
         return ','.join(filtered_values)
-
-    def __unicode__(self):
-        """
-        Returns a printable, human readable, string to represent the Contents
-        """
-        return self.item.name
