@@ -1,0 +1,24 @@
+{% extends "base.html" %} 
+
+{% block head %} 
+    <title>Information for Box. </title>
+{% endblock %} 
+
+{% block body %} 
+    {% block content %}
+    <header> 
+        <h1>Box Information for {{ box.box_id }} </h1>
+    </header>
+
+    <section> 
+        <p>Box Category: {{ box.box_category }}</p>
+        <p>Box Size: {{ box.box_size }} </p>
+        <p>Box Weight: {{ box.old_contents }} </p>
+        <p>Box Entry Date: {{ box.entered_date }} </p>
+        <p>Box Shipped To: {{ box.shipped_to }} </p>
+        <p>Initials of Box: {{ box.initials }} </p>
+    </section>
+    {% endblock %}
+{% endblock %}
+
+
