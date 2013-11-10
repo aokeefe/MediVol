@@ -1,10 +1,56 @@
 <!DOCTYPE html>
+
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    {% block head %}{% endblock %}
-  </head>
-  <body>
-    {% block body %}{% endblock %}
-  </body>
+    <head>
+        <title>Intervol{% block title %}{% endblock %}</title>
+        <link rel='stylesheet' href='{{ STATIC_URL }}css/ui-lightness/jquery-ui.min.css' />
+        <link rel='stylesheet' href='{{ STATIC_URL }}css/ui-lightness/jquery.ui.theme.css' />
+        <link rel='stylesheet' href='{{ STATIC_URL }}css/base_styles.css' />
+        {% block styles %}{% endblock %}
+        {% load dajaxice_templatetags %}
+    </head>
+    
+    <body>
+        <header>
+            <div id='headerImageWrapper'>
+                <img src='{{ STATIC_URL }}images/logo.png' alt='InterVol' />
+            </div>
+            
+            <div id='headerTextWrapper'>
+                <h1>InterVol</h1>
+                <p>Inventory management</p>
+            </div>
+            
+            <div id='globalSearchWrapper'>
+                <input id='globalSearch' class='textField' placeholder='Search for anything...' type='text' />
+                <input id='globalSearchButton' class='button' type='button' value='Search' />
+            </div>
+            
+            <div class='clear'></div>
+        </header>
+       
+        <nav>
+            <ul>
+                <a href=''><li>Home</li></a>
+                <a href=''><li>Inventory</li></a>
+                <a href=''><li>Catalog</li></a>
+                <a href=''><li>Orders</li></a>
+                <a href=''><li>Admin</li></a>
+            </ul>
+            
+            <div class='clear'></div>
+            <hr />
+        </nav>
+        
+        <div id='contentWrapper'>
+            {% block body %}{% endblock %}
+        </div>
+        
+        {% dajaxice_js_import %}
+        <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+        <script>window.jQuery || document.write('<script src="{{STATIC_URL}}js/jquery.min.js"><\/script>')</script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{STATIC_URL}}js/jquery-ui.min.js"><\/script>')</script>
+        {% block javascript %}{% endblock %}
+    </body>
 </html>

@@ -1,21 +1,21 @@
 // Template for adding new item to the table.
 var ITEM_TEMPLATE = '<tr>' + 
-        '<td style="border: 1px solid black">{category}</td>' + 
-        '<td style="border: 1px solid black">{box_name}</td>' + 
-        '<td style="border: 1px solid black">{item}</td>' + 
-        '<td style="border: 1px solid black">{expiration}</td>' + 
-        '<td style="border: 1px solid black">{count}</td>' + 
-        '<td style="border: 1px solid black"><a class="remove_item" href="javascript:void(0)">Remove</a></td>' + 
+        '<td>{category}</td>' + 
+        '<td>{box_name}</td>' + 
+        '<td>{item}</td>' + 
+        '<td>{expiration}</td>' + 
+        '<td>{count}</td>' + 
+        '<td><a class="remove_item" href="javascript:void(0)">Remove</a></td>' + 
     '</tr>';
     
 // Simple template used to insert a blank row below the table header 
 // when there are no items in the box.
 var BLANK_ROW = "<tr id='placeholder_row'>" + 
-                    "<td style='border: 1px solid black'></td>" + 
-                    "<td style='border: 1px solid black'></td>" + 
-                    "<td style='border: 1px solid black'></td>" + 
-                    "<td style='border: 1px solid black'></td>" + 
-                    "<td style='border: 1px solid black'>&nbsp;</td>" + 
+                    "<td></td>" + 
+                    "<td></td>" + 
+                    "<td></td>" + 
+                    "<td></td>" + 
+                    "<td>&nbsp;</td>" + 
                 "</tr>";
 
 // Need these to update lists for box names and items.
