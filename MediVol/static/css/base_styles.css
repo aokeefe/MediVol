@@ -158,8 +158,21 @@ hr {
     margin: 0 0 20px 0;
 }
 
-#contentWrapper span {
+#contentWrapper h2 span {
     color: #559c57;
+}
+
+.requiredTextField {
+    background-color: #ff3535;
+}
+
+.requiredText {
+    color: #ff3535;
+}
+
+.requiredMessage {
+    font-size: 1.5em;
+    display: none;
 }
 
 /* ----- END CONTENT SECTION STYLES ------ */

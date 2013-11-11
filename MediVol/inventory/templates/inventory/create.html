@@ -13,6 +13,8 @@
 
 <div id='stepOne'>
     <div id='stepOneFields'>
+        <p id='emptyBoxMessage' class='requiredText requiredMessage'>Boxes must have at least one item.</p>
+    
         <input type='text' id='itemSearch' class='textField' 
             placeholder='Search for a category, box name, or item...' />
             
@@ -83,14 +85,16 @@
 </div>
 
 <div id='stepTwo'>
+    <p id='requiredFieldsMessage' class='requiredText requiredMessage'>Please fill out the required fields.</p>
+
     <div id='stepTwoFields'>
         <div class='stepTwoField'>
             <div class='label'>
-                Initials
+                &nbsp;
             </div>
             
-            <div class='stepTwoFieldWrapper'>
-                <input type='text' name='initials' class='textField' />
+            <div class='stepTwoFieldWrapper requiredText'>
+                *required
             </div>
             
             <div class='clear'></div>
@@ -98,7 +102,19 @@
         
         <div class='stepTwoField'>
             <div class='label'>
-                Weight
+                Initials<span class='requiredText'>*</span>
+            </div>
+            
+            <div class='stepTwoFieldWrapper'>
+                <input type='text' placeholder='(required)' name='initials' class='textField' />
+            </div>
+            
+            <div class='clear'></div>
+        </div>
+        
+        <div class='stepTwoField'>
+            <div class='label'>
+                Weight<span class='requiredText'>*</span>
             </div>
             
             <div class='stepTwoFieldWrapper'>
@@ -110,7 +126,7 @@
         
         <div class='stepTwoField'>
             <div class='label'>
-                Size
+                Size<span class='requiredText'>*</span>
             </div>
             
             <div class='stepTwoFieldWrapper'>

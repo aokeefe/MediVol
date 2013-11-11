@@ -85,6 +85,37 @@ function setRemoveButton() {
     });
 }
 
+function getAddedItems() {
+    var items = [];
+        
+    // Go through each item in the table and add it to the items array. 
+    // Each item is added as an array with the following format: 
+    // [ item_name, item_expiration, item_count ]
+    $('#items_added tr').each(function(index, element) {
+        element = $(element);
+        
+        if (element.attr('id') != 'placeholder_row' && 
+                element.attr('id') != 'table_header') {
+            var itemInfo = element.children('td');
+            var itemName = $(itemInfo[2]).html();
+            var expiration = $(itemInfo[3]).html();
+            var count = $(itemInfo[4]).html();
+            
+            items.push([ itemName, expiration, count ]);
+        }
+    });
+    
+    return items;
+}
+
+function requiredFieldsAreFilledIn() {
+    var initials = $('input[name=initials]').val();
+    var weight = $('input[name=weight]').val();
+    var size = $('input[name=size]:checked').val();
+
+    return (initials != '' && weight != '' && typeof(size) != 'undefined');
+}
+
 $(document).ready(function() {
     // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
@@ -218,6 +249,8 @@ $(document).ready(function() {
                 .replace('{count}', count)
         );
         
+        $('#emptyBoxMessage').hide();
+        
         // Set the remove button again. We need to do this every time we 
         // add another remove button.
         setRemoveButton();
@@ -225,6 +258,12 @@ $(document).ready(function() {
     
     $('#next').click(function(e) {
         e.preventDefault();
+        
+        if (getAddedItems().length == 0) {
+            $('#emptyBoxMessage').show();
+        
+            return;
+        }
         
         $('#stepOne').hide();
         $('#stepTwo').show();
@@ -239,6 +278,30 @@ $(document).ready(function() {
         $('#stepNumber').html(1);
     });
     
+    $('input[name=initials]').on('input', function() {
+        $('input[name=initials]').removeClass('requiredTextField');
+        
+        if (requiredFieldsAreFilledIn()) {
+            $('#requiredFieldsMessage').hide();
+        }
+    });
+    
+    $('input[name=weight]').on('input', function() {
+        $('input[name=weight]').removeClass('requiredTextField');
+        
+        if (requiredFieldsAreFilledIn()) {
+            $('#requiredFieldsMessage').hide();
+        }
+    });
+    
+    $('input[name=size]').change(function() {
+        $('input[name=size]').parent().removeClass('requiredText');
+        
+        if (requiredFieldsAreFilledIn()) {
+            $('#requiredFieldsMessage').hide();
+        }
+    });
+    
     // Set the 'on click' event for creating a box.
     $('#submit').click(function(e) {
         e.preventDefault();
@@ -247,31 +310,30 @@ $(document).ready(function() {
         var weight = $('input[name=weight]').val();
         var size = $('input[name=size]:checked').val();
         var note = $('textarea[name=note]').val();
+        var missingRequired = false;
         
         // Required fields.
-        if (initials == '' || weight == '' || typeof(size) == 'undefined') {
-            // TODO: add some sort of alert
+        if (initials == '') {
+            $('input[name=initials]').addClass('requiredTextField');
+            missingRequired = true;
+        }
+        
+        if (weight == '') {
+            $('input[name=weight]').addClass('requiredTextField');
+            missingRequired = true;
+        }
+        
+        if (typeof(size) == 'undefined') {
+            $('input[name=size]').parent().addClass('requiredText');
+            missingRequired = true;
+        }
+        
+        if (missingRequired) {
+            $('#requiredFieldsMessage').show();
             return;
         }
         
-        var items = [];
-        
-        // Go through each item in the table and add it to the items array. 
-        // Each item is added as an array with the following format: 
-        // [ item_name, item_expiration, item_count ]
-        $('#items_added tr').each(function(index, element) {
-            element = $(element);
-            
-            if (element.attr('id') != 'placeholder_row' && 
-                    element.attr('id') != 'table_header') {
-                var itemInfo = element.children('td');
-                var itemName = $(itemInfo[2]).html();
-                var expiration = $(itemInfo[3]).html();
-                var count = $(itemInfo[4]).html();
-                
-                items.push([ itemName, expiration, count ]);
-            }
-        });
+        var items = getAddedItems();
         
         // Can't have 0 items.
         if (items.length == 0) {
