@@ -158,4 +158,8 @@ hr {
     margin: 0 0 20px 0;
 }
 
+#contentWrapper span {
+    color: #559c57;
+}
+
 /* ----- END CONTENT SECTION STYLES ------ */

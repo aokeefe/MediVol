@@ -223,6 +223,22 @@ $(document).ready(function() {
         setRemoveButton();
     });
     
+    $('#next').click(function(e) {
+        e.preventDefault();
+        
+        $('#stepOne').hide();
+        $('#stepTwo').show();
+        $('#stepNumber').html(2);
+    });
+    
+    $('#back').click(function(e) {
+       e.preventDefault();
+       
+        $('#stepTwo').hide();
+        $('#stepOne').show();
+        $('#stepNumber').html(1);
+    });
+    
     // Set the 'on click' event for creating a box.
     $('#submit').click(function(e) {
         e.preventDefault();

@@ -1,84 +1,147 @@
 {% extends "base.html" %}
 
-{% block title %}- Create Box{% endblock %}
+{% block title %}<title>Intervol - Create Box</title>{% endblock %}
         
 {% block styles %}<link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/styles.css' />{% endblock %}
 
 {% block body %}
 
-<h2>Create Box - Step 1/2</h2>
+<h2>Create Box - Step <span id='stepNumber'>1</span>/2</h2>
 
 <form id='create_box_form' action='' method='post'>
 {% csrf_token %}
 
-<input type='text' id='itemSearch' class='textField' 
-    placeholder='Search for a category, box name, or item...' />
-    
-<div id='createBoxLists'>
-    <div class='createBoxListWrapper'>
-        <h3>Categories</h3>
+<div id='stepOne'>
+    <div id='stepOneFields'>
+        <input type='text' id='itemSearch' class='textField' 
+            placeholder='Search for a category, box name, or item...' />
+            
+        <div id='createBoxLists'>
+            <div class='createBoxListWrapper'>
+                <h3>Categories</h3>
+                
+                <select id='categories' size=10>
+                    {% for category in categories %}
+                        <option>{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class='createBoxListWrapper'>
+                <h3>Box Names</h3>
+                
+                <select id='box_names' size=10></select>
+            </div>
+            
+            <div class='createBoxListWrapper'>
+                <h3>Items</h3>
+                
+                <select id='items' size=10></select>
+            </div>
+            
+            <div class='clear'></div>
+        </div>
         
-        <select id='categories' size=10>
-            {% for category in categories %}
-                <option>{{ category.name }}</option>
-            {% endfor %}
-        </select>
+        <div id='itemInfoWrapper'>
+            <div class='infoFieldWrapper'>
+                <p>How many?</p>
+                <input type='number' class='textField' min=1 id='count' />
+            </div>
+            
+            <div class='infoFieldWrapper'>
+                <p>Expiration date?</p>
+                <input type='date' class='textField' id='expiration' />
+            </div>
+            
+            <div class='infoFieldWrapper'>
+                <button id='add_item' class='button'>Add Item</button>
+            </div>
+        </div>
     </div>
     
-    <div class='createBoxListWrapper'>
-        <h3>Box Names</h3>
-        
-        <select id='box_names' size=10></select>
+    <div id='tableWrapper'>
+        <table id='items_added'>
+            <tr id='table_header'>
+                <td>Category</td>
+                <td>Box Name</td>
+                <td>Item</td>
+                <td>Expiration</td>
+                <td>Count</td>
+            </tr>
+            
+            <tr id='placeholder_row'>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
     </div>
     
-    <div class='createBoxListWrapper'>
-        <h3>Items</h3>
+    <input type='button' id='next' class='button' value='Next &rarr;' />
+</div>
+
+<div id='stepTwo'>
+    <div id='stepTwoFields'>
+        <div class='stepTwoField'>
+            <div class='label'>
+                Initials
+            </div>
+            
+            <div class='stepTwoFieldWrapper'>
+                <input type='text' name='initials' class='textField' />
+            </div>
+            
+            <div class='clear'></div>
+        </div>
         
-        <select id='items' size=10></select>
+        <div class='stepTwoField'>
+            <div class='label'>
+                Weight
+            </div>
+            
+            <div class='stepTwoFieldWrapper'>
+                <input name='weight' type='number' class='textField' />
+            </div>
+            
+            <div class='clear'></div>
+        </div>
+        
+        <div class='stepTwoField'>
+            <div class='label'>
+                Size
+            </div>
+            
+            <div class='stepTwoFieldWrapper'>
+                <input type='radio' name='size' value='Small'> Small<br />
+                <input type='radio' name='size' value='Large'> Large
+            </div>
+            
+            <div class='clear'></div>
+        </div>
+        
+        <div class='stepTwoField'>
+            <div class='label'>
+                Note
+            </div>
+            
+            <div class='stepTwoFieldWrapper'>
+                <textarea id='note' name='note' class='textField'></textarea>
+            </div>
+            
+            <div class='clear'></div>
+        </div>
     </div>
+    
+    <input type='button' id='back' class='button' value='&larr; Back' />
+    <input type='submit' id='submit' class='button' value='Create Box' />
     
     <div class='clear'></div>
 </div>
 
-<div id='itemInfoWrapper'>
-    <div class='infoFieldWrapper'>
-        <p>How many?</p>
-        <input type='number' class='textField' min=1 id='count' />
-    </div>
-    
-    <div class='infoFieldWrapper'>
-        <p>Expiration date?</p>
-        <input type='date' class='textField' id='expiration' />
-    </div>
-    
-    <div class='infoFieldWrapper'>
-        <button id='add_item' class='button'>Add Item</button>
-    </div>
-</div>
-
-<div id='tableWrapper'>
-    <table id='items_added'>
-        <tr>
-            <td>Category</td>
-            <td>Box Name</td>
-            <td>Item</td>
-            <td>Expiration</td>
-            <td>Count</td>
-        </tr>
-        
-        <tr id='placeholder_row'>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>&nbsp;</td>
-        </tr>
-    </table>
-</div>
-
-<input type='submit' id='submit' class='button' value='Next &rarr;' />
 </form>
 
 {% endblock %}
 
-{% block javascript %}<script type='text/javascript' src='{{STATIC_URL}}inventory/js/main.js'></script>{% endblock %}
+{% block javascript %}<script type='text/javascript' src='{{ STATIC_URL }}inventory/js/main.js'></script>{% endblock %}

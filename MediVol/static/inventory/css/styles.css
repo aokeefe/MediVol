@@ -1,7 +1,7 @@
 /* Styles specific to the create box page */
 
 #itemSearch {
-    width: 76.5%;
+    width: 96.5%;
     margin-bottom: 20px;
 }
 
@@ -11,8 +11,12 @@
 
 .createBoxListWrapper, .infoFieldWrapper {
     float: left;
-    width: 25%;
-    margin-right: 10px;
+    width: 31.5%;
+    margin-left: 10px;
+}
+
+.createBoxListWrapper:first-child, .infoFieldWrapper:first-child {
+    margin-left: 0px;
 }
 
 .createBoxListWrapper select {
@@ -72,10 +76,61 @@ h3 {
     font-weight: bold;
 }
 
-#submit {
+#next, #submit, #back {
     font-size: 2.5em;
     height: 60px;
-    width: 175px;
-    float: right;
     margin-top: 20px;
+}
+
+#next, #submit {
+    float: right;
+}
+
+#next {
+    width: 175px;
+}
+
+#submit {
+    width: 225px;
+}
+
+#back {
+    float: left;
+    width: 175px;
+}
+
+#stepTwo {
+    display: none;
+}
+
+#stepOneFields {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#stepTwoFields {
+    width: 40%;
+    min-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.label {
+    float: left;
+    width: 75px;
+}
+
+.stepTwoField {
+    margin-bottom: 10px;
+}
+
+.stepTwoFieldWrapper {
+    float: left;
+}
+
+#note {
+    resize: none;
+    width: 165px;
+    height: 75px;
 }
