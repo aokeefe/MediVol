@@ -85,6 +85,9 @@ function setRemoveButton() {
     });
 }
 
+/**
+ * Returns an array of the items that have been added to the box.
+ */
 function getAddedItems() {
     var items = [];
         
@@ -108,6 +111,10 @@ function getAddedItems() {
     return items;
 }
 
+/**
+ * Returns true if all the required fields have been filled in, 
+ * false if not. Does not check if item count is greater than 0.
+ */
 function requiredFieldsAreFilledIn() {
     var initials = $('input[name=initials]').val();
     var weight = $('input[name=weight]').val();
