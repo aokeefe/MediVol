@@ -99,7 +99,7 @@ sudo pip install django_dajax;
 printf '\nInstalling pytz...';
 sudo pip install pytz;
 
-printf '\nInstalling Mandrill..';
+printf '\nInstalling Mandrill...';
 sudo pip install mandrill;
 
 printf '\nCreating database for inventory...';
