@@ -42,13 +42,11 @@ class Box(models.Model):
         return self.box_id + ", " + self.box_size + ", " + str(self.weight) + ", " + self.contents + ", " + str(self.expiration) + ", " + str(self.entered_date) + ", " + self.reserved_for + ", " + self.shipped_to + ", " + str(self.box_date) + ", " + str(self.audit) + "\n"
 
     def save(self, *args, **kwargs):
-        print ("SAVE")
         if self.barcode == None or self.barcode== '':
             while True: #guess until we have a unique barcode
                 self.barcode = "%0.8d" % random.randint(0,99999999) #make a guess
                 if len(Box.objects.filter(barcode=self.barcode)) == 0:
                     break #if the guess was unique stop
-        print(self.barcode)
         super(Box, self).save(*args, **kwargs)
 
     def __unicode__(self):
