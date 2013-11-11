@@ -123,6 +123,24 @@ function requiredFieldsAreFilledIn() {
     return (initials != '' && weight != '' && typeof(size) != 'undefined');
 }
 
+function goBack() {
+    $('#stepTwo').hide();
+    $('#stepOne').show();
+    $('#stepNumber').html(1);
+}
+
+function goForward() {
+    if (getAddedItems().length == 0) {
+        $('#emptyBoxMessage').show();
+    
+        return;
+    }
+        
+    $('#stepOne').hide();
+    $('#stepTwo').show();
+    $('#stepNumber').html(2);
+}
+
 $(document).ready(function() {
     // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
@@ -266,23 +284,25 @@ $(document).ready(function() {
     $('#next').click(function(e) {
         e.preventDefault();
         
-        if (getAddedItems().length == 0) {
-            $('#emptyBoxMessage').show();
-        
-            return;
-        }
-        
-        $('#stepOne').hide();
-        $('#stepTwo').show();
-        $('#stepNumber').html(2);
+        goForward();
     });
     
     $('#back').click(function(e) {
-       e.preventDefault();
+        e.preventDefault();
        
-        $('#stepTwo').hide();
-        $('#stepOne').show();
-        $('#stepNumber').html(1);
+        goBack();
+    });
+    
+    $(document).keydown(function(e){
+        if (e.keyCode == 37) {
+            // left pressed
+            
+            goBack();
+        } else if (e.keyCode == 39) {
+            // right pressed
+            
+            goForward();
+        }
     });
     
     $('input[name=initials]').on('input', function() {
