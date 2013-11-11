@@ -50,7 +50,7 @@ class Box(models.Model):
         if self.barcode == None or self.barcode== '':
             while True: #guess until we have a unique barcode
                 self.barcode = "%0.8d" % random.randint(0,99999999) #make a guess
-                if not Box.objects.filter(barcode=self.bardcode).exists()
+                if not Box.objects.filter(barcode=self.barcode).exists():
                     break #if the guess was unique stop
         super(Box, self).save(*args, **kwargs)
 
