@@ -1,142 +1,165 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html>
-    <head>
-        <title>Intervol - Inventory</title>
-        <link rel='stylesheet' href='{{STATIC_URL}}css/ui-lightness/jquery-ui.min.css' />
-        <link rel='stylesheet' href='{{STATIC_URL}}css/ui-lightness/jquery.ui.theme.css' />
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
-        <link href="//fonts.googleapis.com/css?family=Fredericka+the Great:400" rel="stylesheet" type="text/css">
-        {% load dajaxice_templatetags %}
-    </head>
+{% block title %}<title>Intervol - Create Box</title>{% endblock %}
+        
+{% block styles %}<link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/styles.css' />{% endblock %}
+
+{% block body %}
+
+<h2>Create Box - Step <span id='stepNumber'>1</span>/2</h2>
+
+<form id='create_box_form' action='' method='post'>
+{% csrf_token %}
+
+<div id='stepOne'>
+    <div id='stepOneFields'>
+        <p id='emptyBoxMessage' class='requiredText requiredMessage'>Boxes must have at least one item.</p>
     
-    <body>
-        <header>
-            <img src = "{{ STATIC_URL }}Images/Logo.png"
-            alt = "InterVol - A humanitarian success story, 25 years and counting."/>
-        </header>
-       
-        <nav id="nav">
-            <ul>
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="#">INVENTORY</a>
-                            <ul>
-                                <li><a style="color:#000000;" href="#" onMouseOver="this.style.color='#F9BF51'" onMouseOut="this.style.color='#000000'">Create A Box</a></li>
-                            </ul>
-                    </li>
-                    <li><a href="#">CATALOG</a></li>
-                    <li><a href="#">ORDER</a></li>
-                    <li><a href="#">TOOL</a></li>
-            </ul>
-        </nav>
-        
-        
-        
-        <form id='create_box_form' action='' method='post'>
-            {% csrf_token %}
-            <h2>Create Box</h2>
-            <section class="bodyContent">
-                <form id='create_box_form' action='' method='post'>
-                {% csrf_token %}
-                <table border="0" cellspacing="4" cellpadding="2">
-                    <tr>
-                      <td>Initials:</td>
-                      <th colspan="2"><input type='text' name='initials' /></th>
-                      <td>Note:</td>
-                      <th rowspan="3"><textarea name='note' style='width: 150px; height: 75px'></textarea></th>
-                    </tr>
-                    <tr class="tg-even">
-                      <td>Weight:</td>
-                      <td colspan="2"><input type='number' name='weight' /></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>Size:</td>
-                      <td><input type='radio' name='size' value='Small'> Small</td>
-                      <td><input type='radio' name='size' value='Large'> Large</td>
-                      <td></td>
-                    </tr>
-                </table>
-            </section> 
-            <hr>
-            <h3>Add Inventory</h3>
-            <section class="bodyContent">
-            <table>
-                <tr>
-                  <td>Category</td>
-                  <td>Box Name</td>
-                  <td>Item</td>
-                  <td>Search:</td>
-                  <th><input type='text' id='itemSearch' /></th>
-                </tr>
-                <tr class="tg-even">
-                  <td rowspan="3">
-                    <select id='categories' size=10 style='width: 185px'>
-                        {% for category in categories %}
-                            <option>{{ category.name }}</option>
-                        {% endfor %}
-                    </select>
-                  </td>
-                  <td rowspan="3">
-                    <select id='box_names' size=10 style='width: 185px'></select>
-                  </td>
-                  <td rowspan="3">
-                    <select id='items' size=10 style='width: 185px'></select>
-                  </td>
-                  <td>Expiration:</td>
-                  <td><input type='date' id='expiration' /></td>
-                </tr>
-                <tr>
-                  <td>Count:</td>
-                  <td><input type='number' min=1 id='count' /></td>
-                </tr>
-                <tr class="tg-even">
-                  <td></td>
-                  <td><button id='add_item'>Add Item(s)</button></td>
-                </tr>
-              </table>
-            </section>
+        <input type='text' id='itemSearch' class='textField' 
+            placeholder='Search for a category, box name, or item...' />
             
-            <section class="bodyContent">
-                <table id='items_added'>
-                    <tr id='table_header'>
-                        <td style='border: 1px solid black; font-weight: bold'>Category</td>
-                        <td style='border: 1px solid black; font-weight: bold'>Box Name</td>
-                        <td style='border: 1px solid black; font-weight: bold'>Item</td>
-                        <td style='border: 1px solid black; font-weight: bold'>Expiration</td>
-                        <td style='border: 1px solid black; font-weight: bold'>Count</td>
-                    </tr>
-                    
-                    <tr id='placeholder_row'>
-                        <td style='border: 1px solid black'></td>
-                        <td style='border: 1px solid black'></td>
-                        <td style='border: 1px solid black'></td>
-                        <td style='border: 1px solid black'></td>
-                        <td style='border: 1px solid black'>&nbsp;</td>
-                    </tr>
-                </table>
-            </section>
+        <div id='createBoxLists'>
+            <div class='createBoxListWrapper'>
+                <h3>Categories</h3>
+                
+                <select id='categories' size=10>
+                    {% for category in categories %}
+                        <option>{{ category }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             
-            <input type='submit' id='submit' value='Create Box' />
-        </form>
+            <div class='createBoxListWrapper'>
+                <h3>Box Names</h3>
+                
+                <select id='box_names' size=10></select>
+            </div>
+            
+            <div class='createBoxListWrapper'>
+                <h3>Items</h3>
+                
+                <select id='items' size=10></select>
+            </div>
+            
+            <div class='clear'></div>
+        </div>
         
-        {% dajaxice_js_import %}
-        <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
-        <script>window.jQuery || document.write('<script src="{{STATIC_URL}}js/jquery.min.js"><\/script>')</script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{{STATIC_URL}}js/jquery-ui.min.js"><\/script>')</script>
-        <script type='text/javascript' src='{{STATIC_URL}}inventory/js/main.js'></script>
-         <script>
-            (function() {
-                var nav = document.getElementById('nav'),
-                    anchor = nav.getElementsByTagName('a'),
-                    current = window.location.href;
-                    for (var i = 0; i < anchor.length; i++) {
-                    if(anchor[i].href == current) {
-                        anchor[i].className = "active";
-                    }
-                }
-            })();
-        </script>
-    </body>
-</html>
+        <div id='itemInfoWrapper'>
+            <div class='infoFieldWrapper'>
+                <p>How many?</p>
+                <input type='number' class='textField' min=1 id='count' />
+            </div>
+            
+            <div class='infoFieldWrapper'>
+                <p>Expiration date?</p>
+                <input type='date' class='textField' id='expiration' />
+            </div>
+            
+            <div class='infoFieldWrapper'>
+                <button id='add_item' class='button'>Add Item</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id='tableWrapper'>
+        <table id='items_added'>
+            <tr id='table_header'>
+                <td>Category</td>
+                <td>Box Name</td>
+                <td>Item</td>
+                <td>Expiration</td>
+                <td>Count</td>
+            </tr>
+            
+            <tr id='placeholder_row'>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+    
+    <input type='button' id='next' class='button' value='Next &rarr;' />
+</div>
+
+<div id='stepTwo'>
+    <p id='requiredFieldsMessage' class='requiredText requiredMessage'>Please fill out the required fields.</p>
+
+    <div id='stepTwoFields'>
+        <div class='stepTwoField'>
+            <div class='label'>
+                &nbsp;
+            </div>
+            
+            <div class='stepTwoFieldWrapper requiredText'>
+                *required
+            </div>
+            
+            <div class='clear'></div>
+        </div>
+        
+        <div class='stepTwoField'>
+            <div class='label'>
+                Initials<span class='requiredText'>*</span>
+            </div>
+            
+            <div class='stepTwoFieldWrapper'>
+                <input type='text' placeholder='(required)' name='initials' class='textField'
+                    value='{{ initials }}'
+                />
+            </div>
+            
+            <div class='clear'></div>
+        </div>
+        
+        <div class='stepTwoField'>
+            <div class='label'>
+                Weight<span class='requiredText'>*</span>
+            </div>
+            
+            <div class='stepTwoFieldWrapper'>
+                <input name='weight' type='number' class='textField' />
+            </div>
+            
+            <div class='clear'></div>
+        </div>
+        
+        <div class='stepTwoField'>
+            <div class='label'>
+                Size<span class='requiredText'>*</span>
+            </div>
+            
+            <div class='stepTwoFieldWrapper'>
+                <input type='radio' name='size' value='Small'> Small<br />
+                <input type='radio' name='size' value='Large'> Large
+            </div>
+            
+            <div class='clear'></div>
+        </div>
+        
+        <div class='stepTwoField'>
+            <div class='label'>
+                Note
+            </div>
+            
+            <div class='stepTwoFieldWrapper'>
+                <textarea id='note' name='note' class='textField'></textarea>
+            </div>
+            
+            <div class='clear'></div>
+        </div>
+    </div>
+    
+    <input type='button' id='back' class='button' value='&larr; Back' />
+    <input type='submit' id='submit' class='button' value='Create Box' />
+    
+    <div class='clear'></div>
+</div>
+
+</form>
+
+{% endblock %}
+
+{% block javascript %}<script type='text/javascript' src='{{ STATIC_URL }}inventory/js/main.js'></script>{% endblock %}

@@ -1,21 +1,21 @@
 // Template for adding new item to the table.
 var ITEM_TEMPLATE = '<tr>' + 
-        '<td style="border: 1px solid black">{category}</td>' + 
-        '<td style="border: 1px solid black">{box_name}</td>' + 
-        '<td style="border: 1px solid black">{item}</td>' + 
-        '<td style="border: 1px solid black">{expiration}</td>' + 
-        '<td style="border: 1px solid black">{count}</td>' + 
-        '<td style="border: 1px solid black"><a class="remove_item" href="javascript:void(0)">Remove</a></td>' + 
+        '<td>{category}</td>' + 
+        '<td>{box_name}</td>' + 
+        '<td>{item}</td>' + 
+        '<td>{expiration}</td>' + 
+        '<td>{count}</td>' + 
+        '<td><a class="remove_item" href="javascript:void(0)">Remove</a></td>' + 
     '</tr>';
     
 // Simple template used to insert a blank row below the table header 
 // when there are no items in the box.
 var BLANK_ROW = "<tr id='placeholder_row'>" + 
-                    "<td style='border: 1px solid black'></td>" + 
-                    "<td style='border: 1px solid black'></td>" + 
-                    "<td style='border: 1px solid black'></td>" + 
-                    "<td style='border: 1px solid black'></td>" + 
-                    "<td style='border: 1px solid black'>&nbsp;</td>" + 
+                    "<td></td>" + 
+                    "<td></td>" + 
+                    "<td></td>" + 
+                    "<td></td>" + 
+                    "<td>&nbsp;</td>" + 
                 "</tr>";
 
 // Need these to update lists for box names and items.
@@ -85,6 +85,64 @@ function setRemoveButton() {
     });
 }
 
+/**
+ * Returns an array of the items that have been added to the box.
+ */
+function getAddedItems() {
+    var items = [];
+        
+    // Go through each item in the table and add it to the items array. 
+    // Each item is added as an array with the following format: 
+    // [ item_name, item_expiration, item_count ]
+    $('#items_added tr').each(function(index, element) {
+        element = $(element);
+        
+        if (element.attr('id') != 'placeholder_row' && 
+                element.attr('id') != 'table_header') {
+            var itemInfo = element.children('td');
+            var itemName = $(itemInfo[2]).html();
+            var expiration = $(itemInfo[3]).html();
+            var count = $(itemInfo[4]).html();
+            
+            items.push([ itemName, expiration, count ]);
+        }
+    });
+    
+    return items;
+}
+
+/**
+ * Returns true if all the required fields have been filled in, 
+ * false if not. Does not check if item count is greater than 0.
+ */
+function requiredFieldsAreFilledIn() {
+    var initials = $('input[name=initials]').val();
+    var weight = $('input[name=weight]').val();
+    var size = $('input[name=size]:checked').val();
+
+    return (initials != '' && weight != '' && typeof(size) != 'undefined');
+}
+
+function goBack() {
+    $('#stepTwo').hide();
+    $('#stepOne').show();
+    $('#stepNumber').html(1);
+}
+
+function goForward() {
+    if (getAddedItems().length == 0) {
+        $('#emptyBoxMessage').show();
+    
+        return;
+    }
+        
+    $('#stepOne').hide();
+    $('#stepTwo').show();
+    $('#stepNumber').html(2);
+    
+    $('input[name=initials').focus();
+}
+
 $(document).ready(function() {
     // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
@@ -150,6 +208,7 @@ $(document).ready(function() {
                 if (queryArray.length > 2) {
                     item = queryArray[2];
                     itemToChoose = item;
+                    $('#count').focus();
                 }
                 
                 // Now we set the selected category in the list and trigger the 
@@ -159,6 +218,8 @@ $(document).ready(function() {
             }
         }
     );
+    
+    $('#itemSearch').focus();
     
     // Set the 'on change' event for the categories list.
     $('#categories').change(function() {
@@ -218,9 +279,59 @@ $(document).ready(function() {
                 .replace('{count}', count)
         );
         
+        $('#emptyBoxMessage').hide();
+        
         // Set the remove button again. We need to do this every time we 
         // add another remove button.
         setRemoveButton();
+    });
+    
+    $('#next').click(function(e) {
+        e.preventDefault();
+        
+        goForward();
+    });
+    
+    $('#back').click(function(e) {
+        e.preventDefault();
+       
+        goBack();
+    });
+    
+    $(document).keydown(function(e){
+        if (e.keyCode == 37) {
+            // left pressed
+            
+            goBack();
+        } else if (e.keyCode == 39) {
+            // right pressed
+            
+            goForward();
+        }
+    });
+    
+    $('input[name=initials]').on('input', function() {
+        $('input[name=initials]').removeClass('requiredTextField');
+        
+        if (requiredFieldsAreFilledIn()) {
+            $('#requiredFieldsMessage').hide();
+        }
+    });
+    
+    $('input[name=weight]').on('input', function() {
+        $('input[name=weight]').removeClass('requiredTextField');
+        
+        if (requiredFieldsAreFilledIn()) {
+            $('#requiredFieldsMessage').hide();
+        }
+    });
+    
+    $('input[name=size]').change(function() {
+        $('input[name=size]').parent().removeClass('requiredText');
+        
+        if (requiredFieldsAreFilledIn()) {
+            $('#requiredFieldsMessage').hide();
+        }
     });
     
     // Set the 'on click' event for creating a box.
@@ -231,31 +342,30 @@ $(document).ready(function() {
         var weight = $('input[name=weight]').val();
         var size = $('input[name=size]:checked').val();
         var note = $('textarea[name=note]').val();
+        var missingRequired = false;
         
         // Required fields.
-        if (initials == '' || weight == '' || typeof(size) == 'undefined') {
-            // TODO: add some sort of alert
+        if (initials == '') {
+            $('input[name=initials]').addClass('requiredTextField');
+            missingRequired = true;
+        }
+        
+        if (weight == '') {
+            $('input[name=weight]').addClass('requiredTextField');
+            missingRequired = true;
+        }
+        
+        if (typeof(size) == 'undefined') {
+            $('input[name=size]').parent().addClass('requiredText');
+            missingRequired = true;
+        }
+        
+        if (missingRequired) {
+            $('#requiredFieldsMessage').show();
             return;
         }
         
-        var items = [];
-        
-        // Go through each item in the table and add it to the items array. 
-        // Each item is added as an array with the following format: 
-        // [ item_name, item_expiration, item_count ]
-        $('#items_added tr').each(function(index, element) {
-            element = $(element);
-            
-            if (element.attr('id') != 'placeholder_row' && 
-                    element.attr('id') != 'table_header') {
-                var itemInfo = element.children('td');
-                var itemName = $(itemInfo[2]).html();
-                var expiration = $(itemInfo[3]).html();
-                var count = $(itemInfo[4]).html();
-                
-                items.push([ itemName, expiration, count ]);
-            }
-        });
+        var items = getAddedItems();
         
         // Can't have 0 items.
         if (items.length == 0) {
