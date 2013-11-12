@@ -139,6 +139,8 @@ function goForward() {
     $('#stepOne').hide();
     $('#stepTwo').show();
     $('#stepNumber').html(2);
+    
+    $('input[name=initials').focus();
 }
 
 $(document).ready(function() {
@@ -212,9 +214,13 @@ $(document).ready(function() {
                 // change event for the categories list, so the box name field will be 
                 // autopopulated and that will cascade down to the item list if necessary.
                 $('#categories').val(category).change();
+                
+                $('#count').focus();
             }
         }
     );
+    
+    $('#itemSearch').focus();
     
     // Set the 'on change' event for the categories list.
     $('#categories').change(function() {

@@ -82,6 +82,8 @@ def create_box(request, initials, weight, size, items, note=''):
     
     new_box.save()
     
+    request.session['initials'] = initials
+    
     for item in items:
         expiration_date = item[1]
         
