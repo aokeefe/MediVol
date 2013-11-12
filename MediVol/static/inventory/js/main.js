@@ -208,14 +208,13 @@ $(document).ready(function() {
                 if (queryArray.length > 2) {
                     item = queryArray[2];
                     itemToChoose = item;
+                    $('#count').focus();
                 }
                 
                 // Now we set the selected category in the list and trigger the 
                 // change event for the categories list, so the box name field will be 
                 // autopopulated and that will cascade down to the item list if necessary.
                 $('#categories').val(category).change();
-                
-                $('#count').focus();
             }
         }
     );
