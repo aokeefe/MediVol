@@ -2,6 +2,7 @@ import pytz
 from django.db import models
 from catalog.models import Item, Category
 from datetime import datetime
+import random
 
 class Box(models.Model):
     SMALL = 'S'
@@ -17,6 +18,7 @@ class Box(models.Model):
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
     weight = models.DecimalField(max_digits=5, decimal_places=2, null=True) 
     old_contents = models.CharField(max_length=300, null=True)
+    barcode = models.CharField(max_length=8)
     #None is no expiration
     #TODO remove
     old_expiration = models.DateTimeField('expiration date', null=True)
@@ -29,7 +31,6 @@ class Box(models.Model):
     #TODO what does this mean?
     audit = models.IntegerField(default=1, null=True)
     #TODO add the following
-    #barcode_value
     #old_box_flag
     #wholesale_value
     initials = models.CharField(max_length=5, null=True)
@@ -40,17 +41,32 @@ class Box(models.Model):
         """
         return self.box_id + ", " + self.box_size + ", " + str(self.weight) + ", " + self.contents + ", " + str(self.expiration) + ", " + str(self.entered_date) + ", " + self.reserved_for + ", " + self.shipped_to + ", " + str(self.box_date) + ", " + str(self.audit) + "\n"
 
+    """
+    During that save process we will assign a barcode to the Box, if it does not already have one (ie a new box)
+    To make a barcode this method will generate an 8 digit number (with leading zeros), then validate that the 
+    generated number is not already in use.
+    """
+    def save(self, *args, **kwargs):
+        if self.barcode == None or self.barcode== '':
+            while True: #guess until we have a unique barcode
+                self.barcode = "%0.8d" % random.randint(0,99999999) #make a guess
+                if not Box.objects.filter(barcode=self.barcode).exists():
+                    break #if the guess was unique stop
+        super(Box, self).save(*args, **kwargs)
+
     def __unicode__(self):
         """
         Returns a printable, human readable, string to represent the Box
         """
         return self.box_id
 
+    """
+    Finds the oldest date amoung the contents of a Box, and return it.
+    For example if an item is expireing on 01-01-2014 and another is expireing on 01-01-2012, 01-01-2012 will be returned
+    """
     def get_expiration(self):
-        """
-        Finds the oldest date amoung the contents of a Box, and return it.
-        For example if an item is expireing on 01-01-2014 and another is expireing on 01-01-2012, 01-01-2012 will be returned
-        """
+        if self.old_expiration is not None:
+            return self.old_expiration
         NOT_EXPIRING_IN_THIS_MILLENIUM = datetime(3013,1,1,0,0,0,0,pytz.UTC)
         expiration = NOT_EXPIRING_IN_THIS_MILLENIUM
         for item in self.contents_set.all():
