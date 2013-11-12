@@ -1,4 +1,5 @@
 import os, sys
+import time
 sys.path.append('/var/www/MediVol/')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
 from base64 import b64encode
@@ -25,9 +26,17 @@ class BoxLabel(Drawing):
         category = String(12, 235, box.box_category.name)
         category.fontSize = 15
 
+        expiration = String(12, 220, "Expiration date: " + str(box.get_expiration()))
+        expiration.fontSize = 15
+
+        weight = String(12, 205, "Weight: " + str(box.weight))
+        weight.fontSize = 15 
+
         self.add(loc, "loc")
         self.add(box_id, "boxId")
         self.add(category, "category")
+        self.add(expiration, "expiration")
+        self.add(weight, "weight")
 
     def save_img(self, fileName, Dir='.'):
         self.save(formats=['png'], fnRoot=fileName)
@@ -55,7 +64,3 @@ class BarcodeGen(Drawing):
     """
     def save_img(self, fileName, Dir='.'):
         self.save(formats=['png'], fnRoot=fileName)
-
-box = BoxLabel("07019673")
-box = BoxLabel("22338799")
-box.save_img("test.png")
