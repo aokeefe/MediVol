@@ -1,14 +1,12 @@
 {% extends "base.html" %} 
 
-{% block head %} 
+{% block title %} 
     <title>Information for Box. </title>
 {% endblock %} 
 
 {% block body %} 
     {% block content %}
-    <header> 
-        <h1>Box Information for {{ box.box_id }} </h1>
-    </header>
+    <h2>Box Information for {{ box.box_id }} </h2>
 
     <section> 
         <p>Box Category: {{ box.box_category }}</p>
