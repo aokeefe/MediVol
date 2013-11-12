@@ -34,6 +34,7 @@ def send_message(notification):
         print(response)
 
     except mandrill.Error, e:
+        #TODO: need to raise this to fatal exception
         print 'Mandrill Error Occurred: %s - %s' % (e.__class__, e)
         raise
 
