@@ -41,11 +41,16 @@ class Box(models.Model):
         """
         return self.box_id + ", " + self.box_size + ", " + str(self.weight) + ", " + self.contents + ", " + str(self.expiration) + ", " + str(self.entered_date) + ", " + self.reserved_for + ", " + self.shipped_to + ", " + str(self.box_date) + ", " + str(self.audit) + "\n"
 
+    """
+    During that save process we will assign a barcode to the Box, if it does not already have one (ie a new box)
+    To make a barcode this method will generate an 8 digit number (with leading zeros), then validate that the 
+    generated number is not already in use.
+    """
     def save(self, *args, **kwargs):
         if self.barcode == None or self.barcode== '':
             while True: #guess until we have a unique barcode
                 self.barcode = "%0.8d" % random.randint(0,99999999) #make a guess
-                if len(Box.objects.filter(barcode=self.barcode)) == 0:
+                if not Box.objects.filter(barcode=self.bardcode).exists()
                     break #if the guess was unique stop
         super(Box, self).save(*args, **kwargs)
 
