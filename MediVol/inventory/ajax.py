@@ -19,7 +19,7 @@ def get_box_names(request, category_name):
     for box_name in box_names:
         box_names_array.append(box_name.name)
     
-    return simplejson.dumps(box_names_array)
+    return simplejson.dumps(sorted(box_names_array))
 
 """
 Gets all of the items associated with a given box name.
@@ -34,7 +34,7 @@ def get_items(request, box_name):
     for item in items:
         items_array.append(item.name)
     
-    return simplejson.dumps(items_array)
+    return simplejson.dumps(sorted(items_array))
 
 """
 Searches categories, box names, and items for a query. 
