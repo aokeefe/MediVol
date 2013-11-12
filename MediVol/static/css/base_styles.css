@@ -1,0 +1,178 @@
+/* General styles.  */
+
+* {
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    background-color: #f6f6f6;
+    color: #141414;
+    font-weight: 300;
+}
+
+.clear {
+    clear: both;
+}
+
+.textField, .button {
+    -webkit-appearance: none;
+    -o-border-radius: none;
+    -moz-border-radius: none;
+    -webkit-border-radius: none;
+    border-radius: none;
+}
+
+.textField {
+    background-color: #f1f1f1;
+    border: 1px solid #c8c8c8;
+    font-size: 1em;
+    font-weight: 300;
+    height: 25px;
+    padding-left: 5px;
+    letter-spacing: 1px;
+}
+
+.button {
+    background-color: #559c57;
+    color: #f6f6f6;
+    border: 1px solid #c8c8c8;
+    font-size: 1em;
+    font-weight: 300;
+    letter-spacing: 1px;
+    height: 30px;
+    cursor: pointer;
+}
+
+select {
+    background-color: #f1f1f1;
+    border: 1px solid #c8c8c8;
+}
+
+option {
+    background-color: #f1f1f1;
+}
+
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+
+::-moz-placeholder {
+    font-style: italic;
+}
+
+:-ms-input-placeholder {  
+    font-style: italic;
+}
+
+/* ----- END GENERAL STYLES ----- */
+
+/* Header styles */
+
+header {
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#headerImageWrapper {
+    float: left;
+}
+
+#headerImageWrapper img {
+    width: 100px;
+}
+
+#headerTextWrapper {
+    float: left;
+    font-weight: 300;
+}
+
+#headerTextWrapper h1 {
+    margin: 0;
+    font-weight: 300;
+    font-size: 4em;
+}
+
+#headerTextWrapper p {
+    margin: 0;
+    font-size: 1.10em;
+    padding-left: 3px;
+}
+
+#globalSearchWrapper {
+    float: right;
+}
+
+#globalSearch {
+    width: 250px;
+    margin-top: 21%;
+}
+
+/* ----- END HEADER STLYES ----- */
+
+/* Nav styles */
+
+nav {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+nav ul {
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    font-size: 1.5em;
+    width: 15%;
+    min-width: 100px;
+    text-align: center;
+    float: left;
+    margin-bottom: 10px;
+}
+
+nav ul li:hover {
+    color: #ff9600;
+}
+
+hr {
+    color: #c8c8c8;
+    background-color: #c8c8c8;
+    border: none;
+    height: 1px;
+}
+
+/* ----- END NAV STYLES ----- */
+
+/* Content section styles */
+
+#contentWrapper {
+    width: 69%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 150px;
+}
+
+#contentWrapper h2 {
+    color: #559c57;
+    font-size: 3em;
+    margin: 0 0 20px 0;
+}
+
+#contentWrapper h2 span {
+    color: #559c57;
+}
+
+.requiredTextField {
+    background-color: #ff3535;
+}
+
+.requiredText {
+    color: #ff3535;
+}
+
+.requiredMessage {
+    font-size: 1.5em;
+    display: none;
+}
+
+/* ----- END CONTENT SECTION STYLES ------ */
