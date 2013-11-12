@@ -77,7 +77,7 @@ printf '\nInstalling python-pip...';
 sudo apt-get install python-pip -y;
 
 printf '\nInstalling Django...';
-sudo pip install Django;
+sudo pip install Django==1.5;
 
 printf '\nInstalling python-dev...';
 sudo apt-get install python-dev -y;

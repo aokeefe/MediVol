@@ -5,7 +5,6 @@ phpmyadmin
 *.pyc
 local_settings.py
 .vagrant
-.project 
+.project
 .pydevproject
 .DS_Store
-
