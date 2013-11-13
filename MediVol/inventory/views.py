@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from catalog.models import Category
+from inventory.models import Box
 
 def create(request):
     categories = Category.objects.all()
@@ -26,6 +27,18 @@ def box_info(request, boxid):
         
     except Box.DoesNotExist: 
         
-        #If box does not exist in database return None 
+        #If box does not exist in database go to box not found page
         return render_to_response('inventory/box_not_found.html') 
 
+def barcode_box_info(request, barcodeid):
+    
+    try:
+        #Try and get the box info from the barcode of a box, if exists return 
+        box = Box.objects.get(barcode=barcodeid)
+        context = { 'box': box} 
+        return render(request, 'inventory/box_info.html', context)
+
+    except Box.DoesNotExist:
+
+        #If box does not exist in database go to box not found page
+        return render_to_response('inventory/box_not_found.html')
