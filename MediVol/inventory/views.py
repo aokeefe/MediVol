@@ -38,7 +38,7 @@ def barcode_box_info(request, barcodeid):
         context = { 'box': box}
         return render(request, 'inventory/box_info.html', context)
 
-    excep Box.DoesNotExist:
+    except Box.DoesNotExist:
 
         #If box does not exist in databse redirect to box not found page
         return render_to_response('inventory/box_not_found.html')
