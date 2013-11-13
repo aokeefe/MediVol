@@ -2,7 +2,7 @@ import os, sys
 sys.path.append('/var/www/MediVol/')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
 from django.db import models
-from catalog.models import Category, BoxName
+from catalog.models import Category, BoxName, Item
 
 letter_mapping = (
     ('A', 'Mother and Child'),
@@ -243,3 +243,17 @@ box_name_mapping = (
 for pair in box_name_mapping:
     box_name = BoxName(name=pair[0], category=Category.objects.get(letter=pair[1]))
     box_name.save()
+
+item_pair = (
+    ('Pediatric Diapers', 'Small Diapers', 'Small diapers for young babies'),
+    ('Oral Care', 'Denture Cleaner Tablets',''),
+    ('Oral Care', 'Mouth Moisturizer', ''),
+    ('Oral Care', 'Mouth Wash', ''),
+    ('Personal Care', 'Body/Shampoo Wipes', ''),
+    ('Personal Care', 'Bottles Skin Conditioner', ''),
+    ('Personal Care', 'Comfort Care Kits', '')
+    )
+
+for pair in item_pair:
+    item = Item(box_name=BoxName.objects.get(name=pair[0]), name=pair[1], description=pair[2])
+    item.save()
