@@ -17,4 +17,5 @@ Important Urls
 =======
 * localhost:8888/admin - Opens the admin panel
 * localhost:8888/inventory/create - The create box page
-* localhost:8888/inventory/view_box_info - View a box info
+* localhost:8888/inventory/view_box_info/<boxid> - View a box info
+* localhost:8888/inventory/view_box_info/barcode/<barcode> - View a box info via the boxes barcode
