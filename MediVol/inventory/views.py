@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from catalog.models import Category
+from inventory.models import Box
 
 def create(request):
     categories = Category.objects.all()
