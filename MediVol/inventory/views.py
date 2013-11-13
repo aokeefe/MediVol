@@ -26,6 +26,19 @@ def box_info(request, boxid):
         
     except Box.DoesNotExist: 
         
-        #If box does not exist in database return None 
+        #If box does not exist in database redirect to box not found page
         return render_to_response('inventory/box_not_found.html') 
 
+def barcode_box_info(request, barcodeid):
+    
+    try:
+        
+        #Try and get the box info from the box id if exists return 
+        box = Box.objects.get(barcode=barcodeid)
+        context = { 'box': box}
+        return render(request, 'inventory/box_info.html', context)
+
+    excep Box.DoesNotExist:
+
+        #If box does not exist in databse redirect to box not found page
+        return render_to_response('inventory/box_not_found.html')
