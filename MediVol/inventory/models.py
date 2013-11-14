@@ -54,6 +54,11 @@ class Box(models.Model):
                     break #if the guess was unique stop
         super(Box, self).save(*args, **kwargs)
 
+    def get_id(self):
+        if len(self.box_id) == 4:
+            return self.box_id
+        return self.box_category.letter + self.box_id
+
     def __unicode__(self):
         """
         Returns a printable, human readable, string to represent the Box
@@ -82,6 +87,13 @@ class Contents(models.Model):
     item = models.ForeignKey(Item)
     quantity = models.IntegerField(default=0)
     expiration = models.DateTimeField('expiration date', null=True)
+
+    def save(self, *args, **kwargs):
+        super(Contents, self).save(*args, **kwargs)
+        box = self.box_within
+        item = self.item
+        box.box_category = item.box_name.category
+        box.save()
 
     #TODO test
     def to_csv(self):
