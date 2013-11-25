@@ -19,3 +19,8 @@ class SimpleTestSend(TestCase):
         notifier = Notification(message = test_message, subject = test_subject, recipient_email=test_recipient_email, recipient_name=test_recipient_name) 
  
         response = send_api.send_message(notifier)
+        print response
+        status = response[0]['status']
+        print status
+        self.assertEqual(str(status), "sent")
+
