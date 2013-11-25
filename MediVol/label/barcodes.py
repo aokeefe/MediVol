@@ -41,6 +41,13 @@ class BoxLabel(Drawing):
     def save_img(self, fileName, Dir='.'):
         self.save(formats=['png'], fnRoot=fileName)
 
+    """
+    Returns barcode as html img
+    """
+    def get_image(self):
+        data = b64encode(renderPM.drawToString(self, fmt = 'PNG'))
+        return '<img src="data:image/png;base64,{0}">'.format(data)
+
 """
 Used to get code128 type barcodes, text_vale is barcode string, width, height, and fontSize defalt to values that work 
 with printer

@@ -65,8 +65,18 @@ function getItems(response) {
 * Callback for create_box AJAX call.
 */
 function createBox(response) {
-    if (response == 'True') {
-        location.reload();
+    if (response != 'False') {
+        var iframe = document.createElement('iframe');
+        var html = '<head><script type"text/javascript">window.print();</script></head>' +
+                '<body>' + response + '</body>';
+        iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(html);
+        iframe.width = 0;
+        iframe.height = 0;
+        document.body.appendChild(iframe);
+        
+        setTimeout(function() {
+            location.reload();
+        }, 1);
     }
 }
 

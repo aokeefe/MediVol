@@ -5,6 +5,7 @@ from random import randint
 
 from catalog.models import Category, BoxName, Item
 from inventory.models import Box, Contents
+from label.barcodes import BoxLabel
 
 """
 Gets all of the box names associated with a given category.
@@ -97,4 +98,4 @@ def create_box(request, initials, weight, size, items, note=''):
         
         contents.save()
     
-    return True
+    return BoxLabel(new_box.barcode).get_image()
