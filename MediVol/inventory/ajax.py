@@ -79,11 +79,9 @@ def create_box(request, initials, weight, size, items, note=''):
         box_id = randint(100, 999)
 
     new_box = Box(box_id=box_id, box_size=size[:1], weight=weight, 
-        entered_date=datetime.today(), initials=initials)
+        entered_date=datetime.today(), initials=initials.upper())
     
     new_box.save()
-    
-    request.session['initials'] = initials
     
     for item in items:
         expiration_date = item[1]

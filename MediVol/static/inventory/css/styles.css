@@ -1,12 +1,16 @@
 /* Styles specific to the create box page */
 
 #itemSearch {
-    width: 96.5%;
+    width: 97.5%;
     margin-bottom: 20px;
 }
 
 #createBoxLists {
     width: 100%;
+}
+
+select {
+    font-weight: 400;
 }
 
 .createBoxListWrapper, .infoFieldWrapper {
@@ -87,7 +91,7 @@ h3 {
 }
 
 #next {
-    width: 175px;
+    width: 260px;
 }
 
 #submit {
@@ -133,4 +137,41 @@ h3 {
     resize: none;
     width: 165px;
     height: 75px;
+}
+
+#or {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 15px;
+    font-size: 2em;
+}
+
+.itemSelected, .noItemSelected {
+    width: 97.5%;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 300;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.noItemSelected {
+    background-color: #ff3535;
+    border: 1px solid #ff5151;
+    color: #4b1111;
+}
+
+.itemSelected {
+    background-color: #2ad141;
+    border: 1px solid #2ad641;
+    color: #0f5018;
+}
+
+.itemSelected b {
+    background: none;
+    color: #0d4414;
+}
+
+input[type='radio'] {
+    appearance: none;
 }

@@ -12,9 +12,6 @@ def create(request):
 
     context = { 'categories': sorted(categoryStrings) }
     
-    if request.session.get('initials') is not None:
-        context['initials'] = request.session.get('initials')
-    
     return render(request, 'inventory/create.html', context)
 
 def box_info(request, boxid): 
