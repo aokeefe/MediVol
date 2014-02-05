@@ -39,7 +39,9 @@ class Box(models.Model):
         """
         Returns a string containing all the CSV information of the Box.  Used in creating database backups
         """
-        return self.box_id + ", " + self.box_size + ", " + str(self.weight) + ", " + self.contents + ", " + str(self.expiration) + ", " + str(self.entered_date) + ", " + self.reserved_for + ", " + self.shipped_to + ", " + str(self.box_date) + ", " + str(self.audit) + "\n"
+        return self.box_id + ", " + self.box_size + ", " + str(self.weight) + ", " + self.old_contents + ", " + \
+               str(self.old_expiration) + ", " + str(self.entered_date) + ", " + self.reserved_for + ", " + \
+               self.shipped_to + ", " + str(self.box_date) + ", " + str(self.audit) + "\n"
 
     """
     During that save process we will assign a barcode to the Box, if it does not already have one (ie a new box)
@@ -67,7 +69,8 @@ class Box(models.Model):
 
     """
     Finds the oldest date amoung the contents of a Box, and return it.
-    For example if an item is expireing on 01-01-2014 and another is expireing on 01-01-2012, 01-01-2012 will be returned
+    For example if an item is expireing on 01-01-2014 and another is expireing on 01-01-2012, 01-01-2012 will be 
+    returned
     """
     def get_expiration(self):
         if self.old_expiration is not None:
