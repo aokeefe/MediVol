@@ -153,10 +153,23 @@ function goForward() {
     $('input[name=initials').focus();
 }
 
+function setItemSelected(itemName) {
+    $('#itemSelectedMessage').removeClass('noItemSelected');
+    $('#itemSelectedMessage').addClass('itemSelected');
+    $('#itemSelectedMessage').html('You have selected: <br /><b>' + itemName + '</b>');
+}
+
+function setItemNotSelected() {
+    $('#itemSelectedMessage').removeClass('itemSelected');
+    $('#itemSelectedMessage').addClass('noItemSelected');
+    $('#itemSelectedMessage').html('Please select an item.');
+}
+
 $(document).ready(function() {
     // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
         {
+            autoFocus: true, 
             // The 'source' attribute is a function that is called 
             // which provides the data for the autocomplete. It passes 
             // in request, which provides the search query, and the response 
@@ -235,6 +248,8 @@ $(document).ready(function() {
     $('#categories').change(function() {
         var selectedCategory = $('#categories option:selected').val();
         
+        setItemNotSelected();
+        
         // Get the list of box names for the selected category.
         Dajaxice.inventory.get_box_names(getBoxNames, { 'category_name': selectedCategory });
     });
@@ -242,6 +257,8 @@ $(document).ready(function() {
     // Set the 'on change' event for the box names list.
     $('#box_names').change(function() {
         var selectedBoxName = $('#box_names option:selected').val();
+        
+        setItemNotSelected();
        
         // Get the list of items for the selected box name.
         Dajaxice.inventory.get_items(getItems, { 'box_name': selectedBoxName });
@@ -249,8 +266,8 @@ $(document).ready(function() {
     
     // Set the 'on change' event for the items list.
     $('#items').change(function() {
-        
-    })
+        setItemSelected($('#items option:selected').val());
+    });
     
     // Set the 'on click' event for the add item button.
     $('#add_item').click(function(e) {
@@ -306,18 +323,6 @@ $(document).ready(function() {
         e.preventDefault();
        
         goBack();
-    });
-    
-    $(document).keydown(function(e){
-        if (e.keyCode == 37) {
-            // left pressed
-            
-            goBack();
-        } else if (e.keyCode == 39) {
-            // right pressed
-            
-            goForward();
-        }
     });
     
     $('input[name=initials]').on('input', function() {

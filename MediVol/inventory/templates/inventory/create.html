@@ -18,6 +18,10 @@
         <input type='text' id='itemSearch' class='textField' 
             placeholder='Search for a category, box name, or item...' />
             
+        <div id='or'>
+            -- or --
+        </div>
+            
         <div id='createBoxLists'>
             <div class='createBoxListWrapper'>
                 <h3>Categories</h3>
@@ -42,6 +46,10 @@
             </div>
             
             <div class='clear'></div>
+        </div>
+        
+        <div id='itemSelectedMessage' class='noItemSelected'>
+            Please select an item.
         </div>
         
         <div id='itemInfoWrapper'>
@@ -81,7 +89,7 @@
         </table>
     </div>
     
-    <input type='button' id='next' class='button' value='Next &rarr;' />
+    <input type='button' id='next' class='button' value='Next Step &rarr;' />
 </div>
 
 <div id='stepTwo'>
@@ -106,9 +114,7 @@
             </div>
             
             <div class='stepTwoFieldWrapper'>
-                <input type='text' placeholder='(required)' name='initials' class='textField'
-                    value='{{ initials }}'
-                />
+                <input type='text' placeholder='(required)' name='initials' class='textField' />
             </div>
             
             <div class='clear'></div>
@@ -132,8 +138,8 @@
             </div>
             
             <div class='stepTwoFieldWrapper'>
-                <input type='radio' name='size' value='Small'> Small<br />
-                <input type='radio' name='size' value='Large'> Large
+                <label for='small'><input type='radio' name='size' id='small' value='Small'> Small</label><br />
+                <label for='large'><input type='radio' name='size' id='large' value='Large'> Large</label>
             </div>
             
             <div class='clear'></div>
