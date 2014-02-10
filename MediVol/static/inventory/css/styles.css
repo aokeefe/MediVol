@@ -1,5 +1,9 @@
 /* Styles specific to the create box page */
 
+#stepNumber {
+    font-weight: 300;
+}
+
 #itemSearch {
     width: 97.5%;
     margin-bottom: 20px;
