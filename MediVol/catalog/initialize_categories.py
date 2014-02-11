@@ -5,6 +5,7 @@ from django.db import models
 from catalog.models import Category, BoxName, Item
 
 letter_mapping = (
+    #(letter, name),
     ('A', 'Mother and Child'),
     ('B', 'Personal Care'),
     ('C', 'Patient Care'),
@@ -42,6 +43,7 @@ box_name = BoxName.objects.all()
 box_name.delete()
 
 box_name_mapping = (
+    #(box name, category letter, does it expire, do we count it)
     ('Adult Diapers','B','N','N'),
     ('OB Pads','A','Y','N'),
     ('OB/GYN Mix','A','Y','N'),

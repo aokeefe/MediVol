@@ -8,7 +8,7 @@ from inventory.models import Box, Contents
 def generate_csv():
     print("starting export of database")
     time = datetime.datetime.now()
-    csv_file = open(time.strftime("%B_%d_%Y")+".csv", 'w')
+    csv_file = open(time.strftime("records/%B_%d_%Y")+".csv", 'w')
     #TODO: might want to make this an import to keep it the same across importer and exporter
     models = [Category, BoxName, Item, Box, Contents]
     for model in models:

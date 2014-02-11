@@ -35,7 +35,7 @@ def get_box_size(box_size_weight):
         return box_size_weight[0]
     else:
         print ("The box size " + box_size_weight + " was not handeled right")
-        return None
+        return UNKNOWN_BOX_SIZE
 
 def get_box_weight(box_size_weight):
     if (box_size_weight == ""): 
