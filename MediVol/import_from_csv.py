@@ -8,7 +8,7 @@ from inventory.models import Box, Contents
 def import_csv():
     #replace with parameter
     time = datetime.datetime.now()
-    csv_file = open(time.strftime("%B_%d_%Y")+".csv", 'r')
+    csv_file = open(time.strftime("records/%B_%d_%Y")+".csv", 'r')
     #TODO move outside import\export
     models = [Category, BoxName, Item, Box, Contents]
     csv = csv_file.read()
@@ -18,7 +18,6 @@ def import_csv():
         current_set.delete()
         splitlines = models_csv[x].splitlines()
         for y in splitlines:
-            print(y)
             models[x].create_from_csv(y)
 
 import_csv()

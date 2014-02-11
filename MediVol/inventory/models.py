@@ -50,7 +50,7 @@ class Box(models.Model):
             box_weight = None
         else:
             box_weight = float(filtered_values[3])
-
+            
         box = Box(box_category=Category.objects.get(letter=filtered_values[0]),
                   box_id=filtered_values[1],
                   box_size=filtered_values[2],
@@ -103,7 +103,7 @@ class Box(models.Model):
                   self.reserved_for]
         filtered_values = []
         for value in values:
-            filtered_values.append(value.replace(',', '<CMA>'))
+            filtered_values.append(value.replace(',', '<CMA>').replace('\n', ''))
         return ','.join(filtered_values)
 
     def get_id(self):
