@@ -8,8 +8,8 @@ import unittest
 class CategoryTest(unittest.TestCase):
     def setUp(self):
         Category.objects.create(letter="B", name="Mother and Child")
-        self.category_csv = "B&&&Mother and Child"
-        self.test_csv = "T&&&Test"
+        self.category_csv = "B,Mother and Child"
+        self.test_csv = "T,Test"
 
     def test_category_export(self):
         mother = Category.objects.get(letter="B")
@@ -17,7 +17,7 @@ class CategoryTest(unittest.TestCase):
         self.assertTrue(csv == self.category_csv)
 
     def test_category_import(self):
-        csv = Category.from_csv(self.test_csv)
+        csv = Category.create_from_csv(self.test_csv)
         self.assertTrue(Category.objects.get(letter="T") is not None)
 
 class BoxNameTest(unittest.TestCase):
@@ -29,9 +29,10 @@ class BoxNameTest(unittest.TestCase):
     def test_box_name_export(self):
         test = self.data
         csv = test.to_csv()
-        self.assertTrue(csv=="C&&&Data")
+        self.assertTrue(csv=="C,Data")
 
+    #fix
     def test_box_name_import(self):
-        data = "C&&&Test"
-        csv = BoxName.from_csv(data)
-        self.assertTrue(csv in list(BoxName.objects.all()))
+        data = "C,Test"
+        csv = BoxName.create_from_csv(data)
+        self.assertTrue(BoxName.objects.get(name="Test") is not None)

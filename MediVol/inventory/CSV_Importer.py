@@ -304,7 +304,7 @@ def main():
     for arg in sys.argv[1:]: #the script is the first arguement so we ignore it
         if (".csv" in arg): #Check if file is of csv format otherwise don't try to parse it
             print("\nStarting " + arg + " Import to MySQL Database") 
-            print(importer(arg))
+            importer(arg)
         else: 
             print("WARNING - File is of not .csv format, skipping parse.")
 

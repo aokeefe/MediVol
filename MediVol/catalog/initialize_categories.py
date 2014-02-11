@@ -207,7 +207,7 @@ box_name_mapping = (
     ('Plastic Trays','X','N','Y'),
     ('Cautery Sticks','Z','Y','Y'),
     ('Tourniquets','Z','Y','N'),
-    ('Batteries','NONE','N','N'),
+    #('Batteries','NONE','N','N'),
     ('Peanuts, Kitners (Sterile)','Z','Y','Y'),
     ('Applicator Appliers & Clips (Hemo Clips)','Z','Y','Y'),
     ('DermaHooks','Z','Y','N'),
@@ -243,6 +243,7 @@ box_name_mapping = (
     )
 
 for pair in box_name_mapping:
+    print pair
     box_name = BoxName(name=pair[0], category=Category.objects.get(letter=pair[1]))
     box_name.save()
 
@@ -258,4 +259,5 @@ item_pair = (
 
 for pair in item_pair:
     item = Item(box_name=BoxName.objects.get(name=pair[0]), name=pair[1], description=pair[2])
+    print item
     item.save()

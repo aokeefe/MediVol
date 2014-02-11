@@ -4,7 +4,7 @@ from django.db import models
 NAME_LENGTH = 128
 
 class Category(models.Model):
-    letter = models.CharField(max_length=1)
+    letter = models.CharField(max_length=1, unique=True)
     name = models.CharField(max_length=NAME_LENGTH)
 
     @classmethod
