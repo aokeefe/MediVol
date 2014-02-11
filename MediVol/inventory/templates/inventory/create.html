@@ -61,6 +61,7 @@
             <div class='infoFieldWrapper'>
                 <p>Expiration date?</p>
                 <input type='date' class='textField' id='expiration' />
+                <p class='smallNote'>* Leave as is for never.</p>
             </div>
             
             <div class='infoFieldWrapper'>
@@ -114,7 +115,7 @@
             </div>
             
             <div class='stepTwoFieldWrapper'>
-                <input type='text' placeholder='(required)' name='initials' class='textField' />
+                <input type='text' placeholder='(required)' id='initials' name='initials' class='textField' />
             </div>
             
             <div class='clear'></div>
@@ -126,7 +127,7 @@
             </div>
             
             <div class='stepTwoFieldWrapper'>
-                <input name='weight' type='number' class='textField' />
+                <input name='weight' id='weight' type='number' class='textField' />
             </div>
             
             <div class='clear'></div>
@@ -139,7 +140,7 @@
             
             <div class='stepTwoFieldWrapper'>
                 <label for='small'><input type='radio' name='size' id='small' value='Small'> Small</label><br />
-                <label for='large'><input type='radio' name='size' id='large' value='Large'> Large</label>
+                <label for='large'><input type='radio' name='size' id='large' value='Large' class='largeRadio'> Large</label>
             </div>
             
             <div class='clear'></div>

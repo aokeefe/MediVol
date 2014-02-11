@@ -49,14 +49,14 @@ def get_search_results(request, query):
     box_names = BoxName.objects.filter(name__icontains=query)
     items = Item.objects.filter(name__icontains=query)
     
-    for category in categories:
-        results_array.append(category.name)
-    
-    for box_name in box_names:
-        results_array.append(box_name.category.name + ' > ' + box_name.name)
-    
     for item in items:
         results_array.append(item.box_name.category.name + ' > ' + item.box_name.name + ' > ' + item.name)
+        
+    for box_name in box_names:
+        results_array.append(box_name.category.name + ' > ' + box_name.name)
+        
+    for category in categories:
+        results_array.append(category.name)
     
     return simplejson.dumps(results_array)
 
