@@ -35,7 +35,7 @@ def get_box_size(box_size_weight):
         return box_size_weight[0]
     else:
         print ("The box size " + box_size_weight + " was not handeled right")
-        return None
+        return UNKNOWN_BOX_SIZE
 
 def get_box_weight(box_size_weight):
     if (box_size_weight == ""): 
@@ -138,7 +138,8 @@ def importer(filepath):
                 box = Box(box_id=validatedRow[0], box_size=validatedRow[1], weight=validatedRow[2], 
                     old_contents=validatedRow[3], old_expiration=validatedRow[4], entered_date=validatedRow[5], 
                     reserved_for=validatedRow[6], shipped_to=validatedRow[7], box_date=validatedRow[8], 
-                    audit=validatedRow[9], box_category=Category.objects.get(letter=validatedRow[10]))
+                    audit=validatedRow[9], box_category=Category.objects.get(letter=validatedRow[10]), 
+                    initials='old')
                 box.save() 
         rownum += 1
 
@@ -303,7 +304,7 @@ def main():
     for arg in sys.argv[1:]: #the script is the first arguement so we ignore it
         if (".csv" in arg): #Check if file is of csv format otherwise don't try to parse it
             print("\nStarting " + arg + " Import to MySQL Database") 
-            print(importer(arg))
+            importer(arg)
         else: 
             print("WARNING - File is of not .csv format, skipping parse.")
 
