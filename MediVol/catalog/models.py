@@ -68,7 +68,6 @@ class Item(models.Model):
     box_name = models.ForeignKey(BoxName)
     name = models.CharField(max_length=NAME_LENGTH)
     description = models.CharField(max_length = 500)
-    
     @classmethod
     def create_from_csv(cls, csv):
         values = csv.split(",")
@@ -89,4 +88,10 @@ class Item(models.Model):
            and self.description == other.description
 
     def to_csv(self):
-        return self.name + "&&&" + self.box_name.name + "&&&" + self.description
+        values = [self.name,
+                  self.box_name.name, 
+                  self.description]
+        filtered_values = []
+        for value in values:
+            filtered_values.append(value.replace(',', '<CMA>'))
+        return ','.join(filtered_values)
