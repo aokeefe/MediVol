@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    <title>Orders Page </title>
+{% endblock %}
+
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}orders/css/styles.css' />
+{% endblock %}
+
+{% block body %}
+
+    <h2>Create Order - Step <span id='stepNumber'>1</span>/2</h2>
+
+  <form id='create_new_order_form' action='' method='post'>
+  {% csrf_token %}
+
+  <div id='stepOne'>
+      <div id='stepOneFields'>    
+      
+          <p id='emptyBoxMessage' class='requiredText requiredMessage'>Order must have at least one box.</p>
+      
+          <input type='text' id='itemSearch' class='textField' 
+              placeholder='Search for box name' />
+            
+          <div id='or'>
+              -- or --
+          </div>
+            
+          <div id='createBoxLists'>
+              <div class='createBoxListWrapper'>
+                  <h3>Categories</h3>
+                
+                  <select id='categories' size=10>
+                      {% for category in categories %}
+                          <option>{{ category }}</option>
+                      {% endfor %}
+                  </select>
+              </div>
+            
+              <div class='createBoxListWrapper'>
+                  <h3>Box Names</h3>
+                
+                  <select id='box_names' size=10></select>
+              </div>
+            
+              <div class='createBoxListWrapper'>
+                  <h3>Items</h3>
+                
+                  <select id='items' size=10></select>
+              </div>
+        
+              <div class='createBoxListWrapper'>
+                  <h3>Boxes</h3>
+                
+                  <select id='boxes' size=10></select>
+              </div>
+            
+              <div class='clear'></div>
+          </div>
+        
+          <div id='itemSelectedMessage' class='noItemSelected'>
+              Please select a box.
+          </div>
+        
+          <div id='itemInfoWrapper'>
+              <div class='infoFieldWrapper'>
+                  <button id='add_box' class='button'>Add Box</button>
+              </div>
+          </div>
+      </div>
+    
+      <div id='tableWrapper'>
+          <table id='boxes_added'>
+              <tr id='table_header'>
+                  <td>Box ID</td>
+                  <td>Size</td>
+                  <td>Weight</td>
+              </tr>
+            
+              <tr id='placeholder_row'>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>&nbsp;</td>
+              </tr>
+          </table>
+      </div>
+    
+      <input type='button' id='next' class='button' value='Next Step &rarr;' />
+  </div>
+
+  <div id='stepTwo'>
+      <p id='requiredFieldsMessage' class='requiredText requiredMessage'>Please fill out the required fields.</p>
+
+      <div id='stepTwoFields'>
+          <div class='stepTwoField'>
+              <div class='label'>
+                  &nbsp;
+              </div>
+            
+              <div class='stepTwoFieldWrapper requiredText'>
+                  *required
+              </div>
+            
+              <div class='clear'></div>
+          </div>
+        
+          <div class='stepTwoField'>
+              <div class='label'>
+                  Company:
+              </div>
+            
+              <div class='stepTwoFieldWrapper'>
+                  <input type='text' id='company' name='company' class='textField' />
+              </div>
+            
+              <div class='clear'></div>
+          </div>
+        
+          <div class='stepTwoField'>
+              <div class='label'>
+                  Contact Name:<span class='requiredText'>*</span>
+              </div>
+            
+              <div class='stepTwoFieldWrapper'>
+                  <input name='contact_name' id='contact_name' type='text' class='textField' />
+              </div>
+            
+              <div class='clear'></div>
+          </div>
+        
+          <div class='stepTwoField'>
+              <div class='label'>
+                  Phone Number:
+              </div>
+            
+              <div class='stepTwoFieldWrapper'>
+                  <input name='phone_number' id='phone_number' type='number' class='textField' />
+              </div>
+            
+              <div class='clear'></div>
+          </div>
+      
+          <div class='stepTwoField'>
+              <div class='label'>
+                  Email Address:
+              </div>
+            
+              <div class='stepTwoFieldWrapper'>
+                  <input name='email' id='email' type='email' class='textField' />
+              </div>
+            
+              <div class='clear'></div>
+          </div>
+      </div>
+    
+      <input type='button' id='back' class='button' value='&larr; Back' />
+      <input type='submit' id='submit' class='button' value='Create Box' />
+    
+      <div class='clear'></div>
+  </div>
+
+  </form>
+{% endblock %}
+
+{% block javascript %}
+    <script type='text/javascript' src='{{ STATIC_URL }}orders/js/main.js'></script>
+{% endblock %}
+
+

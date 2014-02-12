@@ -1,0 +1,137 @@
+/* Styles specific to the create box page */
+
+#itemSearch {
+    width: 96.5%;
+    margin-bottom: 20px;
+}
+
+#createBoxLists {
+    width: 100%;
+}
+
+.createBoxListWrapper, .infoFieldWrapper {
+    float: left;
+    width: 31.5%;
+    margin-left: 10px;
+}
+
+.createBoxListWrapper:first-child, .infoFieldWrapper:first-child {
+    margin-left: 0px;
+}
+
+.createBoxListWrapper select {
+    width: 100%;
+    font-size: 1em;
+}
+
+h3 {
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+#itemInfoWrapper {
+    width: 100%;
+    float: left;
+    margin-bottom: 25px;
+}
+
+.infoFieldWrapper {
+    
+}
+
+.infoFieldWrapper input {
+    width: 97%;
+}
+
+.infoFieldWrapper p {
+    font-size: 1.25em;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+#add_box{
+    margin-top: 10%;
+    float: right;
+    font-size: 2em;
+    height: 50px;
+    width: 80%;
+    min-width: 150px;
+}
+
+#boxes_added {
+    width: 100%;
+    text-align: center;
+    margin-left: -2px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+#boxes_added td {
+    border: 1px solid #c8c8c8;
+    height: 25px;
+}
+
+#boxes_added tr:first-child td {
+    font-weight: bold;
+}
+
+#next, #submit, #back {
+    font-size: 2.5em;
+    height: 60px;
+    margin-top: 20px;
+}
+
+#next, #submit {
+    float: right;
+}
+
+#next {
+    width: 175px;
+}
+
+#submit {
+    width: 225px;
+}
+
+#back {
+    float: left;
+    width: 175px;
+}
+
+#stepTwo {
+    display: none;
+}
+
+#stepOneFields {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#stepTwoFields {
+    width: 40%;
+    min-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.label {
+    float: left;
+    width: 75px;
+}
+
+.stepTwoField {
+    margin-bottom: 10px;
+}
+
+.stepTwoFieldWrapper {
+    float: left;
+}
+
+#note {
+    resize: none;
+    width: 165px;
+    height: 75px;
+}
+
