@@ -99,9 +99,26 @@ sudo pip install django_dajax;
 printf '\nInstalling pytz...';
 sudo pip install pytz;
 
+printf '\nInstalling django-haystack...';
+sudo pip install django-haystack;
+
+printf '\nInstalling headless jvm...';
+sudo apt-get install openjdk-7-jre-headless -y;
+
+printf '\nInstalling elasticsearch...';
+sudo pip install pyelasticsearch;
+sudo pip install elasticsearch;
+cd /var/www/vagrant-setup;
+sudo dpkg -i elasticsearch-0.90.11.deb;
+sudo service elasticsearch restart;
+
 printf '\nCreating database for inventory...';
 mysql -u root --password=root -e 'create database MediVolDB;';
 
 python /var/www/MediVol/syncdb_script.py;
 python /var/www/MediVol/catalog/initialize_categories.py;
 python /var/www/MediVol/inventory/CSV_Importer.py /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_1.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_2.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_3.csv;
+
+sudo service apache2 restart;
+cd /var/www/MediVol;
+python manage.py rebuild_index --noinput;

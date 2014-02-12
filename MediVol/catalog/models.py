@@ -24,4 +24,4 @@ class BoxName(models.Model):
 class Item(models.Model):
     box_name = models.ForeignKey(BoxName)
     name = models.CharField(max_length=NAME_LENGTH)
-    description = models.CharField(max_length = 500)
+    description = models.CharField(max_length=500)

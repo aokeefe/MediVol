@@ -1,4 +1,5 @@
 import django.conf.global_settings as DEFAULT_SETTINGS
+import os
 
 # Django settings for MediVol project.
 
@@ -133,6 +134,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'django_jenkins',
+    'haystack',
     # place MediVol specific apps below this
     'inventory',
     'catalog',
@@ -169,4 +171,12 @@ LOGGING = {
             'propagate': True,
         }
     }
+}
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://127.0.0.1:9200/',
+        'INDEX_NAME': 'haystack',
+    },
 }

@@ -7,6 +7,8 @@ from catalog.models import Category, BoxName, Item
 from inventory.models import Box, Contents
 from label.barcodes import BoxLabel
 
+from haystack.query import SearchQuerySet
+
 """
 Gets all of the box names associated with a given category.
 """
@@ -45,18 +47,21 @@ Returns the results in 'Category > Box Name > Item' form.
 def get_search_results(request, query):
     results_array = []
     
-    categories = Category.objects.filter(name__icontains=query)
-    box_names = BoxName.objects.filter(name__icontains=query)
-    items = Item.objects.filter(name__icontains=query)
+    categories = SearchQuerySet().autocomplete(name_auto=query).models(Category)
+    box_names = SearchQuerySet().autocomplete(name_auto=query).models(BoxName)
+    items = SearchQuerySet().autocomplete(name_auto=query).models(Item)
     
     for item in items:
+        item = item.object
         results_array.append(item.box_name.category.name + ' > ' + item.box_name.name + ' > ' + item.name)
         
-    for box_name in box_names:
-        results_array.append(box_name.category.name + ' > ' + box_name.name)
-        
     for category in categories:
+        category = category.object
         results_array.append(category.name)
+        
+    for box_name in box_names:
+        box_name = box_name.object
+        results_array.append(box_name.category.name + ' > ' + box_name.name)
     
     return simplejson.dumps(results_array)
 
