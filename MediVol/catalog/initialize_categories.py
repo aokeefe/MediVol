@@ -243,21 +243,16 @@ box_name_mapping = (
     )
 
 for pair in box_name_mapping:
-    print pair
     box_name = BoxName(name=pair[0], category=Category.objects.get(letter=pair[1]))
     box_name.save()
 
-item_pair = (
-    ('Pediatric Diapers', 'Small Diapers', 'Small diapers for young babies'),
-    ('Oral Care', 'Denture Cleaner Tablets',''),
-    ('Oral Care', 'Mouth Moisturizer', ''),
-    ('Oral Care', 'Mouth Wash', ''),
-    ('Personal Care', 'Body/Shampoo Wipes', ''),
-    ('Personal Care', 'Bottles Skin Conditioner', ''),
-    ('Personal Care', 'Comfort Care Kits', '')
-    )
-
-for pair in item_pair:
-    item = Item(box_name=BoxName.objects.get(name=pair[0]), name=pair[1], description=pair[2])
-    print item
-    item.save()
+item_file = file('test_item_list.txt', 'r')
+item_pair = []
+box_name = None
+count = 0
+for line in item_file:
+    if ':' in line:
+        box_name = BoxName.objects.get(name=line[:-3])
+    else:
+        item = Item(box_name=box_name, name=line.strip(), description='')
+        item.save()   
