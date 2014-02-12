@@ -1,5 +1,17 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
+
+from catalog.models import Category
 
 #Display the main page of ordering 
 def orders_main(request):
-    return render_to_response('orders/index.html')
+    
+    categories = Category.objects.all()
+    categoryStrings = []
+
+    for category in categories:
+        categoryStrings.append(category.name)
+
+    context = { 'categories': sorted(categoryStrings) }
+
+    return render(request, 'orders/orders.html', context)
+

@@ -138,6 +138,7 @@ INSTALLED_APPS = (
     'catalog',
     'dajaxice',
     'label',
+    'orders',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

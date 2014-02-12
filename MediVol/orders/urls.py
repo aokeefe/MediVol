@@ -3,5 +3,5 @@ from orders.views import *
 
 urlpatterns = patterns ('', 
     #Orders Main Page 
-    url(r'^$', orders_main), 
+    url(r'^create/$', orders_main), 
 )
