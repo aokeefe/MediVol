@@ -10,7 +10,7 @@ from catalog.models import Category, BoxName, Item
 @dajaxice_register(method='GET')
 def get_box_names(request, category_name):
     category = Category.objects.get(name=category_name)
-    box_names = BoxName.objects.filter(category=category)
+    box_names = Category.objects.get(name=category_name).boxname_set.all()
 
     box_names_array = []
 
@@ -23,7 +23,7 @@ def get_box_names(request, category_name):
 @dajaxice_register(method='GET')
 def get_items(request, box_name):
     box_name = BoxName.objects.get(name=box_name)
-    items = Item.objects.filter(box_name=box_name)
+    items = BoxName.objects.get(name=box_name).item_set.all()
 
     items_array = []
 
@@ -38,7 +38,7 @@ def get_box_ids(request, item):
     
     boxs_ids = []
     item = Item.objects.filter(name=item)
-    contents = Contents.objects.filter(item=item)
+    contents = Item.objects.filter(name=item).content_set.all()
 
     for content in contents:
         boxs_ids.append(content.box_within.box_id)
@@ -90,8 +90,10 @@ def get_info(request, boxid):
 @dajaxice_register
 def create_order(request, ship_to, reserved_for, box_ids):
 
+    order_base_number = 100
+
     # Calculate order number
-    order_number = Order.objects.count() + 100
+    order_number = Order.objects.count() + order_base_number
 
     new_order = Order(reserved_for=reserved_for, ship_to=ship_to, order_number=order_number, creation_date=datetime.today())
     new_order.save()
