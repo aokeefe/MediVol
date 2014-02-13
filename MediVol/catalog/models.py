@@ -32,6 +32,9 @@ class Category(models.Model):
         for value in values:
             filtered_values.append(value.replace(',', '<CMA>'))
         return ','.join(filtered_values)
+    
+    def get_search_results_string(self):
+        return self.name
 
 class BoxName(models.Model):
     category = models.ForeignKey(Category)
@@ -62,6 +65,9 @@ class BoxName(models.Model):
         for value in values:
             filtered_values.append(value.replace(',', '<CMA>'))
         return ','.join(filtered_values)
+    
+    def get_search_results_string(self):
+        return self.category.name + ' > ' + self.name
         
 #TODO update to a multi Catagory implementation
 class Item(models.Model):
@@ -96,3 +102,6 @@ class Item(models.Model):
         for value in values:
             filtered_values.append(value.replace(',', '<CMA>'))
         return ','.join(filtered_values)
+    
+    def get_search_results_string(self):
+        return self.box_name.category.name + ' > ' + self.box_name.name + ' > ' + self.name

@@ -83,31 +83,32 @@ printf '\nInstalling python-dev...';
 sudo apt-get install python-dev -y;
 
 printf '\nInstalling elaphe...';
-sudo pip install elaphe;
+sudo pip install elaphe==0.6.0;
 printf '\nInstalling reportlab...';
-sudo pip install reportlab;
+sudo pip install reportlab==2.7;
 
 printf '\nInstalling python-mysqldb...';
 sudo apt-get install python-mysqldb -y;
 
 printf '\nInstalling django-jenkins...';
-sudo pip install django-jenkins;
+sudo pip install django-jenkins==0.14.1;
 
 printf '\nInstalling django_dajax...';
-sudo pip install django_dajax;
+sudo pip install django-dajax==0.9.2;
+sudo pip install django-dajaxice==0.5.5;
 
 printf '\nInstalling pytz...';
-sudo pip install pytz;
+sudo pip install pytz==2013.9;
 
 printf '\nInstalling django-haystack...';
-sudo pip install django-haystack;
+sudo pip install django-haystack==2.1.0;
 
 printf '\nInstalling headless jvm...';
 sudo apt-get install openjdk-7-jre-headless -y;
 
 printf '\nInstalling elasticsearch...';
-sudo pip install pyelasticsearch;
-sudo pip install elasticsearch;
+sudo pip install pyelasticsearch==0.6.1;
+sudo pip install elasticsearch==1.0.0;
 cd /var/www/vagrant-setup;
 sudo dpkg -i elasticsearch-0.90.11.deb;
 sudo service elasticsearch restart;
@@ -139,6 +140,5 @@ python /var/www/MediVol/inventory/CSV_Importer.py /var/www/MediVol/inventory/Med
 /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_26.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_27.csv \
 /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_28.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_29.csv \
 /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_30.csv;
-python /var/www/MediVol/inventory/CSV_Importer.py /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_1.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_2.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_3.csv;
 
 sudo service apache2 restart;

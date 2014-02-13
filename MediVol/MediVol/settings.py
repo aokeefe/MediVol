@@ -1,5 +1,4 @@
 import django.conf.global_settings as DEFAULT_SETTINGS
-import os
 
 # Django settings for MediVol project.
 

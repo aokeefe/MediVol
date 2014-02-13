@@ -47,21 +47,11 @@ Returns the results in 'Category > Box Name > Item' form.
 def get_search_results(request, query):
     results_array = []
     
-    categories = SearchQuerySet().autocomplete(name_auto=query).models(Category)
-    box_names = SearchQuerySet().autocomplete(name_auto=query).models(BoxName)
-    items = SearchQuerySet().autocomplete(name_auto=query).models(Item)
+    results = SearchQuerySet().autocomplete(name_auto=query).models(Item, BoxName, Category)
     
-    for item in items:
-        item = item.object
-        results_array.append(item.box_name.category.name + ' > ' + item.box_name.name + ' > ' + item.name)
-        
-    for category in categories:
-        category = category.object
-        results_array.append(category.name)
-        
-    for box_name in box_names:
-        box_name = box_name.object
-        results_array.append(box_name.category.name + ' > ' + box_name.name)
+    for result in results:
+        result = result.object
+        results_array.append(result.get_search_results_string())
     
     return simplejson.dumps(results_array)
 
