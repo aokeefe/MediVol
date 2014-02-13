@@ -119,6 +119,8 @@ mysql -u root --password=root -e 'create database MediVolDB;';
 printf '/nInstalling sl';
 sudo apt-get install sl;
 
+sleep 5;
+
 python /var/www/MediVol/syncdb_script.py;
 python /var/www/MediVol/catalog/initialize_categories.py;
 python /var/www/MediVol/inventory/CSV_Importer.py /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_1.csv \
@@ -140,5 +142,3 @@ python /var/www/MediVol/inventory/CSV_Importer.py /var/www/MediVol/inventory/Med
 python /var/www/MediVol/inventory/CSV_Importer.py /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_1.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_2.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_3.csv;
 
 sudo service apache2 restart;
-cd /var/www/MediVol;
-python manage.py rebuild_index --noinput;
