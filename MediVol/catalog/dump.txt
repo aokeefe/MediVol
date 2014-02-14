@@ -1,0 +1,2426 @@
+A32	Drapers
+A33	Endoscopy
+A40	Autoscopy Kit
+A45	Dental Mix
+A46	Dental Exam Capes
+A47	Dental Exam Capes
+A48	OB Supplies
+A48	??
+A49	OB/GYN Supplies
+A50	Pediatric Chest Drains
+A51	Pediatric Multivent Oxygen Masks
+A54	Pediatric Respiratory Supplies: Breathing Circuits (14); O2 Masks (45); Suction Catheters; Tracheostomy Tubes
+A55	Pediatric Supplies: Umbilical Clamps; Tape Measures; Nipples; Feeding Bottles; Electrodes (6 Bags)
+A56	OB/GYN: Sterile Swabs
+A57	OB/GYN: Sterile Swabs
+A58	OB/GYN: Sterile Swabs (~2000)
+A59	OB/GYN: Sterile Swabs (~1800)
+A60	Pediatric Nebulizers: 23 Neb-U-Mask Systems
+A61	Pediatric Nebulizers w/ Mask (45)
+A62	GYN Mix
+A62	Pediatric Nebulizer w/ Masks
+A63	Pediatric Diapers (Preemie & Small)
+A64	23 Pediatric Breathing Circuits
+A66	Pediatric Mix
+A67	46 Plastic Vaginal Speculums
+A68	Pediatric Diapers: Preemie Size 1
+A69	Pediatric Supplies: Trays; OR Shoes; Endotracheal Tubes; etc.
+A70	Diapers: Preemie & Pediatric
+A71	Pediatric Supplies: Trach. Tubes; Feeders; Post-Op Bots; Slings; etc.
+A72	Pedatrics Supplies: 100 Electrodes; 50 O2 Probes; 25 Feeding Syringes; etc.
+A73	OB/Gyn Mix: Umbilical clamps; Cord Blood Collection
+A74	OB Pads (Incontinence & Postpartum) ~300; 1 Bag Misc. Pads
+A75	Pediatric Supplies: Trach Trays; Holders; Masks
+A76	Pediatric Supplies: Chest Drains; Circumsion Kits; Respiratory Mix
+A77	OB Pads for Incontinence ~390
+A78	Pediatric Diapers
+A79	OB Speculums x94
+A80	Pediatric Urine Collectors, Diapers
+A81	Pediatic Supplies: Respiratory; Cardiac; IV
+A82	Pediatric Supplies: Blood Collection; Feeding Bottles
+A83	OB/GYN Mix: Vaginal Swabs
+A84	Vaginal Speculums (Disposable): Med. x35; Lg. x15
+A85	100 Pediatric O2 Masks w/ Tubing
+A86	Nebulizers: 100 Pediatric Sets
+A87	Vaginal Speculums: 40 Metal; 15 Disposable
+A88	Pediatric Suction Catheters
+A89	Pediatric Supplies: Circumsion Trays; ET Tubes; LMAs; Masks; Colostomy Supplies
+A90	Pediatric Supplies
+A91	Pediatric Supplies: Bottles; Nipples; Breast Milk Containers; Dosing Syringes
+A92	Pediatric Supplies: Respiratory; ID Bands; Urinary; Feeding Tubes
+A93	Pediatric Cardiac Surgical Pack Parts A & B (Sterile)
+A94	Pediatric Diapers
+A95	OB/GYN Mix
+A96	OB/GYN: Disposable Briefs; VP III Swabs
+A97	Vaginal Speculums (Disposable)
+A98	Vaginal Speculums (Metal)
+B4	Feeding Bags
+B188	100 Kangaroo Feeding Bags
+B189	110 Kangaroo Feeding Bags
+B190	Pediatric Nutrition Bags x84
+B191	Ostomy (Convatec)
+B192	Ostomy: Convatec 13/4" Pouches & Seals
+B193	Ostomy: Flex Seal & Hollister
+B194	Enema Anascopes
+B195	Kangaroo Feeding Pump (Use w/ Box of Pump Bags)
+B196	Kangaroo Feeding Pump Bags
+B197	35 Kangaroo Pump Bags (Must Use w/ Machine)
+B198	80 Kangaroo Feeding Bags
+B200	110 Kangaroo Bags (Pump Set)
+B201	110 Unsterile Gravity & Pump Feeding Tubes/Bags, External Lite Kangaroo
+B202	Genairex Ostomy Pouches, Skin Barrier 1-3/4"
+B203	Hollister & Assura Ostomy Supply
+B204	Hollister & Assura Ostomy Supply & Skin Barrier
+B205	Hollister & Assura Ostomy Supply & Skin Barrier (Assorted Sizes)
+B208	60 Feeding Central Bags (Gravity)
+B209	98 Kangaroo Tube Feeding Bags
+B211	Enteral Feeding 60cc. Syringe
+B212	Enteral Pumps
+B213	Colonoscopy Supplies
+B214	70 Kangaroo Bags, 30 Feeding Bags
+B215	Enteral Feeding Adult, Button Feeding Peds.
+B217	Colostomy Supplies
+B220	Enteral Irrigation Sets
+B221	Kangaroo Bags x100
+B223	Ostomy Supplies
+B224	Ostomy Drainage Bags, Skin Barrier Cream
+B225	Personal Cleansing Cloths x40 pkgs.
+B226	Urostomy Bags x8 boxes; 1 box Fecal Collector
+B227	Hollister Ostomy: Assorted Pouches & Stoma Adhesive
+B229	Covatec Assorted Ostomy Pouches & Stoma Adhesive
+B230	Covatec Assorted Ostomy Pouches & Stoma Adhesive x40 pkgs.
+B233	76 Enteral Pump Delivery Sets; 29 Safety Screw Spike Sets; 27 Enteral Feeding Spike Adapter; 4 Cont. Feeding Set (All Unsterile)
+B234	Enteral Pump Delivery Sets x111 (Unsterile)
+B235	Enteral Gravity Feeding Bags x24; Rt. Angle Feeding Sets Y-Port x111; Mickey BDust Extension Sets x16 (Unsterile)
+B236	1000ml. External Gravity Bags x86
+B237	Underpads Disposable x151
+B238	Underpads Disposable x400
+B239	Handicare Liners Extra Absorbent (10x24 Liners)
+B240	Personal Care: Bath Cloths (50); Shampoo Caps (10)
+B241	Adult Diapers
+B242	Chux Underpads (Disposable)
+B243	Chux Underpads (Disposable)
+B244	Adult Diapers
+B245	Personal Care: Hipsters (5); Rupture Easer (2); Razors (50); SaniCloth (202); 1 Pillow; 1 Gel; CPR Barriers (3); Abdominal Binders (2)
+B246	Oral Care: Toothettes & Suction Swabs
+B247	150 Underpads Disposable
+B248	185 Adult Diapers
+B249	Disposable Underpads
+B252	Disposable Underpads
+B254	5 Pillows
+B255	4 Pillows; 1 Mattress Pads; 1 Sheet
+B256	60 Anti-Embolism Stockings
+B258	Personal Care: Bottles Soap Gel, etc.
+B259	Adult Diapers
+B260	Disposable Underpads
+B261	Adult Diapers 6 pkgs. (4 sm.; 2 lg.)
+B263	Adult Diapers
+B264	Personal Care: Bodywash, Mouthwash, etc.
+B265	Personal Care: Wipes, Shampoo, Oral Care, Denture Cups, Drinking Cups
+B266	Underpads Chux
+B267	Underpads Paper
+B269	Adult Diapers
+B270	Personal Care: Denture Cups, Lotion, Tissues, Oral Care, Shampoo, etc.
+B271	Personal Care
+B272	Adult Diapers
+B273	Underpads/Chux x87
+B274	Adult Diapers
+B275	Underpads
+B276	Adult Diapers
+B277	Underpads/Chux Disposable x121
+B278	Adult Diapers
+B279	Adult Diapers
+B280	Personal Care: Denture Cups (153); Facial Tissues (12 Boxes)
+B281	Personal Care
+B282	9 Packages Adult Diapers
+B283	Adult Diapers
+B284	Adult Diapers
+B285	Adult Diapers
+B286	Adult Diapers
+B287	Disposable Chux x21 Packs
+B288	Adult Diapers
+B289	Adult Diapers
+B290	Underpads/Chux x70
+B291	Adult Diapers
+B292	Adult Diapers
+B293	Disposable Underpads/Chux
+B294	Disposable Underpads/Chux
+B295	Disposable Underpads/Chux
+B296	Disposable Underpads/Chux
+B297	Personal Care
+B298	Personal Care
+B299	Underpads/Chux x200
+B300	Adult Diapers
+B301	Disposable Underpads/Chux
+B303	Personal Care: 12 Hipster Pads; 4 Abd. Binders; 36 Toilet Liners; 62 Scrub Tops; Sneakers (Size 12); Body Wash; Shampoo; Hand Sanitizer
+B304	Anti-Embolism Stockings: Assorted Sizes (S-XL) x210
+B305	Personal Care: Lotions; Shower Cap; Powder; Mouth Wash
+B306	Slippers: 50 Pair
+B307	Underpads (Cloth)
+B308	Oral Care: Including Toothbrushes, Toothpaste
+B309	Underpads/Chux (Disposable)
+B310	Adult Diapers
+B311	Pediatric Diapers
+B312	Personal Care: Tissues; Razors; Body Wash; Shampoo; Baby Powder; Lotion
+B313	Personal Care: Body Wipes; Shampoo Cleaning Cloths
+B314	Personal Care: Body Wipes; Shampoo Cleaning Cloths
+B315	Adult Diapers
+B316	Underpads/Chux (Disposable) x188
+B317	Oral Care
+B318	Personal Care: Barrier Cream Wipes x41 Packs of 8
+B319	Personal Care: 100 Plastic Cups; 1 Pair Men's PJ Bottoms; 6 Men's T-Shirts; 4 Wash Cloths; 13 Weekly Pill Containers; 22 Combs; 20 Pair Ear Plugs; 10 Pair Ear Phones; 67 Bath Towelettes; 18 Nail Polish Remover Pads
+B320	Personal Care: 255 Disposable Razors; Skin Protectant Wipes x15 Packs of 8
+B321	Personal Care: 24 Denture Cleaner Tablets; 14 Mouth Moisturizer; 43 Mouth Wash; 6 Body/Shampoo Wipes; 2 Bottles Skin Conditioner; 12 Comfort Care Kits
+B322	Personal Care: 72 Body Wash/Shampoo Wipes; 13 Shave Cream; 20 Hand Sanitizer; 11 Bars Soap; 4 Deodorant; 3 Baby Shampoo
+B323	Underpads/Chux x10 Packs of 15 + 48 Loose
+B324	Underpads/Chux x10 Packs of 15 + 48 Loose
+B325	Adult Diapers
+B326	Adult Diapers
+B327	Adult Diapers
+B328	Underpads/Chux (Disposable) x207
+B329	Personal Care: Barrier Cream Cloths; Bath Cloths; Body Wash & Shampoo; Mouthwash; Hand Sanitizer; Eye Shades; Etc.
+B330	Personal Care: Barrier Cream Cloths; Bath Cloths; Body Wash & Shampoo; Mouthwash; Toothpaste; Baby Powder; Body Lotion; Deodorant
+C32	Urine Collection (24 hour) x17
+C66	???
+C83	Texas Catheters: 184 Lg., 319 Med., 6 Sm., 87 23mm.; 5 Urinary Drainage Bags; 4 Catheter Trays
+C125	???
+C357	Urinary Drainage Bags
+C362	10 Sterile Cystoscopy Irrigantion Sets; 20 Sterile Irrigation Spike Adaptors; 100 Condom Catheters; 10 Sterile Piston Irrigation Trays
+C368	Self-Catherization Sets
+C369	Misc. Urine Collection
+C371	Urinary Catheters (Assorted Sizes)
+C372	French Self-Catheter Kits x100
+C373	Foley Catheter Kits and Drainage Tubing
+C374	Foley Catheter Kits and Drainage Tubing
+C375	Urology Mix
+C376	Urinary Drainage Bags x52
+C377	40 Single Hand Breast Pumps; 3 Boxes OB Towelettes
+C379	Urinary Drainage Bags
+C380	Catheter Trays x8 (Sterile); 25 Foley Bags (Unsterile)
+C381	U Cath Kits x25
+C382	U Cath Kits x48
+C383	U Cath Kits x34
+C384	U Cath Trays x38
+C385	U Cath Trays x38
+C386	U Cath Trays x45
+C387	U Cath Trays x22
+C389	Texas Catheters
+C390	Catheter Kits; Catheters
+C391	Urinary Drainage Bags x60
+C391	
+C393	Urinary Leg Bags w/ Tubing
+C394	Urinary Catheters
+C395	Self-Catherization Supplies
+C396	Foley Catheter Mix
+C398	Urinary Drainage Bags x55; Texas Catheters x200
+C399	Catheters: 65 Texas; 350 Self-Cath; 80 Foley
+C400	Urinary Drainage Bags x70
+C401	Foley Catheter Trays x12
+C402	Catheter Tray Kits (Sterile)
+C403	Urinary Catheter Trays x18
+C404	U-Cath Trays x15
+C405	Urinary Catheters: 16 Texas; 23 Clean; 61 Self, Straight; 332 Sterile Foleys
+C406	Under Buttocks Drapes x49
+C407	Under Buttocks Drapes x29
+C408	15 Urinary Catheter Insertion Kits
+C409	19 Catheterization Kits
+C410	Urethral Catheter Trays
+C411	Urinary Catheter Trays: 65 Ped. Foley; 20 Ped. Self-Cath; 2 Foley Cath.
+C412	15 Urinary Catheterization Trays
+C413	Urinary Drainage Bags
+C414	Urinary Drainage Bags
+C415	Urinary Catheter Trays and Kits x21
+C416	Urinary Drainage Bags
+C417	Immobilizers: 12 Boot; 2 Cervical; 2 Slings; 1 Wrist; 1 Knee
+C418	Misc. Urinary
+C419	Misc. Urinary
+C420	Urinary Supplies
+C421	Foam Positioners: Assorted
+C422	Exam Table Paper: 11 Rolls (14.5"x125' )
+C424	Diabetic Lancets x10,000 (Unsterile)
+C425	Diabetic Glcometers x50 (Unsterile)
+C426	Foam
+C427	55  Glucometers (No Test Strips)
+C428	Immobilizers: 6 Foot; 4 Knee; 1 Heel; 5 Neck; 5 Wrist; 1 Arm Sling
+C429	Immobilizers: Wrist, Hand, Foot, etc.
+C430	Immobilizers: 6 Foot; 5 Neck; 4 Knee; 5 Wrist; 1 Heel; Arm Sling
+C431	Immobilizers: Shoulder (2); Wrist/Arm (5); Collar (1); Knee (3); Foot (2); Hand (1)
+C432	Immobilizers: Knee braces (4); Shoulder Stabilizer (1); "Ultra sling" (1); Heel Protector (1); Abdominal Bands (2)
+C433	Patient Care: 7 Hipster Pads; 9 Abdominal Bands
+C434	Immobilizers: Neck (2); Leg (3); Knee (3); Arm (10); Foot (2)
+C435	Immobilizers: Knee (5); Ankle (1); Shoulder (1); Wrist (1)
+C436	Immobilizers: 7 Shoulder; 4 Traction
+C437	Immobilizers: 7 Foot; 4 Knee; 6 Shoulder
+C438	Immobilizers: 2 Knee; 2 Helmet; 9 Slings; 4 Shoulder; 5 Ankle
+C439	4 Foot Pressure Relief; 1 Arm Immobilizer
+C441	14 BP Cuffs
+C442	11 BP Cuffs, 3 Stethoscopes
+C443	14 BP Cuffs
+C444	Immobilizers: 6 Foot; 3 Knee; 3 Arm; 2 Colla; 3 Wrist; 1 Ankle
+C445	Patient Care: Med. Cups; Hipsters; Vests; etc.
+C446	Foam: Assorted Sizes
+C447	30 Positioning Heel Pads; 2 Pillows
+C448	5 Bed Pillows
+C449	5 Bed Pillows
+C450	Air Mattress w/ Pump
+C451	Immobilizers: Post OP Shoe x16; Sling x5; Knee x1; Shoulder x2
+C452	Immobilizers: 3 Foot; 3 Knee; 5 Arm/Shoulder; 6 Cervical Collar
+C453	Immobilizers: 5 Foot; 15 Arm; 3 Cervical; 2 Ankle; 7 Shoulder
+C454	Immobilizers: 8 Foot; 8 Walking Boot; 1 Shoulder; 15 Arm; 1 Cervical
+C455	4 Bed Pillows
+C456	4 Bed Pillows
+C457	Immobilizers: 8 Shoulder; 6 Wrist; 4 Slings; Post-OP Shoe
+C458	Lab Supplies: Pipets; Slides
+C459	Alternating Pressure Mattress w/ Pump
+C460	Immobilizers: 4 Shoulder; 4 Cervical; 2 Shoe; 5 Slings; 2 Knee; 5 Abdominal; 3 Wrist
+C461	Immobilizers: 1 Shoulder; 5 Neck; 6 Boot; 3 Back; 5 Arm; 2 Elbow; 4 Abdominal
+C462	4 Bed Pillows
+C463	5 Bed Pillows
+C464	4 Bed Pillows
+C465	9 Blood Pressure Cuffs; 4 Stethoscopes
+C466	BP Cuffs: 2 Wall Mount; 6 Regular 4 Stethoscopes
+C467	16 Sitz Baths
+C468	Patient Care: Lambs Wool
+C469	Patient Care: Plastic Cups; Packs; Supporters; etc.
+C470	Patient Care: 10 Hip Protectors
+C471	Patient Care: Lymphodema Gloves; Abd. Binders
+C472	Patient Care: Gait Belts
+C473	Patient Care: Elbow/Heel Protectors
+C474	Immobilizers: Cervical Collars; Arm Slings
+C475	11 BP Cuffs; 10 Stethoscopes
+C476	Patient Care: Gait Belts; Sitz Baths; Back Supports
+C477	Foam Arm Board Covers
+C478	Immobilizers: Knee; Ankle; Shoulder
+C479	Lancets
+C480	Gowns: Patient, Paper x54; Jackets, Paper x50
+C481	Immobilizers: 2 Knee; 10 Elbow; 1 Back; 7 Sling; 2 Ankle; 3 Thumb; 3 Finger; 6 Wrist
+C482	20 Patient Warming Gowns
+C483	Plastic Gowns x167; Aprons x108
+C484	Positioning Devices: Knee Pillows; Elbow/Heel
+C485	Immobilizers: 4 Foot; 1 Collar; 1 Back; 2 Sling
+C486	Immobilizers: 1 Foot; 5 Collar; 2 Leg; 1 Back; 1 Sling; 5 Elbow
+C487	Patient Care: Alternating Pressure Mattresses x2
+C488	Patient Care: Alternating Pressure Mattresses x2
+C489	Patient Care: Alternating Pressure Mattresses x2
+C490	Patient Care: Alternating Pressure Mattresses x2
+C491	Patient Care: Alternating Pressure Mattresses x2
+C492	Patient Care: Alternating Pressure Mattresses x2
+C493	Patient Care: Medicine Cups
+C494	Patient Care: Medicine Cups
+C495	Patient Care: Medicine Cups
+C496	Patient Care: Medicine Cups
+C497	Pillows x3
+C498	Patient Care: Seat Cushions; Elbow/Heel Protectors; Orthotic Arch Supports
+C499	Disposable BP Cuffs (Only)
+C500	Immobilizers: Cervical Collars; Shoulder; Wrist
+C501	Immobilizers: 13 Cast Boots; 2 Ankle; 4 Wrist
+C502	7 Foam Pillows; 6 Elbow/Heel Protectors
+C503	6 Foam Pillows; 12 Elbow/Heel Protectors
+C504	Bed Linens; Pillows
+C505	Immobilizers: Wrist; Knee; Shoulder
+C506	Abduction Pillow; 3 Neck Pillows
+C507	Elbow/Heel, Hip Protectors
+C508	Immobilizers: Shoulder; Cervical; Clavical
+C509	Patient Care: Abd. Binders; Leg Lifters; Bedside Bags; Sitz Bath; Gait Belt; Med Cups; Lamb's Wool
+C510	XL Post-Mortem Shroud Packs
+C511	Immobilizers: Cervical Collars
+C512	Immobilizers: Knee; Ankle; Cast Boots
+C513	Elbow/Heel, Hip Protectors
+C514	Immobilizers: Shoulder; Arm; Wrist
+C515	Patient care: Foam
+C516	Exam table paper x 100
+D4	???
+D8	Specimen Collection
+D56	???
+D92	???
+D111	???
+D149	blood collection 11 2012-2015
+D151	47 specimen containers no exp.
+D156	Blood Collection/Vacutainer Supplies
+D159	Lab Supplies
+D160	Blood Collection
+D163	50 Speculums: Assorted Sizes
+D164	50 Speculums: Assorted Sizes
+D165	Vacutainer Supplies
+D167	Lab Supplies
+D169	Pipets x6 Boxes of 500
+D170	Blood Collection Supplies
+D171	Vaginal Swabs
+D172	Vaginal Swabs
+D173	Specimen Collection: Cups (Sterile & Unsterile); Vacutainer Tubes; Culture Swabs
+D174	???
+D175	???
+D176	Biohazard Bags
+D177	Biohazard Bags
+D178	Biohazard Bags
+D179	Biohazard Bags
+D180	Biohazard Bags
+D181	Speculums: Metal & Plastic (All Sizes)
+D182	Lab Supplies
+D183	Lab Supplies
+D184	Lab Supplies
+D185	Lab Supplies
+D186	Lab Supplies
+D187	Lab Supplies
+D188	Lab Supplies
+D189	Lab Supplies
+D190	Lab Supplies
+D191	Lab Supplies
+D192	Lab Supplies
+D193	Lab Supplies
+D194	Lab Supplies
+D195	Lab Supplies
+D196	Specimen Containers x250
+D197	Vaginal speculums
+D198	OB Pads; Panty Liners; Nursing Pads
+D199	Specimen containers
+D200	OB Pads
+D201	OB Pads
+D202	Lab Supplies: EZ Nest Sample Cups x5 Bags; Petri Dishes x25; Urine Vacutainers x100; Blood Collection Tubes x300
+D203	Specimen Collection Supplies
+D204	Specimen Collection Supplies
+D205	Biohazard Lab Bags
+D206	Vacutainer Blood Collection Needles 21G x 1 1/4"
+D207	Blood Collection/Vacutainer Supplies
+D208	Blood Collection Supplies
+D209	Blood Collection: Needle Holders; Drain Bags; Etc.
+D210	Specimen Containers
+D211	Specimen Containers
+D212	Lab Collection: Assortment
+D213	Hemoccult Sensa Slides
+D214	Blood Collection Supplies
+D215	Specimen Containers (Sterile & Unsterile)
+D216	Blood Collection/Vacutainer Supplies
+D217	Blood Collection Supplies
+D218	Lab Blood Collection
+D219	Blood Collection Supplies
+D220	Lab Supplies: Specimen Cups; Biohazard Bags; Etc.
+D221	Blood Collection Supplies
+D222	Vacutainer Supplies
+D223	Specimen Containers
+D224	Vacutainer Supplies
+D224	???
+E60	???
+E81	Adult Depends
+E87	Adult Depends
+E88	Adult Depends
+E135	Adult Depends
+E149	Depends (Adult)
+E159	Depends (Adult, M/L)
+E167	Depends (Adult)
+E172	Depends (Adult)
+E185	???
+E196	Adult Diapers
+E205	Depends (Adult)
+E231	Adult diapers
+E234	Adult Diapers
+E235	???
+E242	Adult Diapers
+E255	adult diapers
+E281	???
+E310	Adult diapers 5 packs no exp
+E311	Adult diapers 7 packs no exp
+E330	adult depends
+E331	pedeatric supplies (02 masks feeding tubes,suction catheters
+E332	Adult diapers 6 pr.of 12
+E333	9 Packages Depends
+E334	8 Packages Incontinet liners
+E335	10Pkgs. of 25 Icontinet liners
+E336	Depends XL@SM
+E337	Adult diapers 8 packs
+E338	72 adult diapers
+E339	Infant diapers
+E340	Adult diapers x 169
+E341	Pediatric trach x 22, Ambu x 5, suction bulb x 12, burette x 2
+E345	???
+E346	Adult diapers XXL
+E348	Adult diapers
+E350	Adult incontenance briefs
+E351	Underpads (sterile)
+E352	Adult diapers x 106
+E353	Chux (disposable)
+E354	Adult diapers
+E355	Adult diapers
+E356	Adult diapers
+E357	Adult diapers
+E358	Adult diapers
+E359	Adult diapers
+E360	57 Entral pump delivery system, air entrainment mask, 2 mini chest drains, breathing circuits
+E361	Adult diapers x 104
+E362	Adult diapers x 6 pks
+E363	Adult diapers x 8 pks
+E366	Adult diapers x 146
+E368	Disposable chux x 20
+E369	Adult diapers x 6 pks
+E370	Pediatric electrodes x 100, O2 probes x 60, feeding syringes x 25
+E371	Disposable chux x 20 packs
+E372	Disposable chux x 22 packs
+E373	Disposable chux x 22 packs
+E374	Adult diapers x 125
+E376	Pant liners x 220
+E377	Diapers child
+E378	Adult diapers 10 packs
+E379	Adult diapers
+E380	Pediatric respiratory supplies
+E381	6 packs belted undergarments
+E382	Pediatric respiratory circuit
+E383	Adult diapers 9 packs
+E384	Adult diapers 9 packs
+E385	Adult diapers 8 packs
+E386	Adult diapers
+E387	Adult diapers
+E388	Adult diapers
+E389	Adult diapers
+E390	Adult diapers
+E391	Adult diapers
+E392	Adult diapers
+E393	Adult diapers
+E394	Adult diapers
+E395	Adult diapers
+E396	Adult diapers
+E397	Adult diapers
+E398	Adult diapers
+E399	Adult diapers
+E400	Adult diapers
+E401	Adult diapers
+E402	Adult diapers
+E403	Adult diapers
+E404	Adult diapers
+E405	Adult diapers
+E406	Adult diapers
+E407	Adult diapers
+E408	Adult diapers
+E409	Adult diapers
+E410	Adult diapers
+E411	Adult diapers
+E412	Adult diapers
+E413	Adult diapers
+E414	Adult diapers
+E415	Adult diapers
+E416	Underpads
+E417	Underpads
+E418	Adult male night guard diapers
+E419	Adult diapers
+E420	Adult diapers
+E421	Adult diapers
+E422	Adult diapers
+E423	Adult diapers
+E424	Adult diapers
+E425	Adult diapers
+E426	Adult diapers
+E427	Adult diapers
+E428	Adult diapers
+E429	Adult diapers X 144  25 lbs.
+E430	Adult diapers-92 sm, 34 lrg 22 lbs.
+E431	Adult diapers X 144  25 lbs.
+E432	Underpads/Chux 25 lbs.
+E433	Adult diapers 23 lbs.
+E434	Underpads X 17 packs 25 lbs.
+E435	Underpads X 12 packs 19 lbs.
+E436	Adult diapers 7 packs medium 19 lbs.
+E437	Adult diapers 7 packs medium 19 lbs.
+E438	Adult diapers x 177  23 lbs.
+E439	Underpads    22 lbs.
+E440	Underpads  23 lbs.
+E441	Pediatric oral syringes+droppers  05mi-60mi  = 10lbs
+E442	Underpads (disposable) 16 packs of 10 = 18lbs.
+E443	Adult diapers
+E444	Under pads  =26 lbs
+E445	Pedeatric diapers
+E446	22 sterile underpads 24" x36" =13lbs
+E447	7 pedatric ambu bags = 5lbs
+E448	22 Sterile cloth underpads x 14lbs
+E449	Adult diapers 2 pks sm., 1 pk lrg. 33 loose
+E450	Diapers 307 preemie, 32 youth 15.5
+E491	Under pads (chux) disposable X 141 25 lbs.
+E493	8 Pedatric chest drain kits = 25lbs
+E494	Pedatric personal care(powder,shampoo,blankets etc.) =30lbs
+E455	Pedatric respiratory supplies(suction catheters etc./ EKG edrct rods /Disp. blood pressure cuffs) = 15lbs.
+E456	Pedatric feeding supplies+ Umbilical clips ties@blood= 13lbs
+E457	Adult diapers x121 =  19.5lbs
+E451	47 O/R Paper Gowns
+E452	Gowns (unsterile paper)29 lg.+25 ex lg.
+E453	47 ex lg gowns (unsterile paper)
+E454	298 Prs. Sterile gloves
+E459	Gowns (OR) non sterile
+E460	Masks -950OR laser-/ 50 Dental Isolation shields
+E461	50 OR Gowns gowns non sterile
+E462	Gowns non sterile
+E463	41 Unsterile Gowns
+E464	945 OR Masks non sterile
+E465	310 Gloves unsterile
+E466	Gloves Boxed (Unsterile) Medium - 2 boxes; small - 7 boxes; 1 bag of misc. loose
+E467	Gloves Boxed (Unsterile) Small - 10 boxes
+E468	Gloves (Sterile) Size M (55); L (3); 5.5 (1); 6 (10); 6.5 (38); 7 (33); 7.5 (50); 8 (24); 8.5 (2)
+E469	GLoves Boxed (Unsterile) Medium - 2 boxes; Large - 5 boxes; X-Large - 3 boxes
+E470	Gloves (sterile) Size 6 (25); 6.5 (93); 7 (34); 7.5 (12); 8 (29); 8.5 (2)
+E471	Gowns Paper (Unsterile) x 50
+E472	Gowns Paper (Unsterile) x 40
+E473	Sterile OR Gowns (31); Sleeves (6)
+E474	Gowns, OR (50)
+E475	OR Hats (177); Shoe covers
+E476	22 O/R Paper Gowns +20 Blue Patient + 30 White cover gowns non sterile
+E477	Sterile gloves sizes med to 7.5
+E478	Sterile gloves sizes 6 to 8.5
+E479	310 Unsterile gloves assorted sizes
+E480	8 Boxes Surgical Head Covers
+E481	18 Boxes O/R Masks
+E482	292 Head Covers
+E483	O/R Paper Gowns un sterile
+E484	45 O/R Paper Gowns un sterile
+E485	Gloves Assorted sizes  sterile
+E486	Gowns (O/R paper -40,Film Gowns-45
+E487	Masks Face O/R
+E488	35 O/R Gowns sterile
+E489	Sterile Gloves
+E490	Unsterile Gloves
+E495	46 O/R Gowns
+E496	Unsterile boxed gloves x200 lg., x100 sm., x500 XL, x150 Md.
+E497	UnsterileBoxed gloves 800 med.
+E498	1000 unsterile boxed gloves size x/lg
+E499	1000 unsteril boxed gloves size x/lg
+E500	1100 unsterile boxed gloves
+E501	1200 unsterile boxed gloves size sm.
+E502	1200 unsterile boxed gloves size x/lg.
+E503	1300 unsterile boxed gloves size med.
+E504	Unsterile gloves loose bags assorted sizes
+E505	Unsterile gloves assorted sizes
+E506	1000 unsterile boxed gloves size x/lg
+E507	1000 unsterile boxed gloves size x/lg
+E508	1000 unsterile boxed gloves size x/lg
+E509	1000 unsterile boxed gloves size x/lg
+E510	1000 unsterile boxed gloves size x/lg
+E511	600 x/sm 400 sm  unsterile boxed gloves
+E512	1100  unsterile boxed gloves size x/lg
+E513	1000 unsterile boxed gloves sixe x/lg
+E514	Unsterile boxed gloves sizes 500 sm +500 lg
+E515	1000 unsterile boxed gloves size x/lg
+E516	Unsterile gloves 226 assorted sizes
+E517	160 Masks@Hats+shoe covers+ leggings
+E518	1000 unsterile boxed gloves ex/lg
+E519	1000  unsterile boxed gloves
+E520	Personal care (lotion,wash,shampoo,)
+E521	Masks Procedure ear loop
+E522	Gloves sterile (sizes 7 to 10.5, Exam gloves)
+E523	52 Unsteril Paper Gowns
+E524	600 Boxed Gloves
+E525	600 Boxed Gloves - small assorted sizes
+E526	Boxed Gloves (400 sm.,700 med. assorted loose
+E527	Gloves( sterile sizes 5.5 to 7.5 total 177
+E528	25 O/R Gowns
+E529	Gloves (sterile) 72 size 6 , 39 size 6.5 , 65 size 7
+E530	Gloves sterile ( size 8 x38 , size 8.5 x48 , large x123 , med. x18 , sm. x8
+E531	Sterile Exam Gloves ( Sizes - 1-22 , med -65 , 6 -42 , 7-50
+E532	Gloves Boxed unsterile  sizes med x6 ,sm.x6 ,x-sm. x3
+E533	Gloves Boxed  (sm. size x 12 )
+E534	Gloves Boxed
+E535	Sterile Exam Gloves ( sizes ,7.5 x90 ,8x60 ,8.5x40 )
+E536	33 Gowns O/R
+E537	Masks ( O/R procedure ear loop )
+E538	Gowns Paper O/R x 48
+E539	50 Gowns O/R
+E540	Gowns O/R Paper x 40
+E541	Gowns  Paper O/R x 48
+E542	Gloves assorted sizes 5.5 to 9
+E543	Gowns O/R Paper x47
+E544	Unsterile Paper Gowns x 50
+E545	Gowns Paper  O/R x 50
+E546	Gowns Paper O/R x 50
+E547	unsterile boxed  gloves
+E548	unsterile boxed gloves
+E549	unsterile gloves, loose
+E550	50 paper Or gowns
+E551	OR masks
+E552	unsterile boxed gloves, XS, #8
+E553	unsterile boxed gloves, L, #10
+E554	unsterile boxed gloves, #10
+E555	disposable blue plastic gowns, 8 boxes of 15
+E556	unsterile boxed gloves, #10
+E557	unsterile boxed gloves, #10
+E558	Gloves (Boxed unsterile X-Sm.X 10 boxes)
+E559	Gloves ( Boxed Unsterile X-Sm. x 9 boxes )
+E560	Gloves Unsterile (med x 11 boxes )
+E561	Gloves ( boxed unsterile X sm. X 11 boxes
+E562	Masks  ( Molded face Masks x 11 boxes 100 masks per. box / Ear Drop Procedure masks x 11 boxes 50 masks per. box
+E563	Gloves Paper O/R x-50
+E564	Gloves (sterile) all sizes
+E565	Gloves all sizes
+E566	Gowns (unsterile, paper) x 50
+E567	Gowns (unsterile, paper): Lg. x 2; XL x 29; 2XL x 3; 3XL x 8; 4XL x 1
+E568	Gowns (unsterile, paper) x 50
+E569	Gowns (unsterile, paper) x 50
+E570	Masks (unsterile): approx. 700 cone (regular); 52 heavy-duty cone; approx. 150 surgical; loose
+E571	Head Covers
+E572	Sterile Gloves x156
+E573	Gloves Boxed Unsterile x lgx3 ,Lg x 7
+E574	Gloves Boxed Unsterile ( 1 bag loose sizes 6,61/2 ,7,71/2
+E575	Gloves Unsterile 2 Loose Bags include sizes (6-61/2  -7 1/2 )
+E576	Gloves B0xed Unsterile Sizes (8 med. 2-ex lg. all latex)
+E577	Gloves Boxed Unsterile Lg. x 13 all vinal
+E578	Gloves Boxed Unsterile Vinal Lg. x 10
+E579	Gloves Boxed Unsterile  X/L x 10
+E580	Masks
+E581	Gowns (unsterile Paper) x 54
+E582	Masks
+E583	gloves, boxed, unsterile, 10 boxes of 100
+E584	gloves, boxed, unsterile, 10 boxes of 100
+E585	gloves, boxed, unsterile, 10 boxes of 100
+E586	gloves,boxed, unsterile, 9 boxes of150
+E587	gloves, boxed,unsterile, 9 boxes of 150
+E588	gloves, steril,assorted sizes
+E589	gloves,unsterile, assorted sizes
+E590	gloves, unsterile, boxed, assorted sizes
+E591	gloves, unsterile, boxed med #9, large #1
+E592	Gloves, unsterile, boxed
+E593	gloves, sterile, assorted sizes
+E594	gowns, paper
+E595	OR gowns, paper
+E596	unsterile boxed gloves
+E597	unsterile paper gowns
+E598	sterile surgical gowns
+E599	unsterile paper gowns
+E600	sterile surgical, drapes, etc.
+E601	Gloves (sterile) 5.5x10,6x2,6.5x60,7x6,7.5x45,8x60,8.5x2,smx25,medx19,lrgx2
+E602	Gloves (sterile) 5.5x13,6x20,6.5x80,7x3,7.5x80,8.5x8
+E603	Gloves Boxed (unsterile) 10 boxes of 100 ea medium all vinyl
+E604	Gloves (unsterile) ( boxes lrg, 1 box xlrg
+E605	Gloves (unsterile) 10 boxes lrg
+E606	Gloves (unsterile) sm x 8 boxes, lrg x 1 box, 1 box xlrg
+E607	Gowns OR (paper)
+E608	Gowns OR (paper)
+E609	Gloves Loose (Unsterile)
+E610	Masks-Surgical loop style
+E611	Gowns (unsterile paper)
+E612	Gowns (unsterile paper) X47
+E613	Gloves boxed unsterile lrg x 10
+E614	Gloves exam loose unsterile various sizes
+E615	Gloves exam loose unsterile various sizes
+E616	Gloves sterile 6x1, 6.5x37, 7x5, 7.5x70
+E617	Gloves loose unsterile 5.5x3, 6x16, 6.5x22, 7x58, 7.5x48, 8x74, 8.5x37, 9x4
+E618	Gloves unsterile boxed 10 boxes xl, 2 boxes lrg
+E619	Gloves loose unsterile 5.5x3, 6x16, 6.5x22, 7x58, 7.5x48, 8x74, 8.5x37, 9x4
+E620	Gloves boxed unsterile 7 lrg, 3 med
+E621	Gowns (unsterile paper) X48
+E622	Gowns (unsterile paper) X48
+E623	Gowns (unsterile paper) X48
+E624	Isolation Gowns x235
+E625	Masks: procedure x 8 boxes; cone x 4 boxes; face shields x 2 boxes; filter x 12 boxes
+E626	Gowns (unsterile, paper)
+E627	Gloves (unsterile, boxed): large x 5 boxes; medium x 1 box; small x 4 boxes
+E628	Gloves (unsterile, boxed): medium x 9 boxes; one size fits all x 1 box; 2 bags loose gloves (large x 1 bag; no size x 1 bag
+E629	Gloves (unsterile, loose): large x 111; rest of box no size in 3 bags
+E630	Gloves (unsterile, loose): 7.5 x 95; 8 x 81; 8.5 x 107
+E631	Gloves (unsterile, loose): 5.5 x 227; 6 x 15; 6.5 x 21; 7 x 25; medium x 16
+E632	Gloves (sterile): 8.5 x 31; 8 x 49; 7.5 x 46; 5.5 x 43; large x 43
+E633	Gloves (sterile): 6 x 203
+E634	Gloves (sterile): 7 x 161; medium x 41
+E635	Gloves (sterile): 6.5 x 177; 9 x 1; 6 - 8.5 x 3; 9 and larger x 1; 6 - 9 x 31
+E636	Gloves (sterile): 8 x 180
+E637	Gloves (sterile): 7.5 x 185
+E638	Gloves (sterile): 8.5 x 180
+E639	Masks: procedure x 2 boxes, face shields x 3 boxes, surgical x 11 boxes, respirator x 2 boxes, loose bags x 3
+E640	Gowns (sterile) x 37
+E641	Gowns (unsterile, paper) x 66
+E642	Gowns (unsterile, paper) x 49
+E643	Gloves (sterile): small x 39, medium x 170, large x 69
+E644	Gloves (sterile): 5.5 x 2, 6 x 22, 7 x 48, 8 x 19, 8.5 x 116
+E645	Gloves (unsterile, boxed): small x 6 boxes, medium x 5 boxes
+E646	Gloves (unsterile, boxed): medium x 10 boxes
+E647	Gloves (unsterile, boxed): small x 10 boxes
+E648	Gloves (unsterile, boxed): small x 10 boxes
+E649	Gloves (unsterile, boxed): small x 10 boxes
+E650	Shoe covers and leg covers
+E651	Gowns (unsterile, paper) x 50
+E652	Gowns (unsterile, paper) x 52
+E653	Gloves (unsterile, boxed); small x 3 boxes, large x 3 boxes, X-large x 4 boxes
+F14	Warming Device (Bair Hugger)
+F77	Personal Care
+F91	Personal Care
+F92	99 Anti-Embolism Stockings
+F96	Personal Care
+F99	Facial Tissues 55 boxes
+F100	Facial Tissues 55 boxes
+F101	Facial Tissues 55 boxes
+F110	Facial Tissues 55 boxes
+F111	Facial Tissues 55 boxes
+F117	Facial Tissues 55 boxes
+F118	Facial Tissues 55 boxes
+F119	Facial Tissues 55 boxes
+F120	35 Toothettes; 12 Body Wipes; 1 Sitz Bath; Shave Kits; Deodorant
+F121	Toothettes
+F122	Patient Care: Abd. Binders; Come Castile Soap
+F123	Personal Care
+F124	Oral Care: Suction Tubing, Catheters, Mouth Swabs
+F127	Fixodent Toothpaste
+F128	Assorted Personal Care Supplies
+F129	Personal Care: Towelettes; 4 Cushions; 1 Range of Motion Exerciser; Medicine Cups, Shower Caps
+F130	Bladder Control Pads x10 Packs
+F131	Bladder Control Pads x8 Packs
+F132	Bladder Control Pads; Soap; Razors; Powder
+F133	Patient Lift Pads x3; Wheelchair Pads x2
+F134	Nail Brushes x3 Boxes
+F135	Hair Combs
+F136	Hair Combs
+F137	Nail Brushes x2; Deodorant x60
+F138	Mouth Wash, Lotion, Deodorant
+F139	200+ Black Plastic Hair Combs
+F140	200+ Black Plastic Hair Combs
+F141	Shampoo Caps
+F142	Personal Care Supplies
+F143	Oral Care
+F144	Anti-Embloism Stockings: Sm. x65; Med. x18; Lg. x6; XL x3; XXL x16
+F145	Oral Care
+F146	Shampoo Caps; Shower Caps
+F151	Assorted Orthotics: Heel, Toe, Shoe
+F152	Personal Care
+F153	Personal Care
+F154	Patient Care: Misc.
+F155	Eye Care: Pads; Shields; Spears; Charts; Irrigators
+F155	Personal Care: Mix
+F156	Opthamalic Surgery: Eye Cannulas; Sponges; Dressings; Irrigators; Eye Pack; B&L Lens Delivery
+F157	Eye Pads and Shield
+F158	Eye Pads
+F159	Dental Bibs
+F160	Dental Bibs
+G40	Ortho Immobilizers / Wrist Splints
+G16	Lab Supplies/Specimen Collection
+G20	Cast Boots (Orthro)
+G38	Foam
+G51	Shoulder Immobilizers (Orthro)
+G221	foam
+G241	heel protectors no exp
+G242	immobilelizors no exp
+G243	immobilizers
+G245	Knee Immobilizers,low wrist splints,@slings
+G247	back supporters @cervical collers
+G248	Imobilizers,cervical collars,boots,slings
+G250	10 foam
+G252	1 Knee brace, 6 cervical collars, 6 arm slings, 1 back brace
+G253	Positioning foam
+G254	Wrist splints, surgical shoes, cervical collar, knee imobilizer, EZ boots, heel booties, knee abductor pillow, jobst stocking
+G255	Elbow , heel protectors
+G256	Imobilizers- cervical collars, slings, knee braces
+G257	Elbow, heel protectors
+G259	Foam 2 carter pillows face foam ones
+G260	Imobilizer-cast shoes, cervical collars, slings
+G261	Imobilizer - knee, cervical collars
+G262	Immobilizers Assorted
+G263	Immobilizers Knee, wrist, cervical
+G264	Imobilizers-knee,foot,shoulder
+G265	2 Leg/Foot brace, 1 mini foot brace, 3 arm components w stress ball
+G267	Imobilizers-knee,foot,neck, wrist sling
+G268	Soft boot x 12 heel protector x 13
+G269	Foam X 5
+G270	Soft boot X 50
+G271	Soft boot X 50
+G272	Cervical collars x 20
+G273	Cervical collars x 19
+G274	Cervical collars x 25, knee brace x 1, foot boot x 7 ankle x 2
+G275	Cervical collars x 63
+G276	Cervical collars x 63
+G277	Cervical collars x 56
+G278	Cervical collars x 61
+G279	Ortho supplies
+G280	Imobilizers-3 knee, 10 back braces, 15 arm slings, closed heel walker
+G281	Assorted foam pieces Unsterile
+G282	Various imobilizers
+G283	Knee imobilizers
+G284	Imobilizer boots
+G285	Imobilizers-leg, wrist, clavical, foot
+G286	Imobilizers- Back brace, pelvic, knee, heel, hernia
+G287	Knee imobilizers Non sterile 25 lbs.
+G288	Cervical collars, spinal braces 14 lbs
+G290	Imobilizers-17 arm slings, 3 shoulder, 13 wrist, 3 knee 13.5 lbs.
+G291	Post-op walking boots X 4, foot boots X 3, foam ankle protector 20 lbs.
+G292	Heel protector X 22 8 lbs.
+G293	Heel protector, elbow protector, 1 foot cradle 9 lbs.
+G294	Imobilizers-heel protectors X 8, boots X 4, ankle brace X 1
+G295	Misc. Tracheostomy Supplies: Holders, Masks, Care Kits, etc.
+G296	54 Tracheostomy Care Kits
+G297	53 Tracheostomy Care Kits
+G298	Tracheostomy Tube Inner Cannulas
+G299	50 Respiratory Tracheostomy Kits
+G300	56 Tracheostomy Care Kits
+G301	Tracheostomy (38 tubes, 40 inner cannulas, 12 suction systems, 20 inner cannulas, 40 trach. tube holders
+G302	63 Tracheostomy Masks; 49 Drainage bags; 117 Holders/ties stoppers; 6 care kits some sterile
+G303	Tracheostomy Tubes @ Supplies
+G304	Trachestomey Care Kits x 48 + Trach Ties
+G305	tracheostomy tubes(33), trach masks(15), inner cannulas(100)
+G306	misc tracheostomy supplies
+G307	Trach tubes Inner Cannula sizes 3-10
+G308	Misc. tracheostomy supplies
+G309	Tracheostomy care kits x 52, mini care kits x 23
+G310	Tracheostomy care kits x 24
+H143	Dressing Changes
+H215	unsterile dressings
+H226	steril dressings  ex 9/12
+H239	unsterile dressings
+H241	Central line care kits+extra masks
+H242	Misc. (dressing,Proforce packing strips ,unibotts
+H248	Unsterile dressings lrg absorbable
+H250	Sterile Dressings
+H252	Dressings (UNSTERILE)
+H268	Dressings (sterile)
+H269	Dressings (unsterile)
+H273	Dressing sterile assorted x 16.5lbs
+H275	Unna boot, coban X 55
+H276	Unsterile dressings-tubular retainer net, ABD, 2x2,4x4 18.0 lbs.
+H278	Sterile dressing  ABD 4x4 sterile 14.5lbs
+H279	Unsterile dressing 14.5lbs
+H280	Oxygen Tubing (Unsterile)
+H281	60 Oxygen Nasal Cannula (Unsterile)
+H282	Respiratory Mix
+H283	Respiratory Mix
+H284	Oxygen Tubing
+H285	Flexible Blue Oxygen Tubing
+H286	Flexible Blue Oxygen Tubing
+H287	Flexible Blue Oxygen Tubing
+H288	Oxygen Tubing
+H289	Oxygen Nasal Cannulas x76
+H290	Ambu Bags (Infant/Peds) x40
+H291	Oxygen Tubing (Unsterile)
+H292	70 O2 Nasal Cannula (Unsterile)
+H293	1 Nebulizer Machine +25 Nebulizers
+H294	12 Ambu Bags (Adult) non sterile
+H295	Ambu bags 23 infant, 9  pedatric
+H296	Tubing - Respiratory/Anesthesia
+H297	60 Respratory Oxygen Tubing
+H298	Tubing corrugated Flex
+H299	31 Humidifiers 210 Humid Vent ,Condensor Humidifier
+H300	Respirator Mix non sterile
+H301	30 Oxygen Masks
+H302	75 Oxygen Nasal Cannulas
+H303	40 Adult oxygen masks
+H304	70 Oxygen nasal/cannula masks
+H305	70 Oxygen Nasal/cannaula Masks
+H306	350 Tubing Connectors
+H307	400 Straight Tubing Connectors
+H308	400 Straight Tubing Connectors
+H309	Ambu Pediatric x 25
+H310	400 Straight Tubing Connecters
+H311	Nebulizers ( 42 hand held 36 masks , 9 tubing , 1 bag of mouth pieces
+H312	Oxygen Guages @ regulators
+H313	14 Adult Ambu Bags
+H314	oxygen tubing
+H315	oxygen tubing
+H316	nasal cannula
+H317	airways, unstrile
+H318	Ambu Bags Peadiatric x 20
+H319	Oxygen Tubing
+H320	2 Nebulizers with Tubing
+H321	Ambu Bags (pediatric) x 26
+H322	Ambu-Bags (adult) x 12
+H323	60 O2 Masks; 50 Nasal Cannula; 40 Biflo Masks
+H324	adult oxygen masks with tubing, #100
+H323	Oxygen masks
+H324	Ambu bags, infant/child
+H325	CPAP masks, supplies, 1 machine
+H326	CPAP, nasal and full masks
+H327	Ambu bags, adult, #14
+H328	Humidifiers for nebulizers
+H329	O2 masks, nasal cannulas, tracheostomy masks
+H330	Ambu bags 11 adult, 5 manual resusitators
+H331	O2 tubing
+H332	Respiratory mix- Connectors, filters etc
+H333	Respiratory mix- Aero chambers, spriometers, peak flow meters
+H334	Respiratory mix
+I98	15 Funnels; 17 Ear/Ulcer; 175 Aseptos
+I101	40 Glucometers [No Test Strips]
+I102	Bulb Syringes & Funnels
+I104	Irrigation Trays x52
+I105	Irrigation Trays x56
+I106	Soft Boots x12
+I107	Bulb Syringes (Sterile) x100
+I109	Bulb Syringes: 63 Sterile; 55 Unsterile Ear/Ulcer Syringes: 2 Sterile; 20 Unsterile
+I110	BP Cuffs x67
+I111	25 Irrigation Trays; 9 Irrigation Containers w/ Syringe
+I112	Bulb Syringes: 80 Sterile; 40 Unsterile Ear/Ulcer Syringes: 1 Sterile; 50 Unsterile
+I113	18 BP Cuffs; 1 Thigh Cuff
+I115	EKG Adult Electrodes (115 Sets of 5)
+I116	Defibrillator Pads (Unsterile) x76
+I117	Defibrillator Pads (Unsterile) x105
+I118	Cardiovascular Mix
+I119	EKG Electrodes
+J128	Paper Gowns (Unsterile)
+J132	Gowns (Paper, Unsterile)
+J182	Paper Gowns (Unsterile)
+J222	Gowns (Sterile)
+J225	Sheets (Paper, Sterile)
+J228	Gowns (Paper, Unsterile)
+J243	Gowns (Paper, Unsterile)
+J244	Gowns (Paper, Unsterile)
+J245	Gowns (Paper, Unsterile)
+J248	Gloves (Unsterile, loose)
+J257	Gowns (Paper, Unsterile)
+J259	Gowns
+J261	Gowns (unsterile)
+J262	Gowns
+J264	Gowns (Unsterile)
+J324	unsterile paper gowns
+J337	Exam Gloves x36
+J378	44 unsterile paper gowns
+J380	50 unsterile paper gowns
+J382	Loose exam gloves unsterile
+J383	16 Arthoscopy drapes
+J384	Sterile x 38
+J385	35 unsterile plastic gowns
+J387	Paper gowns 86 ea. UNSTERILE
+J388	Exam gloves UNSTERILE
+J389	Exam gloves UNSTERILE
+J390	Exam gloves UNSTERILE
+J391	Impervious stockinettes 90 ea.
+J396	Paper gowns 40 ea. unsterile
+J397	Exam gloves (unsterile)
+J398	Exam gloves (unsterile)
+J399	Exam gloves (unsterile)
+J400	Exam gloves (unsterile)
+J401	Exam gloves (unsterile)
+J402	Exam gloves (unsterile)
+J403	Steril3 sheets
+J404	unteril gowns paper x 48 & protective plastic gloves x67
+J405	Exam gloves loose not sterile
+J406	boxed exam gloves unterile,sm10,med4,lg4
+J407	Paper gowns unsterile
+J408	Paper gowns unsterile
+J409	185 pr. exam gloves
+J410	175 pr. exam gloves
+J411	200 pr. exam gloves
+J412	Paper gowns unsterile
+J413	175 pr. exam gloves
+J414	Gowns (Sterile)
+J415	Gloves (unsterile)
+J416	13 boxes vinyl gloves (unsterile)
+J417	12 boxes vinyl gloves (unsterile)
+J418	12 boxes vinyl gloves (unsterile)
+J420	13 boxes vinyl gloves (unsterile)
+J421	13 boxes vinyl gloves (unsterile)
+J422	13 boxes vinyl gloves (unsterile)
+J423	13 boxes vinyl gloves (unsterile)
+J424	12 boxes vinyl gloves (unsterile)
+J425	12 boxes vinyl gloves (unsterile)
+J426	13 boxes vinyl gloves (unsterile)
+J427	12 boxes vinyl gloves (unsterile)
+J428	13 boxes vinyl gloves (unsterile)
+J429	Loose gloves 5 boxes small, 13 boxes med., 3 boxes lrg.
+J430	Gowns (Sterile) x 48
+J431	Exam gloves (non sterile)
+J432	Exam gloves (non sterile)
+J433	Exam gloves (non sterile)
+J434	Exam gloves (non sterile)
+J435	Gowns 50 each Unsterile
+J436	Gowns 36 each Unsterile
+J437	gloves small/med unsterile
+J438	gloves small/med unsterile
+J439	Exam gloves (non sterile)
+J440	Exam gloves (non sterile)
+J441	Paper gowns unsterile, 33 XL, 10 lrg, 1 sm
+J442	Paper gowns 40 ea.
+J443	Unsterile gowns 50 ea.
+J444	Exam gloves (non sterile) 10 boxes
+J445	Exam gloves (non sterile) 8 boxes
+J450	Paper gowns (sterile)
+J451	Surgical gowns X 30
+J452	Surgical gowns 35 lrg, 2 xxlrg  17 lbs.
+J453	Surgical gowns X 40
+J454	Surgical gowns X 44 (sterile) 26 lbs.
+J455	Surgical gowns X 40 (sterile) 23 lbs.
+J456	Surgical gowns X 33 (sterile) 16 lbs.
+J457	Surgical sheets X 20 25 lbs.
+J458	Surgical gowns (sterile) 28 xxlrg, 19 lrg 18 lbs.
+J459	Surgical sheets X 52 18 lbs.
+J460	Surgical gowns X 36 17 lbs.
+J461	Surgical gowns (sterile) X 36 18 lbs.
+J462	Surgical gowns X 33 (sterile) 22 lbs.
+J463	Surgical gowns X 40  19 lbs.
+J464	Exam gloves loose unsterile 17 lbs.
+J465	Exam gloves loose unsterile 17 lbs.
+J466	Boxed exam gloves (unsterile) sm nitrile @7 gloves, Latex #4 16.5 lbs.
+J467	Gloves unsterile paper x lg x50 lg x2
+J468	Gowns (sterile paper)xxx-lg x 1, xx-lg x 8 ,x lg x 13, lg x12
+J469	Gowns unsterile paper xxx-lg x 2 ,x lg x46, lg x 1- 20.5 lbs
+J470	Unsterile paper gowns x 58  -22 lbs
+J471	Unsterile paper gowns x 49 -20 lbs.
+J472	Unsterile paper gowns x lg.x46 -xxx lg. x 3 -lg. x 2 = 9.5 lbs.
+J473	Gowns sterile paper 9 pcs. =18 lbs.
+J474	Unsterile paper gownsx50 =17lbs.
+J475	Paper gowns unsterile x42 =21lbs.
+J476	Unsterile exam glovesx197 various sizes =17 lbs.
+J477	Unsterile exam glovesx249 various sizes =17 lbs.
+J478	gowns unsterile xl x 42-L x5 impervious x-XL x7=21 lbs.
+J479	Exam gloves boxed unsterile  -size med.(nitirlex8 vinal x4  =16lbs
+J480	Gowns unsterile paper xxx-lgx1-xx-lgx1-x-lg x44-lg- x 8  =19lbs
+J481	Gowns unsterile paper /xx lg x 5 /x-lg x 40/lg x 3 plastic =21.5 lbs
+J482	Unstetile exam gloves various sizes x 258  =18lbs
+J483	Gowns unsterile paper (xxx lg xi) (xx lg x3) (x lg  45) (lg x 3 )  =21 lbs
+J484	boxed unsterile gloves med. x 12= 15lbs
+J486	Boxed unsterile gloves lg x 12 = 16.5lbs
+J487	Gowns unsterile paper H01 =22.5lbs
+J488	Gowns unsterile paper (xlx44) (xxlx1) (lx2)  =18.5lbs
+J489	Gowns Steriel paper 6 lrg, 12 X-Lrg, 15 XX-Lrg, 1 XXX-Lrg 19 lbs.
+J490	Gowns non sterile X 40 17.5 lbs.
+J491	Gowns non sterile X 46 19.5 lbs.
+J492	surgical sheets,drapes, cover, sterile X22, 24 lbs.
+J493	gical sheets drapes@covers (sterile)x27 = 24lbs.
+J494	Unsterile paper gowns x75 =20lbs
+J495	Unsterile paper gowns x32 =20lbs
+J496	Gloves (unsteril loose) sizes 5.5thru 9 =16lbs
+J496	boxed unsterile gloves sm.x 12 = 15lbs
+J497	Gloves (unsterile loose)sizes 6thru 9 =18lbs
+J498	Feeding bags, gravity: Enteral (9); Feeding syringes (50)
+J499	Ostomy supplies: urostomy pouch 1.75" (90); skin barrier rings 1.75" (30); ostomy barriers (40); stomhesive (10); stoma powder (1)
+J500	Enteral Feeding bags & Sets (42)
+J501	Kangaroo & Feeding Bags (75); Feeding syringes (25)
+J502	nasograstic tubes
+J503	Endoscopy Supplies
+J504	unsterile plastic gowns -60
+J505	Feeding @gastroscopy tubes
+J506	Ostemy Bags + MISC. Supplies
+J507	Hollister Ostemy (2.25",2.50" 2.75")
+J508	88 Kangaroo Pump Feeding Bags non sterile
+J509	kangaroo Pump sets x82
+J510	Gravity FeedingBags
+J511	Hollister Ostomy supplies 4" pouches
+J512	Hollister Ostomy supplies 2.25 Pouches
+J513	Hollister Ostomy supplies 1.75 Pouches
+J514	Hollister Ostomy supplies Stoma adhesive 2.18"@2.75"
+J515	Hollister Ostomy supplies @ skin barriers
+J516	Convatec Ostomy Pouches @ stoma adhesive
+J517	Coloplast Flex Ostomy Pouches @ skin barriers
+J518	Enteral Ross Pump feeding bags
+J519	Enteral Feeding Bags @ Pump Delivery x120
+J520	Enteral Feeding Bags @ Pump Delivery x120
+J521	Enteral Feeding Bags Gravity Delivery x 93
+J522	110 Kangaroo Feeding Bags 1000 cc with Pump Sets
+J523	Kangaroo Feeding Bags Pumpx110
+J524	Fedding/Kangaroo Infinity Pumps x 110
+J525	Kangaroo Feeding bags X95
+J526	Assura, Convatec ostomy supplies
+J527	Hollister ostomy supplies(1 3/4, 2 1/4, 2 3/4, 4)
+J528	Feeding & Kangaroo Bags: 80 pump; 15 gravity; 70 feeding syringes
+J529	Feeding & Kangaroo Bags x 80; feeding syringes x 60; Infinity pump x 1
+J530	anascopes, fecal collectors, rectal tubes
+J531	enema sets
+J532	Digicare stool management system
+J533	ostomy pouches, Hollister 2 3/4, Convatec, assorted sizes
+J534	Ostomy pouches, skin barrier, Hollister,1 3/4
+J535	Ostomy pouches, skin barrier, Hollister, 2 1/4
+J536	Kangaroo feeding bags, gravity, #90
+J537	Kangaroo feeding bags with pump
+J538	1 Enteral life feed pump, 115 pump delivery sets
+J539	110 Enteral Infinity Pump sets
+J540	Digicare stool management system
+J541	Feeding Bags: EntraLite enteral pump delivery system - 1200 ml x 153, 500 ml x 15
+J542	Feeding Bags: EnteraLite Infinity Pump - 500 ml x 130, 1200 ml x 25
+K3	Drapes (Paper, Unsterile)
+K5	Drape Sheets (Unsterile)
+K13	Sheets (Paper, Unsterile)
+K15	Sheets (Paper, Unsterile)
+K68	Sheets (Paper, Unsterile)
+K69	Sheets (Paper, Unsterile)
+K87	Sheets (Paper, Unsterile)
+K88	Sheets (Unsterile)
+K113	ED/OB/OR Gloves
+K118	Sheets (Paper, Unsterile)
+K119	Sheets (Paper, Unsterile)
+K123	Sheets (Paper, Unsterile)
+K125	Sheets (Plastic, U-Split, Unsterile)
+K126	Sheets (Paper, Unsterile)
+K135	Sheets (Plastic)
+K137	Sheets (Paper, Unsterile)
+K139	Sheets (Paper, Unsterile)
+K147	Sheets (Paper, Unsterile) M, L
+K155	Sheets (Paper, Unsterile)
+K157	Sheets (Paper, Unsterile)
+K158	Sheets, Drapes
+K159	Sheets (Paper, Unsterile)
+K161	Sheets (Paper, Unsterile)
+K162	Sheets (Paper, Unsterile)
+K168	Sheets (Paper, Unsterile)
+K171	Sheets (Paper, Unsterile)
+K228	Drapes (Sterile)
+K231	OR Sheets (Unsterile)
+K235	Gloves (Unsterile)
+K308	plastic aprons
+K310	masks
+K311	plastic sheets
+K312	misc plastic drapes & covers sterile & unsterile
+K322	Plastic sheets not exp
+K327	plastic sheets unsterile
+K346	sterile gloves loose
+K347	25  boxes masks
+K349	unsterile paper sheets 9 split  30 small sheets  12 large sheets
+K357	plastic sheets (80) no exp
+K359	boxed exam gloves
+K362	boxed exam gloves
+K371	61 unsterile sheets
+K373	48 unsterile sheets
+K375	50 plastic sheets
+K387	surgical masks 9 boxes of 50, 9 boxes of 25
+K388	surgical masks 16 boxes of 50
+K389	surgical masks 14 boxes of 50
+K390	surgical masks 16 boxes of 50
+K391	surgical masks 13 boxes of 50
+K392	surgical masks 14 boxes of 25, 14 boxes of 50
+K395	Sterile gloves
+K403	18 boxes filtered masks
+K404	18 boxes filtered masks
+K405	18 boxes filtered masks
+K406	18 boxes filtered masks
+K407	18 boxes filtered masks
+K408	18 boxes filtered masks
+K409	18 boxes filtered masks
+K410	18 boxes filtered masks
+K412	18 boxes filtered masks
+K413	18 boxes filtered masks
+K414	18 boxes filtered masks
+K415	18 boxes filtered masks
+K416	Masks
+K417	Head covers
+K423	Surgical head covers
+K423	Masks
+K425	Plastic sheets (unsterile)
+K426	18 boxes ear loop procedure masks
+K427	Surgical masks
+K428	Protective gowns
+K429	50 boxes ear loop procedure masks
+K431	50 boxes ear loop procedure masks
+K431	OR sheets and drapes (unsterile)
+K432	50 boxes ear loop procedure masks
+K432	700 feet protectors, 7 extended boots
+K433	OR sheets and drapes (unsterile)
+K444	Paper Sheets
+K445	OR masks (unsterile)
+K446	OR caps (unsterile)
+K447	Sheets (Paper, Unsterile) X 101
+K448	Surgical gloves
+K449	Surgical gloves (Sterile) 3 box 8.5 no exp. , 2 box 6.5
+K450	Surgical gloves (Sterile) 5 boxes 8.5
+K451	Surgical gloves (Sterile) 5 boxes 8.5
+K452	Masks  16 lbs.
+K453	Sheets (Paper, Unsterile) X 45  34.5 lbs
+K454	Sheets plastic unsterile x 56=37 lbs.
+K456	Gloves sterile 5x12-5.5x104-6x26-6.5x114-7x51-7.5x55-8x43-8.5x16-9x5- smx1 lx2   =32lbs.
+K457	Paper sheets (unsterile) = 20.5lbs
+K458	Unsterile plastic sheets x 60 = 35.5 lbs
+K459	Sheets paper unsterile x62=22.5 lbs.
+K460	Sheets unsterile paper x-68 =23.5 lbs
+K461	Sheets paper unsterile x 62 =21lbs
+K462	Sheets plastic unsterile x62 =31.5lbs
+K463	Masks
+K464	Plastics sheets @drapes unsterile x 56 =39lbs
+K465	Gloves sterile x 13lbs.
+K466	Gloves sterile x 13lbs.
+K467	Sheets(unsterile) paper x62
+K468	Gloves sterile assorted x12lbs
+K469	Unsterile paper sheets x 60 =20 lbs
+K470	Plastic Drapes (table @leg ) unsterile 33lbs
+K471	Urinary (Foley caths.-96 ,Red Rubber texas-115 Spardi caths -60
+K472	Urinary Catheter tray kits
+K473	Hemodialysis blood tubing sets (48)
+K474	Hemodialysis blood tubing sets (48)
+K475	Foley kits (18); Drainage bags (5)
+K476	Catheters: red rubber (350); male urinary control device (260)
+K477	Urinary drainage bags (50); Texas cath (30); Foley (20)
+K478	Urinary drainage bags (26); Foley (60); Male urinary control (110); clean catch (20) (Sterile);
+K479	Urinary Catheter tray kits x 15
+K480	Dialysis/ 11Peritoneal Dialysis eyelet set 34 prong manifold sets /15 COPD Dialysis disconnect sets
+K481	Urology Mix /2 Bottles irrigation+7 urinals +7 Bed pans & 2Toilet Hats
+K482	Dialysis / 21low (Baxter)reicirculator Volume Cassette 4 Prong & other Dialysis supplies
+K483	305 Foley Catheters
+K484	48 Medisys Dialysis Tubing
+K485	12 Urinary Kits 20 bags
+K486	Urolgoy Mix
+K487	10 urinary Kits - 15 bags  sterile
+K488	55 Urinary Catheters ,
+K489	Urology mix ( TUR Tubing , 6-urnials, 5 guide wire ,6stone catcher , 11 removel sheath
+K490	Urinary drainage ( Bags 14 urine meters , regular , 23 leg )
+K491	Catheters (11 foley kits , 15 texas ,
+K492	11 Foley Catheters , 167 Speedie Catheters  ,3 Urimeters Trays
+K493	Urinary drainage Bags x 71 , Leg Straps x 63
+K494	Catheter Foley Kits x 18
+K495	Urine collection(urinals, toilet hats, 24 hr containers)
+K496	dialysis tubing, catheters
+K497	Urinary Cathethter Tray Kits x 12
+K498	Urinary Catheter Kits x 18; Texas catheters x 18
+K499	Urine Collection (miscellaneous): Bedpans x 18; urinals x 12
+K500	Urinary Kits(13 kits, 13 with urometers
+K501	Urinary drainage bags(36), urometers(10)
+K502	urology mix, urostomy pouches, TURP tubing, etc.
+K503	dialysis supplies
+K504	foley catheters #298, self catheters #98
+K505	Urinary drainage bags
+K506	Foley Catheter tray kits X 20
+K507	Catheters- Foley&self with adapters and bags
+K508	Urinary catheter trays X 23
+K509	Urostomy pouch supplies
+K510	Urine collection- 25 bed pans, 10 urinals, 15 trianglular graduated containers
+K511	Urinary drainage bags X 64
+K512	Dialysis trays x 14
+K513	Urinary catheter kits x 17
+K514	Urinary drainage bags x 25, urimeters x 10
+K515	Catheters: Female quick cath kits x 189
+K516	Catheters: Female quick cath kits x 182
+K517	Catheters: Female quick cath kits x 150
+L2	Drapes (Unsterile)
+L8	Paper Drapes
+L10	Underpads
+L44	Drapes (Unsterile)
+L75	Drapes (Unsterile) & Split Sheets
+L80	Drapes (Unsterile)
+L83	Drapes (Unsterile)
+L84	Drapes (Paper, Unsterile)
+L85	Drapes (Paper, Unsterile)
+L86	Drapes (Paper, Unsterile)
+L87	Drapes (Paper, Unsterile)
+L92	Drapes (Unsterile)
+L97	Drapes (Paper)
+L99	Paper Drapes
+L102	Drapes (Paper, Unsterile)
+L106	Drapes (Paper, Unsterile)
+L110	Drapes (Paper, Unsterile)
+L111	Drapes (Paper, Unsterile)
+L112	Drapes (Paper, Unsterile)
+L114	Drapes (Paper, Unsterile)
+L115	Drapes (Paper, Unsterile)
+L116	Drapes (Paper, Unsterile)
+L141	Drapes (Paper)
+L180	Drapes (Paper, Unsterile)
+L182	Drapes (Paper, Unsterile)
+L183	Drapes (Paper, Unsterile)
+L184	Drapes (Paper, Unsterile)
+L185	Drapes (Paper, Unsterile)
+L186	Drapes (Paper, Unsterile)
+L191	Drapes (Unsterile)
+L205	Drapes (Paper, Unsterile)
+L206	Drapes (Paper, Unsterile)
+L207	Drapes (Paper, Unsterile)
+L211	Drapes (Paper, Unsterile)
+L212	Drapes (Paper, Unsterile)
+L213	Drapes (Paper, Unsterile)
+L214	Drapes (Paper, Unsterile)
+L215	Drapes (Paper, Unsterile)
+L217	Drapes (Paper, Unsterile)
+L218	Drapes (Paper, Unsterile)
+L222	Drapes (Paper, Unsterile)
+L224	Drapes (Paper, Unsterile)
+L225	Towels & Barriers (Sterile)
+L229	Drapes (Paper, Unsterile)
+L230	Drapes (Paper, Unsterile)
+L231	Drapes (Paper, Unsterile)
+L232	Drapes (Paper, Unsterile)
+L234	Drapes (Paper, Unsterile)
+L235	Drapes (Paper, Unsterile)
+L236	Drapes (Paper, Unsterile)
+L238	Drapes (Paper, Unsterile)
+L240	Drapes (Paper, Unsterile)
+L241	Gowns (Paper, Unsterile)
+L242	Drapes (Paper, Unsterile)
+L243	Sheets (Plastic, Unsterile)
+L248	Drapes (Unsterile)
+L249	Drapes
+L250	Drapes
+L252	unsterile drapes
+L253	DRAPES (UNSTERILE)
+L254	Drapes (Unsterile)
+L255	Drapes
+L256	Drapes
+L257	Drapes
+L258	Drapes (unsterile)
+L259	Drapes
+L260	Drapes
+L263	Drapes
+L264	Drapes (Unsterile)
+L265	Drapes (Unsterile)
+L267	white paper towels (unsterile)
+L268	Drapes (unsterile, converters)
+L269	drapes (unsterile)
+L271	drapes (unsterile)
+L272	drapes (unsterile)
+L274	Drapes (unsterile)
+L275	drapes (unsterile)
+L276	Drapes (unsterile)
+L277	Drapes (unsterile)
+L278	Large drapes (unsterile)
+L279	Drapes (unsterile)
+L280	Drapes (unsterile)
+L282	white towels (unsterile)
+L296	plastic table covers (60)
+L312	unsterile converter drapes
+L314	unsterile drapes
+L343	40 unsterile drapes
+L348	drapes unsterile
+L349	drapes unsterile
+L350	23 drapes unsterile
+L351	19 large unsterile drapes
+L352	Unsterile drapes
+L355	Unsterile drapes, butt drapes, body drapes
+L361	Mayo Stand Cover
+L362	Mayo Stand Cover
+L364	27 Unsterile drapes
+L365	26 drapes UNSTERILE
+L366	White towels
+L367	Unsterile drapes
+L368	Unsterile drapes 31 ea.
+L369	Stockinettes
+L370	Unsterile drapes 83 ea.
+L371	Mayo stand covers 85
+L372	Mayo stand covers 93
+L374	Mayo stand covers 90
+L375	Drapes ( Unsterile )
+L376	Unsterile paper drapes
+L377	unsteril paper drapesx31
+L378	12 basic pack 1, 101 absorbant towels
+L379	Drapes 34 ea. (unsterile)
+L380	Drapes 55 ea. (unsterile)
+L381	White towels (unsterile)
+L383	Drapes Unsterile
+L385	unsterile drapes 22 ea.
+L386	Drapes Unsterile
+L387	Drapes Unsterile X30
+L388	Drapes unsterile x 28  -26 lbs.
+L389	Impervious stockinettes  x 83  19.5 lbs
+L390	Drapes unsterile x 32 -32.5 lbs
+L391	Unsterile paper drapes x 22 =28 lbs.
+L392	unsterile  paper drapes x 22=28 lbs.
+L393	Unsterile paper drapes x22 =26.5 lbs
+L394	Unsterile drapes x 50 =29 lbs.
+L395	Unsterile drapes x 48 =28.5 lbs
+L396	Drapes unsterile x 32 =26 lbs
+L397	Drapes unsterile x48  =23lbs
+L398	Drapes unsterile x30= 28lbs
+L399	Drapes unsterile x 30 =26 lbs
+L400	Drapes unsterile=27 lbs
+L401	Drapes unsterile x26  =25.5lbs
+L402	Sterile towels x 235 =14.5lbs
+L403	Sterile towels x235 =15lbs
+L404	Sterile towels x190 =12.5 lbs
+L405	Mayo stand covers unsterile x 110 =21.5lbs
+L406	Drapes (unsterile) 28.5 lbs.
+L407	pes lg.(unsterile)x32=28lbs.
+L408	Drapes lg. (unsterile)x36 =36lbs.
+L409	Mayo stand covers(sterile) x63 =12lbs
+L410	Towels covers sterile x 260 = 16lbs
+L411	Moyo stand covers (unsterile)x110 = 21lbs
+L412	Unsterile paper drapes = 27lbs
+L413	Unsterile paper drapes = 23lbs
+L414	O-R drapes x23 un sterile 23.5lbs
+L415	250 Suction Caths.
+L416	8 Chest drains / 2 chest drain tube paks
+L417	54 Suction tubing / Suction canisters
+L418	Bulb Syringes non sterile
+L419	Suction catheters (215)
+L420	Suction tubing (nonsterile)
+L421	Suction tubing (30) (nonsterile)
+L422	Drains: jackson-pratt (131); bulb holders (16)
+L423	Chest Drains
+L424	Suction Catheters
+L425	Pedeatric suction 8fr 250
+L426	Catheter suction pedatric 8fr 250
+L427	47 Suction canisters @lids
+L428	35 Suction canisters & suction tubing
+L429	JP DRAINS 76 bulbs, 76 round, 8 resevoirs
+L430	Yan Kaur @ Frazier tips
+L431	Suction Catheters  8ft.10ft. 14ft.
+L432	90 Bulb Syringes
+L433	Suction Catheters
+L434	Suction Catheters
+L435	10 Suction Catheter Tubing non sterile
+L436	Suction (105 mini trays , 100 catheters) non sterile
+L437	Suction Canisters x 38
+L438	Suction catheters
+L439	80 suction tubing , 70 connectors
+L440	Chest Drains ( 4 pediatric ,2 chest tube trays ,5 SFP patient tube pak  pneumothormax kit
+L441	Suction Catheters ( 346 - 8ft. pediatric) ( suction catheters 61- 8 ft. @ N glove kits
+L442	Suction Catheter trays
+L443	7 Chest Drains , 29 Tube Pack
+L444	33 Lg. Burn Dressing 4x4
+L445	Chest Drainage
+L446	89 Suction Tubing , Connectors x 25
+L447	Suction Catheters
+L448	Suction Tubing x 57 , Connectors x 200
+L449	Suction Tubing Connectors x 60
+L450	OR floor suction
+L451	Suction Canisters x 38
+L452	Suction Catheters (sterile)
+L453	Chest Drains x 38; chest tube tray x 3
+L454	Suction tubing x 77
+L455	bulb syringes
+L456	chest tube trays, drainage tubing
+L457	chest drains, kits
+L458	chest drains, tubing
+L459	Catheters-suction all sizes
+L460	Yankauer, frazier suction tips (sterile/unsterile)
+L461	Suction Catheters
+L462	Chest drains X7, chest tubes X5, chest tube valves X 9
+L463	Chest drains X 6, chest drainage kits X 2
+L464	Suction Catheter kits
+L465	Chest Drains: 7 water seal drains, 1 chest tube tray, 1 Thoracentesis tray, 4 chest drain tubing
+L466	Chest Drains: 8 pediatric water seal dry suction
+L467	Suction tubing (unsterile)
+M1	Sheets (Unsterile)
+M5	Drapes, Sheets (assorted, unsterile)
+M7	Sheets (Plastic)
+M8	Drapes (Unsterile)
+M12	???
+M19	Sheets (Unsterile)
+M20	Underpads
+M24	Sheets (Paper, Unsterile)
+M29	Sheets (Plastic)
+M30	Sheets (Unsterile)
+M37	Sheets (Unsterile)
+M39	Sheets (Plastic)
+M57	Plastic Sheets?
+M59	Gowns (Paper, Sterile)
+M66	Plastics
+M76	Plastics
+M91	Plastics
+M96	???
+M132	???
+M143	Plastics
+M157	Plastics
+M178	Plastics
+M179	Plastics
+M204	Misc. Tubing
+M221	Pill Bottles
+M226	Other Plastics
+M240	Plastic Trays (100)
+M244	Misc. Plastics
+M245	Misc. Plastics
+M246	Plastic Trays
+M248	Plastic Basins; Emesis Basins
+M249	Other Plastics: Sm. Blue Basins; Emesis Basins
+M250	Other Plastics: Basins; Bowls; Emesis; Trays; Graduates
+M251	Other Plastics
+M252	Other Plastics: Basins; Bowls; Graduates; Emesis
+M254	Other Plastics: 36 Blue Basins; 17 Trays; 9 Misc.
+M255	Blue Plastic Basins x36
+M256	Other Plastics: 17 Trays; 14 Pink Basins; 1 urinal; 11 Misc.; 5 Trays
+M258	Assorted Basins, Trays, & Graduated Cups
+M259	Assorted Basins, Trays, & Bowls
+M262	Pill Boxes; Pill Counter
+M263	Plastics: Bowls; Pitchers; Blue Basins; Emesis Basins
+M264	Plastics: 25 Lg. Rectangular Basins; 3 Pitchers; 15 Lg. Round Basins; 1 Bed Pan; 11 Trays
+M265	Plastics: 18 Round Basins; 33 Emesis Basins; 10 Pitchers; 22 Wash Basins
+M266	Plastic Trays x95
+M267	Plastics: 20 Lg. Basins; 4 Pitchers; 30 Emesis Basins; 11 Wash Basins
+M268	100 Amber Plastic Bottles for Liquid Medicines
+M269	Plastics: 10 Bed Pans; 21 Round Basins; 15 Sm. Bowls; 5 Pitchers
+M270	Plastics: 24 Round Basins; 2 Pitchers; 12 Emesis Basins; 13 Sm. Bowls; 1 Bed Pan
+M271	Plastics: 26 Round Basins; 4 Wash Basins; 2 Pitchers; 10 Emesis Basins; 2 Urine Collectors; 16 Bowls
+M272	Pill Bottles
+M273	Plastics: 19 Wash Basins; 12 Sm. Rectangular Basins; 6 Sm. Basins; 3 Lg. Pitchers; 7 Sm. Pitchers
+M274	Pink Wash Basins
+M275	Plastic Trays
+M276	Plastics: Basins; Emesis Basins; Pitchers; Sm. Bowls
+M277	Plastics: Basins; Bowls; Trays; Square Basins; Sm. Bowls; Etc.
+M278	Small Plastic Trays
+M279	Small Plastic Trays
+M280	Plastics: Basins; Emesis Basins; Pitchers; Sm. Bowls
+M281	Plastic Exam Table Covers (Unsterile)
+M282	Urine Containers and Various Plastics
+M283	Urine Containers and Various Plastics
+M284	Brown Basins; Emesis Basins
+M285	Pill Bottles
+M287	Plastics: Basins; Pitchers; Bowls; Etc.
+M288	Plastics: Basins; Pitchers; Bowls; Bed Pans; Etc.
+M288	Plastics
+M289	Plastics: Basins; Pitchers; Bowls; Bed Pans; Etc.
+M290	Pill Bottles
+M291	Plastic Trays x87
+M292	Other Plastics: 86 Trays; 38 Emesis Basins; 5 Sq. Pans; 7 Pitchers; 22 Bowls; 3 Urinals; 32 Sm. Sq. Bowls
+M293	Other Plastics: 38 Lg. Basins; 53 Emesis Basins; 81 Sm. Sq. Bowls; 86 Pitchers; 27 Round Bowls
+M294	Other Plastics: 54 Lg. Round Basins; 11 Lg. Bowls; 6 Med. Bowls; 1 Sm. Bowl; 46 Emesis Basins; 14 Pitchers
+M295	Plastic Trays x86
+M296	Plastic Basins & Emesis Basins
+M297	80 Trays
+M298	Pill Bottles
+M298	
+M299	Bed Pans; Urinals
+M300	Plastic Basins; Trays
+M301	Plastics: 60 Wash Basins; 4 Emesis Basins
+M302	Latex Tourniquets
+M303	Latex Tourniquets
+M304	Latex Tourniquets
+M305	Pill Bottles x176
+M306	60 Wash Basins; 4 Emesis Basins
+M307	4750 Pill Bottles
+M308	600 Pill Bottles
+M309	Hydrocolloid Dressings x20 boxes
+M312	Sterile Burn Dressings x26 (Large)
+M314	Sterile Dressings: 15-Ply Burn Pads (24" x 36") x24
+M316	Unsterile Gauze Dressings, Includes Tegaderm
+M317	Sterile Burn Dressings x9
+M318	Rolled Gauze (Sterile) x101
+M320	Dressings (Sterile)
+M321	Sterile Burn Pads x15
+M322	Sterile Dressings: Fluffs; ABDs; Dso Kits; Heavy Drainage Packs (4); Drain Sponges; 4x4s; Cover Sponges; 2x2s
+M323	Roll Gauze x200
+M324	Dressings (Unsterile): 2x2; ABD; 4x4; Rolls
+M325	Dressings (Sterile)
+M326	Sterile Tegaderm
+M327	ACE Bandages All sizes
+M328	Dressings (Unsterile): Gauze
+M329	Gauze Dressing (Sterile)
+M330	Dressing Gauze (Unsterile)
+M331	Dressings - Medicated/Treated (Sterile)
+M332	Sterile Dressings (Misc. Sizes & Types)
+M333	Dressings (Sterile)
+M334	Dressings (Unsterile)
+M334	Unsterile Dressings: Large Burn Sheets (36); 4x4
+M335	Dressings (Sterile): 5x9; 8x10
+M336	Dressings (Unsterile): 4x4 Gauze
+M337	Dressings (Unsterile)
+M338	Dressings (Sterile): Assorted Sizes
+M339	Dressings (Sterile)
+M340	Dressing Heavy Drainage
+M341	Dresssing ABD Heavy Drainage
+M342	Dressings (Sterile)
+M343	Dressings (Sterile)
+M344	Dressings (Sterile)
+M345	Dressings (Sterile)
+M346	Dressings (Sterile)
+M347	Dressings (Sterile)
+M348	Dressings (Unsterile)
+M349	Dressing (Sterile)
+M350	Dressings (Sterile): Fluffs
+M351	Dressing (Sterile)
+M352	Dressing (Sterile)
+M353	Dressings (Unsterile): 38 Packages of 4x4
+M354	Dressing (Sterile)
+M355	Dressings (Unsterile): 33 Heavy Drainage
+M356	Dressings (Unsterile): 30 Heavy Drainage
+M357	Dressings (Sterile)
+M358	Dressings (Unsterile): Assorted
+M359	ACE Bandages: All Sizes
+M360	Sterile Dressings (Non-Medicated): Assorted
+M361	ACE Bandages: All Sizes
+M362	ACE Bandages: All Sizes
+M363	Roll Gauze
+M364	Dressings (Sterile)
+M365	V.A.C. Wound Care Dressings w/ Canisters
+M366	Dressings (Sterile)
+M367	Dressings (Sterile)
+M368	Medicated/Treated Dressings (Sterile)
+M369	Tegaderm
+M370	Roll Gauze
+M371	Tegaderm (Unsterile)
+M372	Dressings (Sterile)
+M373	Dressings (Sterile)
+M374	Wound Care: Lg. Wounds; Drainage Bags; Iodoform Packs
+M375	Dressings (Sterile, Non-Medicated)
+M376	Lg. Burn Dressings (Sterile): 13 Pads; 10 Sheets; 19 Lg. Dressings
+M377	Dressings (Sterile): 2x2, 3x4, 4x4, ABDs, Fluffs, IV Sponges
+M378	Burn Dressings (Sterile): 20 Cell Pads
+M379	Dressings (Unsterile): Lg. Surgical Sponges; 4x4 Sponge; 2x2 Gauze; 4x4 Gauze; Roll Gauze; IV Cover Sites
+M380	Ace Bandages
+M381	Ace Bandages
+M382	Wound Care: Complete 3-Layer Bandaging System x1; Padding Bandages x55; Unna Packs x6; Unna Boot x2; Plain Packing Strips x10 Bottles
+M383	Wound Care: Complete 3-Layer Bandaging System x9; Padding Bandages x54
+M384	Dressings (Sterile, Non-Medicated): 2x2; 4x4 (Gauze, Drain, Cover, Surgical); 6x6.75 Super Sponges; Dressing Change Trays; Surgical Dressings; ABDs; Non-Adherent Pads & Dressings; Foam Dressings; Heavy Drainage Packs
+N102	Unsterile Drapes
+N144	300 Peanut Kitners
+N150	25 Sm. Sharps Containers
+N155	74 Sm. Sharps Container + 70 Tops
+N156	Sterile Q-Tips x232 Pkgs.
+N156	Q-Tips x6 Boxes
+N169	250 Sterile Cotton-Tipped Applicators
+N170	250 Sterile Cotton-Tipped Applicators
+N171	Unsterile Cotton-Tipped Applicators
+N172	200 Sterile Cotton-Tipped Applicators
+N173	4 Spill Kits
+N174	Sterile Cotton-Tipped Applicators
+N175	Tape: Assorted Sizes & Types
+N176	8 Spill Kits
+N180	Q-Tips (Sterile & Unsterile): Lg. & Sm.
+N182	Sterile Cotton Balls x98 Packs of 5
+N183	Sterile Cotton Balls x100 Packs of 5
+N185	Surgical Clips: Assorted
+N186	Q-Tips (Sterile)
+N187	Q-Tips (Sterile)
+N188	Q-Tips (Sterile)
+N189	Q-Tips (Sterile)
+N190	Lubricating Jelly Tubes x129
+N191	3" Q-Tips (Sterile) x200 Packs of 10
+N192	3" Q-Tips (Sterile) x95 Packs of 10; Some Unsterile 3" & 6" Cotton-Tipped Applicators
+N194	3" Q-Tips (Unsterile) x8 Boxes + Misc.
+N199	Cotton-Tipped Applicators
+N200	Cotton-Tipped Applicators x400
+N203	Q-Tips
+N204	3" Q-Tips
+N207	Tape
+N209	Expired Sutures
+N210	Cotton-Tipped Applicators (Sterile)
+N211	Chemo Spill Kits x4; Protective Aprons
+N212	Lg. Povidone-Iodine Sponge Sticks
+N213	Adhesive Rolls x144
+N214	Adhesive Rolls x144
+N215	Adhesive Surgical Tape
+N217	Lubricating Jelly Packs
+N218	Cast Padding Wet/Dry
+N219	Cast Padding: Wet or Dry (6" x68; 3" x58, 2" x4); Misc. Loose: 4" x37
+N220	Cast Padding: Wet or Dry 4" x160
+N221	Cast Padding: Wet or Dry 3" x220; Water Resistant 3" x12; Cotton 2" x36
+N222	Arthroscopic Pump & Extension Tubing
+N223	Dental Impresions
+N224	Cast Material: Unna Boot; Gelocast; Webril
+N225	61 Tan Stockinettes; 39 Impervious
+N226	Ortho. Mix: Suction Irrigators; Pump Tubing; Bone Screws; Kwire Drill; Finger Splints
+N227	Cast Padding x40 Rolls
+N228	Casting Supplies: 10 Rolls Cast Padding; 1 Roll Undercast; 6 Packs Plaster of Paris Splints
+N229	Cast Padding
+N230	Casting Material 4" & 6"
+N231	Casting Material: Assorted Sizes
+N232	Convatec 1-3/4" Ostomy Supplies
+N233	Q-Tips (Unsterile): 6" x7000
+N234	Tan Stockinettes (Unsterile): Tan Roll; Gray Roll; Rolled Packs; Tubigrip x3 Rolls
+O162	64 Chest Drain Tubing
+O163	55 Chest Drain Tube Packs
+O168	30 Packs of 10 Suction Catheter Kits
+O169	Unsterile Suction Tubing
+O170	170 Suction Catheters
+O171	Suction Tubing Connectors
+O172	90 Suction Tubing; 40 Suction Catheters
+O173	Suction Catheters
+O174	105 Suction Tubing
+O178	72 Unsterile Suction Tubing
+O178	Suction Tubing x72
+O179	Suction Catheters
+O181	Suction Tubing
+O182	Suction Catheters & Tubing
+O186	Chest Tube Drainage
+O187	Suction Catheters
+O188	Suction Catheters
+O189	14 Chest Drains; 6 Infant Chest Drains
+O191	Suction Tubing
+O193	Suction Tubing
+O194	Suction Catheters & Tubing
+O196	3 Sterile Chest Tubes
+O197	Chest Tube Patient Drain Packs x52
+O198	118 Suction Tubing
+O200	35 Irrigation Trays; 7 Irrigation Syringes (Unsterile)
+O201	Suction Catheters; Yankeuer; Poole x510
+O202	Suction Catheters: Adult/Peds Endobronchial x215
+O203	Suction Catheters x140; Cath. Gloves Kit Mini Trays x30; Oro Suctions x18
+O204	Chest Drains: SFP Patient Tube Kits x45; Tubing Kits x9; Pleso Drainage; Chest Drainage Connector x1
+O205	Suction Catheters x227 (Unsterile)
+O206	Suction Tubing Misc. (Unsterile)
+O207	Chest Drains: Water Seal x5; Chest Tube Trays; Thoracic Cath. x9; SFP Patient Tube Pack x10
+O209	20 ml. Syringes: Luer-Lok x500
+O210	10 ml. Syringes x475
+O211	3ml. Syringes: Luer-Lok x1300
+O212	3ml. Syringes: Luer-Lok x315; 20Gx1" x700; 22Gx1" x300
+O213	1ml. Syringes w/ Needle: 27Gx1/2" x200; 26Gx3/8" x400
+O214	1ml. Syringes: Luer-Lok x700; TB Slip Tip x700
+O216	3ml. Syringes w/ Needles: 22Gx1.5" x900; 25Gx5/8" x300; 25Gx1" x93
+O217	Insulin Syringes: w/ Needles x225; w/o Needle x43
+O218	Insulin Syringes w/ Needles x1200
+O223	Insulin Syringes x1370
+O224	Unsterile Syringes: Sizes 1, 6, 7, 10, 20, 30, 35ml.
+O226	Insulin Syringes x70
+O227	Unsterile Syringes: Sizes 1, 3, 5, 10, 20, 30ml.
+O228	1-3ml. Syringes: 1ml. TB Syringes (995); Allergy 1ml. 26G x 3/8" (125); TB Syringes w/ 27G Needles (179); 3ml. w/ 25G Needles (187); 3ml. (42)
+O229	Insulin Syringes: Assorted
+O230	60 ml. Syringes x230
+O231	TB Syringes x500
+O232	10ml. Syringes
+O233	60ml. Syringes
+O234	10ml. Syringes
+O235	1200 Insulin Syringes
+O236	20-60ml. Syringes
+O237	1-3ml. Syringes: Assorted
+O238	Syringes: 20ml. x59; 30 ml. x118; 60ml. x130
+O239	1ml. Syringes
+O240	Syringes: 30ml. x80; 60 ml. x132
+O241	Unsterile Syringes: 1ml. x15; 1.25ml. x100; 3ml. x51; 10ml. x280; 12ml. x124; 20ml. x47; 25ml. x4; 30ml. x31; 60ml. x28
+O242	30-60ml. Syringes
+O243	1-3ml. Syringes
+O244	Insulin Syringes
+O245	10ml. Syringes
+O246	1-3ml. Syringes: Assorted
+O246	30ml. Syringes x80; 60ml. x132
+O247	Insulin Syringes
+O248	Unsterile Syringes: ~700 Assorted Sizes
+O249	60ml. Syringes (Sterile) x210
+O250	60ml. Syringes (Sterile) x210
+O251	Insulin Syringes: 1000+
+O252	1-3ml. Syringes (Sterile)
+O253	Insulin Syringes x1000
+O254	20-60ml. Syringes
+O255	Syringes (Sterile): 20ml. x80; 30ml. x67; 60ml. x118
+O256	10ml. Syringes (Sterile)
+O257	20-60ml. Syringes (Sterile)
+O258	1-3ml. Syringes (Sterile)
+O259	1-3ml. Syringes (Sterile)
+O260	Syringes (unsterile): 3 ml x 1600, 10 ml x 242, 20-30 ml x 46, 60 ml x 45
+P65	48 Suction Canister (1500cc., Rigid)
+P67	Halter Monitor Holders
+P68	EKG Electrodes
+P71	Sharps Containers: 5 Med.; 12 Sm.
+P72	Sharps Containers (Biohazard): 3 Lg.; 39 Sm.
+P73	Sharps Containers: 3 Lg.; 4 Med.; 11 Biohazard
+P74	3cc. Syringes (400)
+P75	Angiocaths: Gauges 14,16,18,20,22,24 (Sterile)
+P76	23G Safety Glide Needles (24 boxes of 50)
+P77	23G Safety Glide Needles (9 boxes of 50)
+P78	Biopsy: Punch x123; Needle x123; Jomshidi/Bone x38; Kits x6
+P79	Sterile Needles
+P80	Sterile Needles
+P81	Sterile Needles
+P82	Needles: 23Gx1"; 18Gx1"
+P83	Needles: 23Gx1"
+P85	Insulin Syringes: 325 Pkgs. of 10
+P86	Insulin Syringes: 300 Pkgs. of 10
+P87	5ml. Syringes (Sterile) x900
+P88	5ml. Syringes (Sterile) x900
+P89	Medtronics Paradym Soft Sets
+P90	Needles: Assorted Sizes (Sterile)
+P91	Angio-Caths (Assorted)
+Q79	Humidifiers, Etc.
+Q92	Heated Respiratory Tubing
+Q102	Oxygen Tubing (Flexible)
+Q140	Oxygen Tubing (Mostly Blue Flexible)
+Q146	41 Humidifiers; 25 Mednate; 5 Humidivents
+Q147	Respiratory Mix
+Q150	100 Nebulizer Tubing Kits
+Q153	O2 Tubing/Nasal Cannula
+Q154	Respiratory Circuits x19; O2 Tubing x 23; Nasal Cannula x15; Nebulizer Kit x1; Connectors x4
+Q154	Oxygen Masks & Nasal Cannula
+Q159	Respiratory Mix
+Q160	Respiratory Mix
+Q164	Oxygen Tubing (Unsterile)
+Q166	Oxygen Tubing
+Q167	Nebulizer Kits & Tubing
+Q168	12 Ventilator Tubing
+Q169	102 Oxygen Masks
+Q170	Nasal Cannula x230
+Q177	Nasal Cannula x230
+Q172	Oxygen Tubing
+Q173	Oxygen Tubing
+Q174	Nasal cannula x270
+Q175	Pediatric Nasal Cannula x175; Pediatric Face Masks x24
+Q176	24 ComfortFlo Humidification Systems (Use w/ Hudson RCI Heaters to Provide Heated Humidified Gas)
+Q177	95 Nasal Cannula; 26 Masks
+Q178	Oxygen Masks
+Q179	40 Nebulizers
+Q180	IPPB Universal Circuits x23
+Q181	IPPB Universal Circuits x39
+Q182	IPPB Universal Circuits x36
+Q183	29 Adult Nasal Cannula; 62 Adult Oxygen Masks
+Q184	120 Adult Oxygen Masks
+Q185	100 Adult Oxygen Masks
+Q186	Humidifiers x65
+Q187	Nebulizer Kits x45; Panda Masks x7; Soft Cuff Adapter x9; 1-Way Valve x23 (Unsterile)
+Q188	Nebulizer Kits x98; 1-Way Valves x20; Soft Cuff Adapters x15 (Unsterile)
+Q189	Humidifer & Corrugated Tubing
+Q190	Respiratory Volumetric Exercisors x36 (Unsterile)
+Q191	Airways x488; Nasopharyngeal x142; Masks x40 (Unsterile)
+Q192	Anesthesia O2 Masks x2; Face Masks x23; etc.
+Q193	12 Central Line Kits; 10 Picc Kits; 100 Wing Guards
+Q194	IV Tubing (128)
+Q195	10 Mix Extension Connectors
+Q196	IV Tubing (Sterile)
+Q197	1-3ml. Syringes
+Q198	Red Caps; 10 Secondary Tubing Sets; IV Mix (Small-Bore Ext. Set)
+Q199	IV Mix: Tubing; Red Caps; Extensions
+Q200	IV Mix: Cannulas; Caps; Connectors
+Q201	IV Tubing
+Q202	IV Mix: Extension Set; Adaptors; Connector Cannulas
+Q203	IV Blood Testing (Sterile)
+Q204	IV Tubing (Sterile)
+Q205	IV Mix: Tubing; Red Caps; Extensions
+Q206	IV Tubing (Sterile)
+Q207	Central Line Supplies
+Q208	Arterial Line Central Venous Kits x24
+Q209	Central Line Kits & Supplies
+Q210	IV Tubing
+Q211	IV Mix
+Q212	IV Mix
+Q213	IV Mix
+Q214	IV Mix
+Q215	IV Mix: Ext. Tubing; Caps; Hep. Lock Caps; Alligator Clips
+Q216	IV Mix
+Q217	IV Tubing: Primary Sets
+Q219	IV Mix: Spikes; Ext. Tubing; Cannulas; etc.
+Q220	Central Line Kits, Multi-Lumen
+Q221	Central Line & Arterial Line Kits; Tubing
+Q222	PICC Kits
+Q223	Primary IV Tubing x190
+Q224	IV Mix
+Q225	IV Mix: connectors, 2nd sets, extensions, port access sets
+Q226	IV tubing
+R2	Respiratory Tubing
+R10	Ventilator Tubing
+R15	Ventilator Tubing
+R20	Respiratory Tubing
+R21	Respiratory Tubing, Straight, Tubing Conviction
+R24	??
+R32	Respiratory Tubing
+R34	Guide Wires
+R35	Respiratory Tubing
+R36	Oxygen Tubing (Flexible)
+R42	Vascular Mix (Ganz)
+R45	Respirigard & Ventilator Tubing
+R47	Respiratory Tubing
+R183	Trach Tubes & Supplies; 35 Trach Care Kits
+R185	Sputum Collectors x67
+R188	Sputum Collectors x72
+R199	94 Plastic Tubing
+R200	Trach Clean Trays x36; Trach Kits x4
+R201	40 LMAs
+R203	40 LMAs
+R206	40 LMAs
+R207	80 Suction Connective Tubes; 6 Yankauer Connectors
+R208	Misc. Trach Supplies
+R210	Trach Supplies: Misc. Trach Supplies x5; Trach Tubes x177; LMA x40
+R212	Respiratory Mix
+R213	Anesthesia Mix: 8 Blood Gas Kits; 1 box 2-Step Adapters; 18 ET Tube Holders; Oxy-probe Finger Probes; 5 pkg. Hypotherm Gloves; 6 pillows w/ Intubation Slot; 2 Intubation Stylettes
+R214	Trach Care Kits x26 (Sterile)
+R215	Trach Care Kits x26 (Sterile)
+R216	Trach Care Kits x26 (Sterile)
+R219	Ambu Bags (Adult)
+R220	Flexible Oxygen Tubing
+R221	Adult Ambu Bags
+R222	Trach Supplies (Sterile)
+R223	Trach Supplies (Sterile & Unsterile)
+R224	Trach Supplies (Sterile & Unsterile)
+R225	Oxygen Tubing (Various Sizes)
+R226	Respiratory
+R227	Trach Supplies
+R228	Adult Ambu Bags
+R230	Trach Supplies
+R231	Ambu Bags (Pediatric) x26
+R232	Respiratory Tubing Mix
+R233	16 Ambu Bags
+R234	46 Pediatric Oxygen Masks
+R235	46 Tracheostomy Care Kits
+R236	12 Adult Ambu Bags
+R237	25 Pediatric Ambu Bags
+R238	Tracheostomy Tubes Assorted
+R241	Tracheostomy Care Kits x55
+R242	Tracheostomy Supplies
+R243	Ambu Bags: Adult x10; Masks x6; Infant/Ped. x4
+R245	Anesthesia Mix
+R246	Anesthesia Head Rests 7" w/ Intubation Slot x15
+R247	Ventilators (9); Smoke Evacuator (24); Tubing
+R248	Anesthesia Mix: Head Rest Pillows (8); EKG Electrodes; Foam Wraps (120); Pudendal Block Trays (7)
+R249	Tubing: Ventilator/Corrugated
+R250	Anesthesia: Endotracheal Tubes x92; LMA x9; Stylettes x15
+R250	Endotrach., LMA, Stylette
+R251	Anesthesia Masks x18; Breathing Circuits x18
+R252	19 Respiratory Adult Ventilatory Circuit Tubing
+R253	Esmark (Sterile) 6"x19 - 4"x23 & (Unsterile) 4"x61
+R254	Esmark (Unsterile) 6"x45 - 4"x24
+R255	Anesthesia Mix: Corrugated Tubing; 1 Spinal Tray; 1 Headrest; 6 Masks; etc.
+R256	20   Ventilator Tubing
+R257	Anesthesia Mix: Corrugated Tubing; 3 Head Rests; 10 SpO2 Sensors; 2 Circuits
+R258	12 Anesthesia Mix (Unsterile)
+R259	102 Endotracheal Tubes, 11 LMAs, 20 Airways (Sterile & Unsterile)
+R260	Ventilator Tubing x14 (Unsterile)
+R261	Anesthesia Masks x104, Circuits x3 (Unsterile)
+R263	Anesthesia Mix
+R264	Blue Corrugated Respiratory Tubing
+R265	Anesthesia Breathing Circuit (Unsterile)
+R266	Tubing Corrugated
+R267	Anesthesia Mix: Head Rests; Hauge Airways; SpO2 & EKG Pads; Arterial Pressure Tubing
+R268	Anesthesia Circuits/Bags x22
+R270	Anesthesia Mix: Circuit Tubing, Positioning Devices
+R271	Blue Corrugated Tubing (Unsterile)
+R272	Anesthesia Mix
+R273	Anesthesia Breathing Circuits x16
+R274	Anesthesia Circuits x16; Headrests x2
+R275	Urinary Drainage x20 (Unsterile)
+R277	Anesthesia Mix
+R278	Endotracheal Tubes; LMAs x153; Stylettes x12
+R279	Anesthesia Mix
+R280	Anesthesia Masks & Circuits
+R281	Endotracheal Tubes, LMAs, & Stylettes x65
+R282	Endotracheal Tubes, LMAs, & Stylettes x65
+R283	Anesthesia Mix: Headrests; Masks, Arterial Blood Sampling
+R284	Ventilator Tubing: Blue Corrugated
+R285	Endotracheal tubes x 62 (6.5 - 7.5)
+R286	Endotracheal tubes: Pediatric x 58, LMAs x 17
+R287	Endotracheal tubes: Adult x 61, LMAs x 2
+S47	??
+S48	??
+S48	??
+S51	Vascular Mix
+S90	Swan Ganz
+S157	??
+S179	??
+S186	Picc Lines
+S215	??
+S230	??
+S231	Blood Secondary Sets
+S257	??
+S275	IV Tubing
+S276	100 Secondary IV Tubing
+S280	141 IV Tubing
+S281	18 Venous Central Line Access; 18 Dressing Trays
+S282	IV Mix, Secondary Tubing, Extension Sets
+S284	IV Tubing, IV Mix
+S289	IV Tubing w/ Buretts #70
+S290	IV Tubing w/ Buretts #12
+S291	48 Secondary Sets; Med Infusion Sets
+S295	IV Tubing
+S296	Primary Tubing x5; Secondary Tubing x25; 3-Way Stopcocks x150; IV End Caps x300; Extension Sets x130
+S298	4 7" Headrest Pillows w/ Right Intubation Slot; 1 Occluder; 6 Pressure Monitor Kits; 1 Irrigation Probe Syringes; 6 Blood Sampling Kit
+S299	IV Tubing
+S300	Central Lines
+S303	IV Tubing x128
+S304	1 box Wing Guard; 1 box 4-Way Stopcock; 3-Way Stopcock; Infusion Kits x32
+S305	IV Mix
+S306	48 Central Line Dressing Kits
+S307	121 IV Infusion Sets; 17 Blood Infusion Sets
+S309	IV Tubing Primary/Secondary: 70 Extension Sets; 140 Port Caps; 130 Lever Lock Cannula
+S310	140 Infusion Sets & Extension Sets (20 Sterile)
+S311	IV - Assorted
+S312	IV Sets: Primary/Secondary x145; Secondary Cannula x80
+S313	Infusion Sets (Primary & Secondary Extension Sets x160); Port Caps x150
+S314	Central Venous Catheters: Assorted
+S315	IV Tubing 2ml. Sets (Sterile)
+S316	Needle Boxes (Unsterile) x150
+S317	Expired Suture (22 boxes)
+S318	Suture (70 boxes; 4 bags)
+S319	Needle Boxes (Unsterile) x110
+S320	Suture Removal Kits
+S321	Needle Boxes x286
+S322	Sutures
+S323	Sutures (Expired)
+S324	Needle Boxes (Unsterile)
+S325	Needle Boxes (Unsterile)
+S326	Sutures (expired)
+T16	Defibrillator Pads
+T33	Defibrillator and EKG Pads
+T35	Bovie
+T45	140 Unsterile Cautery; 18 Sterile Loop High Temp Cautery; 11 Sterile Cautery; 530 Empty Pill Bottles
+T50	Skin Markers, Tape Measures
+T54	Bovie Pens (Unsterile)
+T55	Bovie Pens (Unsterile)
+T56	11 Unsterile Bovie Cautery
+T57	110 Unsterile Bovie Handpads; Cautery Supplies; 8 Sterile Bovie Pads
+T58	Cautery Supplies (Unsterile)
+T59	Skin Staplers (Unsterile, Open)
+T61	Unsterile Bovie/Cautery
+T62	Irrigation: Irrigation Trays (6); IV Pole Kit (19); Piston Syringes (104)
+T63	Cautery Supplies: 55 Pencils; 4 Cords; 40 Tips; 32 Cleaners
+T64	34 Irrigation Trays; 4 Irrigation Sponges; 6 Unsterile Trays
+T65	Unsterile Skin Stapler
+T66	Skin Markers, Pens, & Rulers
+T67	Cautery Pencils x65 Unsterile; Pads x10 Sterile
+T68	Skin Markers, Rulers, & Pens
+T69	Laceration Kits
+T69	??
+T70	Skin Markers
+T71	Cautery Supplies (Unsterile): Bovies; Tips; Etc.
+T72	Cautery Supplies: Bovies; Tips; Etc.
+T73	Irrigation Trays
+T74	Trauma Pack (Sterile)
+T75	Surgical Packs (Sterile): 1 GYN; 2 Arthroscopic
+U20	Steri-Drapes S-L Long x82
+U21	Lap Sponges (Unsterile)
+U22	ENT Dressings
+U23	Drapes (Sterile)
+U24	Drapes (Sterile)
+U25	Lap Sponges (Unsterile)
+U26	Blue Quarter Drapes (Unsterile) x245
+U27	Lg. Drapes (Unsterile )
+U28	66 Small Drape Sheets (Unsterile)
+U29	Drapes (Sterile): 30 X-Ray Covers; 3 Half Drapes; 28 Drapes; 45 Towel Drapes
+U30	Lg. Drapes (Unsterile)
+U31	OR Sheets, Gowns,  and Misc. Sterile Items
+U32	36 OR Sheets (Sterile); 3 Extremity Drapes
+U33	Large Drape Sheets (Unsterile) x20
+U34	Large Drapes (Unsterile) x25
+U35	Autoclave Wraps
+U36	Sheets/Drapes Large x24; Head Drape x4 (Unsterile)
+U37	Drape Sheets (Unsterile) x50
+U38	Plastic Sheets/Table Covers (Unsterile)
+U39	Autoclave Pouches x4000; Autoclave Wraps
+U40	31 Lg. Drapes (Unsterile)
+U41	Plastic Drapes/Covers (40)
+U42	Large Drapes (Unsterile) x28
+U43	55 Sheets (Unsterile, Paper)
+U44	28 Drapes (Unsterile, Paper )
+U45	Lg. Drapes (Unsterile)
+U46	Sterile Packs: 1 Pediatric Minor; 4 Drape Packs
+U47	Drapes OR Large
+U48	Drapes (Unsterile, Paper): 60 70x100; 44x77
+U49	Large Drapes (Unsterile)
+U50	Sheets (Unsterile, Paper)
+U52	42 Plastic Sheets (Unsterile)
+U53	Autoclave Wraps x195; 1 Roll Tape (Unsterile)
+U54	25 Lg. OR Drapes (Unsterile)
+U55	50 Plastic Sheets (Unsterile)
+U56	180 Autoclave Wraps (Unsterile)
+U57	Lg. Drapes (Unsterile)
+U59	Lg. OR Drapes (Unsterile)
+U60	25 Lg Drapes (Unsterile)
+U61	Lg. OR Drapes (Unsterile)
+U62	OR Drapes (Sterile): 18 U-Drapes; 6 C-Section; 11 Shoulder Pouch
+U65	28 Lg. Drapes (Unsterile)
+U66	24 Drapes (Unsterile)
+U67	110 Mayo Stand Covers (Unsterile)
+U68	25 Lg. Paper Drapes (Unsterile)
+U69	24 OR Drapes & Sheets (Paper, Unsterile)
+U70	37 Tail Drapes (Unsterile)
+U71	22 Large Drapes (Unsterile)
+U72	105 Under Buttocks Drapes
+U73	42 OR Paper Sheets
+U74	Sheets/Drapes OR Lg. x32
+U75	Autoclave Wraps x125; Pouches x200 (Unsterile)
+U76	60 OR Sheets (Unsterile, Paper)
+U77	24 OR Lg. Sheets/Drapes (Unsterile, Paper)
+U78	Plastic Drapes (Unsterile)
+U79	4 Surgical Packs Extermity
+U81	26 Surgical Drapes (Unsterile)
+U83	50 OR Paper Sheets (Unsterile)
+U84	50 Under-Buttocks Drapes (Unsterile)
+U86	Lg. OR Drapes (Unsterile)
+U87	60 Plastic Sheets (Unsterile)
+U88	Lap Sheets x20; Drapes x5 (Paper, Unsterile)
+U89	Autoclave Wraps x130
+U161	5 Sterile OR Packs (Shoulder)
+U162	Drapes Small (Sterile); Towel Drapes x235
+U163	Drapes (Unsterile) x75
+U164	Sheets (Unsterile, Plastic) x40
+U165	Lg. Drapes (Unsterile) x25
+U166	Tail Drapes x28
+U167	Autoclave Wraps x114
+U168	Surgical Packs (Sterile): Thorasic x1; Vascular Minor x1
+U169	Lg. Drapes (Unsterile) x35
+U170	Lg. Drapes (Unsterile)
+U171	Lg. Drapes (Unsterile) x25
+U172	Lg. Drapes (Unsterile) x28
+U173	Quarter Drapes x247
+U174	Lg. Drapes (Unsterile)
+U176	Mayo Stand Covers (Unsterile) x50
+U177	Quarter Drapes (Sterile) x134
+U178	Mayo Stand Covers (Unsterile) x65
+U179	Mayo Stand Covers (Unsterile) x74
+U180	Quarter Drapes (Sterile) x160
+U181	Sheets (Plastic, Unsterile) x43
+U182	Sheets (Paper, Unsterile) x62
+U183	Lg. Drapes (Unsterile) x31
+U184	Lg. Drapes (Unsterile) x25
+U185	Autoclave Wraps
+U186	Plastic Sheets (Unsterile) x54
+U187	Lg. Drapes (Unsterile) x24
+U189	Lg. Drapes (Unsterile) x24
+U190	Autoclave Wraps
+U191	Sheets (Unsterile, Paper) x59
+U192	Sheets (Unsterile, Plastic) x46
+U193	Sheets (Unsterile, Paper) x73
+U194	Lg. Drapes (Unsterile, Paper) x30
+U195	Lg. Drapes (Unsterile, Paper) x24
+U196	Lg. Drapes (Unsterile, Paper) x30
+U197	Lg. Drapes (Unsterile, Paper) x30
+U198	Lg. Drapes (Unsterile, Paper) x24
+U199	Lg. Drapes (Unsterile, Paper) x34
+U200	Lg. Drapes (Unsterile, Paper) x30
+U201	Lg. Drapes (Unsterile, Paper) x24
+U202	Lg. Drapes (Unsterile, Paper) x32
+U203	Autoclave Wraps: 3 Packs of 12
+U204	Autoclave Wraps: 3 Packs of 12
+U205	Autoclave Wraps: 3 Packs of 12
+U206	Autoclave Wraps: 2 Packs of 12
+U207	Autoclave Wraps: 3 Packs of 12
+U208	???
+U209	Autoclave Wraps: 3 Packs of 12
+U210	Lg. Drapes (Unsterile, Paper) x29
+U211	Surgical Pack: 1 Plastic Torso Pack
+U212	Surgical Pack: 1 Plastic Free Flap Pack - Pack B
+U213	Surgical Pack: 1 Lap. Prostatectomy Davinci
+U214	Blue Quarter Drapes
+U215	Mayo Stand Covers (Unsterile) x62
+U216	Mayo Stand Covers (Unsterile) x90
+U217	Lg. Drapes (Unsterile, Paper) x31
+U218	Plastic Sheets (Unsterile) x66
+U219	Lg. Drapes (Unsterile, Paper) x29
+U220	Surgical Drapes x21
+U221	Surgical Drapes x18
+U222	Sheets (unsterile, paper) x 51
+U223	Drapes (unsterile, large) x 27
+V51	46 Shrouds
+V53	Magnetic Instrument Pads x40
+V54	Magnetic Instrument Pads x20
+V57	1800 Raytex (Unsterile)
+V58	Lap Sponges (Unsterile)
+V59	850 Small Towels (Paper)
+V60	Raytex x121 Packs of 10
+V63	Lap Sponges
+V67	Towels (Cloth, Unsterile) x104
+V68	Raytex (Unsterile)
+V69	Lap Sponges (Unsterile)
+V70	Towels (Unsterile)
+V71	Lap Sponges (Unsterile)
+V72	Towels (Cloth, Unsterile) x115
+V73	Towels (Cloth, Unsterile) x115
+W110	White Lab Coats; 80 Scrub Tops
+W111	120 Scrub Tops
+W112	100 Disposable Lab Coats
+W113	18 XL Blue Gowns; 42 Yellow Insulation Gowns
+W114	Assorted Basins, Bowls, Pitchers
+W115	30 Scrub Tops
+W116	Sterilization Supplies
+W117	Sterilization Supplies
+W118	Paper Exam Table Covers
+W119	23 Scrub Tops; 15 Scrub Bottoms
+W120	17 Plastic Pitchers
+W122	Sterilization Wraps, Tape
+W124	White Lab Coats
+W124	White Lab Coats; 6 Boxes Unsterile Vinyl Gloves
+W125	Lab Coats
+W126	Lab Coats
+W127	Sheets x50
+W128	9 White Cloth Lab Coats
+W129	Bedding Linens
+W130	Bed Pillows
+W133	Scrubs Tops x50; Scrub Bottoms x50
+W134	Scrubs Tops x50; Scrub Bottoms x50
+W136	Patient Gowns: 10 Packs
+W136	Sterile Towels (4 Boxes of 50 18"x26")
+W137	150 Sterile Towels 18"x26" Fenestrated x2.75"
+W138	Sterile Towels (4 Boxes of 50 18"x26")
+W139	Sterile Towels (4 Boxes of 50 18"x26")
+W140	Skin Prep (Unsterile): Assorted
+W141	Skin Prep (Sterile): Misc.
+W142	OR Misc. Supplies: Sterile Towel Drapes, Marking Pens, Suction Tubing, etc.
+W144	Foam Sponges
+W145	Magnetic Instrument Pads (Unsterile) x20
+W146	Misc. Sterile OR Supplies: Set Up Packs (12); Suction Tubing (7); Cassette Drapes (15); Bag Decanter (6); 60 ml. Syringe (3); Marking Pens (40); Needle Boxes (5); Yankauer (20); Cautery (18)
+W147	Steri-Drapes/Ioban (100) Sterile
+W148	Surgical Packs (Sterile): 1 Laparoscopy, 1 Fem. Pop.
+W149	OR Packs Fem/Pop Pack (Sterile); EMT Resuscitation Packs
+W151	OR Packs: 5 Hip Drape Pouches; 3 Shoulder Drape Packs; 6 Sterile Gowns
+W154	1 Sterile OR Universal Pack; 18 Leggings; 4 Gowns; 10 Bulb Syringes; 6 Suction Tubing; 15 Raytex; 3 Needle Box Tips
+W156	Skin Prep (Sterile)
+W160	??
+W161	Skin Prep Unsterile & Expired Sterile
+W162	OR Sterile Supplies: Suction Tubing, Marking Pens, Towel Drapes, Roll Gauze, etc.
+W163	Foam Sponges
+W165	23 Magnetic Instrument Pads
+W166	OR Supplies: Yankauers, Suction Tubing, Bowls, etc.
+W167	Foam Sponges
+W168	Misc. OR Supplies (Sterile): Marking Pens x32; Towel Drapes x150; Suction Tubing x30; Stockinettes (4x48) x11
+W169	Misc. OR Supplies (Sterile)
+W170	Sterile Surgical Packs: Plastic Flap Cyst.
+W171	Skin Prep: Prep Trays x3; Shaver & Blades; Sterile Skin Prep x118; Unsterile x163
+W172	Surgical Patties and Tonsil Ball Sponges
+W173	86 Impervious Stockinettes
+W174	Magnetic Instrument Pads (Unsterile)
+W175	Foam Immobilizers
+W176	Magnetic Instrument Pads (Unsterile) x30
+W177	OR suction tubing (sterile)
+X17	Anesthesia Circuits, Mask CO2 Filters
+X22	Anesthesia Mask
+X37	Anesthesia Circuits/Masks
+X53	Anesthesia Breathing Circuits & Masks
+X64	Anesthesia Mask
+X70	Anesthesia Mix
+X73	Anesthesia Circuits & Masks
+X74	Anesthesia Mix & Breathing Circuits
+X77	Anesthesia Mix
+X78	Adult Masks, Anesthesia Tubing, Breathing System Filter
+X80	Anesthesia Mix
+X81	Anesthesia Mix, O2 Sensors, Circuit Extension Tubes
+X82	Anesthesia Mix: Humidivents (103), Spinal Trays (3), Head Rests (6)
+X83	Anesthesia Mix
+X84	Anesthesia Mix
+X88	Ventilation Circuits & Masks
+X95	50 Disposable Tourniquet Cuffs
+X96	Anesthesia Mix
+X97	Short, Med., Long Tubes; Male Connectors; 49 Med. Tubes, 8 Short Tubes; 7 Male-Male Connectors; 2 Suction Tips; 3 Y-Connectors; 9 Suction Toothbrushes
+X101	Ventilator Tubing x15
+X103	Needle Boxes
+X104	14 ea. 7" Headrest Pillows w/ Intubation Slot
+X106	Sutures (Expired) 81, plus loose
+X111	Anesthesia Mix x12
+X112	30 ea. Adult Breathing Circuits
+X113	Anesthesia Tubing x34
+X114	Needle Boxes
+X115	Anesthesia Tubing x34
+X116	Pediatric Anesthesia Tubing x41
+X117	Ventilator Tubing
+X118	Ventilator Tubing
+X119	Needle Boxes: Sterile x110, Unsterile x80
+X120	Breathing Circuits (22mm) x12
+X121	Disposable Bi-Level Circuit w/ Filter x23
+X122	Universal Single Limb Ventilator Circuit x7; Airlife Universal Portable Volume Ventilator Circuit x7; Universal Ventilator Circuit x16
+X123	Universal Non-Invasive Ventilator Circuit x21
+X125	Universal Ventilator Circuit x6; Disposable Heated Wire Non-Invasive Ventilator Circuit x7; Single Limb Heated Wire Ventilator Circuit x3
+X126	Disposable Bi-Level Circuit w/ Filter x23
+X127	Disposable Bi-Level Circuit w/ Filter x25
+X128	Anesthesia Mask Circuit x14
+X129	Universal Neonatal Ventilator Circuit x22; Breathing Circuit 10mm x1
+X130	Universal Ventilator Circuit x16
+X131	4 Anesthesia Pillows; 4 Anesthesia Breathing Circuit Tubing; 216 Spoz Sonior Wraps
+X132	12 OSMO Free Maintainance Water Removal Kits & Breathing Circuit
+X133	Disposable Bi-Level Circuit w/ Filter
+X134	Anesthesia Podiatary Cath Sets; Arterial Sampling Kits; BP Pads; etc.
+X135	Anesthesia Head Rest Pillows x4; Adult Breathing Circuit x5; Trach Tabs x10
+X136	Anesthesia Headrest Pillows x7; Adult Breathing Circuits x6; Masks x8; 2 Bags
+X137	Anesthesia Headrest Pillows x16
+X138	Anesthesia Headrest Pillows x16
+X139	Anesthesia Headrest Pillows x12
+X140	Plastics: 19 Lg. Basins; 59 Sm. Basins; 23 Emesis Basins; 16 Graduates; 2 Funnels
+X143	Other Plastics: Lg. Round Basins (20); Emesis Basins (25); Rectangle Basins (4); Round Blue Bowls (14); Pitchers (2); Trays (101)
+X144	Other Plastics: Lg. Round Basins (14); Rectangle Basins (10); Graduates (3); Emesis Basins (7); Bowls (8); Pitcher (1); Trays (47)
+X145	Assorted Plastics: Emesis Basins (7); Bath Basins (17); Liter Urine Measurers (7); Sm. Plastic Trays (150); Spray Bottle Heads (12); Measure Pitchers (6); Sm. Bowls (12)
+X146	Plastics: Lg. & Sm. Bowls, etc.
+X147	Plastics: Trays, Sm. Bowls, Emisis Basins, etc.
+X148	Empty Pill Bottles
+X149	Blue Basins (28); Sm. Round (25); Kidney (27); Other (36)
+X150	40 Plastic Water Pitchers
+X151	Plastics: Water Bottles, Pitchers, Basins, etc. -- All Sizes
+X152	Pill Bottles
+X153	Plastics: 40 Trays; 18 Bowls; 7 Emesis; 3 Graduates
+X154	Plastics: 30 Trays; 38 Bowls; 10 Emesis; 3 Graduates
+X155	Plastics: Bowls, Pitchers, Trays
+X156	Plastics: 48 Lg. Basins; 16 Trays
+X157	Plastics: Lg. Basins; K-Basins; Sm. Basins, etc.
+X158	Plastics: 18 Lg. Basins; 11 K-Basins; 32 Sm. Square Trays; 33 Lg. Trays; Measuring Cups
+X159	Plastics: Basins (39); Trays (8); Pitchers (27)
+X160	Plastics: Lg. Trays; Lg. Round Basins; K-Basins
+X161	Plastics: Trays, Emesis Basins, etc.
+X162	Plastics: Basins, Pitchers, etc.
+X163	White Paper Towels
+X164	Other Plastics: 32 Emesis; 18 Sm. Plastic Bowls; 7 Measuring Cups; 35 Lg. Basins
+X165	Plastics: Blue Basins; Pitchers; Emesis Basins
+X166	Plastics: Basins; Bowls; Etc.
+X167	Plastics: Basins; Bowls; Etc.
+X168	Plastics: 22 Lg. Round Bowls; 7 Lg. Sq. Basins; 8 Trays; 1 Graduated; 95 Emesis; 21 Round Bowls
+X169	Plastics: 19 Lg. Round Bowls; 8 Lg. Sq. Basins; 11 Trays; 24 Sm. Sq. Bowls; 6 Pitchers; 48 Emesis
+X170	Plastics: 14 Trays; 26 Lg. Round Basins; 16 Lg. Sq. Basins; 61 Emesis; 20 Sm. Bowls; 1 Lg. Pitcher; 6 Sm. Pitchers
+X171	Plastics: 26 Trays; 31 Lg. Round Basins; 6 Pitchers; 10 Bowls; 35 Emesis; 6 Graduates
+X172	Plastics: 17 Trays; 26 Lg. Round Basins; 91 Emesis; 38 Sm. Bowls; 13 Lg. Rect. Basins
+X173	Plastics: 11 trays; 46 Lg. Round Basins; 11 Graduates; 4 Pitchers; 72 Emesis; 7 Wash Basins; 7 Sm. Bowls
+Y84	Dialysis Supplies
+Y85	Dialysis Tubing, 20 Kits, & Misc.
+Y88	Dialysis Needles 1000 Ea.
+Y90	Dialysis Trays x9, Tubing x57, Misc.
+Y92	21 Staple Removal Kits; 390 Suture Removal Kits
+Z91	2 CPAP
+Z94	Shoulder Suspension Set x38
+Z95	Casting Supplies
+Z96	Casting Supplies
+Z97	CPAP x31
+Z98	CPAP Masks: 2 sm.; 24 med.; 2 lg.
+Z99	CPAP Masks: 4 misc.; 9 lg.; 20 med.
+Z100	Unsterile Synthetic Cast Padding (2"x44; 3"x57; 4"x49); Sterile Cotton Undercast Padding (4"x29)
+Z102	Tan Stockinettes
+Z105	Ultrasound Gel x48 bottles
+Z106	Ultrasound Gel x48 bottles
+Z107	6" Cotton-Tipped Applicators (Sterile) x6 Boxes of 1000
+Z107	Hot/Cold Packs: Ice Bags (57); Reusable Hot/Cold Packs (14); Disposable Hot Packs (42); Disposable Cold Packs (4)
+Z108	Cotton-Tipped Applicators (Sterile)
+Z109	8 Spill Kits
+Z112	Povidone-Iodine: 38 Sponges; 5 Sponge Sticks (Lg. Packs)
+Z113	Q-Tips (Sterile)
+Z114	Assorted Rolls Tape
+Z115	Povidone-Iodine (20 Lg. Sponges; 29 Lg. Sticks)
+Z116	Cotton-Tipped Applicators (Unsterile)
+Z117	Q-Tips (Sterile)
+Z118	Tape
+Z119	Tourniquets
+Z120	Q-Tips and Cotton-Tipped Applicators
+Z121	Q-Tips and Cotton-Tipped Applicators
+Z122	Spill Kits
+Z123	Lubricating Gel
+Z124	Medical Tape: Assorted
+Z125	Medical Tape: Assorted
+Y80	3cc. Syringes x700
+Y103	3cc. Syringes x1200
+Y111	1-3cc. Syringes x1453
+Y115	1-3cc. Syringes x1200
+Y141	Unsterile Syringes x1200
+Y148	1cc. Syringes: Safety Glide 27G
+Y149	20cc. Syringes
+Y153	1-3cc. Syringes
+Y193	Unsterile Syringes
+Y195	3 cc. Syringes
+Y217	10cc. Syringes x800
+Y218	10cc. Syringes (Sterile): 426 Luer-Lok; 160 Slip Tip; 75 Luer-Lok w/ Blunt Plastic Cannula; 13 w/o Needle; 10 21Gx1; 2 20Gx1 1/2; 32 20Gx1; 2 Control Syringes
+Y222	Unsterile Syringes (Assorted Sizes)
+Y223	Dosing Syringes x400
+Y224	Approx. 400 20 & 60cc. Dosing Syringes
+Y225	Syringes: 220 60cc.; 30 20-30cc.
+Y226	Oral Dressing Syringes
+Y227	Syringes (Sterile): 1000 3cc. w/o Needles
+Y228	1-3cc. Syringes
+Y229	900 Unsterile Syringes (Assorted Sizes)
+Y230	20-60cc. Sterile Irrigation Syringes
+Y233	10cc. Syringes: 580 Luer-Lok; 288 w/ 1-1/2" Needle; 30 Control Syringes
+Y235	60cc. Syringes (Sterile): 180 w/ Catheter Tip
+Y236	60cc. Syringes (Sterile): 180 w/ Catheter Tip
+Y237	20-60cc. Syringes (Sterile)
+Y238	20-60cc. Syringes
+Y240	10cc. Syringes (Sterile)
+Y241	Various Syringes
+Y242	12cc. Syringes x320
+Y244	Syringes (Unsterile): Assorted Sizes
+Y246	Sterile 20-60cc. Syringes: 20cc. x193; 30cc. x65; 60cc. x84
+Y247	Sterile 10cc. Luer-Lok Syringes x800
+Y248	60cc. Syringes (Unsterile) x375
+Y250	10-12cc. Syringes (Sterile)
+Y251	20-60cc. Syringes (Sterile)
+Y252	Sterile 1cc. Syringes
+Y253	3cc. Sterile Syringes
+Y254	1cc. Tuberculin Slip-Tip Syringes x2370
+Y255	Sterile Syringes 3cc. w/ 23Gx1" Needle x800
+Y256	Sterile 5-6cc. Syringes
+Y62	Syringes 20-60 cc.
+Y64	Syringes 1-3 cc.
+Y83	30 Injection Trays
+Y89	Insulin Syringes, Insulin Slip Tip, 1 cc Slip Tip Syringes
+Y80	Covers (Plastic)
+Y106	??
+Y128	Flat Sheets ripped
+Y132	Cysto/Basic Packs
+Y156	Back Table Cover (Big Case)
+Y181	Raytex (Unsterile)
+Y198	Urometers
+Y285	Sponges Unsterile
+Y295	Sterile Drapes
+Y298	Drapes (Unsterile)
+Y299	Medium Sterile Drapes
+Y303	Sterile Drapes
+Y305	Ortho Pack x8
+Y306	Raytex (Unsterile)
+Y309	Surgical Drapes (Sterile)
+Y312	Sterile Drapes
+Y314	Foam Sponges
+Y316	Flap Pack
+Y317	Surgical Drapes x30 (Sterile)
+Y318	Skin Prep
+Y319	Drapes (Sterile) x31
+Y320	Surgical Packs: 1 Lap., 1 Assessory, 1 Prostate
+Y321	Surgical Packs: 2 Major
+Y322	Surgical Packs: 1 Major Vaginal, 1 Dental
+Y323	Surgical Pack: Major GYN
+Y324	Surgical Pack: 1 Extreme
+Y325	Surgical Packs: 1 Extreme, 1 General Lap.
+Y329	Liver Transplant Packs x2
+Y330	Surgical Packs: Gen. Form x1; Bowel x1; UofR GYN AB Kit x1
+Y331	Plastic Free Flap x1
+Y332	Plastic Free Flap x1
+Y333	Plastic Free Flap x1
+Y334	Arm Pillow x1; Vein Pack x1, Universal Pack
+Y335	Hip Pack x1
+Y336	UofR Major GYN AB Kit x1
+Y337	Chest (Heart) Pack x1
+Y338	Major x1; Lap. Drapes x8
+Y339	Foam Sponges
+Y340	Unsterile Raytex
+Y341	Sterile Surgical Drapes
+Y343	Dry Skin Prep Trays
+Y344	Skin Prep (Sterile): Assorted
+Y345	Sterile Surgical Drapes x32
+Y346	ChloraPrep w/ Tint 26 ml.
+Y31	Towels (Blue & White Paper)
+Y33	Drapes (Unsterile)
+Y45	78 Lap Pads
+Y48	Cloth Towels (Unsterile)
+Y48	Lap Sponges (Sterile)
+Y50	Quarter Drapes: sm. x250; lg. x72
+Y51	Sterile Quarter Drapes
+Y53	Tail Drapes (Plastic) x30

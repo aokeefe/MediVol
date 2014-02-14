@@ -39,6 +39,8 @@ class Category(models.Model):
 class BoxName(models.Model):
     category = models.ForeignKey(Category)
     name = models.CharField(max_length=NAME_LENGTH)
+    can_expire = models.BooleanField()
+    can_count = models.BooleanField()
 
     @classmethod
     def create_from_csv(cls, csv):
