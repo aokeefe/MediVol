@@ -141,7 +141,7 @@ Other Plastics:
   Water Bottles
 Bulb Syringes/Funnels:
   Sterile Ear/Ulcer Syringe
-  Unsterile Ear/Ulcer Syringe    
+  Unsterile Ear/Ulcer Syringe
 Dressings (Sterile, Non-medicated):
   2x2
   4x4 Gauze
@@ -333,7 +333,6 @@ Cast Padding:
   Webril
 Exam Table Paper:
   Roll (14.5"x125')
-  
 Tape:
   Assorted Sizes & Types
 Skin Prep (Unsterile):
