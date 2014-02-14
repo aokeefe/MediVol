@@ -120,7 +120,7 @@ mysql -u root --password=root -e 'create database MediVolDB;';
 printf '/nInstalling sl';
 sudo apt-get install sl;
 
-sleep 5;
+sleep 15;
 
 python /var/www/MediVol/syncdb_script.py;
 python /var/www/MediVol/catalog/initialize_categories.py;
@@ -142,3 +142,6 @@ python /var/www/MediVol/inventory/CSV_Importer.py /var/www/MediVol/inventory/Med
 /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_30.csv;
 
 sudo service apache2 restart;
+
+#Leave at the end
+mysql -u root --password=root -e 'use MediVolDB; select count(*) from catalog_item;';
