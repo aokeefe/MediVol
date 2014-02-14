@@ -142,3 +142,5 @@ python /var/www/MediVol/inventory/CSV_Importer.py /var/www/MediVol/inventory/Med
 /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_30.csv;
 
 sudo service apache2 restart;
+
+mysql -u root --password=root -e 'use MediVolDB; select count(*) from catalog_item;';
