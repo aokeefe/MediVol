@@ -247,9 +247,7 @@ for pair in box_name_mapping:
     box_name.save()
 
 item_file = file('test_item_list.txt', 'r')
-item_pair = []
 box_name = None
-count = 0
 for line in item_file:
     if ':' in line:
         #line[:-1] = full line
