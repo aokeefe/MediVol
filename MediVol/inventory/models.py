@@ -22,6 +22,8 @@ class Box(models.Model):
     barcode = models.CharField(max_length=8)
     initials = models.CharField(max_length=5, default="")
     entered_date = models.DateTimeField('date the box was entered', null=True)
+    old_box_flag = models.BooleanField(default=False)
+
     #location = models.CharField(max_length=300)
     #None is no expiration
     #TODO remove
@@ -36,7 +38,6 @@ class Box(models.Model):
     audit = models.IntegerField(default=1, null=True)
     
     #TODO add the following
-    #old_box_flag
     #wholesale_value
 
     @classmethod

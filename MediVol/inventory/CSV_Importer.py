@@ -139,7 +139,7 @@ def importer(filepath):
                     old_contents=validatedRow[3], old_expiration=validatedRow[4], entered_date=validatedRow[5], 
                     reserved_for=validatedRow[6], shipped_to=validatedRow[7], box_date=validatedRow[8], 
                     audit=validatedRow[9], box_category=Category.objects.get(letter=validatedRow[10]), 
-                    initials='old')
+                    initials='old', old_box_flag=True)
                 box.save() 
         rownum += 1
 
