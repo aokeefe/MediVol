@@ -120,7 +120,7 @@ mysql -u root --password=root -e 'create database MediVolDB;';
 printf '/nInstalling sl';
 sudo apt-get install sl;
 
-sleep 5;
+sleep 15;
 
 python /var/www/MediVol/syncdb_script.py;
 python /var/www/MediVol/catalog/initialize_categories.py;
