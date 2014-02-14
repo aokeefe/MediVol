@@ -101,7 +101,6 @@ Pediatric Supplies:
 
 Suction Catheters:
   Adult/Peds Endobronchial
-
 Needles:
   18Gx1"
   23Gx1"
@@ -116,14 +115,14 @@ Other Plastics:
   Funnel
   Graduate
   K-Basin
-  Lg. Basin
-  Lg. Bowl
-  Lg. Pitcher
-  Lg. Rectangular Basin
-  Lg. Round Basin
-  Lg. Round Bowl
-  Lg. Sq. Basin
-  Lg. Tray
+  Basin (lg)
+  Bowl (lg)
+  Pitcher (lg)
+  Rectangular Basin (lg)
+  Round Basin (lg)
+  Round Bowl (lg)
+  Square Basin (lg)
+  Tray (lg)
   Med. Bowl
   Measuring Cup
   Pink Basin
@@ -132,16 +131,16 @@ Other Plastics:
   Round Basin
   Round Blue Bowl
   Round Bowl
-  Sm. Basin
-  Sm. Blue Basin
-  Sm. Bowl
-  Sm. Rectangular Basin
-  Sm. Pitcher
-  Sm. Plastic Bowl
-  Sm. Sq. Bowl
-  Sm. Sq. Trays
-  Sq. Basin
-  Sq. Pan
+  Basin (sm)
+  Blue Basin (sm)
+  Bowl (sm)
+  Rectangular Basin (sm)
+  Pitcher (sm)
+  Plastic Bowl (sm)
+  Square Bowl (sm)
+  Square Trays (sm)
+  Square Basin
+  Square Pan
   Tray
   Urinal
   Urine Collector
