@@ -252,9 +252,6 @@ item_file = file('/var/www/MediVol/catalog/test_item_list.txt', 'r')
 box_name = None
 for line in item_file:
     if ':' in line:
-        #line[:-1] = full line
-        #line[:-2] = no return line
-        #line[:-3] = no colon at end of line
         box_name = BoxName.objects.get(name=line.split(":")[0]) 
     else:
         item = Item(box_name=box_name, name=line.strip(), description='')
