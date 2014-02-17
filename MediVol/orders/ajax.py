@@ -3,6 +3,7 @@ from dajaxice.decorators import dajaxice_register
 from datetime import datetime
 
 from orders.models import Order, OrderBox
+from orders import views as orderView
 from inventory.models import Box, Contents
 from catalog.models import Category, BoxName, Item
 
@@ -94,6 +95,7 @@ def get_info(request, boxid):
 def create_order(request, ship_to, reserved_for, box_ids):
 
     order_base_number = 100
+    order_number_array = []
 
     # Calculate order number
     order_number = Order.objects.count() + order_base_number
@@ -106,8 +108,7 @@ def create_order(request, ship_to, reserved_for, box_ids):
         order_box = OrderBox(order_for=new_order, box=boxOrder)
         order_box.save()
 
-    return "Order Created Successfully"
-  
+    orderNumber = Order.objects.get(order_number=order_number).order_number
+    order_number_array.append(orderNumber)    
 
-
-
+    return simplejson.dumps(order_number_array)

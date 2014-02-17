@@ -20,6 +20,7 @@ def orders_main(request):
 # Display order review page
 def order_review(request, orderid):
 
+  try:
         boxes = []
 
         #Try and get order to review, if the order id exists return 
@@ -35,7 +36,6 @@ def order_review(request, orderid):
         response = { 'boxes': boxes, 'order': order }
         return render(request, 'orders/review_order.html', response) 
 
-    
-        
-        # I order id does not exist in database redirect to order not found page
-        #return render_to_response('orders/order_not_found.html')  
+  except:
+        # If order id does not exist in database redirect to order not found page
+        return render_to_response('orders/order_not_found.html')  

@@ -103,17 +103,8 @@ function getBoxes(response) {
 */
 function createOrder(response) {
     if (response != 'False') {
-        var iframe = document.createElement('iframe');
-        var html = '<head><script type"text/javascript">window.print();</script></head>' +
-                '<body>' + response + '</body>';
-        iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(html);
-        iframe.width = 0;
-        iframe.height = 0;
-        document.body.appendChild(iframe);
-        
-        setTimeout(function() {
-            location.reload();
-        }, 1);
+        var orderNumber = response[0];
+        window.location.href = "/orders/review/" + orderNumber; 
     }
 }
 
@@ -395,7 +386,7 @@ $(document).ready(function() {
         var missingRequired = false;
         
         // Required fields.
-    var contact_name = $('input[name=contact_name]').val();
+        var contact_name = $('input[name=contact_name]').val();
         if (contact_name == '') {
             $('input[name=contact_name]').addClass('requiredTextField');
             missingRequired = true;
@@ -408,7 +399,7 @@ $(document).ready(function() {
         }
 
         // Call the create_order AJAX function.
-        Dajaxice.orders.create_order(createOrder, 
+        Dajaxice.orders.create_order(createOrder,
             {
                 'ship_to': contact_name,
                 'reserved_for': contact_name,
