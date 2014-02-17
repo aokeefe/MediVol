@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    <title>Order Review Page </title>
+{% endblock %}
+
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}orders/css/style.css' />
+{% endblock %}
+
+{% block body %}
+    <h2>Review Order Number: {{ order.order_number }}</h2>
+
+    <div id='stepOne'> 
+        <div id='tableWrapper'>
+            <table id='boxes_added'>
+                <tr id='table_header'>
+                    <td>Box ID</td>
+                    <td>Size</td>
+                    <td>Weight</td>
+                </tr>
+                
+                {% for box in boxes %}
+                    <tr>
+                        <td>{{ box.box_id }}</td>
+                        <td>{{ box.box_size }}</td>
+                        <td>{{ box.box_weight }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div> 
+{% endblock %}

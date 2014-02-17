@@ -38,7 +38,7 @@ def get_box_ids(request, item):
     
     boxs_ids = []
     item = Item.objects.filter(name=item)
-    contents = Item.objects.filter(name=item).content_set.all()
+    contents = Contents.objects.filter(item=item)
 
     for content in contents:
         boxs_ids.append(content.box_within.box_id)
@@ -76,6 +76,7 @@ def get_search_results(request, query):
 def get_info(request, boxid):
 
   box_info = []
+  box_items = []
   box = Box.objects.get(box_id=boxid)
   box_id = box.box_id
   box_info.append(str(box_id))
@@ -83,6 +84,8 @@ def get_info(request, boxid):
   box_info.append(str(box_size))
   box_weight = box.weight
   box_info.append(str(box_weight))
+  box_old_contents = box.old_contents
+  box_new_content_ids = Contents.objects.get(box_within=box)
 
   return simplejson.dumps(box_info)
 
