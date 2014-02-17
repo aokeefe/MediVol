@@ -76,19 +76,19 @@ def get_search_results(request, query):
 @dajaxice_register(method='GET')
 def get_info(request, boxid):
 
-  box_info = []
-  box_items = []
-  box = Box.objects.get(box_id=boxid)
-  box_id = box.box_id
-  box_info.append(str(box_id))
-  box_size = box.box_size
-  box_info.append(str(box_size))
-  box_weight = box.weight
-  box_info.append(str(box_weight))
-  box_old_contents = box.old_contents
-  box_new_content_ids = Contents.objects.get(box_within=box)
+    box_info = []
+    box_items = []
+    box = Box.objects.get(box_id=boxid)
+    box_id = box.box_id
+    box_info.append(str(box_id))
+    box_size = box.box_size
+    box_info.append(str(box_size))
+    box_weight = box.weight
+    box_info.append(str(box_weight))
+    box_old_contents = box.old_contents
+    box_new_content_ids = Contents.objects.get(box_within=box)
 
-  return simplejson.dumps(box_info)
+    return simplejson.dumps(box_info)
 
 # Registers order to database.
 @dajaxice_register
