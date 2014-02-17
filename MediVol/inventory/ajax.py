@@ -9,35 +9,21 @@ from label.barcodes import BoxLabel
 
 from haystack.query import SearchQuerySet
 
+from search.Searcher import Searcher
+
 """
 Gets all of the box names associated with a given category.
 """
 @dajaxice_register(method='GET')
 def get_box_names(request, category_name):
-    category = Category.objects.get(name=category_name)
-    box_names = BoxName.objects.filter(category=category)
-    
-    box_names_array = []
-    
-    for box_name in box_names:
-        box_names_array.append(box_name.name)
-    
-    return simplejson.dumps(sorted(box_names_array))
+    return simplejson.dumps(Searcher.get_box_names(category_name))
 
 """
 Gets all of the items associated with a given box name.
 """
 @dajaxice_register(method='GET')
 def get_items(request, box_name):
-    box_name = BoxName.objects.get(name=box_name)
-    items = Item.objects.filter(box_name=box_name)
-    
-    items_array = []
-    
-    for item in items:
-        items_array.append(item.name)
-    
-    return simplejson.dumps(sorted(items_array))
+    return simplejson.dumps(Searcher.get_items(box_name))
 
 """
 Searches categories, box names, and items for a query. 
@@ -45,15 +31,7 @@ Returns the results in 'Category > Box Name > Item' form.
 """
 @dajaxice_register(method='GET')
 def get_search_results(request, query):
-    results_array = []
-    
-    results = SearchQuerySet().autocomplete(name_auto=query).models(Item, BoxName, Category)
-    
-    for result in results:
-        result = result.object
-        results_array.append(result.get_search_results_string())
-    
-    return simplejson.dumps(results_array)
+    return simplejson.dumps(Searcher.search_catalog(query))
 
 """
 Creates a box with the given initials, weight, size, items, and note.

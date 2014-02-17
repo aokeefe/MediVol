@@ -9,7 +9,7 @@ def create(request):
     
     for category in categories:
         categoryStrings.append(category.name)
-
+    
     context = { 'categories': sorted(categoryStrings) }
     
     return render(request, 'inventory/create.html', context)
