@@ -10,7 +10,6 @@ from catalog.models import Category, BoxName, Item
 # Gets all of the box names associated with a given category
 @dajaxice_register(method='GET')
 def get_box_names(request, category_name):
-    category = Category.objects.get(name=category_name)
     box_names = Category.objects.get(name=category_name).boxname_set.all()
 
     box_names_array = []
@@ -23,7 +22,6 @@ def get_box_names(request, category_name):
 # Gets all of the items associated with a given box name.
 @dajaxice_register(method='GET')
 def get_items(request, box_name):
-    box_name = BoxName.objects.get(name=box_name)
     items = BoxName.objects.get(name=box_name).item_set.all()
 
     items_array = []
@@ -38,7 +36,7 @@ def get_items(request, box_name):
 def get_box_ids(request, item):
     
     boxs_ids = []
-    item = Item.objects.filter(name=item)
+    item = Item.objects.get(name=item)
     contents = Contents.objects.filter(item=item)
 
     for content in contents:
