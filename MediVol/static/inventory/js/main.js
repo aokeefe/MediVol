@@ -157,29 +157,6 @@ function setItemSelected(itemName) {
     $('#itemSelectedMessage').removeClass('noItemSelected');
     $('#itemSelectedMessage').addClass('itemSelected');
     $('#itemSelectedMessage').html('You have selected: <br /><b>' + itemName + '</b>');
-    
-    Dajaxice.inventory.get_can_expire_and_can_count(function(returned) {
-        var canExpire = returned[0];
-        var canCount = returned[1];
-        
-        if (canExpire) {
-            $('#expiration').removeAttr('disabled');
-            $('#expiration').parent().css('opacity', '1');
-        } else {
-            $('#expiration').val('');
-            $('#expiration').attr('disabled', 'disabled');
-            $('#expiration').parent().css('opacity', '0.25');
-        }
-        
-        if (canCount) {
-            $('#count').removeAttr('disabled');
-            $('#count').parent().css('opacity', '1');
-        } else {
-            $('#count').val('');
-            $('#count').attr('disabled', 'disabled');
-            $('#count').parent().css('opacity', '0.25');
-        }
-    }, { 'item_name': itemName });
 }
 
 function setItemNotSelected() {
@@ -290,6 +267,33 @@ $(document).ready(function() {
     // Set the 'on change' event for the items list.
     $('#items').change(function() {
         setItemSelected($('#items option:selected').val());
+    });
+    
+    var expirationCleared = false;
+    
+    $('#expiration').click(function() {
+        if (expirationCleared) {
+            expirationCleared = false;
+            return;
+        }
+    
+        var date = $('#expiration').val();
+        if (date == '') {
+            var datePlusOneYear = new Date();
+            datePlusOneYear.setYear(datePlusOneYear.getFullYear() + 1);
+            
+            var newDateString = datePlusOneYear.getFullYear() + '-' + 
+                    ('0' + (datePlusOneYear.getMonth()+1)).slice(-2) + '-' +
+                    ('0' + datePlusOneYear.getDate()).slice(-2);
+            
+            $('#expiration').val(newDateString);
+        }
+    });
+    
+    $('#expiration').change(function() {
+        if ($('#expiration').val() == '') {
+            expirationCleared = true;
+        }
     });
     
     // Set the 'on click' event for the add item button.

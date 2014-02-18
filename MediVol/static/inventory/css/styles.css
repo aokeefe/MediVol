@@ -142,6 +142,13 @@ h3 {
     margin-top: 10px;
 }
 
+.smallNote {
+    margin-top: 0;
+    padding-top: 0;
+    font-style: italic;
+    font-size: 1em !important;
+}
+
 #note {
     resize: none;
     width: 165px;
