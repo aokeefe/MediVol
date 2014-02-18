@@ -33,7 +33,7 @@ letter_mapping = (
     ('W', 'Surgical Supplies'),
     ('X', 'Plastic'),
     ('Y', 'UNKNOWN'),
-    ('Z', 'LittleThings'))
+    ('Z', 'Little Things'))
 categories = Category.objects.all()
 categories.delete()
 
@@ -209,7 +209,6 @@ box_name_mapping = (
     ('Plastic Trays','X',False,True),
     ('Cautery Sticks','Z', True,True),
     ('Tourniquets','Z', True,False),
-    #('Batteries','NONE',False,False),
     ('Peanuts, Kitners (Sterile)','Z', True,True),
     ('Applicator Appliers & Clips (Hemo Clips)','Z', True,True),
     ('DermaHooks','Z', True,False),
