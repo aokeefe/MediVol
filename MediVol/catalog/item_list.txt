@@ -390,7 +390,7 @@ Cast Padding:
   Wet or Dry 6"
   Wet or Dry 3"
   Wet or Dry 2"
-  Wet or Dry 4" x160
+  Wet or Dry 4"
   Water Resistant 3"
   Cotton 2"
 Exam Table Paper:
@@ -506,10 +506,10 @@ CPAP:
   Mask (med)
   Mask (lg)
 Feeding & Kangaroo Bags:
-  EntraLite Enteral Pump Delivery System - 1200 ml
-  EntraLite Enteral Pump Delivery System - 500 ml
-  EnteraLite Infinity Pump - 500 ml
-  EnteraLite Infinity Pump - 1200 ml
+  EntraLite Enteral Pump Delivery System 1200 ml
+  EntraLite Enteral Pump Delivery System 500 ml
+  EnteraLite Infinity Pump 500 ml
+  EnteraLite Infinity Pump 1200 ml
   Enteral
   Feeding syringes
   Pump
