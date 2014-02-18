@@ -157,6 +157,29 @@ function setItemSelected(itemName) {
     $('#itemSelectedMessage').removeClass('noItemSelected');
     $('#itemSelectedMessage').addClass('itemSelected');
     $('#itemSelectedMessage').html('You have selected: <br /><b>' + itemName + '</b>');
+    
+    Dajaxice.inventory.get_can_expire_and_can_count(function(returned) {
+        var canExpire = returned[0];
+        var canCount = returned[1];
+        
+        if (canExpire) {
+            $('#expiration').removeAttr('disabled');
+            $('#expiration').parent().css('opacity', '1');
+        } else {
+            $('#expiration').val('');
+            $('#expiration').attr('disabled', 'disabled');
+            $('#expiration').parent().css('opacity', '0.25');
+        }
+        
+        if (canCount) {
+            $('#count').removeAttr('disabled');
+            $('#count').parent().css('opacity', '1');
+        } else {
+            $('#count').val('');
+            $('#count').attr('disabled', 'disabled');
+            $('#count').parent().css('opacity', '0.25');
+        }
+    }, { 'item_name': itemName });
 }
 
 function setItemNotSelected() {

@@ -34,6 +34,15 @@ def get_search_results(request, query):
     return simplejson.dumps(Searcher.search_catalog(query))
 
 """
+Gets information about whether this item requires an expiration
+date and a count.
+"""
+@dajaxice_register(method='GET')
+def get_can_expire_and_can_count(request, item_name):
+    item = Item.objects.get(name=item_name)
+    return simplejson.dumps([ item.box_name.can_expire, item.box_name.can_count ])
+
+"""
 Creates a box with the given initials, weight, size, items, and note.
 
 Item array should be of the form:
