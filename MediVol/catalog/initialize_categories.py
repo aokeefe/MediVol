@@ -248,7 +248,7 @@ for pair in box_name_mapping:
     box_name = BoxName(name=pair[0], category=Category.objects.get(letter=pair[1]), can_expire=pair[2], can_count=pair[3])
     box_name.save()
 
-item_file = file('/var/www/MediVol/catalog/test_item_list.txt', 'r')
+item_file = file('/var/www/MediVol/catalog/item_list.txt', 'r')
 box_name = None
 for line in item_file:
     if ':' in line:
