@@ -112,7 +112,18 @@ function getAddedItems() {
             var itemInfo = element.children('td');
             var itemName = $(itemInfo[2]).html();
             var expiration = $(itemInfo[3]).html();
-            var count = $(itemInfo[4]).html();
+            var count = 0;
+            
+            if ($(itemInfo[4]).html() != 'No count') {
+                count = $(itemInfo[4]).html();
+            }
+            
+            if (expiration != 'Never') {
+                var expirationObj = new Date(expiration);
+                expiration = expirationObj.getFullYear() + '-' + 
+                        ('0' + (expirationObj.getMonth() + 1)).slice(-2) + '-' +
+                        ('0' + expirationObj.getDate()).slice(-2);
+            }
             
             items.push([ itemName, expiration, count ]);
         }
@@ -141,7 +152,11 @@ function goBack() {
 
 function goForward() {
     if (getAddedItems().length == 0) {
+        $('#emptyBoxMessage').html('Cannot create an empty box.');
         $('#emptyBoxMessage').show();
+        $('html, body').animate({
+            scrollTop: $('#emptyBoxMessage').offset().top
+        }, 500);
     
         return;
     }
@@ -283,7 +298,7 @@ $(document).ready(function() {
             datePlusOneYear.setYear(datePlusOneYear.getFullYear() + 1);
             
             var newDateString = datePlusOneYear.getFullYear() + '-' + 
-                    ('0' + (datePlusOneYear.getMonth()+1)).slice(-2) + '-' +
+                    ('0' + (datePlusOneYear.getMonth() + 1)).slice(-2) + '-' +
                     ('0' + datePlusOneYear.getDate()).slice(-2);
             
             $('#expiration').val(newDateString);
@@ -310,11 +325,29 @@ $(document).ready(function() {
         // Required fields to add an item.
         if (typeof(category) == 'undefined' || 
                 typeof(boxName) == 'undefined' || 
-                typeof(item) == 'undefined' || 
-                count == '' || 
-                count < 1) {
-            // TODO: some kind of alert
+                typeof(item) == 'undefined') {
             return;
+        }
+        
+        if (count < 0) {
+            $('#emptyBoxMessage').html('Item count cannot be less than zero.');
+            $('#emptyBoxMessage').show();
+            $('html, body').animate({
+                scrollTop: $('#emptyBoxMessage').offset().top
+            }, 500);
+            return;
+        }
+        
+        if (count == '' || count == 0) {
+            count = 'No count';
+        }
+        
+        if (expiration != 'Never') {
+            console.log(expiration);
+            var expirationObj = new Date(expiration);
+            expiration = ('0' + (expirationObj.getMonth() + 1)).slice(-2) + '/' +
+                    ('0' + (expirationObj.getDate() + 1)).slice(-2) + '/' + 
+                    expirationObj.getFullYear();
         }
         
         // Remove the placeholder row if it's there.
@@ -411,7 +444,6 @@ $(document).ready(function() {
         
         // Can't have 0 items.
         if (items.length == 0) {
-            // TODO: add some sort of alert
             return;
         }
         
