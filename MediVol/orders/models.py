@@ -18,6 +18,7 @@ class Order(models.Model):
 class OrderBox(models.Model):
     order_for = models.ForeignKey(Order)
     box = models.ForeignKey(Box)
+    cost = models.FloatField(default=0.0)
 
     def __unicode__(self):
         return self.box + " in order " + self.order_for
