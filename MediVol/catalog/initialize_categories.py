@@ -33,7 +33,7 @@ letter_mapping = (
     ('W', 'Surgical Supplies'),
     ('X', 'Plastic'),
     ('Y', 'UNKNOWN'),
-    ('Z', 'LittleThings'))
+    ('Z', 'Little Things'))
 categories = Category.objects.all()
 categories.delete()
 
@@ -209,7 +209,6 @@ box_name_mapping = (
     ('Plastic Trays','X',False,True),
     ('Cautery Sticks','Z', True,True),
     ('Tourniquets','Z', True,False),
-    #('Batteries','NONE',False,False),
     ('Peanuts, Kitners (Sterile)','Z', True,True),
     ('Applicator Appliers & Clips (Hemo Clips)','Z', True,True),
     ('DermaHooks','Z', True,False),
@@ -248,7 +247,7 @@ for pair in box_name_mapping:
     box_name = BoxName(name=pair[0], category=Category.objects.get(letter=pair[1]), can_expire=pair[2], can_count=pair[3])
     box_name.save()
 
-item_file = file('/var/www/MediVol/catalog/test_item_list.txt', 'r')
+item_file = file('/var/www/MediVol/catalog/item_list.txt', 'r')
 box_name = None
 for line in item_file:
     if ':' in line:

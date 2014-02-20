@@ -36,9 +36,6 @@ class Box(models.Model):
     box_date = models.DateTimeField('Box date', null=True)
     #TODO what does this mean?
     audit = models.IntegerField(default=1, null=True)
-    
-    #TODO add the following
-    #wholesale_value
 
     @classmethod
     def create_from_csv(cls, csv):
