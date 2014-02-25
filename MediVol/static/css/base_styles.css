@@ -108,11 +108,16 @@ h1, h2, h3 {
 
 #globalSearch {
     width: 250px;
-    margin-top: 21%;
+    margin-top: 15%;
 }
 
 #globalSearchButton {
     height: 33px;
+}
+
+#logoutWrapper {
+    text-align: right;
+    padding-right: 5px;
 }
 
 /* ----- END HEADER STLYES ----- */

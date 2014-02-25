@@ -22,23 +22,30 @@
             </div>
             
             <div id='globalSearchWrapper'>
-                <a href='/logout/'>log out</a>
-                <input id='globalSearch' class='textField' placeholder='Search for anything...' type='text' />
-                <input id='globalSearchButton' class='button' type='button' value='Search' />
+                {% if user.is_authenticated %}
+                    <div id='logoutWrapper'><a href='/logout/'>log out</a></div>
+                {% endif %}
+                
+                {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
+                    <input id='globalSearch' class='textField' placeholder='Search for anything...' type='text' />
+                    <input id='globalSearchButton' class='button' type='button' value='Search' />
+                {% endif %}
             </div>
             
             <div class='clear'></div>
         </header>
        
         <nav>
-            <ul>
-                <a href='/inventory/'><li>Inventory</li></a>
-                <a href='/catalog/'><li>Catalog</li></a>
-                <a href='/orders/'><li>Orders</li></a>
-                <a href='/administration/'><li>Admin</li></a>
-            </ul>
-            
-            <div class='clear'></div>
+            {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
+                <ul>
+                    <a href='/inventory/'><li>Inventory</li></a>
+                    <a href='/catalog/'><li>Catalog</li></a>
+                    <a href='/orders/'><li>Orders</li></a>
+                    <a href='/administration/'><li>Admin</li></a>
+                </ul>
+                
+                <div class='clear'></div>
+            {% endif %}
             <hr />
         </nav>
         

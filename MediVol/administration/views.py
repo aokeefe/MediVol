@@ -2,12 +2,13 @@ from django.contrib import auth
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import User
 
 from administration.models import Warehouse
 
 def not_in_guest_group(user): 
     if user: 
-        return user.groups.filter(name='guest').count() == 0 
+        return user.groups.filter(name='Guest').count() == 0 
     return False
 
 @login_required
@@ -19,7 +20,9 @@ def access_forbidden(request):
     return render(request, 'administration/forbidden.html')
 
 def manage_users(request):
-    return render(request, 'administration/manage_users.html')
+    context = { 'users': User.objects.all() }
+
+    return render(request, 'administration/manage_users.html', context)
 
 def manage_backups(request):
     return render(request, 'administration/manage_backups.html')

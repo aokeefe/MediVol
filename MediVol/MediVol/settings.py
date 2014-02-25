@@ -59,7 +59,12 @@ MEDIA_ROOT = ''
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = ''
 
+# Log in URL to redirect to if @login_required is used on a view method
+# and the user isn't logged in
 LOGIN_URL = '/login/'
+
+# TODO: change this
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files

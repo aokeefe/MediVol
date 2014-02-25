@@ -6,4 +6,20 @@
 
 {% block body %}
     <h2>Manage Users</h2>
+    
+    <table>
+        <tr><td>Username</td><td>Email</td><td>Group</td><td></td><td></td></tr>
+        
+        {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td><a href='mailto:{{ user.email }}'>{{ user.email }}</a></td>
+                <td>
+                    {{ user.groups.all.0 }}
+                </td>
+                <td><a href='javascript:void(0)'>Send password reset</a></td>
+                <td><a href='javascript:void(0)'>Remove</a></td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
