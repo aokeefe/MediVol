@@ -2,7 +2,7 @@
 
 {% block title %}<title>Catalog</title>{% endblock %}
         
-{% block styles %}<link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/styles.css' />{% endblock %}
+<!--{% block styles %}<link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/styles.css' />{% endblock %}-->
 
 {% block body %}
 
@@ -45,9 +45,12 @@ Need count? <input id="count" type="checkbox">
 <br><br>
  Item: 
 <input type="text" id="item_input" name="item">
-<button type="button" id='add_item_b'>Add New Item</button>
+<button type="button" id='add_new_item'>Add New Item</button>
 <button type="button" id='edit_item'>Edit Item Name</button>
 <button type="button" id='delete_item'>Delete Item</button>
+<br>
+Item Description:
+<input type="textarea" id="item_description" name="item_description">
 </form>
 {% endblock %}
 {% block javascript %}<script type='text/javascript' src='{{ STATIC_URL }}catalog/js/main.js'></script>{% endblock %}

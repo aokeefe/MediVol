@@ -5,10 +5,14 @@ from catalog.models import Category, BoxName, Item
 
 
 @dajaxice_register
-def create_item(request, b_name, item_name):
-    
+def create_item(request, b_name, item_name, d):
+    try:
+        box = BoxName.objects.get(name=b_name)
+    except BoxName.DoesNotExist:
+        return simplejson.dumps({'message':'Box name: %s does not exist' % b_name})
+        
     new_item = Item(name=item_name, 
-                    description='', 
+                    description=d, 
                     box_name=BoxName.objects.get(name=b_name))
     new_item.save()
     

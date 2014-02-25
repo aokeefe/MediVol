@@ -45,16 +45,14 @@ function getItems(response) {
     }
 }
 
-function create_item(response){
+/**
+* Callback for the create_items AJAX call.
+*/
+function createItem(response){
 	alert(response.message);
 }
 
 $(document).ready(function() {
-    $('#add').click(function(e) {
-    	
-    
-    
-    });
     
     $('#catagory_input').keypress(function(e) {
     	document.getElementById('box_name_input').value = "";
@@ -119,14 +117,17 @@ $(document).ready(function() {
         }
     });
     
-    $('#add_item_b').click(function(e) {
+    //on click event for creating a new item
+    $('#add_new_item').click(function(e) {
     	var name = $('input[name=item_input]').val();
     	var box_name = $('input[name=box_name_input]').val();
+    	var description = $('input[name=item_description]').val();
     	
-    	Dajaxice.catalog.create_item(create_item, 
+    	Dajaxice.catalog.create_item(createItem, 
             {
                 'b_name': box_name,
                 'item_name': name,
+                'd': description
             }
         );
     });	
