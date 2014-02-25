@@ -2,9 +2,9 @@ from django.db import models
 from inventory.models import Box
 
 class Customer(models.Model):
-    contact_name = models.CharField(max_length=40)
-    contact_email = models.CharField(max_length=40)
-    business_name = models.CharField(max_length=40)
+    contact_name = models.CharField(max_length=80)
+    contact_email = models.CharField(max_length=80)
+    business_name = models.CharField(max_length=80)
     business_address = models.CharField(max_length=200, null=True)
     shipping_address = models.CharField(max_length=200)
 
