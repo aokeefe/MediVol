@@ -31,3 +31,14 @@ def remove_user(request, username):
     userToRemove.delete()
     
     return True
+
+@dajaxice_register(method='POST')
+def change_group(request, username, new_group):
+    userToChange = User.objects.get(username=username)
+    old_group = userToChange.groups.all()[0]
+    new_group = Group.objects.get(name=new_group)
+    
+    old_group.user_set.remove(userToChange)
+    new_group.user_set.add(userToChange)
+    
+    return True

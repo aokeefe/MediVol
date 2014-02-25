@@ -82,12 +82,40 @@ function removeUser(username) {
     );
 }
 
+function changeUserGroup(username, newGroup) {
+    Dajaxice.administration.change_group(
+        function(response) {
+            if (response == 'True') {
+                
+            }
+        }, 
+        {
+            'username': username, 
+            'new_group': newGroup
+        }
+    );
+}
+
 function prepareUserManagement() {
     $('.removeUser').click(function() {
         var userToRemove = $($(this).parent().parent().children('td')[0]).html();
         
         if (confirm('Are you sure you want to remove the user "' + userToRemove + '"?')) {
             removeUser(userToRemove);
+        }
+    });
+    
+    var oldGroup;
+    
+    $('select').focus(function() {
+        oldGroup = $(this).val()
+    }).change(function() {
+        var newGroup = $(this).val();
+        var userToChange = $($(this).parent().parent().children('td')[0]).html();
+        
+        if (confirm('Are you sure you want to change ' + userToChange + 
+                '\'s group from "' + oldGroup + '" to "' + newGroup + '"?')) {
+            changeUserGroup(userToChange, newGroup);
         }
     });
 }
