@@ -99,6 +99,20 @@ function getBoxes(response) {
 }
 
 /**
+* Callback for the get_items AJAX call. Does the same things as
+* the getItems callback, just for Boxes instead.
+*/
+function getBoxDetails(response) { 
+
+    var box_size = response[1];
+    var box_weight = response[2];
+    var box_contents = response[3];
+  
+    $('#boxDetails').append("Box Size: " + box_size + "\nBox Weight: " + box_weight + 
+                              "\nBox Contents: " + box_contents);  
+}
+
+/**
 * Callback for create_box AJAX call.
 */
 function createOrder(response) {
@@ -293,9 +307,17 @@ $(document).ready(function() {
   
     // Set the 'on change' event for the boxes list.
     $('#boxes').change(function() {
-        
+        var selectedBoxId = $('#boxes option:selected').val();
+
+        // Get the details of the box for the selected box id.
+        Dajaxice.orders.get_info(getBoxDetails, {'boxid': selectedBoxId});
     })
+
+    // Set the 'on change' event for the box details list. 
+    $('#boxDetails').change(function() {
     
+    })
+
     // Set the 'on click' event for the add item button.
     $('#add_box').click(function(e) {
         // Prevent button from submitting form.
