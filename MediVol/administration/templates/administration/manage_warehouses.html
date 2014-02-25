@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>InterVol | Manage Warehouses</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}administration/css/styles.css' />
+{% endblock %}
+
+{% block body %}
+    <h2>Manage Warehouses</h2>
+    
+    <div id='addWarehouseWrapper'>
+        <p class='requiredMessage requiredText'></p>
+        
+        <div class='addWarehouseField'>
+            <div class='label'>Name</div>
+            <input type='text' id='warehouseName' class='textField' />
+        </div>
+        
+        <div class='addWarehouseField'>
+            <div class='label'>Abbreviation</div>
+            <input type='text' id='warehouseAbbreviation' class='textField' />
+        </div>
+        
+        <div class='addWarehouseField'>
+            <div class='label'>Address</div>
+            <input type='text' id='warehouseAddress' class='textField' />
+        </div>
+        
+        <button id='addWarehouse' class='button'>Add Warehouse</button>
+        
+        <div class='clear'></div>
+    </div>
+    
+    <div id='warehouses'>
+        <table>
+            <tr><td>Abbreviation</td><td>Name</td><td>Address</td></tr>
+            
+            {% for warehouse in warehouses %}
+                <tr>
+                    <td>{{ warehouse.abbreviation }}</td>
+                    <td>{{ warehouse.name }}</td>
+                    <td>{{ warehouse.address }}</td>
+                    <td><a href='javascript:void(0)' class='removeWarehouse'>Remove</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type='text/javascript' src='{{ STATIC_URL }}administration/js/main.js'></script>
+{% endblock %}

@@ -7,6 +7,23 @@ var Dajaxice = {
     
 
     
+    administration: {
+    
+    add_warehouse: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('administration.add_warehouse', 'POST', callback_function, argv, custom_settings);
+    },
+
+    remove_warehouse: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('administration.remove_warehouse', 'POST', callback_function, argv, custom_settings);
+    }
+
+
+    
+    
+    }
+    
+,
+    
     inventory: {
     
     create_box: function(callback_function, argv, custom_settings){
@@ -23,10 +40,6 @@ var Dajaxice = {
 
     get_box_names: function(callback_function, argv, custom_settings){
         return Dajaxice.call('inventory.get_box_names', 'GET', callback_function, argv, custom_settings);
-    },
-
-    get_search_results: function(callback_function, argv, custom_settings){
-        return Dajaxice.call('inventory.get_search_results', 'GET', callback_function, argv, custom_settings);
     }
 
 

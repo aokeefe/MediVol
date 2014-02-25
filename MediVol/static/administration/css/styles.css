@@ -1,0 +1,48 @@
+/* Admin index.html styles. */
+
+li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+li .button {
+    font-size: 2em;
+}
+
+/* --- END ADMIN INDEX.HTML STYLES --- */
+
+/* Admin manage_warehouses.html styles. */
+
+#addWarehouseWrapper {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.addWarehouseField {
+    margin-bottom: 10px;
+}
+
+.addWarehouseField .label {
+    width: 33%;
+    min-width: 120px;
+}
+
+.addWarehouseField .textField {
+    width: 65%;
+}
+
+#addWarehouse {
+    float: right;
+    font-size: 1.5em;
+    margin-right: 8px;
+}
+
+#warehouses {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- END ADMIN MANAGE_WAREHOUSES.HTML STYLES --- */

@@ -7,4 +7,8 @@ urlpatterns = patterns ('',
 
   #Administration Forbidden Page 
   url(r'^forbidden/', access_forbidden),
+  
+  url(r'^users/', manage_users), 
+  url(r'^backups/', manage_backups), 
+  url(r'^warehouses/', manage_warehouses), 
 )
