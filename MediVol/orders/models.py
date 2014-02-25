@@ -1,5 +1,6 @@
 from django.db import models
 from inventory.models import Box
+from import_export import to_csv
 
 class Order(models.Model):
     #This may need revisiting as a more detailed model becomes available
@@ -24,4 +25,4 @@ class OrderBox(models.Model):
         return self.box + " in order " + self.order_for
 
     def to_csv(self):
-        return self.order_for.order_number + ", " + self.box.box_id
+        return self.order_for.order_number + ", " + self.box.box_id + ","
