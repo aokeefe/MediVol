@@ -2,7 +2,7 @@ from django.db import models
 from inventory.models import Box
 
 class Customer(models.Model):
-    contect_name = models.CharField(max_length=40)
+    contact_name = models.CharField(max_length=40)
     contact_email = models.CharField(max_length=40)
     business_name = models.CharField(max_length=40)
     business_address = models.CharField(max_length=200, null=True)
@@ -21,7 +21,7 @@ class Order(models.Model):
     creation_date = models.DateTimeField('Date the order was made')
 
     def __unicode__(self):
-        return "Order" + str(self.order_number)
+        return "Order " + str(self.order_number)
     #def to_csv(self):
         #TODO
     def get_weight(self):
