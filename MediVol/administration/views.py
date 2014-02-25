@@ -22,7 +22,7 @@ def access_forbidden(request):
 @login_required
 @user_passes_test(user_is_admin, login_url='/administration/forbidden')
 def manage_users(request):
-    context = { 'users': User.objects.all(), 'groups': Group.objects.all() }
+    context = { 'users': User.objects.all().order_by('username'), 'groups': Group.objects.all().order_by('name') }
 
     return render(request, 'administration/manage_users.html', context)
 

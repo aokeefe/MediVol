@@ -11,6 +11,43 @@
 {% block body %}
     <h2>Manage Users</h2>
     
+    <div id='addWarehouseWrapper'>
+        <div class='addWarehouseField'>
+            <div class='label'>Username</div>
+            <input type='text' id='username' class='textField' />
+        </div>
+        
+        <div class='addWarehouseField'>
+            <div class='label'>Email</div>
+            <input type='email' id='email' class='textField' />
+        </div>
+        
+        <div class='addWarehouseField'>
+            <div class='label'>Group</div>
+            <select id='setGroup'>
+                {% for group in groups %}
+                    <option>{{ group.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class='addWarehouseField'>
+            <div class='label'>Password</div>
+            <input type='password' id='password' class='textField' />
+        </div>
+        
+        <div class='addWarehouseField'>
+            <div class='label'>Confirm Password</div>
+            <input type='password' id='confirmPassword' class='textField' />
+        </div>
+        
+        <button id='createUser' class='button'>Create User</button>
+        
+        <div class='errorMessage'><p class='requiredMessage requiredText'></p></div>
+        
+        <div class='clear'></div>
+    </div>
+    
     <table>
         <tr><td>Username</td><td>Email</td><td>Group</td><td></td><td></td></tr>
         
@@ -19,7 +56,7 @@
                 <td>{{ userToShow.username }}</td>
                 <td><a href='mailto:{{ user.email }}'>{{ userToShow.email }}</a></td>
                 <td>
-                    <select>
+                    <select class='changeGroupSelect'>
                         {% for group in groups %}
                             <option
                                 {% if group.name == userToShow.groups.all.0.name %}
