@@ -16,7 +16,7 @@ body {
     clear: both;
 }
 
-.textField, .button {
+.textField, .button, #id_username, #id_password {
     -webkit-appearance: none;
     -o-border-radius: none;
     -moz-border-radius: none;
@@ -24,7 +24,7 @@ body {
     border-radius: none;
 }
 
-.textField {
+.textField, #id_username, #id_password {
     background-color: #f1f1f1;
     border: 1px solid #c8c8c8;
     font-size: 1em;
@@ -207,6 +207,26 @@ table td {
 
 table tr:first-child td {
     font-weight: bold;
+}
+
+.loginLabel {
+    width: 33%;
+    padding-top: 3px;
+}
+
+#id_username, #id_password {
+    width: 67%;
+}
+
+#loginWrapper {
+    width: 42%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loginButton {
+    float: right;
+    font-size: 1.5em;
 }
 
 /* ----- END CONTENT SECTION STYLES ------ */
