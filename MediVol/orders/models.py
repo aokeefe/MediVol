@@ -13,8 +13,15 @@ class Order(models.Model):
 
     def __unicode__(self):
         return self.order_number
-    #def to_csv(self):
-        #TODO
+
+    def to_csv(self):
+        values = [self.reserved_for,
+                  self.paid_for,
+                  self.shipped,
+                  self.ship_to,
+                  self.order_number,
+                  creation_date]
+        return to_csv_from_array(values)
 
 class OrderBox(models.Model):
     order_for = models.ForeignKey(Order)
