@@ -4,11 +4,12 @@ from inventory.models import Box
 class Customer(models.Model):
     contect_name = models.CharField(max_length=40)
     contact_email = models.CharField(max_length=40)
+    business_name = models.CharField(max_length=40)
     business_address = models.CharField(max_length=200, null=True)
     shipping_address = models.CharField(max_length=200)
 
     def __unicode__(self):
-        return "contact info for: " + contect_name
+        return "contact info for: " + business_name
         
 class Order(models.Model):
     #This may need revisiting as a more detailed model becomes available
