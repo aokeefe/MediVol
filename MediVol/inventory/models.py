@@ -18,7 +18,6 @@ class Box(models.Model):
 
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
     weight = models.DecimalField(max_digits=5, decimal_places=2, null=True) 
-    old_contents = models.CharField(max_length=300, null=True)
     barcode = models.CharField(max_length=8)
     initials = models.CharField(max_length=5, default="")
     entered_date = models.DateTimeField('date the box was entered', null=True)
@@ -53,14 +52,16 @@ class Box(models.Model):
                   box_id=filtered_values[1],
                   box_size=filtered_values[2],
                   weight=box_weight,
-                  initials=filtered_values[4],
-                  entered_date=filtered_values[5],
-                  old_expiration=filtered_values[6],
-                  old_contents=filtered_values[7],
-                  box_date=filtered_values[8],
-                  audit=filtered_values[9],
+                  barcode=filtered_values[4],
+                  initials=filtered_values[5],
+                  entered_date=filtered_values[6],
+                  old_box_flag=filtered_values[7],
+                  old_expiration=filtered_values[8],
+                  old_contents=filtered_values[9],
                   shipped_to=filtered_values[10],
-                  reserved_for=filtered_values[11])
+                  reserved_for=filtered_values[11],
+                  box_date=filtered_values[12],
+                  audit=filtered_values[13])
         box.save()
         return box
 
@@ -91,14 +92,16 @@ class Box(models.Model):
                   self.box_id, 
                   self.box_size, 
                   str(self.weight),
+                  str(self.barcode),
                   self.initials,
                   str(self.entered_date),
+                  self.old_box_flag,
                   str(self.old_expiration),
                   self.old_contents,
-                  str(self.box_date),
-                  str(self.audit),
                   self.shipped_to,
-                  self.reserved_for]
+                  self.reserved_for,
+                  str(self.box_date),
+                  str(self.audit)]
         filtered_values = []
         for value in values:
             filtered_values.append(value.replace(',', '<CMA>').replace('\n', ''))

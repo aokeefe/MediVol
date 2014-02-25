@@ -49,7 +49,8 @@ class BoxName(models.Model):
         for value in values:
             filtered_values.append(value.replace('<CMA>', ','))
         box_name = BoxName(category=Category.objects.get(letter=filtered_values[0]), 
-                           name=filtered_values[1])
+                           name=filtered_values[1], can_expire=filtered_values[2],
+                           can_count=filtered_values[3])
         box_name.save()
         return box_name
 
@@ -62,7 +63,9 @@ class BoxName(models.Model):
 
     def to_csv(self):
         values = [self.category.letter,
-                  self.name]
+                  self.name,
+                  self.can_expire,
+                  self.can_count]
         filtered_values = []
         for value in values:
             filtered_values.append(value.replace(',', '<CMA>'))
