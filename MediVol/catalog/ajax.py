@@ -4,7 +4,7 @@ from dajaxice.decorators import dajaxice_register
 from catalog.models import Category, BoxName, Item
 
 
-@dajaxice_register
+@dajaxice_register(method='POST')
 def create_item(request, b_name, item_name, d):
     try:
         box = BoxName.objects.get(name=b_name)

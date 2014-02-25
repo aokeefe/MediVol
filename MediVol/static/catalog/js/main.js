@@ -119,9 +119,9 @@ $(document).ready(function() {
     
     //on click event for creating a new item
     $('#add_new_item').click(function(e) {
-    	var name = $('input[name=item_input]').val();
-    	var box_name = $('input[name=box_name_input]').val();
-    	var description = $('input[name=item_description]').val();
+    	var name = $('#item_input').val();
+    	var box_name = $('#box_name_input').val();
+    	var description = $('#item_description').val();
     	
     	Dajaxice.catalog.create_item(createItem, 
             {
