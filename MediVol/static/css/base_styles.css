@@ -1,5 +1,9 @@
 /* General styles.  */
 
+body {
+    min-width: 1000px;
+}
+
 * {
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
     background-color: #f6f6f6;

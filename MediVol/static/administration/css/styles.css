@@ -45,4 +45,17 @@ li .button {
     margin-right: auto;
 }
 
+.errorMessage {
+    width: 100%;
+    float: left;
+    height: 60px;
+    text-align: right;
+    padding-top: 7px;
+    padding-right: 8px;
+}
+
+.errorMessage p {
+    margin: 0;
+}
+
 /* --- END ADMIN MANAGE_WAREHOUSES.HTML STYLES --- */
