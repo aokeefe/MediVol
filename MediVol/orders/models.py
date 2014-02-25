@@ -39,4 +39,4 @@ class OrderBox(models.Model):
         return self.box + " in order " + self.order_for
 
     def to_csv(self):
-        return self.order_for.order_number + ", " + self.box.box_idh
+        return self.order_for.order_number + ", " + self.box.box_id
