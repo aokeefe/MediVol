@@ -119,10 +119,8 @@ function getAddedItems() {
             }
             
             if (expiration != 'Never') {
-                var expirationObj = new Date(expiration);
-                expiration = expirationObj.getFullYear() + '-' + 
-                        ('0' + (expirationObj.getMonth() + 1)).slice(-2) + '-' +
-                        ('0' + expirationObj.getDate()).slice(-2);
+                var expirationArray = expiration.split('/');
+                expiration = expirationArray[2] + '-' + expirationArray[0] + '-' + expirationArray[1];
             }
             
             items.push([ itemName, expiration, count ]);
@@ -343,11 +341,8 @@ $(document).ready(function() {
         }
         
         if (expiration != 'Never') {
-            console.log(expiration);
-            var expirationObj = new Date(expiration);
-            expiration = ('0' + (expirationObj.getMonth() + 1)).slice(-2) + '/' +
-                    ('0' + (expirationObj.getDate() + 1)).slice(-2) + '/' + 
-                    expirationObj.getFullYear();
+            var expirationArray = expiration.split('-');
+            expiration = expirationArray[1] + '/' + expirationArray[2] + '/' + expirationArray[0];
         }
         
         // Remove the placeholder row if it's there.
