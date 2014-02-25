@@ -2,6 +2,7 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 
 from administration.models import Warehouse
+from django.contrib.auth.models import User, Group
 
 @dajaxice_register(method='POST')
 def add_warehouse(request, name, abbreviation, address):
@@ -22,4 +23,11 @@ def remove_warehouse(request, abbreviation):
     warehouse = Warehouse.objects.get(abbreviation=abbreviation)
     warehouse.delete()
 
+    return True
+
+@dajaxice_register(method='POST')
+def remove_user(request, username):
+    userToRemove = User.objects.get(username=username)
+    userToRemove.delete()
+    
     return True

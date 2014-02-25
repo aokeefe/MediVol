@@ -37,7 +37,7 @@ function removeWarehouse(abbreviation) {
     );
 }
 
-$(document).ready(function() {
+function prepareWarehouseManagement() {
     $('#addWarehouse').click(function() {
         var name = $('#warehouseName').val();
         var abbreviation = $('#warehouseAbbreviation').val();
@@ -67,4 +67,33 @@ $(document).ready(function() {
             removeWarehouse(abbreviation);
         }
     });
+}
+
+function removeUser(username) {
+    Dajaxice.administration.remove_user(
+        function(response) {
+            if (response == 'True') {
+                window.location.reload();
+            }
+        }, 
+        {
+            'username': username
+        }
+    );
+}
+
+function prepareUserManagement() {
+    $('.removeUser').click(function() {
+        var userToRemove = $($(this).parent().parent().children('td')[0]).html();
+        
+        if (confirm('Are you sure you want to remove the user "' + userToRemove + '"?')) {
+            removeUser(userToRemove);
+        }
+    });
+}
+
+$(document).ready(function() {
+    prepareWarehouseManagement();
+    
+    prepareUserManagement();
 });

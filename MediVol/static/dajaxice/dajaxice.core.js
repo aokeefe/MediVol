@@ -15,6 +15,10 @@ var Dajaxice = {
 
     remove_warehouse: function(callback_function, argv, custom_settings){
         return Dajaxice.call('administration.remove_warehouse', 'POST', callback_function, argv, custom_settings);
+    },
+
+    remove_user: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('administration.remove_user', 'POST', callback_function, argv, custom_settings);
     }
 
 
