@@ -7,6 +7,19 @@ var Dajaxice = {
     
 
     
+    catalog: {
+    
+    create_item: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('catalog.create_item', 'POST', callback_function, argv, custom_settings);
+    }
+
+
+    
+    
+    }
+    
+,
+    
     inventory: {
     
     create_box: function(callback_function, argv, custom_settings){

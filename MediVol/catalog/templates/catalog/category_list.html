@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Catalog</title>{% endblock %}
+        
+{% block styles %}<link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/styles.css' />{% endblock %}
+
+{% block body %}
+
+<h2>Catalog</h2>
+
+<form id='catalog_form' action='' method='post'>
+{% csrf_token %}
+<div id='createBoxLists'>
+    <div class='createBoxListWrapper'>
+        <h3>Catagory</h3>
+        <select id='categories' size=20>
+            {% for category in object_list %}
+                <option>{{category.letter}} - {{ category.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class='createBoxListWrapper'>
+        <h3>Box Name</h3>
+        <select id='box_names' size=20></select>
+    </div>
+    <div class='createBoxListWrapper'>
+        <h3>Item</h3>
+        <select id='items' size=20></select>
+    </div>
+</div>
+ Catagory: 
+<input type="text" id="catagory_letter_input" name="catagory_letter" size="2"> - 
+<input type="text" id="catagory_input" name="catagory">
+<button type="button" id='add_catagory'>Add New Catagory</button>
+<button type="button" id='edit_catagory'>Edit Catagory Name</button>
+<button type="button" id='delete_catagory'>Delete catagory</button>
+<br><br>
+ Box Name:
+<input type="text" id="box_name_input" name="box_name">
+Does expire? <input id="expire" type="checkbox">
+Need count? <input id="count" type="checkbox">
+<button type="button" id='add_box'>Add New Box Name</button>
+<button type="button" id='edit_box'>Edit Box Name</button>
+<button type="button" id='delete_box'>Delete Box Name</button>
+<br><br>
+ Item: 
+<input type="text" id="item_input" name="item">
+<button type="button" id='add_item_b'>Add New Item</button>
+<button type="button" id='edit_item'>Edit Item Name</button>
+<button type="button" id='delete_item'>Delete Item</button>
+</form>
+{% endblock %}
+{% block javascript %}<script type='text/javascript' src='{{ STATIC_URL }}catalog/js/main.js'></script>{% endblock %}
