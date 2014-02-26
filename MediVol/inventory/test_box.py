@@ -6,7 +6,6 @@ from catalog.models import Item, Category
 from datetime import datetime
 
 category = Category.objects.all()[0]
-
 print category
 
 box = Box(box_category=category, 
