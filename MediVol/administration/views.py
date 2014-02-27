@@ -6,8 +6,8 @@ from django.contrib.auth.models import User, Group
 
 from administration.models import Warehouse, ResetCode
 
-def user_is_admin(user): 
-    if user.is_authenticated():
+def user_is_admin(user):
+    if user.is_authenticated() and len(user.groups.all()) > 0:
         return user.groups.all()[0].name == 'Admin'
     return False
 
@@ -16,7 +16,7 @@ def user_is_admin(user):
 def main_page(request):
     return render(request, 'administration/index.html')
 
-def access_forbidden(request): 
+def access_forbidden(request):
     return render(request, 'administration/forbidden.html')
 
 @login_required
