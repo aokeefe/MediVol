@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User, Group
 
-from administration.models import Warehouse
+from administration.models import Warehouse, ResetCode
 
 def user_is_admin(user): 
     if user.is_authenticated():
@@ -37,6 +37,11 @@ def manage_warehouses(request):
     context = { 'warehouses': Warehouse.objects.all() }
 
     return render(request, 'administration/manage_warehouses.html', context)
+
+def reset_password(request, reset_code):
+    context = { 'reset_code': ResetCode.objects.get(code=reset_code) }
+    return render(request, 'administration/reset_password.html', context)
+
 
 #Logout View
 def logout(request):

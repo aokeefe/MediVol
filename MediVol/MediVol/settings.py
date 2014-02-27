@@ -66,6 +66,9 @@ LOGIN_URL = '/login/'
 # TODO: change this
 DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 
+EMAIL_HOST = '127.0.0.1'
+EMAIL_PORT = 25
+
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
@@ -93,6 +96,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
+# TODO: move this out of the web directory
 SECRET_KEY = 'a!mvlw&*@-im+*ywrhv7)a*#vilu59y26+2a%=592i5cm%wc=_'
 
 TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (

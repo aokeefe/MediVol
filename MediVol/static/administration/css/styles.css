@@ -33,7 +33,7 @@ li .button {
     width: 65%;
 }
 
-#addWarehouse, #createUser {
+#addWarehouse, #createUser, #resetPassword {
     float: right;
     font-size: 1.5em;
     margin-right: 8px;

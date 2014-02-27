@@ -129,6 +129,19 @@ function createUser(username, email, group, password, confirmPassword) {
     );
 }
 
+function sendPasswordReset(username) {
+    Dajaxice.administration.send_reset(
+        function(response) {
+            if (response == 'True') {
+                
+            }
+        }, 
+        {
+            'username': username
+        }
+    );
+}
+
 function prepareUserManagement() {
     $('.removeUser').click(function() {
         var userToRemove = $($(this).parent().parent().children('td')[0]).html();
@@ -175,6 +188,14 @@ function prepareUserManagement() {
         }
         
         createUser(username, email, group, password, confirmPassword);
+    });
+    
+    $('.sendPasswordReset').click(function() {
+        var user = $($(this).parent().parent().children('td')[0]).html();
+        
+        if (confirm('Are you sure you want to send a password reset to "' + user + '"?')) {
+            sendPasswordReset(user);
+        }
     });
 }
 

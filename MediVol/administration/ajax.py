@@ -1,7 +1,7 @@
 from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 
-from administration.models import Warehouse
+from administration.models import Warehouse, ResetCode
 from django.contrib.auth.models import User, Group
 from django.core.validators import validate_email
 from django import forms
@@ -65,5 +65,17 @@ def create_user(request, username, email, group, password, confirm_password):
     
     group = Group.objects.get(name=group)
     group.user_set.add(new_user)
+    
+    return True
+
+@dajaxice_register(method='GET')
+def send_reset(request, username):
+    reset_code = ResetCode(user=User.objects.get(username=username), code=ResetCode.generate_code())
+    reset_code.save()
+    
+    return reset_code.send_reset()
+
+@dajaxice_register(method='POST')
+def reset_password(request, reset_code, password, confirm_password):
     
     return True

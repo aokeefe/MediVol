@@ -10,5 +10,6 @@ urlpatterns = patterns ('',
     
     url(r'^users/', manage_users), 
     url(r'^backups/', manage_backups), 
-    url(r'^warehouses/', manage_warehouses)
+    url(r'^warehouses/', manage_warehouses), 
+    url(r'^reset_password/(?P<reset_code>\w+)/$', reset_password)
 )
