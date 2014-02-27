@@ -84,7 +84,7 @@ def get_info(request, boxid):
     box_weight = box.weight
     box_info.append(str(box_weight))
     box_old_contents = box.old_contents
-    box_new_content_ids = Contents.objects.filter(box_within=box)
+    box_content_ids = Contents.objects.filter(box_within=box)
 
     return simplejson.dumps(box_info)
 
