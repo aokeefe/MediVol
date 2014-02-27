@@ -9,7 +9,7 @@ category = Category.objects.all()[0]
 print category
 
 box = Box(box_category=category, 
-          box_id="1235",
+          box_id="A123",
           box_size='L',
           weight=12.34,
           old_contents=None,
