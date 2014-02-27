@@ -14,20 +14,14 @@ from notifications.models import Notification
 sender_email = 'sxb5828@rit.edu'
 
 #This method communicates with Mandrill via their API to send out emails
-def send_message(notification):
+def send_message(subject, recipient_email, recipient_name, message):
 
     #The API key will need to be changed to InterVols own account. Currently it is using my API key
     api_key = 'x9AjbnyiNKtL0Avv1N7oCw'
 
-    subject = notification.subject
-    recipient_email = notification.recipient_email
-    recipient_name = notification.recipient_name
-    email_id = notification.id
-    message = notification.message
-
     try:
         mandrill_client = mandrill.Mandrill(api_key)
-        message = {'from_email': sender_email, 'from_name': 'MediVol Test User', 'global_merge_vars': [{'content': 'merge1 content', 'name': 'merge1'}], 'headers': {'Reply-To': sender_email}, 'html': message, 'important': False, 'inline_css': None, 'subject': subject, 'to': [{'email': recipient_email, 'name': recipient_name, 'type': 'to'}], 'track_clicks': None, 'track_opens': None, 'tracking_domain': None, 'url_strip_qs': None, 'view_content_link': None, 'tags': [email_id]}
+        message = {'from_email': sender_email, 'from_name': 'MediVol Test User', 'global_merge_vars': [{'content': 'merge1 content', 'name': 'merge1'}], 'headers': {'Reply-To': sender_email}, 'html': message, 'important': False, 'inline_css': None, 'subject': subject, 'to': [{'email': recipient_email, 'name': recipient_name, 'type': 'to'}], 'track_clicks': None, 'track_opens': None, 'tracking_domain': None, 'url_strip_qs': None, 'view_content_link': None}
 
         response = mandrill_client.messages.send(message=message, async=False, ip_pool='Main Pool')
         print('Response from Mandrill API')
@@ -46,8 +40,7 @@ def main():
     recipient_email2 = raw_input('Enter Recipient Email: ')
     recipient_name2 = raw_input('Enter Recipient Name: ')
 
-    notifier = Notification.create(email_message, subject_input, recipient_email2, recipient_name2)
-    send_message(notifier)
+    send_message(subject_input, recipient_email2, recipient_name2, email_message) 
 
 if __name__ == '__main__':
     main()
