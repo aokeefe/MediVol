@@ -13,6 +13,10 @@ var Dajaxice = {
         return Dajaxice.call('administration.remove_warehouse', 'POST', callback_function, argv, custom_settings);
     },
 
+    reset_password: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('administration.reset_password', 'POST', callback_function, argv, custom_settings);
+    },
+
     remove_user: function(callback_function, argv, custom_settings){
         return Dajaxice.call('administration.remove_user', 'POST', callback_function, argv, custom_settings);
     },
@@ -30,7 +34,7 @@ var Dajaxice = {
     },
 
     send_reset: function(callback_function, argv, custom_settings){
-        return Dajaxice.call('administration.send_reset', 'GET', callback_function, argv, custom_settings);
+        return Dajaxice.call('administration.send_reset', 'POST', callback_function, argv, custom_settings);
     }
 
 

@@ -39,7 +39,13 @@ def manage_warehouses(request):
     return render(request, 'administration/manage_warehouses.html', context)
 
 def reset_password(request, reset_code):
+    # if a user is logged in, log them out then reload the page
+    if request.user.is_authenticated():
+        auth.logout(request)
+        return HttpResponseRedirect('/administration/reset_password/' + reset_code)
+
     context = { 'reset_code': ResetCode.objects.get(code=reset_code) }
+
     return render(request, 'administration/reset_password.html', context)
 
 

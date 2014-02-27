@@ -1,13 +1,11 @@
 import mandrill
-import os 
+import os
 import sys
 
-#Executing from DJango shell kept complaining about indentation error so I just 
-#did it this way. The path is relative to whats on the vagrant VM. 
+#Executing from DJango shell kept complaining about indentation error so I just
+#did it this way. The path is relative to whats on the vagrant VM.
 sys.path.append('/var/www/MediVol')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
-
-from notifications.models import Notification
 
 #All emails comes from the system so setting the email address here.
 #Note: The email below will need to be changed to Intervols production email once deployed
@@ -40,7 +38,7 @@ def main():
     recipient_email2 = raw_input('Enter Recipient Email: ')
     recipient_name2 = raw_input('Enter Recipient Name: ')
 
-    send_message(subject_input, recipient_email2, recipient_name2, email_message) 
+    send_message(subject_input, recipient_email2, recipient_name2, email_message)
 
 if __name__ == '__main__':
     main()
