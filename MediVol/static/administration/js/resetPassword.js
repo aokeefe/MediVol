@@ -43,4 +43,12 @@ $(document).ready(function() {
 
         resetPassword(resetCode, password, confirmPassword);
     });
+
+    $('#addWarehouseWrapper').keydown(function (e){
+        // detect enter key
+        if(e.keyCode == 13){
+            var buttonChildren = $(this).children('.button');
+            buttonChildren[buttonChildren.length - 1].click();
+        }
+    });
 });

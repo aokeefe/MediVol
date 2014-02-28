@@ -129,11 +129,15 @@ function createUser(username, email, group, password, confirmPassword) {
     );
 }
 
-function sendPasswordReset(username) {
+function sendPasswordReset(username, sendToLoginPage) {
+    sendToLoginPage = (typeof(sendToLoginPage) == 'undefined') ? false : sendToLoginPage;
+
     Dajaxice.administration.send_reset(
         function(response) {
             if (response == 'True') {
-
+                if (sendToLoginPage) {
+                    window.location = '/login/';
+                }
             }
         },
         {
@@ -195,6 +199,27 @@ function prepareUserManagement() {
 
         if (confirm('Are you sure you want to send a password reset to "' + user + '"?')) {
             sendPasswordReset(user);
+        }
+    });
+
+    $('#sendReset').click(function() {
+        var user = $('#username').val();
+
+        if (user == '') {
+            $('.requiredMessage').html('Please enter a username.');
+            $('.requiredMessage').show();
+
+            return;
+        }
+
+        sendPasswordReset(user, true);
+    });
+
+    $('#addWarehouseWrapper').keydown(function (e){
+        // detect enter key
+        if(e.keyCode == 13){
+            var buttonChildren = $(this).children('.button');
+            buttonChildren[buttonChildren.length - 1].click();
         }
     });
 }

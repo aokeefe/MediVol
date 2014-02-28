@@ -39,7 +39,7 @@ class ResetCode(models.Model):
 
     def send_reset(self):
         # TODO: how do i get the base URL of our site?
-        message = 'Please follow the link below to reset the InterVol password for ' + self.user.username + '.\n\n' + 'http://localhost:8888/administration/reset_password/' + self.code
+        message = 'Please follow the link below to reset the InterVol password for ' + self.user.username + '.\n\nhttp://localhost:8888/administration/reset_password/' + self.code
 
         send_message('InterVol Password Reset', self.user.email, self.user.username, message)
 

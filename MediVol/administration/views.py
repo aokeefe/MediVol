@@ -48,6 +48,8 @@ def reset_password(request, reset_code):
 
     return render(request, 'administration/reset_password.html', context)
 
+def send_reset(request):
+    return render(request, 'administration/send_reset.html')
 
 #Logout View
 def logout(request):

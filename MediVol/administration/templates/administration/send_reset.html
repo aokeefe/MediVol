@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>InterVol | Send Password Reset</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}administration/css/styles.css' />
+{% endblock %}
+
+{% block body %}
+    <h2>Password Reset Request</h2>
+
+    <div id='addWarehouseWrapper'>
+        <p>If you forgot your password, we can send you an email with a link to set a new one.</p>
+
+        <div class='addWarehouseField'>
+            <div class='label'>Username</div>
+            <input type='text' id='username' class='textField' />
+        </div>
+
+        <button id='sendReset' class='button'>Send Reset Request</button>
+
+        <div class='errorMessage'><p class='requiredMessage requiredText'></p></div>
+
+        <div class='clear'></div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type='text/javascript' src='{{ STATIC_URL }}administration/js/main.js'></script>
+{% endblock %}
