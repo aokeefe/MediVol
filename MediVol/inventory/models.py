@@ -19,7 +19,7 @@ class Box(models.Model):
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
     weight = models.DecimalField(max_digits=5, decimal_places=2, null=True) 
     old_contents = models.CharField(max_length=300, null=True)
-    barcode = models.CharField(max_length=8)
+    barcode = models.CharField(max_length=8, unique=True)
     initials = models.CharField(max_length=5, default="")
     entered_date = models.DateTimeField('date the box was entered', null=True)
     old_box_flag = models.BooleanField(default=False)
