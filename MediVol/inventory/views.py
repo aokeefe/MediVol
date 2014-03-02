@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from catalog.models import Category
-from inventory.models import Box
+from inventory.models import Box, Contents
 
 def create(request):
     categories = Category.objects.all()
@@ -19,7 +19,20 @@ def box_info(request, boxid):
     try: 
         #Try and get box info from the box id if exists return 
         box = Box.objects.get(box_id=boxid)
-        context = { 'box': box}
+        box_contents = []
+    
+        if box.old_contents is None: 
+          
+            box_items = Contents.objects.filter(box_within=box)
+
+            for box_item in box_items:
+                box_contents.append(box_item.item.name)
+              
+        else: 
+      
+            box_contents = box.old_contents    
+ 
+        context = { 'box': box, 'box_contents': box_contents }
         return render(request, 'inventory/box_info.html', context)
         
     except Box.DoesNotExist: 
