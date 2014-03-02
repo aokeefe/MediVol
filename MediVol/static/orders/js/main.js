@@ -413,6 +413,30 @@ $(document).ready(function() {
             $('input[name=contact_name]').addClass('requiredTextField');
             missingRequired = true;
         }
+      
+        var contact_email = $('input[name=contact_email]').val();
+        if (contact_email == '') { 
+            $('input[name=contact_email]').addClass('requiredTextField');
+            missingRequired = true; 
+        }
+
+        var organization_name = $('input[name=organization_name]').val();
+        if (organization_name == '') { 
+            $('input[name=organization_name]').addClass('requiredTextField');
+            missingRequired = true; 
+        }
+
+        var organization_address = $('input[name=organization_address]').val();
+        if (organization_address == '') { 
+            $('input[name=organization_address]').addClass('requiredTextField');
+            missingRequired = true; 
+        }
+
+        var shipping_address = $('input[name=shipping_address]').val();
+        if (shipping_address == '') { 
+            $('input[name=shipping_address]').addClass('requiredTextField');
+            missingRequired = true; 
+        }
         
         // Can't have 0 items.
         if (items.length == 0) {
@@ -423,8 +447,11 @@ $(document).ready(function() {
         // Call the create_order AJAX function.
         Dajaxice.orders.create_order(createOrder,
             {
-                'ship_to': contact_name,
-                'reserved_for': contact_name,
+                'customer_name': contact_name,
+                'customer_email': contact_email,
+                'businessName':  organization_name,
+                'businessAddress': organization_address,
+                'shipping': shipping_address,
                 'box_ids': boxesToOrder
             }
         );
