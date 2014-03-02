@@ -104,6 +104,7 @@ function getBoxes(response) {
 */
 function getBoxDetails(response) { 
 
+    $('#boxDetails').empty();
     var box_size = response[1];
     var box_weight = response[2];
     var box_contents = response[3];
