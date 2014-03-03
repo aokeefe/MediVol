@@ -12,6 +12,16 @@ class Customer(models.Model):
         return "contact info for: " + business_name
         
 class Order(models.Model):
+    CREATED = 'C'
+    UNPAID = 'U'
+    PAID = 'P'
+    SHIPPED = 'S'
+    ORDER_STATUS = (
+        (CREATED, 'Created'),
+        (UNPAID, 'Unpaid For'),
+        (PAID, 'Paid For'),
+        (SHIPPED, 'Shipped Out'),
+    )
     #This may need revisiting as a more detailed model becomes available
     reserved_for = models.ForeignKey(Customer, null=True)
     paid_for = models.BooleanField(default=False)
@@ -19,6 +29,7 @@ class Order(models.Model):
     ship_to = models.CharField(max_length=300, null=True)
     order_number = models.IntegerField()
     creation_date = models.DateTimeField('Date the order was made')
+    order_status = models.CharField(max_length=1, choices=ORDER_STATUS, default=CREATED)
 
     def __unicode__(self):
         return "Order " + str(self.order_number)
