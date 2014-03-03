@@ -4,15 +4,11 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User, Group
 
+from administration.UserTests import UserTests
 from administration.models import Warehouse, ResetCode
 
-def user_is_admin(user):
-    if user.is_authenticated() and len(user.groups.all()) > 0:
-        return user.groups.all()[0].name == 'Admin'
-    return False
-
 @login_required
-@user_passes_test(user_is_admin, login_url='/administration/forbidden')
+@user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
 def main_page(request):
     return render(request, 'administration/index.html')
 
@@ -20,19 +16,23 @@ def access_forbidden(request):
     return render(request, 'administration/forbidden.html')
 
 @login_required
-@user_passes_test(user_is_admin, login_url='/administration/forbidden')
+@user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
 def manage_users(request):
-    context = { 'users': User.objects.all().order_by('username'), 'groups': Group.objects.all().order_by('name') }
+    context = {
+        'users': User.objects.all().order_by('username'),
+        'groups': Group.objects.all().order_by('name'),
+        'reset_url': request.build_absolute_uri('/administration/reset_password')
+    }
 
     return render(request, 'administration/manage_users.html', context)
 
 @login_required
-@user_passes_test(user_is_admin, login_url='/administration/forbidden')
+@user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
 def manage_backups(request):
     return render(request, 'administration/manage_backups.html')
 
 @login_required
-@user_passes_test(user_is_admin, login_url='/administration/forbidden')
+@user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
 def manage_warehouses(request):
     context = { 'warehouses': Warehouse.objects.all() }
 
@@ -49,7 +49,9 @@ def reset_password(request, reset_code):
     return render(request, 'administration/reset_password.html', context)
 
 def send_reset(request):
-    return render(request, 'administration/send_reset.html')
+    context = { 'reset_url': request.build_absolute_uri('/administration/reset_password') }
+
+    return render(request, 'administration/send_reset.html', context)
 
 #Logout View
 def logout(request):

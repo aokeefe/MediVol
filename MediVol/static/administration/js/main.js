@@ -131,6 +131,7 @@ function createUser(username, email, group, password, confirmPassword) {
 
 function sendPasswordReset(username, sendToLoginPage) {
     sendToLoginPage = (typeof(sendToLoginPage) == 'undefined') ? false : sendToLoginPage;
+    var resetUrl = $('#resetUrl').val();
 
     Dajaxice.administration.send_reset(
         function(response) {
@@ -141,7 +142,8 @@ function sendPasswordReset(username, sendToLoginPage) {
             }
         },
         {
-            'username': username
+            'username': username,
+            'reset_url': resetUrl
         }
     );
 }

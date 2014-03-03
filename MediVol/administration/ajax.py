@@ -68,11 +68,11 @@ def create_user(request, username, email, group, password, confirm_password):
     return True
 
 @dajaxice_register(method='POST')
-def send_reset(request, username):
+def send_reset(request, username, reset_url):
     reset_code = ResetCode(user=User.objects.get(username=username), code=ResetCode.generate_code())
     reset_code.save()
 
-    return reset_code.send_reset()
+    return reset_code.send_reset(reset_url)
 
 @dajaxice_register(method='POST')
 def reset_password(request, reset_code, password, confirm_password):

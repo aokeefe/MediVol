@@ -37,9 +37,9 @@ class ResetCode(models.Model):
     def generate_code(self):
         return ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(RESET_CODE_LENGTH))
 
-    def send_reset(self):
+    def send_reset(self, reset_url):
         # TODO: how do i get the base URL of our site?
-        message = 'Please follow the link below to reset the InterVol password for ' + self.user.username + '.\n\nhttp://localhost:8888/administration/reset_password/' + self.code
+        message = 'Please follow the link below to reset the InterVol password for ' + self.user.username + '.\n\n' + reset_url + '/' + self.code
 
         send_message('InterVol Password Reset', self.user.email, self.user.username, message)
 

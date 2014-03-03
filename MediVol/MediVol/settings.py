@@ -63,12 +63,6 @@ MEDIA_URL = ''
 # and the user isn't logged in
 LOGIN_URL = '/login/'
 
-# TODO: change this
-DEFAULT_FROM_EMAIL = 'webmaster@localhost'
-
-EMAIL_HOST = '127.0.0.1'
-EMAIL_PORT = 25
-
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
@@ -129,7 +123,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/var/www/MediVol/templates', 
+    '/var/www/MediVol/templates',
 )
 
 INSTALLED_APPS = (
