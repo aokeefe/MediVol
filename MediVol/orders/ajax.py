@@ -84,18 +84,17 @@ def get_info(request, boxid):
     box_weight = box.weight
     box_info.append(str(box_weight))
     box_old_contents = box.old_contents
+    box_content_ids = Contents.objects.filter(box_within=box)
 
     if box_old_contents is None:
-        
-        box_new_contents_id = Contents.objects.filter(box_within=box)
-        
-        for box_new_content_id in box_new_contents_id:
-            box_items.append(box_new_content_id.item.name)
+                
+        for box_content in box_content_ids:
+            box_items.append(box_content.item.name)
         
         box_info.append(box_items)
     else:
-        box_info.append(box_old_contents)     
-  
+        box_info.append(box_old_contents)  
+
     return simplejson.dumps(box_info)
 
 # Registers order to database.
