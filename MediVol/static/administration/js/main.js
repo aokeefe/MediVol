@@ -148,6 +148,24 @@ function sendPasswordReset(username, sendToLoginPage) {
     );
 }
 
+function changeEmail(newEmail) {
+    Dajaxice.administration.change_email(
+        function(response) {
+            if (response == 'True') {
+                $('.requiredMessage').html('Your email has been changed and a confirmation email has been sent. ' +
+                    'If you do not get the email soon, check to make sure you entered your email correctly.');
+                $('.requiredMessage').show();
+            } else if (response == 'invalid email') {
+                $('.requiredMessage').html('This email is invalid.');
+                $('.requiredMessage').show();
+            }
+        },
+        {
+            'new_email': newEmail
+        }
+    );
+}
+
 function prepareUserManagement() {
     $('.removeUser').click(function() {
         var userToRemove = $($(this).parent().parent().children('td')[0]).html();
@@ -217,12 +235,25 @@ function prepareUserManagement() {
         sendPasswordReset(user, true);
     });
 
+    $('#userSendReset').click(function() {
+        var user = $('#username').val();
+        sendPasswordReset(user);
+        $('.requiredMessage').html('A link to reset your password has been sent to your email.');
+        $('.requiredMessage').show();
+    });
+
     $('#addWarehouseWrapper').keydown(function (e){
         // detect enter key
         if(e.keyCode == 13){
             var buttonChildren = $(this).children('.button');
             buttonChildren[buttonChildren.length - 1].click();
         }
+    });
+
+    $('#changeEmail').click(function() {
+        var email = $('#email').val();
+
+        changeEmail(email);
     });
 }
 

@@ -9,6 +9,10 @@ var Dajaxice = {
     
     administration: {
     
+    change_email: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('administration.change_email', 'POST', callback_function, argv, custom_settings);
+    },
+
     remove_warehouse: function(callback_function, argv, custom_settings){
         return Dajaxice.call('administration.remove_warehouse', 'POST', callback_function, argv, custom_settings);
     },
