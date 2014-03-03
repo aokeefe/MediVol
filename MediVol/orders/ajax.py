@@ -88,7 +88,7 @@ def get_info(request, boxid):
 
     if box_old_contents is None:
                 
-        for box_content in box_contents_id:
+        for box_content in box_content_ids:
             box_items.append(box_content.item.name)
         
         box_info.append(box_items)
