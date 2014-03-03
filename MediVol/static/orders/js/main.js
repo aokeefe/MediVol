@@ -99,6 +99,21 @@ function getBoxes(response) {
 }
 
 /**
+* Callback for the get_items AJAX call. Does the same things as
+* the getItems callback, just for Boxes instead.
+*/
+function getBoxDetails(response) { 
+
+    $('#boxDetails').empty();
+    var box_size = response[1];
+    var box_weight = response[2];
+    var box_contents = response[3];
+  
+    $('#boxDetails').append("Box Size: " + box_size + "\nBox Weight: " + box_weight + 
+                              "\nBox Contents: " + box_contents);  
+}
+
+/**
 * Callback for create_box AJAX call.
 */
 function createOrder(response) {
@@ -293,9 +308,17 @@ $(document).ready(function() {
   
     // Set the 'on change' event for the boxes list.
     $('#boxes').change(function() {
-        
+        var selectedBoxId = $('#boxes option:selected').val();
+
+        // Get the details of the box for the selected box id.
+        Dajaxice.orders.get_info(getBoxDetails, {'boxid': selectedBoxId});
     })
+
+    // Set the 'on change' event for the box details list. 
+    $('#boxDetails').change(function() {
     
+    })
+
     // Set the 'on click' event for the add item button.
     $('#add_box').click(function(e) {
         // Prevent button from submitting form.
@@ -391,6 +414,30 @@ $(document).ready(function() {
             $('input[name=contact_name]').addClass('requiredTextField');
             missingRequired = true;
         }
+      
+        var contact_email = $('input[name=contact_email]').val();
+        if (contact_email == '') { 
+            $('input[name=contact_email]').addClass('requiredTextField');
+            missingRequired = true; 
+        }
+
+        var organization_name = $('input[name=organization_name]').val();
+        if (organization_name == '') { 
+            $('input[name=organization_name]').addClass('requiredTextField');
+            missingRequired = true; 
+        }
+
+        var organization_address = $('input[name=organization_address]').val();
+        if (organization_address == '') { 
+            $('input[name=organization_address]').addClass('requiredTextField');
+            missingRequired = true; 
+        }
+
+        var shipping_address = $('input[name=shipping_address]').val();
+        if (shipping_address == '') { 
+            $('input[name=shipping_address]').addClass('requiredTextField');
+            missingRequired = true; 
+        }
         
         // Can't have 0 items.
         if (items.length == 0) {
@@ -401,8 +448,11 @@ $(document).ready(function() {
         // Call the create_order AJAX function.
         Dajaxice.orders.create_order(createOrder,
             {
-                'ship_to': contact_name,
-                'reserved_for': contact_name,
+                'customer_name': contact_name,
+                'customer_email': contact_email,
+                'businessName':  organization_name,
+                'businessAddress': organization_address,
+                'shipping': shipping_address,
                 'box_ids': boxesToOrder
             }
         );

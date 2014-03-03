@@ -9,12 +9,13 @@
 
     <section> 
         <p>Box Category: {{ box.box_category }}</p>
-        <p>Box Contents: {{ box.old_contents}} </p>
+        <p>Box Contents: {% for box_content in box_contents %} <br /> {{box_content}} <br /> {% endfor %}</p>
         <p>Box Size: {{ box.box_size }} </p>
         <p>Box Weight: {{ box.weight }} </p>
         <p>Box Entry Date: {{ box.entered_date }} </p>
         <p>Box Shipped To: {{ box.shipped_to }} </p>
         <p>Initials of Who Entered The Box: {{ box.initials }} </p>
+        <a href="#"><button>Back to Inventory</button></a>
     </section>
 {% endblock %}
 

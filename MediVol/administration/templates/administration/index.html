@@ -1,0 +1,20 @@
+{% extends "base.html" %} 
+
+{% block title %}
+    <title>InterVol | Administration</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}administration/css/styles.css' />
+{% endblock %}
+
+{% block body %}
+    <h2>Administration</h2>
+    
+    <ul>
+        <li><a href='/administration/users/'><button class='button'>Manage Users</button></a></li>
+        <li><a href='/administration/backups/'><button class='button'>Manage Database Backups</button></a></li>
+        <li><a href='/administration/warehouses/'><button class='button'>Manage Warehouses</button></a></li>
+    </ul>
+{% endblock %}
+
