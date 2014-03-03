@@ -59,6 +59,10 @@ MEDIA_ROOT = ''
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = ''
 
+# Log in URL to redirect to if @login_required is used on a view method
+# and the user isn't logged in
+LOGIN_URL = '/login/'
+
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
@@ -86,6 +90,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
+# TODO: move this out of the web directory
 SECRET_KEY = 'a!mvlw&*@-im+*ywrhv7)a*#vilu59y26+2a%=592i5cm%wc=_'
 
 TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
@@ -118,7 +123,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/var/www/MediVol/templates', 
+    '/var/www/MediVol/templates',
 )
 
 INSTALLED_APPS = (

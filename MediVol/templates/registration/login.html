@@ -1,42 +1,41 @@
-{% extends "base.html" %} 
+{% extends 'base.html' %}
 
-{% comment %} 
-Authorization of users to administration page 
-{% endcomment %} 
-
-{% block head %}
-  <title>Administration | Login</title>
+{% block title %}
+    <title>InterVol | Log In</title>
 {% endblock %}
 
-{% block body %} 
-  <header>
-    <h1>Medivol</h1>
-    <h2>Login Page</h2>
-  </header>
+{% block body %}
+    <div id='loginWrapper'>
+        <h2>Log In</h2>
 
-  <section>
-    {% if form.errors %}
-      <p>Your username and password didn't match, please try again.</p>
-    {% endif %}
+        {% if form.errors %}
+            <p class='requiredText requiredMessage'>
+                Your username and password didn't match, please try again.
+            </p>
+        {% endif %}
 
-    <form method="post" action=".">
-      {% csrf_token %}
-      <p>
-        <label for="id_username">Username:</label>
-        {{ form.username }}
-      </p>
-      <p>
-        <label for="id_password">Password:</label>
-        {{ form.password }}
-      </p>
-      {% if next %}
-        <input type="hidden" name="next" value="{{ next }}" />
-      {% else %}
-        <input type="hidden" name="next" value="/administration" />
-      {% endif %}
-      <input type="submit" value="login" />
-    </form>
-  </section>
+        <form method='post' action='.'>
+            {% csrf_token %}
+            <p>
+                <label for='id_username' class='label loginLabel'>Username</label>
+                {{ form.username }}
+            </p>
+
+            <p>
+                <label for='id_password' class='label loginLabel'>Password</label>
+                {{ form.password }}
+            </p>
+
+            {% if next %}
+                <input type='hidden' name='next' value='{{ next }}' />
+            {% else %}
+                <!-- TODO: change this depending on who is logged in -->
+                <input type='hidden' name='next' value='/administration' />
+            {% endif %}
+
+            <input type='submit' value='Log In' class='button loginButton' />
+        </form>
+
+        <p><a href='/administration/send_reset'>Forgot password?</a></p>
+    </div>
 {% endblock %}
-
-
