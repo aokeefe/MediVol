@@ -23,11 +23,8 @@ def box_info(request, boxid):
     
         if box.old_contents is None: 
           
-            box_items = Contents.objects.filter(box_within=box)
+            box_contents = Contents.objects.filter(box_within=box)
 
-            for box_item in box_items:
-                box_contents.append(box_item.item.name)
-              
         else: 
       
             box_contents = box.old_contents    
@@ -50,10 +47,7 @@ def barcode_box_info(request, barcodeid):
 
         if box.old_contents is None:
 
-            box_items = Contents.objects.filter(box_within=box)
-
-            for box_item in box_items:
-                box_contents.append(box_item.item.name)
+            box_contentss = Contents.objects.filter(box_within=box)
 
         else:
 
