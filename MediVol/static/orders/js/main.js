@@ -43,7 +43,7 @@ function getBoxInfo(response) {
 * Callback for get_box_names AJAX call.
 */
 function getBoxNames(response) {
-    setBoxSelected(false);
+    setSelectedBox(false);
 
     $('#box_names').empty();
     $('#items').empty();
@@ -67,7 +67,7 @@ function getBoxNames(response) {
 * the getBoxNames callback, just for items instead.
 */
 function getItems(response) {
-    setBoxSelected(false);
+    setSelectedBox(false);
 
     $('#items').empty();
 
@@ -87,7 +87,7 @@ function getItems(response) {
 * the getItems callback, just for Boxes instead.
 */
 function getBoxes(response) {
-    setBoxSelected(false);
+    setSelectedBox(false);
 
     $('#boxes').empty();
 
@@ -103,7 +103,8 @@ function getBoxes(response) {
 
             if (element.attr('id') != 'placeholder_row' &&
                     element.attr('id') != 'table_header') {
-                var boxId = $(itemInfo[0]).html();
+                var boxInfo = element.children('td');
+                var boxId = $(boxInfo[0]).html();
 
                 if (boxId == response[i]) {
                     boxAlreadyInUse = true;
@@ -228,7 +229,9 @@ function goForward() {
     $('input[name=company').focus();
 }
 
-function setBoxSelected(selectedBox) {
+function setSelectedBox(selectedBox, clearBoxes) {
+    clearBoxes = (typeof(clearBoxes) == 'undefined') ? true : clearBoxes;
+
     if (selectedBox != false) {
         $('#itemSelectedMessage').html('You have selected Box ' + selectedBox + '.');
         $('#itemSelectedMessage').removeClass('noItemSelected');
@@ -237,7 +240,11 @@ function setBoxSelected(selectedBox) {
         $('#itemSelectedMessage').html('Please select a box.');
         $('#itemSelectedMessage').removeClass('itemSelected');
         $('#itemSelectedMessage').addClass('noItemSelected');
-        $('#boxes').empty();
+
+        if (clearBoxes) {
+            $('#boxes').empty();
+        }
+
         $('#boxDetails').html('');
     }
 }
@@ -355,7 +362,7 @@ $(document).ready(function() {
     $('#boxes').change(function() {
         var selectedBoxId = $('#boxes option:selected').val();
 
-        setBoxSelected(selectedBoxId);
+        setSelectedBox(selectedBoxId);
 
         // Get the details of the box for the selected box id.
         Dajaxice.orders.get_info(getBoxDetails, {'boxid': selectedBoxId});
@@ -385,7 +392,7 @@ $(document).ready(function() {
         Dajaxice.orders.get_info(getBoxInfo, {'boxid': boxId});
 
         $('#boxes option:selected').remove();
-        setBoxSelected(false);
+        setSelectedBox(false, false);
 
         $('#emptyBoxMessage').hide();
     });

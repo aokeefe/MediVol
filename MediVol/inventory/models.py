@@ -17,7 +17,7 @@ class Box(models.Model):
     box_id = models.CharField(max_length=6, null=True, unique=True)
 
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
-    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True) 
+    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     old_contents = models.CharField(max_length=300, null=True)
     barcode = models.CharField(max_length=8, unique=True)
     initials = models.CharField(max_length=5, default="")
@@ -48,7 +48,7 @@ class Box(models.Model):
             box_weight = None
         else:
             box_weight = float(filtered_values[3])
-            
+
         box = Box(box_category=Category.objects.get(letter=filtered_values[0]),
                   box_id=filtered_values[1],
                   box_size=filtered_values[2],
@@ -73,7 +73,7 @@ class Box(models.Model):
     def save(self, *args, **kwargs):
         """
         During that save process we will assign a barcode to the Box, if it does not already have one (ie a new box)
-        To make a barcode this method will generate an 8 digit number (with leading zeros), then validate that the 
+        To make a barcode this method will generate an 8 digit number (with leading zeros), then validate that the
         generated number is not already in use.
         """
         try:
@@ -83,7 +83,7 @@ class Box(models.Model):
                     if not Box.objects.filter(barcode=self.barcode).exists():
                         break #if the guess was unique stop
             super(Box, self).save(*args, **kwargs)
-        except Exception as e: 
+        except Exception as e:
             print '%s (%s)' % (e.message, type(e))
 
     def to_csv(self):
@@ -91,8 +91,8 @@ class Box(models.Model):
         Returns a string containing all the CSV information of the Box.  Used in creating database backups
         """
         values = [self.box_category.letter,
-                  self.box_id, 
-                  self.box_size, 
+                  self.box_id,
+                  self.box_size,
                   str(self.weight),
                   self.initials,
                   str(self.entered_date),
@@ -115,7 +115,7 @@ class Box(models.Model):
     def get_expiration(self):
         """
         Finds the oldest date amoung the contents of a Box, and return it.
-        For example if an item is expireing on 01-01-2014 and another is expireing on 01-01-2012, 01-01-2012 will be 
+        For example if an item is expireing on 01-01-2014 and another is expireing on 01-01-2012, 01-01-2012 will be
         returned
         """
         if self.old_expiration is not None:
@@ -154,6 +154,9 @@ class Contents(models.Model):
         Returns a printable, human readable, string to represent the Contents
         """
         return self.item.name
+
+    def get_search_results_string(self):
+        return self.item.box_name.category.name + ' > ' + self.item.box_name.name + ' > ' + self.item.name + ' > Box ' + self.box_within.box_id
 
     def save(self, *args, **kwargs):
         super(Contents, self).save(*args, **kwargs)

@@ -62,7 +62,7 @@ def get_search_results(request, query):
         results_array.append(result.get_search_results_string())
 
     for content in contents:
-        results_array.insert(0, content.item.box_name.category.name + ' > ' + content.item.box_name.name + ' > ' + content.item.name + ' > Box ' + content.box_within.box_id)
+        results_array.insert(0, content.get_search_results_string())
 
     return simplejson.dumps(results_array)
 
