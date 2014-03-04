@@ -18,16 +18,20 @@
                     <td>Box ID</td>
                     <td>Size</td>
                     <td>Weight</td>
+                    <td>Price</td>
                 </tr>
                 
-                {% for box in boxes %}
+                {% for box, orderbox in boxes %}
                     <tr>
                         <td>{{ box.box_id }}</td>
                         <td>{{ box.box_size }}</td>
                         <td>{{ box.box_weight }}</td>
+                        <td>{{ orderbox.cost }}</td>
                     </tr>
                 {% endfor %}
             </table>
         </div>
+        <h3>Total Weight of Order: </h3>
+        <h3>Total Price of Order: </h3>
     </div> 
 {% endblock %}
