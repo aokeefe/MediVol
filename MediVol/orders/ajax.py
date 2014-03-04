@@ -6,6 +6,7 @@ from orders.models import Order, OrderBox, Customer
 from orders import views as orderView
 from inventory.models import Box, Contents
 from catalog.models import Category, BoxName, Item
+from search.Searcher import Searcher
 
 # Gets all of the box names associated with a given category
 @dajaxice_register(method='GET')
@@ -34,43 +35,38 @@ def get_items(request, box_name):
 # Gets all boxes associated with items
 @dajaxice_register(method='GET')
 def get_box_ids(request, item):
-    
+
     boxs_ids = []
     item = Item.objects.get(name=item)
     contents = Contents.objects.filter(item=item)
 
     for content in contents:
         boxs_ids.append(content.box_within.box_id)
-    
+
     return simplejson.dumps(sorted(boxs_ids))
 
 # Search box ids
 @dajaxice_register(method='GET')
 def get_search_results(request, query):
-
+    raw_results = Searcher.search_catalog(query, True)
     results_array = []
     contents = []
 
-    categories = Category.objects.filter(name__icontains=query)
-    box_names = BoxName.objects.filter(name__icontains=query)
-    items = Item.objects.filter(name__icontains=query)
+    for result in raw_results:
+        if isinstance(result, Item):
+            contents_with_this = Contents.objects.filter(item=result)
 
-    for category in categories:
-        results_array.append(category.name)
+            for content in contents_with_this:
+                contents.append(content)
 
-    for box_name in box_names:
-        results_array.append(box_name.category.name + ' > ' + box_name.name)
+        results_array.append(result.get_search_results_string())
 
-    for item in items:
-        results_array.append(item.box_name.category.name + ' > ' + item.box_name.name + ' > '+ item.name)
-        contents.append(Contents.objects.filter(item=item))
- 
     for content in contents:
-        results_array.append(content.item.box_name.category.name + ' > ' + content.item.box_name.name + ' > ' + content.item.name + ' > ' + content.box_within.box_id)
+        results_array.insert(0, content.item.box_name.category.name + ' > ' + content.item.box_name.name + ' > ' + content.item.name + ' > Box ' + content.box_within.box_id)
 
     return simplejson.dumps(results_array)
 
-# Get Box Info 
+# Get Box Info
 @dajaxice_register(method='GET')
 def get_info(request, boxid):
 
@@ -87,13 +83,13 @@ def get_info(request, boxid):
     box_content_ids = Contents.objects.filter(box_within=box)
 
     if box_old_contents is None:
-                
+
         for box_content in box_content_ids:
             box_items.append(box_content.item.name)
-        
+
         box_info.append(box_items)
     else:
-        box_info.append(box_old_contents)  
+        box_info.append(box_old_contents)
 
     return simplejson.dumps(box_info)
 
@@ -111,7 +107,7 @@ def create_order(request, customer_name, customer_email, businessName, businessA
                             business_name=businessName, business_address=businessAddress,
                             shipping_address=shipping)
         customer.save()
-    
+
     order_base_number = 100
     order_number_array = []
 
@@ -127,6 +123,6 @@ def create_order(request, customer_name, customer_email, businessName, businessA
         order_box.save()
 
     orderNumber = Order.objects.get(order_number=order_number).order_number
-    order_number_array.append(orderNumber)    
+    order_number_array.append(orderNumber)
 
     return simplejson.dumps(order_number_array)

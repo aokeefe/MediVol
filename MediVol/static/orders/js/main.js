@@ -117,6 +117,8 @@ function getBoxes(response) {
     }
 
     if (boxToChoose != '') {
+        var splitBoxName = boxToChoose.split(' ');
+        boxToChoose = splitBoxName[1];
         $('#boxes').val(boxToChoose);
         boxToChoose = '';
         $('#boxes').change();
@@ -308,12 +310,11 @@ $(document).ready(function() {
                     itemToChoose = item;
                 }
 
-                //If it has four phrases, it also has a box_id so we can set the box_id too.
-                //We can set the boxToChoose tso the item can be autoselected in the list
+                // If it has four phrases, it also has a box_id so we can set the box_id too.
+                // We can set the boxToChoose to the item can be autoselected in the list.
                 if (queryArray.length > 3) {
-                  box = queryArray[3];
-                  boxToChoose = item;
-                  $('#count').focus();
+                    box = queryArray[3];
+                    boxToChoose = box;
                 }
 
                 // Now we set the selected category in the list and trigger the
