@@ -1,12 +1,20 @@
-/* Styles specific to the create box page */
+/* Styles specific to the create order page */
+
+#stepNumber {
+    font-weight: 300;
+}
 
 #itemSearch {
-    width: 96.5%;
+    width: 97.5%;
     margin-bottom: 20px;
 }
 
 #createBoxLists {
     width: 100%;
+}
+
+select {
+    font-weight: 400;
 }
 
 .createBoxListWrapper, .infoFieldWrapper {
@@ -17,6 +25,14 @@
 
 .createBoxListWrapper:first-child, .infoFieldWrapper:first-child {
     margin-left: 0px;
+}
+
+.boxesList {
+    margin-left: 0px;
+}
+
+.boxInfo {
+    width: 65%;
 }
 
 .createBoxListWrapper select {
@@ -37,7 +53,7 @@ h3 {
 }
 
 .infoFieldWrapper {
-    
+
 }
 
 .infoFieldWrapper input {
@@ -50,30 +66,17 @@ h3 {
     margin-bottom: 0;
 }
 
-#add_box{
-    margin-top: 10%;
+#addBoxWrapper {
+    width: 100%;
+}
+
+#add_box {
     float: right;
     font-size: 2em;
     height: 50px;
-    width: 80%;
+    width: 125px;
     min-width: 150px;
-}
-
-#boxes_added {
-    width: 100%;
-    text-align: center;
-    margin-left: -2px;
-    border-spacing: 0;
-    border-collapse: collapse;
-}
-
-#boxes_added td {
-    border: 1px solid #c8c8c8;
-    height: 25px;
-}
-
-#boxes_added tr:first-child td {
-    font-weight: bold;
+    margin: 15px;
 }
 
 #next, #submit, #back {
@@ -87,11 +90,11 @@ h3 {
 }
 
 #next {
-    width: 195px;
+    width: 260px;
 }
 
 #submit {
-    width: 495px;
+    width: 225px;
 }
 
 #back {
@@ -116,11 +119,6 @@ h3 {
     margin-right: auto;
 }
 
-.label {
-    float: left;
-    width: 75px;
-}
-
 .stepTwoField {
     margin-bottom: 10px;
 }
@@ -129,9 +127,93 @@ h3 {
     float: left;
 }
 
+.largeRadio {
+    margin-top: 10px;
+}
+
+.smallNote {
+    margin-top: 0;
+    padding-top: 0;
+    font-style: italic;
+    font-size: 1em !important;
+}
+
 #note {
     resize: none;
     width: 165px;
     height: 75px;
 }
 
+#or {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 15px;
+    font-size: 2em;
+}
+
+.itemSelected, .noItemSelected {
+    width: 97.5%;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 300;
+    margin-top: 15px;
+    padding: 10px;
+    height: 100px;
+}
+
+.noItemSelected {
+    background-color: #ff3535;
+    border: 1px solid #ff5151;
+    color: #4b1111;
+    padding-top: 27px;
+}
+
+.itemSelected {
+    background-color: #2ad141;
+    border: 1px solid #2ad641;
+    color: #0f5018;
+    padding-top: 27px;
+}
+
+.itemSelected b {
+    background: none;
+    color: #0d4414;
+}
+
+input[type='radio'] {
+    appearance: none;
+}
+
+.sizeLabel, .weightLabel, .contentsLabel {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-weight: 500;
+}
+
+.size, .weight, .contents {
+    margin-top: 1px;
+}
+
+.sizeLabel {
+
+}
+
+.size {
+
+}
+
+.weightLabel {
+
+}
+
+.weight {
+
+}
+
+.contentsLabel {
+
+}
+
+.contents {
+
+}
