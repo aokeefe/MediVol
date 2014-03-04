@@ -1,18 +1,17 @@
 from django.db import models
+from import_export import to_csv
 
 #TODO is this a valid number?
 NAME_LENGTH = 128
+LETTER_LENGTH = 1
 
 class Category(models.Model):
-    letter = models.CharField(max_length=1, unique=True)
+    letter = models.CharField(max_length=LETTER_LENGTH, unique=True)
     name = models.CharField(max_length=NAME_LENGTH)
 
     @classmethod
     def create_from_csv(cls, csv):
-        values = csv.split(",")
-        filtered_values = []
-        for value in values:
-            filtered_values.append(value.replace('<CMA>', ','))
+        filtered_values = to_array_from_csv(csv)
         category = Category(letter=str(filtered_values[0]), 
                             name=filtered_values[1])
         category.save()
@@ -28,28 +27,23 @@ class Category(models.Model):
     def to_csv(self):
         values = [self.letter,
                   self.name]
-        filtered_values = []
-        for value in values:
-            filtered_values.append(value.replace(',', '<CMA>'))
-        return ','.join(filtered_values)
+        return to_csv_from_array(values)
     
     def get_search_results_string(self):
         return self.name
 
 class BoxName(models.Model):
-    category = models.ForeignKey(Category)
     name = models.CharField(max_length=NAME_LENGTH)
+    category = models.ForeignKey(Category)
     can_expire = models.BooleanField()
     can_count = models.BooleanField()
 
     @classmethod
     def create_from_csv(cls, csv):
-        values = csv.split(",")
-        filtered_values = []
-        for value in values:
-            filtered_values.append(value.replace('<CMA>', ','))
-        box_name = BoxName(category=Category.objects.get(letter=filtered_values[0]), 
-                           name=filtered_values[1], can_expire=filtered_values[2],
+        filtered_values = to_array_from_csv(csv)
+        box_name = BoxName(name=filtered_values[0],
+                           category=Category.objects.get(letter=filtered_values[1]),
+                           can_expire=filtered_values[2],
                            can_count=filtered_values[3])
         box_name.save()
         return box_name
@@ -62,33 +56,27 @@ class BoxName(models.Model):
            and self.name == other.name
 
     def to_csv(self):
-        values = [self.category.letter,
-                  self.name,
+        values = [self.name,
+                  self.category.letter,
                   self.can_expire,
                   self.can_count]
-        filtered_values = []
-        for value in values:
-            filtered_values.append(value.replace(',', '<CMA>'))
-        return ','.join(filtered_values)
+        return to_csv_from_array(values)
     
     def get_search_results_string(self):
         return self.category.name + ' > ' + self.name
         
 #TODO update to a multi Catagory implementation
 class Item(models.Model):
-    box_name = models.ForeignKey(BoxName)
     name = models.CharField(max_length=NAME_LENGTH)
+    box_name = models.ForeignKey(BoxName)
     description = models.CharField(max_length = 500)
     
     @classmethod
     def create_from_csv(cls, csv):
-        values = csv.split(",")
-        filtered_values = []
-        for value in values:
-            filtered_values.append(value.replace('<CMA>', ','))
+        filtered_values = to_array_from_csv(csv)
         item = Item(name=filtered_values[0], 
-                    description=filtered_values[2], 
-                    box_name=BoxName.objects.get(name=filtered_values[1]))
+                    box_name=BoxName.objects.get(name=filtered_values[1]),
+                    description=filtered_values[2])
         item.save()
 
     def __unicode__(self):
@@ -103,10 +91,7 @@ class Item(models.Model):
         values = [self.name,
                   self.box_name.name, 
                   self.description]
-        filtered_values = []
-        for value in values:
-            filtered_values.append(value.replace(',', '<CMA>'))
-        return ','.join(filtered_values)
+        return to_csv_from_array(values)
     
     def get_search_results_string(self):
         return self.box_name.category.name + ' > ' + self.box_name.name + ' > ' + self.name
