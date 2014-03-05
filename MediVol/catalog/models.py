@@ -1,5 +1,5 @@
 from django.db import models
-from import_export import to_csv
+from import_export.to_csv import to_csv_from_array, to_array_from_csv
 
 #TODO is this a valid number?
 NAME_LENGTH = 128
@@ -65,7 +65,6 @@ class BoxName(models.Model):
     def get_search_results_string(self):
         return self.category.name + ' > ' + self.name
         
-#TODO update to a multi Catagory implementation
 class Item(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
     box_name = models.ForeignKey(BoxName)
