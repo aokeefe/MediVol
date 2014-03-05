@@ -80,6 +80,7 @@ class Box(models.Model):
         """
         Returns a string containing all the CSV information of the Box.  Used in creating database backups
         """
+        print self.box_category
         values = [self.box_id,
                   self.box_category.letter, 
                   self.box_size, 
@@ -144,8 +145,11 @@ class Contents(models.Model):
     def save(self, *args, **kwargs):
         super(Contents, self).save(*args, **kwargs)
         box = self.box_within
+        print box
         item = self.item
+        print item
         box.box_category = item.box_name.category
+        print box.box_category
         box.save()
 
     #TODO test
