@@ -69,12 +69,15 @@ class Box(models.Model):
         To make a barcode this method will generate an 8 digit number (with leading zeros), then validate that the 
         generated number is not already in use.
         """
-        if self.barcode == None or self.barcode== '':
-            while True: #guess until we have a unique barcode
-                self.barcode = "%0.8d" % random.randint(0,99999999) #make a guess
-                if not Box.objects.filter(barcode=self.barcode).exists():
-                    break #if the guess was unique stop
-        super(Box, self).save(*args, **kwargs)
+        try:
+            if self.barcode == None or self.barcode== '':
+                while True: #guess until we have a unique barcode
+                    self.barcode = "%0.8d" % random.randint(0,99999999) #make a guess
+                    if not Box.objects.filter(barcode=self.barcode).exists():
+                        break #if the guess was unique stop
+            super(Box, self).save(*args, **kwargs)
+        except Exception as e: 
+            print '%s (%s)' % (e.message, type(e))
 
     def to_csv(self):
         """

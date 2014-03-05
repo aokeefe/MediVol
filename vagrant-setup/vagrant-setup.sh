@@ -113,6 +113,9 @@ cd /var/www/vagrant-setup;
 sudo dpkg -i elasticsearch-0.90.11.deb;
 sudo service elasticsearch restart;
 
+printf '\nInstalling Mandrill...';
+sudo pip install mandrill;
+
 printf '\nCreating database for inventory...';
 mysql -u root --password=root -e 'create database MediVolDB;';
 
