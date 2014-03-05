@@ -14,12 +14,12 @@ class Box(models.Model):
         (LARGE, 'Large'),
         (UNKNOWN, 'Unknown'),
     )
+    box_id = models.CharField(max_length=4, null=True, unique=True)
     box_category = models.ForeignKey(Category, null=True)
-    box_id = models.CharField(max_length=4, null=True)
 
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
     weight = models.DecimalField(max_digits=5, decimal_places=2, null=True) 
-    barcode = models.CharField(max_length=8)
+    barcode = models.CharField(max_length=8, unique=True)
     initials = models.CharField(max_length=5, default="")
     entered_date = models.DateTimeField('date the box was entered', null=True)
     old_box_flag = models.BooleanField(default=False)

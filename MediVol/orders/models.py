@@ -3,6 +3,7 @@ from inventory.models import Box
 from import_export import to_csv
 
 class Customer(models.Model):
+    contact_id = models.IntegerField(unique=True)
     contact_name = models.CharField(max_length=80)
     contact_email = models.CharField(max_length=80)
     business_name = models.CharField(max_length=80)
@@ -25,7 +26,7 @@ class Order(models.Model):
     )
     #This may need revisiting as a more detailed model becomes available
     order_id = models.IntegerField(unique=True)
-    reserved_for = models.CharField(max_length=30, null=True)
+    reserved_for = models.ForeignKey(Customer, null=True)
     paid_for = models.BooleanField(default=False)
     shipped = models.BooleanField(default=False)
     ship_to = models.CharField(max_length=300, null=True)
@@ -38,7 +39,7 @@ class Order(models.Model):
 
     def to_csv(self):
         values = [self.order_id,
-                  self.reserved_for,
+                  self.reserved_for.customer_id,
                   self.paid_for,
                   self.shipped,
                   self.ship_to,
