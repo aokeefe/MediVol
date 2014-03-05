@@ -80,7 +80,6 @@ class Box(models.Model):
         """
         Returns a string containing all the CSV information of the Box.  Used in creating database backups
         """
-        print self.box_category
         values = [self.box_id,
                   self.box_category.letter, 
                   self.box_size, 

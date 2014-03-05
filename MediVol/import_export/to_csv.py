@@ -9,8 +9,8 @@ def to_array_from_csv(csv):
     filtered_values = []
     for value in values:
     	filtered_value = value
-    	filtered_value.replace('<CMA>', ',')
-    	filtered_value.replace('<RET>', '\n')
+    	filtered_value = filtered_value.replace('<CMA>', ',')
+    	filtered_value = filtered_value.replace('<RET>', '\n')
     	if filtered_value == 'None':
     		filtered_value = None
         filtered_values.append(filtered_value)
