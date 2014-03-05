@@ -41,7 +41,7 @@ Item array should be of the form:
 
 That is, there is an array with arrays inside it that describe the items.
 """
-@dajaxice_register(method='POST')
+@dajaxice_register
 def create_box(request, initials, weight, size, items, note=''):
     # TODO: generate a real box ID
     # TODO: store note in box
