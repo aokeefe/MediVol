@@ -2,7 +2,7 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from datetime import datetime
 
-from orders.models import Order, OrderBox
+from orders.models import Order, OrderBox, Customer
 from orders import views as orderView
 from inventory.models import Box, Contents
 from catalog.models import Category, BoxName, Item
@@ -84,21 +84,41 @@ def get_info(request, boxid):
     box_weight = box.weight
     box_info.append(str(box_weight))
     box_old_contents = box.old_contents
-    box_new_content_ids = Contents.objects.get(box_within=box)
+    box_content_ids = Contents.objects.filter(box_within=box)
+
+    if box_old_contents is None:
+                
+        for box_content in box_content_ids:
+            box_items.append(box_content.item.name)
+        
+        box_info.append(box_items)
+    else:
+        box_info.append(box_old_contents)  
 
     return simplejson.dumps(box_info)
 
 # Registers order to database.
 @dajaxice_register
-def create_order(request, ship_to, reserved_for, box_ids):
+def create_order(request, customer_name, customer_email, businessName, businessAddress, shipping, box_ids):
 
+    # Check if customer exists if not create a new customer
+    customer = None
+    if Customer.objects.filter(contact_email=customer_email).exists():
+
+        customer = Customer.objects.filter(contact_email=customer_email)
+    else:
+        customer = Customer(contact_name=customer_name, contact_email=customer_email,
+                            business_name=businessName, business_address=businessAddress,
+                            shipping_address=shipping)
+        customer.save()
+    
     order_base_number = 100
     order_number_array = []
 
     # Calculate order number
     order_number = Order.objects.count() + order_base_number
 
-    new_order = Order(reserved_for=reserved_for, ship_to=ship_to, order_number=order_number, creation_date=datetime.today())
+    new_order = Order(reserved_for=customer, ship_to=customer_name, order_number=order_number, creation_date=datetime.today())
     new_order.save()
 
     for box_id in box_ids:

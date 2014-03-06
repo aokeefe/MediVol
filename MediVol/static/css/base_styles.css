@@ -1,5 +1,9 @@
 /* General styles.  */
 
+body {
+    min-width: 1000px;
+}
+
 * {
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
     background-color: #f6f6f6;
@@ -12,7 +16,7 @@
     clear: both;
 }
 
-.textField, .button {
+.textField, .button, #id_username, #id_password {
     -webkit-appearance: none;
     -o-border-radius: none;
     -moz-border-radius: none;
@@ -20,7 +24,7 @@
     border-radius: none;
 }
 
-.textField {
+.textField, #id_username, #id_password {
     background-color: #f1f1f1;
     border: 1px solid #c8c8c8;
     font-size: 1em;
@@ -35,7 +39,6 @@
     font-size: 1em;
     font-weight: 300;
     letter-spacing: 1px;
-    height: 30px;
     cursor: pointer;
 }
 
@@ -105,7 +108,16 @@ h1, h2, h3 {
 
 #globalSearch {
     width: 250px;
-    margin-top: 21%;
+    margin-top: 15%;
+}
+
+#globalSearchButton {
+    height: 33px;
+}
+
+#logoutWrapper {
+    text-align: right;
+    padding-right: 5px;
 }
 
 /* ----- END HEADER STLYES ----- */
@@ -177,6 +189,49 @@ hr {
 .requiredMessage {
     font-size: 1.5em;
     display: none;
+}
+
+.label {
+    float: left;
+    width: 75px;
+    font-size: 1.25em;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    margin-left: -2px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table td {
+    border: 1px solid #c8c8c8;
+    height: 25px;
+}
+
+table tr:first-child td {
+    font-weight: bold;
+}
+
+.loginLabel {
+    width: 33%;
+    padding-top: 3px;
+}
+
+#id_username, #id_password {
+    width: 67%;
+}
+
+#loginWrapper {
+    width: 42%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loginButton {
+    float: right;
+    font-size: 1.5em;
 }
 
 /* ----- END CONTENT SECTION STYLES ------ */
