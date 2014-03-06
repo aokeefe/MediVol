@@ -66,27 +66,45 @@ def get_search_results(request, query):
 # Get Box Info
 @dajaxice_register(method='GET')
 def get_info(request, boxid):
-
     box_info = []
     box_items = []
+
     box = Box.objects.get(box_id=boxid)
+
     box_id = box.box_id
-    box_info.append(str(box_id))
+
     box_size = box.box_size
-    box_info.append(str(box_size))
+    if box_size == 'S':
+        box_size = 'Small'
+    elif box_size == 'L':
+        box_size = 'Large'
+
     box_weight = box.weight
-    box_info.append(str(box_weight))
     box_old_contents = box.old_contents
     box_content_ids = Contents.objects.filter(box_within=box)
 
-    if box_old_contents is None:
+    box_info.append(str(box_weight))
+    box_info.append(str(box_size))
+    box_info.append(str(box_id))
 
+    if box_old_contents is None:
         for box_content in box_content_ids:
-            box_items.append(box_content.item.name)
+            if box_content.quantity == 0:
+                box_items.append(box_content.item.name)
+            else:
+                box_items.append(box_content.item.name + ' x ' + str(box_content.quantity))
 
         box_info.append(box_items)
     else:
         box_info.append(box_old_contents)
+
+    if box.get_expiration() is None:
+        box_info.append('Never')
+    else:
+        expiration_date = str(box.get_expiration()).split(' ')[0]
+        expiration_array = expiration_date.split('-')
+        expiration_date = expiration_array[1] + '/' + expiration_array[2] + '/' + expiration_array[0]
+        box_info.append(expiration_date)
 
     return simplejson.dumps(box_info)
 

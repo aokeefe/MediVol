@@ -184,14 +184,15 @@ input[type='radio'] {
     appearance: none;
 }
 
-.sizeLabel, .weightLabel, .contentsLabel {
+.sizeLabel, .weightLabel, .contentsLabel, .expiresLabel {
     margin-top: 5px;
     margin-bottom: 0px;
     font-weight: 500;
 }
 
-.size, .weight, .contents {
+.size, .weight, .contents, .expires {
     margin-top: 1px;
+    margin-bottom: 8px;
 }
 
 .sizeLabel {
@@ -215,6 +216,14 @@ input[type='radio'] {
 }
 
 .contents {
+
+}
+
+.expiresLabel {
+
+}
+
+.expires {
 
 }
 

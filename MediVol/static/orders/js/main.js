@@ -141,13 +141,16 @@ function getBoxes(response) {
 * the getItems callback, just for Boxes instead.
 */
 function getBoxDetails(response) {
+    var box_weight = response[0];
     var box_size = response[1];
-    var box_weight = response[2];
+    var box_id = response[2];
     var box_contents = response[3];
+    var box_expires = response[4];
 
     $('#boxDetails').html('<p class="sizeLabel">Size</p><p class="size">' + box_size + '</p>' +
         '<p class="weightLabel">Weight</p><p class="weight">' + box_weight + ' lbs</p>' +
-        '<p class="contentsLabel">Contents</p><p class="contents">' + box_contents + '</p>');
+        '<p class="contentsLabel">Contents</p><p class="contents">' + box_contents.join(', ') + '</p>' +
+        '<p class="expiresLabel">Expires</p><p class="expires">' + box_expires + '</p>');
 }
 
 /**
