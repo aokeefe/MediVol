@@ -144,6 +144,9 @@ python /var/www/MediVol/inventory/CSV_Importer.py /var/www/MediVol/inventory/Med
 /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_28.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_29.csv \
 /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_30.csv;
 
+cd /var/www/MediVol/;
+python manage.py collectstatic --noinput;
+
 sudo service apache2 restart;
 
 #Leave at the end
