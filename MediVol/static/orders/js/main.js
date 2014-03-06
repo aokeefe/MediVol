@@ -89,14 +89,20 @@ function getItems(response) {
     }
 }
 
-function checkIfBoxInOrder(element, boxIdToAdd) {
-    if (element.attr('id') != 'placeholder_row' &&
-            element.attr('id') != 'table_header') {
-        var boxInfo = element.children('td');
-        var boxId = $(boxInfo[0]).html();
+function boxIsInOrder(boxIdToAdd) {
+    var boxesAdded = $('#boxes_added tr');
 
-        if (boxId == boxIdToAdd) {
-            return true;
+    for (var j = 0; j < boxesAdded.length; j++) {
+        var element = $(boxesAdded[j]);
+
+        if (element.attr('id') != 'placeholder_row' &&
+                element.attr('id') != 'table_header') {
+            var boxInfo = element.children('td');
+            var boxId = $(boxInfo[0]).html();
+
+            if (boxId == boxIdToAdd) {
+                return true;
+            }
         }
     }
 
@@ -115,16 +121,8 @@ function getBoxes(response) {
     for (var i = 0; i < response.length; i++) {
         var boxAlreadyInUse = false;
         var boxIdToAdd = response[i];
-        var boxesAdded = $('#boxes_added tr');
 
-        for (var j = 0; j < boxesAdded.length; j++) {
-            if (checkIfBoxInOrder($(boxesAdded[j]), boxIdToAdd)) {
-                boxAlreadyInUse = true;
-                break;
-            }
-        }
-
-        if (!boxAlreadyInUse) {
+        if (!boxIsInOrder(boxIdToAdd)) {
             $('#boxes').append('<option>' + boxIdToAdd + '</option>');
         }
     }
@@ -265,7 +263,7 @@ $(document).ready(function() {
     // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
         {
-            autoFocus: true, 
+            autoFocus: true,
             // The 'source' attribute is a function that is called
             // which provides the data for the autocomplete. It passes
             // in request, which provides the search query, and the response
@@ -274,6 +272,23 @@ $(document).ready(function() {
             source: function(request, response) {
                 // Call the get_search_results AJAX function.
                 Dajaxice.orders.get_search_results(function(returned) {
+                    var toRemove = [];
+
+                    for (var i = 0; i < returned.length; i++) {
+                        if (returned[i].startsWith('Box')) {
+                            var box = returned[i].split(' ');
+                            var boxId = box[1];
+
+                            if (boxIsInOrder(boxId)) {
+                                toRemove.push(i);
+                            }
+                        }
+                    }
+
+                    for (var i = 0; i < toRemove.length; i++) {
+                        returned.splice(toRemove[i], 1);
+                    }
+
                     // 'returned' is passed to us from the AJAX function.
                     // It is an array of relevant search results which we pass
                     // to the 'response' callback.
