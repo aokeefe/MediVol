@@ -23,6 +23,7 @@ Important Urls
 * localhost:8888/administration/warehouses - Admin section to add/remove warehouses
 * localhost:8888/administration/reset_password/<reset_code> - Page to reset password if you have a reset code
 * localhost:8888/administration/send_reset - Page to have a reset password code sent to you
+* localhost:8888/administration/settings - Settings page for users to change email and send password reset
 * localhost:8888/administration/forbidden - The page someone sees when they don't have access to a section
 * localhost:8888/inventory/create - The create box page
 * localhost:8888/inventory/view_box_info/<boxid> - View a box info

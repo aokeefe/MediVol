@@ -33,7 +33,7 @@ li .button {
     width: 65%;
 }
 
-#addWarehouse, #createUser, #resetPassword, #sendReset {
+#addWarehouse, #createUser, #resetPassword, #sendReset, #changeEmail, #userSendReset {
     float: right;
     font-size: 1.5em;
     margin-right: 8px;
@@ -67,3 +67,11 @@ select {
 }
 
 /* --- END ADMIN MANAGE_USERS.HTML STYLES --- */
+
+/* Admin user_settings.html styles. */
+
+#userSendReset {
+    margin-top: 50px;
+}
+
+/* --- END ADMIN USER_SETTINGS.HTML STYLES --- */

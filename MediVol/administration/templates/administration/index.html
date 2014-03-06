@@ -1,4 +1,4 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% block title %}
     <title>InterVol | Administration</title>
@@ -10,11 +10,24 @@
 
 {% block body %}
     <h2>Administration</h2>
-    
+
     <ul>
-        <li><a href='/administration/users/'><button class='button'>Manage Users</button></a></li>
-        <li><a href='/administration/backups/'><button class='button'>Manage Database Backups</button></a></li>
-        <li><a href='/administration/warehouses/'><button class='button'>Manage Warehouses</button></a></li>
+        <li>
+            <a id='manageUsersButton' href='/administration/users/'>
+                <button class='button'>Manage Users</button>
+            </a>
+        </li>
+
+        <li>
+            <a id='manageBackupsButton' href='/administration/backups/'>
+                <button class='button'>Manage Database Backups</button>
+            </a>
+        </li>
+
+        <li>
+            <a id='manageWarehousesButton' href='/administration/warehouses/'>
+                <button class='button'>Manage Warehouses</button>
+            </a>
+        </li>
     </ul>
 {% endblock %}
-

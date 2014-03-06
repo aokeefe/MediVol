@@ -3,6 +3,7 @@ from dajaxice.decorators import dajaxice_register
 from administration.models import Warehouse, ResetCode
 from django.contrib.auth.models import User, Group
 from django.core.validators import validate_email
+from notifications.notifier import send_message
 from django import forms
 
 @dajaxice_register(method='POST')
@@ -88,3 +89,19 @@ def reset_password(request, reset_code, password, confirm_password):
         return True
 
     return False
+
+@dajaxice_register(method='POST')
+def change_email(request, new_email):
+    try:
+        validate_email(new_email)
+    except forms.ValidationError:
+        return 'invalid email'
+
+    request.user.email = new_email
+    request.user.save()
+
+    message = 'Your InterVol email has been changed to this email (' + request.user.email + ').'
+
+    send_message('InterVol Email Changed', request.user.email, request.user.username, message)
+
+    return True
