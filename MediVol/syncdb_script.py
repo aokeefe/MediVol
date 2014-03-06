@@ -26,11 +26,14 @@ if len(Group.objects.filter(name='Admin')) == 0:
     box_transfer_group = Group(name='Box Transfer')
     box_transfer_group.save()
 
+    read_only_group = Group(name='Read Only')
+    read_only_group.save()
+
     new_user = User(username='mikelentini', email='mike@mikelentini.com')
     new_user.set_password('mikelentini')
     new_user.save()
 
-    guest_group.user_set.add(new_user)
+    read_only_group.user_set.add(new_user)
 
     new_user = User(username='bill', email='bill@bill.com')
     new_user.set_password('bill')
