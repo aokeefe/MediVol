@@ -5,30 +5,28 @@ from catalog.models import Category, BoxName, Item
 
 
 @dajaxice_register(method='POST')
-def create_item(request, b_name, item_name, d):
+def create_item(request, box_name, item_name, description):
     try:
-        box = BoxName.objects.get(name=b_name)
+        box = BoxName.objects.get(name=box_name)
     except BoxName.DoesNotExist:
-        return simplejson.dumps({'message':'Box name: %s does not exist' % b_name, 'success': 0})
+        return simplejson.dumps({'message':'Box name: %s does not exist' % box_name, 'success': 0})
     if Item.objects.filter(name=item_name).filter(box_name = box).count() > 0:
         return simplejson.dumps({'message':'Item: %s already exists' % item_name, 'success': 0})
     new_item = Item(name=item_name, 
-                    description=d, 
-                    box_name=BoxName.objects.get(name=b_name))
+                    description=description, 
+                    box_name=BoxName.objects.get(name=box_name))
     new_item.save()
     
     return simplejson.dumps({'message':'%s has been added' % item_name, 'success': 1})
 
 @dajaxice_register(method='POST')
-def get_description(request, b_name, item_name):
+def get_description(request, box_name, item_name):
     try:
-        box = BoxName.objects.get(name=b_name)
+        box = BoxName.objects.get(name=box_name)
     except BoxName.DoesNotExist:
-        return simplejson.dumps({'message':''})
-    item = Item.objects.filter(name=item_name).filter(box_name = box)
-    if item.count > 0:
-        return simplejson.dumps({'message': '%s' % item[0].description})
-    return simplejson.dumps({'message':''})
+        return simplejson.dumps({'message':'','error':'could not fin boxName %s' % box_name})
+    item = Item.objects.get(name=item_name, box_name=box)
+    return simplejson.dumps({'message': '%s' % item.description})
     
     
 

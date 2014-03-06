@@ -159,7 +159,7 @@ $(document).ready(function() {
 			document.getElementById('box_name_input').value = box_name;
 			Dajaxice.catalog.get_description(updateDescription, 
             {
-                'b_name': box_name,
+                'box_name': box_name,
                 'item_name': selectedItem,
             }
         );
@@ -174,9 +174,9 @@ $(document).ready(function() {
     	
     	Dajaxice.catalog.create_item(createItem, 
             {
-                'b_name': box_name,
+                'box_name': box_name,
                 'item_name': name,
-                'd': description
+                'description': description
             }
         );
 
