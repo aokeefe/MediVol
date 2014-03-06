@@ -9,8 +9,36 @@ var Dajaxice = {
     
     catalog: {
     
+    create_category: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('catalog.create_category', 'POST', callback_function, argv, custom_settings);
+    },
+
+    create_boxName: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('catalog.create_boxName', 'POST', callback_function, argv, custom_settings);
+    },
+
+    delete_item: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('catalog.delete_item', 'GET', callback_function, argv, custom_settings);
+    },
+
+    delete_box_name: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('catalog.delete_box_name', 'GET', callback_function, argv, custom_settings);
+    },
+
+    delete_category: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('catalog.delete_category', 'GET', callback_function, argv, custom_settings);
+    },
+
     create_item: function(callback_function, argv, custom_settings){
         return Dajaxice.call('catalog.create_item', 'POST', callback_function, argv, custom_settings);
+    },
+
+    edit_item: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('catalog.edit_item', 'GET', callback_function, argv, custom_settings);
+    },
+
+    get_description: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('catalog.get_description', 'POST', callback_function, argv, custom_settings);
     }
 
 

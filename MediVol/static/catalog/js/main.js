@@ -49,18 +49,64 @@ function getItems(response) {
 * Callback for the create_items AJAX call.
 */
 function createItem(response){
-	alert(response.message);
+	if(response.success == 1){
+		setChangeMessageSuccess(response.message);
+	}
+	else{
+		setChangeMessageError(response.message);
+	}
+	Dajaxice.inventory.get_items(getItems, { 'box_name': $('#box_names option:selected').val() });
+}
+
+function updateDescription(response){
+	document.getElementById('item_description').value = response.message;
+}
+
+//display success massage when new item is created
+function setChangeMessageSuccess(message) {
+	document.getElementById("changeMessage").className = "changeSuccess";
+    $('#changeMessage').html(message);
+}
+
+//display error massage when new item can not be created
+function setChangeMessageError(message) {
+	document.getElementById("changeMessage").className = "changeError";
+    $('#changeMessage').html(message);
+}
+
+//clear the message
+function setChangeMessageClear() {
+	document.getElementById("changeMessage").className = "noChangeMessage";
+    $('#changeMessage').html('');
+}
+
+
+function setItemSelected(itemName) {
+    $('#itemSelectedMessage').removeClass('noItemSelected');
+    $('#itemSelectedMessage').addClass('itemSelected');
+    $('#itemSelectedMessage').html('You have selected: <br /><b>' + itemName + '</b>');
+}
+
+function setItemNotSelected() {
+    $('#itemSelectedMessage').removeClass('itemSelected');
+    $('#itemSelectedMessage').addClass('noItemSelected');
+    $('#itemSelectedMessage').html('Please select an item.');
 }
 
 $(document).ready(function() {
     
-    $('#catagory_input').keypress(function(e) {
+    // Set the 'on change' event for the items list.
+    $('#items').change(function() {
+        setItemSelected($('#items option:selected').val());
+    });
+    
+    $('#catagory_input').keyup(function(e) {
     	document.getElementById('box_name_input').value = "";
     	document.getElementById('item_input').value = "";
     	
     });
     
-    $('#box_name_input').keypress(function(e) {
+    $('#box_name_input').keyup(function(e) {
     	document.getElementById('item_input').value = "";
     	
     });
@@ -79,10 +125,8 @@ $(document).ready(function() {
         var selectedCategory = $('#categories option:selected').val();
         if(selectedCategory != undefined)
         {
-        	var catagory_box = document.getElementById('catagory_input');
-        	catagory_box.value = selectedCategory.split(" - ")[1];
-        	var catagory_letter_box = document.getElementById('catagory_letter_input');
-        	catagory_letter_box.value = selectedCategory.split(" - ")[0];
+        	document.getElementById('catagory_input').value = selectedCategory.split(" - ")[1];
+        	document.getElementById('catagory_letter_input').value = selectedCategory.split(" - ")[0];
         	
         	// Get the list of box names for the selected category.
         	Dajaxice.inventory.get_box_names(getBoxNames, { 'category_name': selectedCategory.split(" - ")[1] });
@@ -94,8 +138,7 @@ $(document).ready(function() {
         var selectedBoxName = $('#box_names option:selected').val();
         if(selectedBoxName != undefined)
         {
-        	var box_name_box = document.getElementById('box_name_input');
-       		box_name_box.value = selectedBoxName;
+        	document.getElementById('box_name_input').value = selectedBoxName;
        		document.getElementById('catagory_input').value = $('#categories option:selected').val().split(" - ")[1];
        		document.getElementById('catagory_letter_input').value = $('#categories option:selected').val().split(" - ")[0];
        
@@ -109,11 +152,17 @@ $(document).ready(function() {
         var selectedItem = $('#items option:selected').val();
         if(selectedItem != undefined)
         {
-        	var item_box = document.getElementById('item_input');
-        	item_box.value = selectedItem;
+        	document.getElementById('item_input').value = selectedItem;
         	document.getElementById('catagory_input').value = $('#categories option:selected').val().split(" - ")[1];
        		document.getElementById('catagory_letter_input').value = $('#categories option:selected').val().split(" - ")[0];
-			document.getElementById('box_name_input').value = $('#box_names option:selected').val();
+			var box_name = $('#box_names option:selected').val();
+			document.getElementById('box_name_input').value = box_name;
+			Dajaxice.catalog.get_description(updateDescription, 
+            {
+                'b_name': box_name,
+                'item_name': selectedItem,
+            }
+        );
         }
     });
     
@@ -130,5 +179,41 @@ $(document).ready(function() {
                 'd': description
             }
         );
-    });	
+
+    });
+    
+/*
+    $('#edit_item').click(function(e) {
+    	var new_name = $('#item_input').val();
+    	var old_name = $('#items option:selected').val();
+    	var new_box_name = $('#box_names option:selected').val();
+    	var old_box_name = $('#box_name_input').val();
+    	var description = $('#item_description').val();
+    	var letter = $('#catagory_letter_input').val();
+    	
+    	Dajaxice.catalog.edit_item(editItem, 
+            {
+                'category_letter': letter,
+                'new_box_name': new_box_name,
+                'old_box_name': old_box_name,
+                'new_item_name': new_name,
+                'old_item_name': old_name,
+                'd': description
+            }
+        );
+    });
+    
+    $('#delete_item').click(function(e) {
+    	var item_name = $('#items option:selected').val();
+    	var box_name = $('#box_names option:selected').val();
+    	if(item_name!= undefined){
+    		Dajaxice.catalog.delete_item(deleteItem, 
+            	{
+                	'b_name': box_name,
+                	'item_name': item_name,
+            	}
+        	);
+        }
+    });
+*/
 });
