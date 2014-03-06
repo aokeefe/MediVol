@@ -26,12 +26,12 @@ def get_items(request, box_name):
     return simplejson.dumps(Searcher.get_items(box_name))
 
 """
-Searches categories, box names, and items for a query. 
+Searches categories, box names, and items for a query.
 Returns the results in 'Category > Box Name > Item' form.
 """
 @dajaxice_register(method='GET')
 def get_search_results(request, query):
-    return simplejson.dumps(Searcher.search_catalog(query))
+    return simplejson.dumps(Searcher.search(query=query, models=[ Category, BoxName, Item ]))
 
 """
 Creates a box with the given initials, weight, size, items, and note.
@@ -41,32 +41,32 @@ Item array should be of the form:
 
 That is, there is an array with arrays inside it that describe the items.
 """
-@dajaxice_register
+@dajaxice_register(method='POST')
 def create_box(request, initials, weight, size, items, note=''):
     # TODO: generate a real box ID
     # TODO: store note in box
     box_id = randint(100, 999)
-    
+
     # Generates IDs until we find one that isn't in use yet
     while Box.objects.filter(box_id=box_id).exists():
         box_id = randint(100, 999)
 
-    new_box = Box(box_id=box_id, box_size=size[:1], weight=weight, 
+    new_box = Box(box_id=box_id, box_size=size[:1], weight=weight,
         entered_date=datetime.today(), initials=initials.upper())
-    
+
     new_box.save()
-    
+
     for item in items:
         expiration_date = item[1]
-        
+
         if expiration_date == 'Never':
             expiration_date = None
-        
-        contents = Contents(box_within=new_box, 
-            item=Item.objects.get(name=item[0]), 
+
+        contents = Contents(box_within=new_box,
+            item=Item.objects.get(name=item[0]),
             quantity=item[2],
             expiration=expiration_date)
-        
+
         contents.save()
-    
+
     return BoxLabel(new_box.barcode).get_image()

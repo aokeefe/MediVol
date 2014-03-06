@@ -48,7 +48,7 @@ def get_box_ids(request, item):
 # Search box ids
 @dajaxice_register(method='GET')
 def get_search_results(request, query):
-    raw_results = Searcher.search_catalog(query, True)
+    raw_results = Searcher.search(query=query, as_objects=True, models=[ Category, BoxName, Item ])
     results_array = []
     contents = []
 

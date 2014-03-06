@@ -27,13 +27,13 @@ class Searcher:
         return sorted(items_array)
 
     @classmethod
-    def search_catalog(self, query, as_objects=False, *models):
+    def search(self, query='', as_objects=False, models=[]):
         results_array = []
 
-        if len(models) == 0:
-            models = [ Item, BoxName, Category ]
+        if query == '' or len(models) == 0:
+            return results_array
 
-        results = SearchQuerySet().autocomplete(name_auto=query).models(*models)
+        results = SearchQuerySet().autocomplete(content_auto=query).models(*models)
 
         for result in results:
             result = result.object

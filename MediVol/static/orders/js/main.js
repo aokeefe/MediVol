@@ -18,7 +18,7 @@ var BLANK_ROW = '<tr id="placeholder_row">' +
 var boxNameToChoose = '';
 var itemToChoose = '';
 var boxToChoose = '';
-var boxesToOrder = []
+var boxesToOrder = [];
 
 /**
 * Function for getting a specific box information
@@ -55,7 +55,7 @@ function getBoxNames(response) {
 
     // If this was a search, we have to select the right box name
     // and trigger the change event so it will populate the items list.
-    if (boxNameToChoose != '') {
+    if (boxNameToChoose !== '') {
         $('#box_names').val(boxNameToChoose);
         boxNameToChoose = '';
         $('#box_names').change();
@@ -75,11 +75,25 @@ function getItems(response) {
         $('#items').append('<option>' + response[i] + '</option>');
     }
 
-    if (itemToChoose != '') {
+    if (itemToChoose !== '') {
         $('#items').val(itemToChoose);
         itemToChoose = '';
         $('#items').change();
     }
+}
+
+function checkIfBoxInOrder(element, boxIdToAdd) {
+    if (element.attr('id') != 'placeholder_row' &&
+            element.attr('id') != 'table_header') {
+        var boxInfo = element.children('td');
+        var boxId = $(boxInfo[0]).html();
+
+        if (boxId == boxIdToAdd) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /**
@@ -93,31 +107,22 @@ function getBoxes(response) {
 
     for (var i = 0; i < response.length; i++) {
         var boxAlreadyInUse = false;
+        var boxIdToAdd = response[i];
+        var boxesAdded = $('#boxes_added tr');
 
-        $('#boxes_added tr').each(function(index, element) {
-            if (boxAlreadyInUse) {
-                return;
+        for (var j = 0; j < boxesAdded.length; j++) {
+            if (checkIfBoxInOrder($(boxesAdded[j]), boxIdToAdd)) {
+                boxAlreadyInUse = true;
+                break;
             }
-
-            element = $(element);
-
-            if (element.attr('id') != 'placeholder_row' &&
-                    element.attr('id') != 'table_header') {
-                var boxInfo = element.children('td');
-                var boxId = $(boxInfo[0]).html();
-
-                if (boxId == response[i]) {
-                    boxAlreadyInUse = true;
-                }
-            }
-        });
+        }
 
         if (!boxAlreadyInUse) {
-            $('#boxes').append('<option>' + response[i] + '</option>');
+            $('#boxes').append('<option>' + boxIdToAdd + '</option>');
         }
     }
 
-    if (boxToChoose != '') {
+    if (boxToChoose !== '') {
         var splitBoxName = boxToChoose.split(' ');
         boxToChoose = splitBoxName[1];
         $('#boxes').val(boxToChoose);
@@ -165,7 +170,7 @@ function setRemoveButton() {
 
         var selectedItemName = $('#items option:selected').val();
 
-        if (selectedItemName != '') {
+        if (selectedItemName !== '') {
             Dajaxice.orders.get_box_ids(getBoxes, { 'item': selectedItemName });
         }
     });
@@ -204,7 +209,7 @@ function requiredFieldsAreFilledIn() {
     var weight = $('input[name=weight]').val();
     var size = $('input[name=size]:checked').val();
 
-    return (initials != '' && weight != '' && typeof(size) != 'undefined');
+    return (initials !== '' && weight !== '' && typeof(size) !== 'undefined');
 }
 
 function goBack() {
@@ -216,7 +221,7 @@ function goBack() {
 function goForward() {
     boxesToOrder = getAddedItems();
 
-    if (boxesToOrder.length == 0) {
+    if (boxesToOrder.length === 0) {
         $('#emptyBoxMessage').show();
 
         return;
@@ -232,7 +237,7 @@ function goForward() {
 function setSelectedBox(selectedBox, clearBoxes) {
     clearBoxes = (typeof(clearBoxes) == 'undefined') ? true : clearBoxes;
 
-    if (selectedBox != false) {
+    if (selectedBox !== false) {
         $('#itemSelectedMessage').html('You have selected Box ' + selectedBox + '.');
         $('#itemSelectedMessage').removeClass('noItemSelected');
         $('#itemSelectedMessage').addClass('itemSelected');
@@ -356,7 +361,7 @@ $(document).ready(function() {
 
         // Get the list of items for the selected box name.
         Dajaxice.orders.get_box_ids(getBoxes, { 'item': selectedItemName });
-    })
+    });
 
     // Set the 'on change' event for the boxes list.
     $('#boxes').change(function() {
@@ -366,12 +371,12 @@ $(document).ready(function() {
 
         // Get the details of the box for the selected box id.
         Dajaxice.orders.get_info(getBoxDetails, {'boxid': selectedBoxId});
-    })
+    });
 
     // Set the 'on change' event for the box details list.
     $('#boxDetails').change(function() {
 
-    })
+    });
 
     // Set the 'on click' event for the add item button.
     $('#add_box').click(function(e) {
@@ -450,37 +455,37 @@ $(document).ready(function() {
 
         // Required fields.
         var contact_name = $('input[name=contact_name]').val();
-        if (contact_name == '') {
+        if (contact_name === '') {
             $('input[name=contact_name]').addClass('requiredTextField');
             missingRequired = true;
         }
 
         var contact_email = $('input[name=contact_email]').val();
-        if (contact_email == '') {
+        if (contact_email === '') {
             $('input[name=contact_email]').addClass('requiredTextField');
             missingRequired = true;
         }
 
         var organization_name = $('input[name=organization_name]').val();
-        if (organization_name == '') {
+        if (organization_name === '') {
             $('input[name=organization_name]').addClass('requiredTextField');
             missingRequired = true;
         }
 
         var organization_address = $('input[name=organization_address]').val();
-        if (organization_address == '') {
+        if (organization_address === '') {
             $('input[name=organization_address]').addClass('requiredTextField');
             missingRequired = true;
         }
 
         var shipping_address = $('input[name=shipping_address]').val();
-        if (shipping_address == '') {
+        if (shipping_address === '') {
             $('input[name=shipping_address]').addClass('requiredTextField');
             missingRequired = true;
         }
 
         // Can't have 0 items.
-        if (items.length == 0) {
+        if (items.length === 0) {
             // TODO: add some sort of alert
             return;
         }
