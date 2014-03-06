@@ -59,7 +59,7 @@ option {
     font-style: italic;
 }
 
-:-ms-input-placeholder {  
+:-ms-input-placeholder {
     font-style: italic;
 }
 
@@ -155,6 +155,7 @@ hr {
     background-color: #c8c8c8;
     border: none;
     height: 1px;
+    width: 100%;
 }
 
 /* ----- END NAV STYLES ----- */

@@ -130,6 +130,9 @@ class Box(models.Model):
             return None
         return expiration
 
+    def get_search_results_string(self):
+        return 'Box ' + self.box_id
+
 class Contents(models.Model):
     box_within = models.ForeignKey(Box)
     item = models.ForeignKey(Item)

@@ -1,0 +1,3 @@
+{{ object.item.name }}
+{{ object.box_within.box_id }}
+{{ object.expiration }}

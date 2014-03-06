@@ -35,34 +35,31 @@ def get_items(request, box_name):
 # Gets all boxes associated with items
 @dajaxice_register(method='GET')
 def get_box_ids(request, item):
-
-    boxs_ids = []
+    box_ids = []
     item = Item.objects.get(name=item)
     contents = Contents.objects.filter(item=item)
 
     for content in contents:
-        boxs_ids.append(content.box_within.box_id)
+        box_ids.append(content.box_within.box_id)
 
-    return simplejson.dumps(sorted(boxs_ids))
+    return simplejson.dumps(sorted(box_ids))
 
-# Search box ids
 @dajaxice_register(method='GET')
 def get_search_results(request, query):
-    raw_results = Searcher.search(query=query, as_objects=True, models=[ Category, BoxName, Item ])
-    results_array = []
-    contents = []
+    results_array = Searcher.search(query=query, models=[ Category, BoxName, Item, Contents ])
 
-    for result in raw_results:
-        if isinstance(result, Item):
-            contents_with_this = Contents.objects.filter(item=result)
+    try:
+        box = Box.objects.get(barcode=query)
+        results_array.insert(0, box.get_search_results_string())
+    except Box.DoesNotExist as e:
+        # shrug
+        box = None
 
-            for content in contents_with_this:
-                contents.append(content)
+    boxes = Box.objects.filter(box_id__startswith=query)
 
-        results_array.append(result.get_search_results_string())
-
-    for content in contents:
-        results_array.insert(0, content.get_search_results_string())
+    if len(boxes) > 0:
+        for box in boxes:
+            results_array.insert(0, box.get_search_results_string())
 
     return simplejson.dumps(results_array)
 

@@ -1,3 +1,10 @@
+// because JS is weird and doesn't have a startsWith method
+if (typeof String.prototype.startsWith != 'function') {
+    String.prototype.startsWith = function (str){
+        return this.slice(0, str.length) == str;
+    };
+}
+
 // Template for adding new item to the table.
 var ITEM_TEMPLATE = '<tr>' +
         '<td>{box_id}</td>' +
@@ -258,6 +265,7 @@ $(document).ready(function() {
     // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
         {
+            autoFocus: true, 
             // The 'source' attribute is a function that is called
             // which provides the data for the autocomplete. It passes
             // in request, which provides the search query, and the response
@@ -332,7 +340,16 @@ $(document).ready(function() {
                 // Now we set the selected category in the list and trigger the
                 // change event for the categories list, so the box name field will be
                 // autopopulated and that will cascade down to the item list if necessary.
-                $('#categories').val(category).change();
+                if (!category.startsWith('Box')) {
+                    $('#categories').val(category).change();
+                } else {
+                    box = category.split(' ');
+                    var boxId = box[1];
+
+                    $('#boxes').empty();
+                    $('#boxes').append('<option selected="selected">' + boxId + '</option>');
+                    $('#boxes').change();
+                }
             }
         }
     );

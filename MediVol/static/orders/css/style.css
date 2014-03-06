@@ -217,3 +217,10 @@ input[type='radio'] {
 .contents {
 
 }
+
+#ordersHr {
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: -8px;
+}
