@@ -6,6 +6,7 @@ from orders.models import Order, OrderBox, Customer
 from orders import views as orderView
 from inventory.models import Box, Contents
 from catalog.models import Category, BoxName, Item
+from search.Searcher import Searcher
 
 # Gets all of the box names associated with a given category
 @dajaxice_register(method='GET')
@@ -34,66 +35,76 @@ def get_items(request, box_name):
 # Gets all boxes associated with items
 @dajaxice_register(method='GET')
 def get_box_ids(request, item):
-    
-    boxs_ids = []
+    box_ids = []
     item = Item.objects.get(name=item)
     contents = Contents.objects.filter(item=item)
 
     for content in contents:
-        boxs_ids.append(content.box_within.box_id)
-    
-    return simplejson.dumps(sorted(boxs_ids))
+        box_ids.append(content.box_within.box_id)
 
-# Search box ids
+    return simplejson.dumps(sorted(box_ids))
+
 @dajaxice_register(method='GET')
 def get_search_results(request, query):
+    results_array = Searcher.search(query=query, models=[ Category, BoxName, Item, Contents ])
 
-    results_array = []
-    contents = []
+    try:
+        box = Box.objects.get(barcode=query)
+        results_array.insert(0, box.get_search_results_string())
+    except Box.DoesNotExist as e:
+        # shrug
+        box = None
 
-    categories = Category.objects.filter(name__icontains=query)
-    box_names = BoxName.objects.filter(name__icontains=query)
-    items = Item.objects.filter(name__icontains=query)
+    boxes = Box.objects.filter(box_id__startswith=query)
 
-    for category in categories:
-        results_array.append(category.name)
-
-    for box_name in box_names:
-        results_array.append(box_name.category.name + ' > ' + box_name.name)
-
-    for item in items:
-        results_array.append(item.box_name.category.name + ' > ' + item.box_name.name + ' > '+ item.name)
-        contents.append(Contents.objects.filter(item=item))
- 
-    for content in contents:
-        results_array.append(content.item.box_name.category.name + ' > ' + content.item.box_name.name + ' > ' + content.item.name + ' > ' + content.box_within.box_id)
+    if len(boxes) > 0:
+        for box in boxes:
+            results_array.insert(0, box.get_search_results_string())
 
     return simplejson.dumps(results_array)
 
-# Get Box Info 
+# Get Box Info
 @dajaxice_register(method='GET')
 def get_info(request, boxid):
-
     box_info = []
     box_items = []
+
     box = Box.objects.get(box_id=boxid)
+
     box_id = box.box_id
-    box_info.append(str(box_id))
+
     box_size = box.box_size
-    box_info.append(str(box_size))
+    if box_size == 'S':
+        box_size = 'Small'
+    elif box_size == 'L':
+        box_size = 'Large'
+
     box_weight = box.weight
-    box_info.append(str(box_weight))
     box_old_contents = box.old_contents
     box_content_ids = Contents.objects.filter(box_within=box)
 
+    box_info.append(str(box_weight))
+    box_info.append(str(box_size))
+    box_info.append(str(box_id))
+
     if box_old_contents is None:
-                
         for box_content in box_content_ids:
-            box_items.append(box_content.item.name)
-        
+            if box_content.quantity == 0:
+                box_items.append(box_content.item.name)
+            else:
+                box_items.append(box_content.item.name + ' x ' + str(box_content.quantity))
+
         box_info.append(box_items)
     else:
-        box_info.append(box_old_contents)  
+        box_info.append(box_old_contents)
+
+    if box.get_expiration() is None:
+        box_info.append('Never')
+    else:
+        expiration_date = str(box.get_expiration()).split(' ')[0]
+        expiration_array = expiration_date.split('-')
+        expiration_date = expiration_array[1] + '/' + expiration_array[2] + '/' + expiration_array[0]
+        box_info.append(expiration_date)
 
     return simplejson.dumps(box_info)
 
@@ -111,7 +122,7 @@ def create_order(request, customer_name, customer_email, businessName, businessA
                             business_name=businessName, business_address=businessAddress,
                             shipping_address=shipping)
         customer.save()
-    
+
     order_base_number = 100
     order_number_array = []
 
@@ -127,6 +138,6 @@ def create_order(request, customer_name, customer_email, businessName, businessA
         order_box.save()
 
     orderNumber = Order.objects.get(order_number=order_number).order_number
-    order_number_array.append(orderNumber)    
+    order_number_array.append(orderNumber)
 
     return simplejson.dumps(order_number_array)

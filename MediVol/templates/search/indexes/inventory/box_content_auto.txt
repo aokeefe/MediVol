@@ -1,0 +1,2 @@
+{{ object.box_id }}
+{{ object.barcode }}
