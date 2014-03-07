@@ -53,12 +53,30 @@
 
         <div id='boxesWithItem'>
             <h2>Boxes with <span class='itemNameValue'>{{ item.name }}</span></h2>
+
+            {% if boxes_with_item %}
+                {% for box in boxes_with_item %}
+                    <p>
+                        <a href='/inventory/view_box_info/{{ box.box_id }}' target='_blank'>{{ box.box_id }}</a>
+                    </p>
+                {% endfor %}
+            {% else %}
+                <h3><i>no boxes with this item</i></h3>
+            {% endif %}
         </div>
 
         <hr />
 
         <div id='ordersWithItem'>
             <h2>Orders with <span class='itemNameValue'>{{ item.name }}</span></h2>
+
+            {% if orders_with_item %}
+                {% for order in orders_with_item %}
+
+                {% endfor %}
+            {% else %}
+                <h3><i>no orders with this item</i></h3>
+            {% endif %}
         </div>
     {% else %}
         <h2>Item Does Not Exist</h2>
