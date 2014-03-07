@@ -69,6 +69,7 @@ class Box(models.Model):
         To make a barcode this method will generate an 8 digit number (with leading zeros), then validate that the 
         generated number is not already in use.
         """
+        #TODO remove try catch as something is figured out with id uniqueness
         try:
             if self.barcode == None or self.barcode== '':
                 while True: #guess until we have a unique barcode
@@ -77,7 +78,7 @@ class Box(models.Model):
                         break #if the guess was unique stop
             super(Box, self).save(*args, **kwargs)
         except Exception as e: 
-            print '%s (%s)' % (e.message, type(e))
+            print ('%s (%s)' % ('The Box did not save correctly', type(e)))
 
     def to_csv(self):
         """
@@ -123,6 +124,7 @@ class Box(models.Model):
         return expiration
 
 class Contents(models.Model):
+    contents_id = models.IntegerField(unique=True)
     box_within = models.ForeignKey(Box)
     item = models.ForeignKey(Item)
     quantity = models.IntegerField(default=0)
@@ -131,10 +133,11 @@ class Contents(models.Model):
     @classmethod
     def create_from_csv(cls, csv):
         filtered_values = to_array_from_csv(csv)
-        contents = Contents(box_within=Box.objects.get(box_id=filtered_values[0]),
-                            item=Item.objects.get(name=filtered_values[1]),
-                            quantity=filtered_values[2],
-                            expiration=filtered_values[3])
+        contents = Contents(contents_id=filtered_values[0],
+                            box_within=Box.objects.get(box_id=filtered_values[1]),
+                            item=Item.objects.get(name=filtered_values[2]),
+                            quantity=filtered_values[3],
+                            expiration=filtered_values[4])
         contents.save()
         return contents
 
@@ -156,7 +159,8 @@ class Contents(models.Model):
         """
         Returns a string containing all the CSV information of the Contents.  Used in creating database backups
         """
-        values = [self.box_within.box_id,
+        values = [self.contents_id,
+                  self.box_within.box_id,
                   self.item.name,
                   self.quantity,
                   self.expiration]

@@ -11,7 +11,7 @@ class Customer(models.Model):
     shipping_address = models.CharField(max_length=200)
 
     def __unicode__(self):
-        return "contact info for: " + business_name
+        return "Contact info for: " + self.contact_name + ' at ' + self.business_name
 
     def to_csv(self):
         values = [self.contact_id,
