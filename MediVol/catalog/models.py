@@ -33,7 +33,7 @@ class Category(models.Model):
         return self.name
 
 class BoxName(models.Model):
-    name = models.CharField(max_length=NAME_LENGTH)
+    name = models.CharField(max_length=NAME_LENGTH, unique=True)
     category = models.ForeignKey(Category)
     can_expire = models.BooleanField()
     can_count = models.BooleanField()
@@ -94,3 +94,6 @@ class Item(models.Model):
     
     def get_search_results_string(self):
         return self.box_name.category.name + ' > ' + self.box_name.name + ' > ' + self.name
+
+    class Meta:
+        unique_together=('name', 'box_name')

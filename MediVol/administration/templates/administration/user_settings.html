@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>InterVol | Settings</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}administration/css/styles.css' />
+{% endblock %}
+
+{% block body %}
+    <h2>Settings</h2>
+
+    <div id='addWarehouseWrapper'>
+        <div class='addWarehouseField'>
+            <div class='label'>Email</div>
+            <input type='email' id='email' class='textField' value='{{ email }}' />
+            <input type='hidden' id='username' value='{{ user.username }}' />
+            <input type='hidden' id='resetUrl' value='{{ reset_url }}' />
+        </div>
+
+        <button id='changeEmail' class='button'>Change Email</button>
+
+        <button id='userSendReset' class='button'>Send Password Reset</button>
+
+        <div class='errorMessage'><p class='requiredMessage requiredText'></p></div>
+
+        <div class='clear'></div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type='text/javascript' src='{{ STATIC_URL }}administration/js/main.js'></script>
+{% endblock %}
