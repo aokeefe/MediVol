@@ -32,8 +32,14 @@
 
         <div id='buttons'>
             <button class='button' id='editItem'>Edit</button>
-            <button class='button' id='cancelEdit'>Cancel</button>
-            <button class='button' id='saveItem'>Save</button>
+            <a href='?confirm=true' class='deleteDialog'>
+                <button class='button' id='deleteItem'>Delete Item</button>
+            </a>
+            <button class='button' id='cancelEdit'>Cancel Edit</button>
+            <button class='button' id='saveItem'>Save Changes</button>
+            <div class='dialog' id='deleteQuestion'>
+                Are you sure you want to delete this item from the catalog?
+            </div>
         </div>
 
         <div class='clear'></div>

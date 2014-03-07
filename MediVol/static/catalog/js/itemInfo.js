@@ -1,6 +1,7 @@
 function hideEditControls() {
     $('#saveItem').hide();
     $('#cancelEdit').hide();
+    $('#deleteItem').hide();
     $('#editItem').show();
 
     $('#itemNameValue').show();
@@ -15,6 +16,7 @@ function hideEditControls() {
 function showEditControls() {
     $('#saveItem').show();
     $('#cancelEdit').show();
+    $('#deleteItem').show();
     $('#editItem').hide();
 
     $('#itemNameValue').hide();
@@ -41,6 +43,11 @@ function discardChanges() {
     } else {
         $('#description').val('');
     }
+}
+
+function deleteItem() {
+    var item = $('#itemNameValue').html();
+
 }
 
 $(document).ready(function() {
@@ -72,10 +79,8 @@ $(document).ready(function() {
             // dropdown is closed.
             close: function() {
                 // This is the search result given by the AJAX function.
-                // It is of one of the following forms:
-                // Category > Box Name > Item
+                // It is of the form:
                 // Category > Box Name
-                // Category
                 var query = $('#itemSearch').val();
                 var actualQuery = query;
 
@@ -97,10 +102,16 @@ $(document).ready(function() {
 
     $('#saveItem').click(function() {
         hideEditControls();
+        saveItem();
     });
 
     $('#cancelEdit').click(function() {
         hideEditControls();
         discardChanges();
+    });
+
+    $('.deleteDialog').easyconfirm({ dialog: $('#deleteQuestion') });
+    $('.deleteDialog').click(function() {
+        deleteItem();
     });
 });

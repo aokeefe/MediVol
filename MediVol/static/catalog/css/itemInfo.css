@@ -25,12 +25,12 @@
     resize: none;
 }
 
-#editItem, #saveItem, #cancelEdit {
+#editItem, #saveItem, #cancelEdit, #deleteItem {
     font-size: 1.5em;
     float: right;
 }
 
-#saveItem, #cancelEdit {
+#saveItem, #cancelEdit, #deleteItem {
     display: none;
     margin-top: 10px;
 }

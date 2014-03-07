@@ -2,11 +2,11 @@
 
 body {
     min-width: 1000px;
+    background-color: #f6f6f6;
 }
 
 * {
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
-    background-color: #f6f6f6;
     color: #141414;
     font-weight: 400;
     box-sizing: border-box;
@@ -59,7 +59,7 @@ option {
     font-style: italic;
 }
 
-:-ms-input-placeholder {  
+:-ms-input-placeholder {
     font-style: italic;
 }
 
