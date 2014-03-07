@@ -53,6 +53,11 @@ def send_reset(request):
 
     return render(request, 'administration/send_reset.html', context)
 
+def user_settings(request):
+    context = { 'email': request.user.email, 'reset_url': request.build_absolute_uri('/administration/reset_password') }
+
+    return render(request, 'administration/user_settings.html', context)
+
 #Logout View
 def logout(request):
     auth.logout(request)

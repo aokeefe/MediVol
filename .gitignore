@@ -8,3 +8,4 @@ local_settings.py
 .project
 .pydevproject
 .DS_Store
+MediVol/static/dajaxice/dajaxice.core.js

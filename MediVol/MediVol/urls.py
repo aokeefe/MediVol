@@ -33,4 +33,7 @@ urlpatterns = patterns('',
 
     #Routing for Orders
     url(r'^orders/', include('orders.urls')),
+    
+    #Routing for Catalog
+    url(r'^catalog/', include('catalog.urls')),
 )
