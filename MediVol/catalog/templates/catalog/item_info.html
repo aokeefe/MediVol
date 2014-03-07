@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Intervol | Item Info</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}catalog/css/itemInfo.css' />
+{% endblock %}
+
+{% block body %}
+    <h2>{{ item.name }}</h2>
+
+    <div id='itemInfo'>
+        <h3 class='attributeLabel'>Name</h3>
+        <p id='itemNameValue' class='attributeValue'>{{ item.name }}</p>
+
+        <h3 class='attributeLabel'>Box Name</h3>
+        <p id='boxNameValue' class='attributeValue'>{{ item.box_name.name }}</p>
+
+        <h3 class='attributeLabel'>Description</h3>
+        <p id='descriptionValue' class='attributeValue'>
+            {% if item.description == '' %}
+                <i>no description</i>
+            {% else %}
+                {{ item.description }}
+            {% endif %}
+        </p>
+
+        <div id='buttons'>
+            
+        </div>
+    </div>
+
+    <hr />
+
+    <div id='boxesWithItem'>
+
+    </div>
+
+    <div id='ordersWithItem'>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type='text/javascript' src='{{ STATIC_URL }}catalog/js/itemInfo.js'></script>
+{% endblock %}

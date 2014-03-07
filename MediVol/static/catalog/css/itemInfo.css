@@ -1,0 +1,15 @@
+#itemInfo {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.attributeLabel {
+    font-size: 1.15em;
+    margin-bottom: 0px;
+}
+
+.attributeValue {
+    font-size: 1.5em;
+    margin-top: 5px;
+}
