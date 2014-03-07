@@ -1,6 +1,6 @@
 from django.db import models
 from inventory.models import Box
-from import_export import to_csv
+from import_export.to_csv import to_csv_from_array, to_array_from_csv
 
 class Customer(models.Model):
     contact_id = models.IntegerField(unique=True)
@@ -57,8 +57,14 @@ class Order(models.Model):
         return "Order " + str(self.order_number)
 
     def to_csv(self):
+
+        if self.reserved_for is not None:
+            reservation = self.reserved_for.customer_id
+        else:
+            reservation = None
+
         values = [self.order_id,
-                  self.reserved_for.customer_id,
+                  reservation,
                   self.paid_for,
                   self.order_number,
                   self.creation_date,
