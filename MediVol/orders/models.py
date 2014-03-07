@@ -100,7 +100,7 @@ class OrderBox(models.Model):
     @classmethod
     def create_from_csv(cls, csv):
         filtered_values = to_array_from_csv(csv)
-        order_box = OrderBox(order_for=Order.objects,get(order_id=filtered_values[0]),
+        order_box = OrderBox(order_for=Order.objects.get(order_id=filtered_values[0]),
                              box=Box.objects.get(box_id=filtered_values[1]),
                              cost=filtered_values[2])
         order_box.save()
