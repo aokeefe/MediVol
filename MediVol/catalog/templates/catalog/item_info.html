@@ -14,9 +14,11 @@
     <div id='itemInfo'>
         <h3 class='attributeLabel'>Name</h3>
         <p id='itemNameValue' class='attributeValue'>{{ item.name }}</p>
+        <input id='name' type='text' value='{{ item.name }}' class='textField' />
 
         <h3 class='attributeLabel'>Box Name</h3>
         <p id='boxNameValue' class='attributeValue'>{{ item.box_name.name }}</p>
+        <input id='boxName' type='text' value='{{ item.box_name.name }}' class='textField' />
 
         <h3 class='attributeLabel'>Description</h3>
         <p id='descriptionValue' class='attributeValue'>
@@ -26,20 +28,27 @@
                 {{ item.description }}
             {% endif %}
         </p>
+        <textarea id='description' class='textField'>{{ item.description }}</textarea>
 
         <div id='buttons'>
-            
+            <button class='button' id='editItem'>Edit</button>
+            <button class='button' id='cancelEdit'>Cancel</button>
+            <button class='button' id='saveItem'>Save</button>
         </div>
+
+        <div class='clear'></div>
     </div>
 
     <hr />
 
     <div id='boxesWithItem'>
-
+        <h2>Boxes with {{ item.name }}</h2>
     </div>
 
-    <div id='ordersWithItem'>
+    <hr />
 
+    <div id='ordersWithItem'>
+        <h2>Orders with {{ item.name }}</h2>
     </div>
 {% endblock %}
 

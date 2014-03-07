@@ -13,3 +13,24 @@
     font-size: 1.5em;
     margin-top: 5px;
 }
+
+#name, #boxName, #description {
+    display: none;
+    font-size: 1.5em;
+    width: 100%;
+}
+
+#description {
+    height: 100px;
+    resize: none;
+}
+
+#editItem, #saveItem, #cancelEdit {
+    font-size: 1.5em;
+    float: right;
+}
+
+#saveItem, #cancelEdit {
+    display: none;
+    margin-top: 10px;
+}

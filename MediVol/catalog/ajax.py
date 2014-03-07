@@ -2,7 +2,7 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 
 from catalog.models import Category, BoxName, Item
-
+from search.Searcher import Searcher
 
 @dajaxice_register(method='POST')
 def create_item(request, box_name, item_name, description):
@@ -12,11 +12,11 @@ def create_item(request, box_name, item_name, description):
         return simplejson.dumps({'message':'Box name: %s does not exist' % box_name, 'success': 0})
     if Item.objects.filter(name=item_name).filter(box_name = box).count() > 0:
         return simplejson.dumps({'message':'Item: %s already exists' % item_name, 'success': 0})
-    new_item = Item(name=item_name, 
-                    description=description, 
+    new_item = Item(name=item_name,
+                    description=description,
                     box_name=BoxName.objects.get(name=box_name))
     new_item.save()
-    
+
     return simplejson.dumps({'message':'%s has been added' % item_name, 'success': 1})
 
 @dajaxice_register(method='POST')
@@ -27,8 +27,8 @@ def get_description(request, box_name, item_name):
         return simplejson.dumps({'message':'','error':'could not fin boxName %s' % box_name})
     item = Item.objects.get(name=item_name, box_name=box)
     return simplejson.dumps({'message': '%s' % item.description})
-    
-    
+
+
 
 @dajaxice_register(method='POST')
 def create_boxName(request, category_letter, box_name, can_expire, can_count):
@@ -91,8 +91,8 @@ def delete_box_name(request, letter, name):
         return simplejson.dumps({'message':'%s could not be found' % name})
     box_name = box_name[0]
     if Item.objects.filter(box_name=box_name).count > 0:
-       return simplejson.dumps({'message':'%s can not be deleted because there are items associated with it' % name}) 
-    
+       return simplejson.dumps({'message':'%s can not be deleted because there are items associated with it' % name})
+
     box_name.delete()
     return simplejson.dumps({'message':'%s has been deleted' % name})
 
@@ -105,3 +105,6 @@ def delete_category(request, category_letter):
     category.delete()
     return simplejson.dumps({'message':'%s has been deleted' % category_letter})
 
+@dajaxice_register(method='GET')
+def search_box_names(request, query):
+    return simplejson.dumps(Searcher.search(query=query, models=[ BoxName ]))
