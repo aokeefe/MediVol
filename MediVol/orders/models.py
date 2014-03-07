@@ -38,8 +38,14 @@ class Order(models.Model):
     def get_weight(self):
         order_weight = 0.0
         for order_box in self.orderbox_set.all():
-            order_weight = order_weight + order_box.box.weight
-        return order_weight
+            order_weight = float(order_weight) + float(order_box.box.weight)
+        return ("%.1f" % order_weight)
+
+    def get_cost(self):
+        order_cost = 0.0
+        for order_box in self.orderbox_set.all():
+            order_cost = float(order_cost) + float(order_box.cost)
+        return ("%.2f" % order_cost)
 
 class OrderBox(models.Model):
     order_for = models.ForeignKey(Order)
