@@ -29,7 +29,46 @@ function showEditControls() {
 }
 
 function saveItem() {
+    var categoryLetter = $('#categoryLetter').val();
+    var oldItemName = $('#itemNameValue').html();
+    var name = $('#name').val();
+    var oldBoxName = $('#boxNameValue').html();
+    var boxName = $('#boxName').val();
+    var description = $('#description').val();
 
+    var badOldBoxName = oldBoxName + ' does not exist';
+    var badBoxName = boxName + ' does not exist';
+    var badOldItemName = oldItemName + ' could not be found';
+    var itemAlreadyExists = name + ' already exists';
+    var expected = name + ' has been changed';
+
+    Dajaxice.catalog.edit_item(
+        function(returned) {
+            if (returned.message === badOldBoxName) {
+                $('.requiredMessage').html('Box Name "' + oldBoxName + '" does not exist.');
+                $('.requiredMessage').show();
+            } else if (returned.message === badBoxName) {
+                $('.requiredMessage').html('Box Name "' + boxName + '" does not exist.');
+                $('.requiredMessage').show();
+            } else if (returned.message === badOldItemName) {
+                $('.requiredMessage').html('Item "' + oldItemName + '" does not exist.');
+                $('.requiredMessage').show();
+            } else if (returned.message === itemAlreadyExists) {
+                $('.requiredMessage').html('Item "' + name + '" already exists.');
+                $('.requiredMessage').show();
+            } else if (returned.message === expected) {
+                window.location.reload();
+            }
+        },
+        {
+            'category_letter': categoryLetter,
+            'new_box_name': boxName,
+            'old_box_name': oldBoxName,
+            'new_item_name': name,
+            'old_item_name': oldItemName,
+            'd': description
+        }
+    );
 }
 
 function discardChanges() {
@@ -47,7 +86,16 @@ function discardChanges() {
 
 function deleteItem() {
     var item = $('#itemNameValue').html();
+    var boxName = $('#boxNameValue').html();
+    var expected = item + ' has been deleted';
 
+    Dajaxice.catalog.delete_item(function(returned) {
+        if (returned.message === expected) {
+            window.location = '/catalog/';
+        } else {
+            // TODO: error message
+        }
+    }, { 'b_name': boxName, 'item_name': item });
 }
 
 $(document).ready(function() {
@@ -81,7 +129,7 @@ $(document).ready(function() {
                 // This is the search result given by the AJAX function.
                 // It is of the form:
                 // Category > Box Name
-                var query = $('#itemSearch').val();
+                var query = $('#boxName').val();
                 var actualQuery = query;
 
                 // We want to get what the user was actually searching for, so we
@@ -91,7 +139,7 @@ $(document).ready(function() {
                 }
 
                 // Then we put the actual query back into the field.
-                $('#itemSearch').val(actualQuery);
+                $('#boxName').val(actualQuery);
             }
         }
     );
@@ -101,7 +149,6 @@ $(document).ready(function() {
     });
 
     $('#saveItem').click(function() {
-        hideEditControls();
         saveItem();
     });
 

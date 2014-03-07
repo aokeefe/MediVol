@@ -14,6 +14,14 @@
     margin-top: 5px;
 }
 
+.itemNameValue {
+    font-weight: 300;
+}
+
+#itemNameValue {
+    font-weight: 400;
+}
+
 #name, #boxName, #description {
     display: none;
     font-size: 1.5em;

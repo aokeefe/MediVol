@@ -9,53 +9,64 @@
 {% endblock %}
 
 {% block body %}
-    <h2>{{ item.name }}</h2>
+    {% if item %}
+        <h2 class='itemNameValue'>{{ item.name }}</h2>
+        <input type='hidden' id='categoryLetter' value='{{ item.box_name.category.letter }}' />
 
-    <div id='itemInfo'>
-        <h3 class='attributeLabel'>Name</h3>
-        <p id='itemNameValue' class='attributeValue'>{{ item.name }}</p>
-        <input id='name' type='text' value='{{ item.name }}' class='textField' />
+        <div id='itemInfo'>
+            <p id='requiredFieldsMessage' class='requiredText requiredMessage'></p>
 
-        <h3 class='attributeLabel'>Box Name</h3>
-        <p id='boxNameValue' class='attributeValue'>{{ item.box_name.name }}</p>
-        <input id='boxName' type='text' value='{{ item.box_name.name }}' class='textField' />
+            <h3 class='attributeLabel'>Name</h3>
+            <p id='itemNameValue' class='attributeValue itemNameValue'>{{ item.name }}</p>
+            <input id='name' type='text' value='{{ item.name }}' class='textField' />
 
-        <h3 class='attributeLabel'>Description</h3>
-        <p id='descriptionValue' class='attributeValue'>
-            {% if item.description == '' %}
-                <i>no description</i>
-            {% else %}
-                {{ item.description }}
-            {% endif %}
-        </p>
-        <textarea id='description' class='textField'>{{ item.description }}</textarea>
+            <h3 class='attributeLabel'>Box Name</h3>
+            <p id='boxNameValue' class='attributeValue'>{{ item.box_name.name }}</p>
+            <input id='boxName' type='text' value='{{ item.box_name.name }}' class='textField' />
 
-        <div id='buttons'>
-            <button class='button' id='editItem'>Edit</button>
-            <a href='?confirm=true' class='deleteDialog'>
-                <button class='button' id='deleteItem'>Delete Item</button>
-            </a>
-            <button class='button' id='cancelEdit'>Cancel Edit</button>
-            <button class='button' id='saveItem'>Save Changes</button>
-            <div class='dialog' id='deleteQuestion'>
-                Are you sure you want to delete this item from the catalog?
+            <h3 class='attributeLabel'>Description</h3>
+            <p id='descriptionValue' class='attributeValue'>
+                {% if item.description == '' %}
+                    <i>no description</i>
+                {% else %}
+                    {{ item.description|linebreaksbr }}
+                {% endif %}
+            </p>
+            <textarea id='description' class='textField'>{{ item.description }}</textarea>
+
+            <div id='buttons'>
+                <button class='button' id='editItem'>Edit</button>
+                <a href='?confirm=true' class='deleteDialog'>
+                    <button class='button' id='deleteItem'>Delete Item</button>
+                </a>
+                <button class='button' id='cancelEdit'>Cancel Edit</button>
+                <button class='button' id='saveItem'>Save Changes</button>
+                <div class='dialog' id='deleteQuestion'>
+                    Are you sure you want to delete this item from the catalog?
+                </div>
             </div>
+
+            <div class='clear'></div>
         </div>
 
-        <div class='clear'></div>
-    </div>
+        <hr />
 
-    <hr />
+        <div id='boxesWithItem'>
+            <h2>Boxes with <span class='itemNameValue'>{{ item.name }}</span></h2>
+        </div>
 
-    <div id='boxesWithItem'>
-        <h2>Boxes with {{ item.name }}</h2>
-    </div>
+        <hr />
 
-    <hr />
+        <div id='ordersWithItem'>
+            <h2>Orders with <span class='itemNameValue'>{{ item.name }}</span></h2>
+        </div>
+    {% else %}
+        <h2>Item Does Not Exist</h2>
 
-    <div id='ordersWithItem'>
-        <h2>Orders with {{ item.name }}</h2>
-    </div>
+        <p>
+            <a href='/catalog/'>&larr; Back to Catalog</a>
+        </p>
+    {% endif %}
 {% endblock %}
 
 {% block javascript %}

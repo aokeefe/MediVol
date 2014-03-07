@@ -16,6 +16,11 @@ class ItemsListView(ListView):
         return context
 
 def item_info(request, item_id):
-    context = { 'item': Item.objects.get(id=item_id) }
+    try:
+        item = Item.objects.get(id=item_id)
+    except Item.DoesNotExist:
+        item = False
+
+    context = { 'item': item }
 
     return render(request, 'catalog/item_info.html', context)
