@@ -51,6 +51,23 @@ except Exception:
                                 quantity=1,
                                 expiration=None)
 
+    steves_box_item2 = Contents(contents_id=2,
+                                box_within=steves_box,
+                                item=item2,
+                                quantity=5,
+                                expiration=None)
+
+    steves_order = Order(order_id=777,
+                         reserved_for=steve,
+                         paid_for=False,
+                         order_number=777,
+                         creation_date=datetime.datetime.now(),
+                         order_status='U')
+
+    steves_order_box = OrderBox(order_for=steves_order,
+                             box=steves_box,
+                             cost=43.34444)
+
 print steve
 print steves_box
 
