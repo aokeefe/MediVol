@@ -22,6 +22,8 @@ try:
     steve = Customer.objects.get(contact_id=1)
     steves_box = Box.objects.get(box_id='A678')
     steves_box_item1 = Contents.objects.get(contents_id=1)
+    steves_box_item2 = Contents.objects.get(contents_id=2)
+    steves_order = Order.objects.get(order_id=777)
 except Exception:
     steve = Customer(contact_id=1,
                      contact_name='Steve Doe',
