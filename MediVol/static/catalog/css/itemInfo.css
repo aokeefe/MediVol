@@ -42,3 +42,43 @@
     display: none;
     margin-top: 10px;
 }
+
+.box {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #c8c8c8;
+    margin-bottom: 20px;
+}
+
+.boxLink {
+    text-decoration: none;
+}
+
+.boxLink:hover .attributeValue {
+    color: #ff9600;
+}
+
+.boxLeft {
+    float: left;
+    margin-right: 75px;
+}
+
+.boxRight {
+    float: left;
+}
+
+.box h3 {
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+
+.box h4 {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    font-weight: 500;
+}
+
+.box p {
+    margin-top: 5px;
+}

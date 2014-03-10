@@ -32,13 +32,13 @@ def item_info(request, item_id):
             for content in contents:
                 boxes_with_item.append(content.box_within)
 
-        for box in boxes_with_item:
-            order_boxes = OrderBox.objects.filter(box=box)
+            for box in boxes_with_item:
+                order_boxes = OrderBox.objects.filter(box=box)
 
-            if len(order_boxes) > 0:
-                orders_with_item = []
-                for order_box in order_boxes:
-                    orders_with_item.append(order_box.order_for)
+                if len(order_boxes) > 0:
+                    orders_with_item = []
+                    for order_box in order_boxes:
+                        orders_with_item.append(order_box.order_for)
 
     context = { 'item': item, 'boxes_with_item': boxes_with_item, 'orders_with_item': orders_with_item }
 
