@@ -9,7 +9,7 @@ class Customer(models.Model):
     shipping_address = models.CharField(max_length=200)
 
     def __unicode__(self):
-        return "contact info for: " + business_name
+        return "contact info for: " + self.business_name
         
 class Order(models.Model):
     CREATED = 'C'

@@ -22,6 +22,7 @@ def order_review(request, orderid):
 
   try:
         boxes = []
+        boxOrderBoxPair = []
 
         #Try and get order to review, if the order id exists return 
         order = Order.objects.get(order_number=orderid)
@@ -31,9 +32,13 @@ def order_review(request, orderid):
                    
         for orderBox in orderBoxes:
             box = Box.objects.get(box_id=orderBox.box)
-            boxes.append(box)
+            
+            boxOrderBoxPair.append(box)
+            boxOrderBoxPair.append(orderBox)
 
-        response = { 'boxes': boxes, 'order': order }
+            boxes.append(boxOrderBoxPair)
+
+        response = { 'boxes': boxes, 'order': order}
         return render(request, 'orders/review_order.html', response) 
 
   except:

@@ -15,19 +15,28 @@
         <div id='tableWrapper'>
             <table id='boxes_added'>
                 <tr id='table_header'>
-                    <td>Box ID</td>
-                    <td>Size</td>
-                    <td>Weight</td>
+                    <th>Box ID</th>
+                    <th>Size</th>
+                    <th>Weight</th>
+                    <th>Price</th>
                 </tr>
                 
-                {% for box in boxes %}
-                    <tr>
+                {% for box, orderbox in boxes %}
+                    <tr id="box_info">
                         <td>{{ box.box_id }}</td>
                         <td>{{ box.box_size }}</td>
                         <td>{{ box.box_weight }}</td>
+                        <td><input type="text" id="box {{box.box_id}} price"  name="box {{box.box_id}} price" value="{{orderbox.cost}}" onchange="displayTotalPrice()" ></td>
                     </tr>
                 {% endfor %}
             </table>
         </div>
+        <h3>Total Weight of Order: </h3>
+        <h3>Total Price of Order: </h3>
+        <p id="total_price"></p>
     </div> 
+{% endblock %}
+
+{% block javascript %} 
+  <script type='text/javascript' src='{{ STATIC_URL }}orders/js/order_review.js'></script>
 {% endblock %}
