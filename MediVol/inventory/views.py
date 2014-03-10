@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from catalog.models import Category
 from inventory.models import Box, Contents
+from orders.models import Order, OrderBox
 
 def create(request):
     categories = Category.objects.all()
@@ -29,7 +30,17 @@ def box_info(request, boxid):
       
             box_contents = box.old_contents    
  
-        context = { 'box': box, 'box_contents': box_contents }
+        # Search if box is related to orders.
+        try:
+
+            order_box = OrderBox.objects.get(box=box)
+            order_number = Order.objects.get(order).order_number
+
+        except OrderBox.DoesNotExist:
+
+            order_number = None
+
+        context = { 'box': box, 'box_contents': box_contents, 'order_number': order_number }
         return render(request, 'inventory/box_info.html', context)
         
     except Box.DoesNotExist: 
@@ -53,7 +64,17 @@ def barcode_box_info(request, barcodeid):
 
             box_contents = box.old_contents
 
-        context = { 'box': box, 'box_contents': box_contents }
+        # Search if box is related to orders.
+        try:
+
+            order_box = OrderBox.objects.get(box=box)
+            order_number = Order.objects.get(order).order_number
+
+        except OrderBox.DoesNotExist:
+
+            order_number = None
+
+        context = { 'box': box, 'box_contents': box_contents, 'order_number': order_number }
         return render(request, 'inventory/box_info.html', context)
 
     except Box.DoesNotExist:
