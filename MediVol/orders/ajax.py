@@ -94,13 +94,9 @@ def get_info(request, boxid):
 # Registers order to database.
 @dajaxice_register
 def create_order(request, customer_name, customer_email, businessName, businessAddress, shipping, box_ids):
-
-    # Check if customer exists if not create a new customer
-    customer = None
-    if Customer.objects.filter(contact_email=customer_email).exists():
-
-        customer = Customer.objects.filter(contact_email=customer_email)
-    else:
+    try:
+        customer = Customer.objects.get(contact_email=customer_email)
+    except Customer.DoesNotExist:
         customer = Customer(contact_name=customer_name, contact_email=customer_email,
                             business_name=businessName, business_address=businessAddress,
                             shipping_address=shipping)

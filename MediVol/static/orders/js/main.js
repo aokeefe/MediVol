@@ -32,9 +32,9 @@ var boxesToOrder = [];
 */
 
 function getBoxInfo(response) {
-    var boxId = response[0];
+    var boxId = response[2];
     var boxSize = response[1];
-    var boxWeight = response[2];
+    var boxWeight = response[0];
 
     $('#boxes_added').append(
         ITEM_TEMPLATE.replace('{box_id}', boxId)
@@ -291,6 +291,8 @@ $(document).ready(function() {
                     for (var i = 0; i < toRemove.length; i++) {
                         returned.splice(toRemove[i], 1);
                     }
+
+                    toRemove.length = 0;
 
                     // 'returned' is passed to us from the AJAX function.
                     // It is an array of relevant search results which we pass

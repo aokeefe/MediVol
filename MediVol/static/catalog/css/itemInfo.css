@@ -1,7 +1,11 @@
-#itemInfo {
+#itemInfo, #orders, #boxes {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
+}
+
+#orders, #boxes {
+    display: none;
 }
 
 .attributeLabel {
@@ -81,4 +85,13 @@
 
 .box p {
     margin-top: 5px;
+}
+
+#expandOrders, #expandBoxes {
+    color: #141414 !important;
+    cursor: pointer;
+}
+
+#expandOrders:hover, #expandBoxes:hover {
+    color: #ff9600 !important;
 }

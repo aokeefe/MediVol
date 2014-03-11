@@ -64,6 +64,9 @@ class Box(models.Model):
         box.save()
         return box
 
+    def get_size_word(self):
+        return self.SIZE_CHOICES[self.box_size]
+
     def __unicode__(self):
         """
         Returns a printable, human readable, string to represent the Box

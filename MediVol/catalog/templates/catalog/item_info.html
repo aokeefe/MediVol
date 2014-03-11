@@ -52,10 +52,15 @@
         <hr />
 
         <div id='boxesWithItem'>
-            <h2>Boxes with <span class='itemNameValue'>{{ item.name }}</span></h2>
-
-            <div id='itemInfo'>
+            <h2>
                 {% if boxes_with_item %}
+                    <span id='expandBoxes'>[+]</span>
+                {% endif %}
+                Boxes with <span class='itemNameValue'>{{ item.name }}</span>
+            </h2>
+
+            {% if boxes_with_item %}
+                <div id='boxes'>
                     {% for box in boxes_with_item %}
                         <a class='boxLink' href='/inventory/view_box_info/{{ box.box_id }}' target='_blank'>
                             <div class='box'>
@@ -66,11 +71,7 @@
                                 <div class='boxLeft'>
                                     <h4>Size</h4>
                                     <p>
-                                        {% if box.box_size == 'S' %}
-                                            Small
-                                        {% elif box.box_size == 'L' %}
-                                            Large
-                                        {% endif %}
+                                        {{ box.get_box_size_display }}
                                     </p>
 
                                     <h4>Weight</h4>
@@ -95,43 +96,61 @@
                             </div>
                         </a>
                     {% endfor %}
-                {% else %}
-                    <h3><i>no boxes with this item</i></h3>
-                {% endif %}
-            </div>
+                </div>
+            {% else %}
+                <div id='itemInfo'><h3><i>no boxes with this item</i></h3></div>
+            {% endif %}
         </div>
 
         <hr />
 
         <div id='ordersWithItem'>
-            <h2>Orders with <span class='itemNameValue'>{{ item.name }}</span></h2>
-
-            <div id='itemInfo'>
+            <h2>
                 {% if orders_with_item %}
+                    <span id='expandOrders'>[+]</span>
+                {% endif %}
+                Orders with <span class='itemNameValue'>{{ item.name }}</span>
+            </h2>
+
+            {% if orders_with_item %}
+                <div id='orders'>
                     {% for order in orders_with_item %}
-                        <a class='boxLink' href='' target='_blank'>
+                        <a class='boxLink' href='/orders/review/{{ order.order_number }}' target='_blank'>
                             <div class='box'>
                                 <h3 class='attributeValue'>
-                                    Box {{ box.box_id }}
+                                    Order {{ order.order_number }}
                                 </h3>
 
                                 <div class='boxLeft'>
-                                    <h4>Size</h4>
+                                    <h4>Customer</h4>
                                     <p>
-
+                                        {{ order.reserved_for.get_search_results_string }}
                                     </p>
 
                                     <h4>Weight</h4>
-                                    <p></p>
+                                    <p>
+                                        {{ order.get_weight }} lbs
+                                    </p>
+
+                                    <h4>Created Date</h4>
+                                    <p>
+                                        {{ order.get_creation_date_display }}
+                                    </p>
                                 </div>
 
                                 <div class='boxRight'>
-                                    <h4>Contents</h4>
-                                    <p></p>
-
-                                    <h4>Expires</h4>
+                                    <h4>Price</h4>
                                     <p>
-                                        
+                                        {% if order.get_cost == 0 %}
+                                            ${{ order.get_cost }}
+                                        {% else %}
+                                            <i>no prices set</i>
+                                        {% endif %}
+                                    </p>
+
+                                    <h4>Status</h4>
+                                    <p>
+                                        {{ order.get_order_status_display }}
                                     </p>
                                 </div>
 
@@ -139,10 +158,10 @@
                             </div>
                         </a>
                     {% endfor %}
-                {% else %}
-                    <h3><i>no orders with this item</i></h3>
-                {% endif %}
-            </div>
+                </div>
+            {% else %}
+                <div id='itemInfo'><h3><i>no orders with this item</i></h3></div>
+            {% endif %}
         </div>
     {% else %}
         <h2>Item Does Not Exist</h2>

@@ -161,4 +161,24 @@ $(document).ready(function() {
     $('.deleteDialog').click(function() {
         deleteItem();
     });
+
+    $('#expandBoxes').click(function() {
+        $('#boxes').slideToggle();
+
+        if ($(this).html() === '[+]') {
+            $(this).html('[-]');
+        } else {
+            $(this).html('[+]');
+        }
+    });
+
+    $('#expandOrders').click(function() {
+        $('#orders').slideToggle();
+
+        if ($(this).html() === '[+]') {
+            $(this).html('[-]');
+        } else {
+            $(this).html('[+]');
+        }
+    });
 });
