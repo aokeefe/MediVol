@@ -10,89 +10,88 @@
 {% block body %}
     <h2>Catalog</h2>
 
-    <form id='catalog_form' action='' method='post'>
-        {% csrf_token %}
-        <input type='text' id='itemSearch' class='textField'
-            placeholder='Search for a category, box name, or item...' />
+    <input type='text' id='itemSearch' class='textField'
+        placeholder='Search for a category, box name, or item...' />
 
-        <div id='or'>
-            -- or --
+    <div id='or'>
+        -- or --
+    </div>
+
+    <div id='createBoxLists'>
+        <div class='createBoxListWrapper'>
+            <h3>Categories</h3>
+            <select id='categories' size=20>
+                {% for category in categories %}
+                    <option>{{ category }}</option>
+                {% endfor %}
+            </select>
         </div>
 
-        <div id='createBoxLists'>
-            <div class='createBoxListWrapper'>
-                <h3>Categories</h3>
-                <select id='categories' size=20>
-                    {% for category in categories %}
-                        <option>{{ category }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
-            <div class='createBoxListWrapper'>
-                <h3>Box Names</h3>
-                <select id='box_names' size=20></select>
-            </div>
-
-            <div class='createBoxListWrapper'>
-                <h3>Items</h3>
-                <select id='items' size=20></select>
-            </div>
-
-            <div class='clear'></div>
+        <div class='createBoxListWrapper'>
+            <h3>Box Names</h3>
+            <select id='box_names' size=20></select>
         </div>
 
-        <div id='itemSelectedMessage' class='noItemSelected'>
-            Please select an item.
+        <div class='createBoxListWrapper'>
+            <h3>Items</h3>
+            <select id='items' size=20></select>
         </div>
 
-        <div id='itemInfo'>
-            <div class='itemInfoColumn'>
-                <h3>Category</h3>
-                <p id='category'></p>
-            </div>
+        <div class='clear'></div>
+    </div>
 
-            <div class='itemInfoColumn'>
-                <h3>Box Name</h3>
-                <p id='boxName'></p>
-            </div>
+    <div id='itemSelectedMessage' class='noItemSelected'>
+        Please select an item.
+    </div>
 
-            <div class='itemInfoColumn'>
-                <h3>Description</h3>
-                <p id='description'></p>
-            </div>
+    <div id='itemInfo'>
+        <div class='itemInfoColumn'>
+            <h3>Category</h3>
+            <p id='category'></p>
+        </div>
 
+        <div class='itemInfoColumn'>
+            <h3>Box Name</h3>
+            <p id='boxName'></p>
+        </div>
+
+        <div class='itemInfoColumn'>
+            <h3>Description</h3>
+            <p id='description'></p>
+        </div>
+
+        <a href='' target='_blank'>
             <button class='button' id='item_details'>Details</button>
+        </a>
 
-            <div class='clear'></div>
+        <div class='clear'></div>
+    </div>
+
+    <hr />
+
+    <h2>Add New Item</h2>
+    <div id='newItem'>
+        <div class='newItemField'>
+            <div class='label'>Box Name</div>
+            <div id='boxNameField'><i>choose a box name above</i></div>
         </div>
 
-        <hr />
-
-        <h2>Add New Item</h2>
-        <div id='newItem'>
-            <div class='newItemField'>
-                <div class='label'>Box Name</div>
-                <div id='boxNameField'><i>choose a box name above</i></div>
-            </div>
-
-            <div class='newItemField'>
-                <div class='label'>Name</div>
-                <input id='item_input' type='text' class='textField' />
-            </div>
-
-            <div class='newItemField'>
-                <div class='label'>Description</div>
-                <textarea id='item_description' class='textField'></textarea>
-            </div>
-
-            <button class='button' id='add_new_item'>Add Item</button>
-
-            <p id='changeMessage' class='requiredMessage requiredText errorMessage'>
-
-            </p>
+        <div class='newItemField'>
+            <div class='label'>Name</div>
+            <input id='item_input' type='text' class='textField' />
         </div>
-    </form>
+
+        <div class='newItemField'>
+            <div class='label'>Description</div>
+            <textarea id='item_description' class='textField'></textarea>
+        </div>
+
+        <button class='button' id='add_new_item'>Add Item</button>
+
+        <p id='changeMessage' class='requiredMessage requiredText errorMessage'>
+
+        </p>
+    </div>
 {% endblock %}
 
 {% block javascript %}

@@ -3,6 +3,10 @@
     width: 100%;
 }
 
+#itemSearch {
+    width: 96.8%;
+}
+
 .itemSelected, .noItemSelected {
     width: 96.8%;
 }
