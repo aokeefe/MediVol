@@ -1,56 +1,93 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block title %}<title>Catalog</title>{% endblock %}
 
-{% block styles %}<link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/styles.css' />{% endblock %}
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/styles.css' />
+    <link rel='stylesheet' href='{{ STATIC_URL }}catalog/css/styles.css' />
+{% endblock %}
 
 {% block body %}
+    <h2>Catalog</h2>
 
-<h2>Catalog</h2>
+    <form id='catalog_form' action='' method='post'>
+        {% csrf_token %}
+        <div id='createBoxLists'>
+            <div class='createBoxListWrapper'>
+                <h3>Categories</h3>
+                <select id='categories' size=20>
+                    {% for category in object_list %}
+                        <option>{{category.letter}} - {{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
 
-<form id='catalog_form' action='' method='post'>
-{% csrf_token %}
-<div id='createBoxLists'>
-    <div class='createBoxListWrapper'>
-        <h3>Catagory</h3>
-        <select id='categories' size=20>
-            {% for category in object_list %}
-                <option>{{category.letter}} - {{ category.name }}</option>
-            {% endfor %}
-        </select>
-    </div>
-    <div class='createBoxListWrapper'>
-        <h3>Box Name</h3>
-        <select id='box_names' size=20></select>
-    </div>
-    <div class='createBoxListWrapper'>
-        <h3>Item</h3>
-        <select id='items' size=20></select>
-    </div>
-</div>
-<br>
-<div id='itemSelectedMessage' class='noItemSelected'>
-    Please select an item.
-</div>
-<div id="itemInfoFields">
-     Catagory: 
-    <input type="text" id="catagory_letter_input" name="catagory_letter" size="2"> - 
-    <input type="text" id="catagory_input" name="catagory">
-     Box Name:
-    <input type="text" id="box_name_input" name="box_name">
-     Item: 
-    <input type="text" id="item_input" name="item">
-     Item Description:
-    <textarea id="item_description" name="description_area"></textarea>
-</div>
+            <div class='createBoxListWrapper'>
+                <h3>Box Names</h3>
+                <select id='box_names' size=20></select>
+            </div>
 
-<div id="buttons">
-    <button type="button" id='add_new_item'>Add New Item</button>
-    <button type="button" id='item_details'>details</button>
-</div>
-<div id='changeMessage' class='noChangeMessage'>
+            <div class='createBoxListWrapper'>
+                <h3>Items</h3>
+                <select id='items' size=20></select>
+            </div>
 
-</div>
-</form>
+            <div class='clear'></div>
+        </div>
+
+        <div id='itemSelectedMessage' class='noItemSelected'>
+            Please select an item.
+        </div>
+
+        <div id='itemInfo'>
+            <div class='itemInfoColumn'>
+                <h3>Category</h3>
+                <p id='category'></p>
+            </div>
+
+            <div class='itemInfoColumn'>
+                <h3>Box Name</h3>
+                <p id='boxName'></p>
+            </div>
+
+            <div class='itemInfoColumn'>
+                <h3>Description</h3>
+                <p id='description'></p>
+            </div>
+
+            <button class='button' id='item_details'>Details</button>
+
+            <div class='clear'></div>
+        </div>
+
+        <hr />
+
+        <h2>Add New Item</h2>
+        <div id='newItem'>
+            <div class='newItemField'>
+                <div class='label'>Box Name</div>
+                <div id='boxNameField'><i>choose a box name above</i></div>
+            </div>
+
+            <div class='newItemField'>
+                <div class='label'>Name</div>
+                <input id='item_input' type='text' class='textField' />
+            </div>
+
+            <div class='newItemField'>
+                <div class='label'>Description</div>
+                <textarea id='item_description' class='textField'></textarea>
+            </div>
+
+            <button class='button' id='add_new_item'>Add Item</button>
+
+            <p id='changeMessage' class='requiredMessage requiredText errorMessage'>
+
+            </p>
+        </div>
+    </form>
 {% endblock %}
-{% block javascript %}<script type='text/javascript' src='{{ STATIC_URL }}catalog/js/main.js'></script>{% endblock %}
+
+{% block javascript %}
+    <script type='text/javascript' src='{{ STATIC_URL }}catalog/js/main.js'></script>
+{% endblock %}

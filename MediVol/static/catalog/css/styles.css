@@ -1,0 +1,60 @@
+#changeMessage {
+    float: left;
+    width: 100%;
+}
+
+.itemSelected, .noItemSelected {
+    width: 96.8%;
+}
+
+#itemInfo {
+    margin-top: 10px;
+    height: 100px;
+}
+
+#item_details {
+    float: right;
+    font-size: 2.5em;
+    margin-right: 28px;
+    display: none;
+}
+
+.itemInfoColumn {
+    float: left;
+    width: 25%;
+}
+
+#newItem {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newItemField {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.newItemField .label {
+    width: 32%;
+}
+
+.newItemField .textField {
+    width: 67%;
+}
+
+#item_description {
+    resize: none;
+    height: 125px;
+}
+
+#add_new_item {
+    font-size: 1.5em;
+    float: right;
+}
+
+#boxNameField {
+    font-size: 1em;
+    min-height: 33px;
+    padding-top: 4px;
+}
