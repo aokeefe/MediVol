@@ -157,9 +157,14 @@ $(document).ready(function() {
         discardChanges();
     });
 
-    $('.deleteDialog').easyconfirm({ dialog: $('#deleteQuestion') });
-    $('.deleteDialog').click(function() {
-        deleteItem();
+    $('#deleteItem').click(function() {
+        $.jConfirm('Are you sure you want to delete this item from the catalog?', '',
+            function(result) {
+                if (result) {
+                    deleteItem();
+                }
+            }
+        );
     });
 
     $('#expandBoxes').click(function() {

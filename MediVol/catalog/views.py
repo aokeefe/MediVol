@@ -1,19 +1,26 @@
-from django.views.generic.list import ListView
-from django.utils import timezone
 from django.shortcuts import render
 
 from catalog.models import Category, BoxName, Item
 from inventory.models import Box, Contents
 from orders.models import Order, OrderBox
 
-class ItemsListView(ListView):
+def catalog(request):
+    categories = Category.objects.all()
+    categoryStrings = []
 
-    model = Category
+    for category in categories:
+        categoryStrings.append(category.name)
 
-    def get_context_data(self,**kwargs):
-        context = super(ItemsListView, self).get_context_data(**kwargs)
-        context['now'] = timezone.now()
-        return context
+    context = { 'categories': sorted(categoryStrings) }
+
+    return render(request, 'catalog/catalog.html', context)
+    #
+    # model = Category
+    #
+    # def get_context_data(self,**kwargs):
+    #     context = super(ItemsListView, self).get_context_data(**kwargs)
+    #     context['now'] = timezone.now()
+    #     return context
 
 def item_info(request, item_id):
     try:
