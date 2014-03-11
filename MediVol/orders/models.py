@@ -59,7 +59,7 @@ class Order(models.Model):
     def to_csv(self):
 
         if self.reserved_for is not None:
-            reservation = self.reserved_for.customer_id
+            reservation = self.reserved_for.contact_id
         else:
             reservation = None
 
@@ -75,7 +75,7 @@ class Order(models.Model):
     def create_from_csv(cls, csv):
         filtered_values = to_array_from_csv(csv)
         order = Order(order_id=filtered_values[0],
-                      reserved_for=Customer.objects.get(customer_id=filtered_values[1]),
+                      reserved_for=Customer.objects.get(contact_id=filtered_values[1]),
                       paid_for=filtered_values[2],
                       order_number=filtered_values[3],
                       creation_date=filtered_values[4],
@@ -101,7 +101,7 @@ class OrderBox(models.Model):
     cost = models.FloatField(default=0.0)
 
     def __unicode__(self):
-        return self.box + " in order " + self.order_for
+        return str(self.box) + " in order " + str(self.order_for)
 
     def to_csv(self):
         values = [self.order_for.order_id,

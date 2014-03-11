@@ -52,12 +52,14 @@ except Exception:
                                 item=item1,
                                 quantity=1,
                                 expiration=None)
+    steves_box_item1.save()
 
     steves_box_item2 = Contents(contents_id=2,
                                 box_within=steves_box,
                                 item=item2,
                                 quantity=5,
                                 expiration=None)
+    steves_box_item2.save()
 
     steves_order = Order(order_id=777,
                          reserved_for=steve,
@@ -65,11 +67,13 @@ except Exception:
                          order_number=777,
                          creation_date=datetime.datetime.now(),
                          order_status='U')
+    steves_order.save()
 
     steves_order_box = OrderBox(order_for=steves_order,
                              box=steves_box,
                              cost=43.34444)
-
+    steves_order_box.save()
+    
 print steve
 print steves_box
 
