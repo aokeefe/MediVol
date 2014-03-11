@@ -12,12 +12,19 @@
 
     <form id='catalog_form' action='' method='post'>
         {% csrf_token %}
+        <input type='text' id='itemSearch' class='textField'
+            placeholder='Search for a category, box name, or item...' />
+
+        <div id='or'>
+            -- or --
+        </div>
+
         <div id='createBoxLists'>
             <div class='createBoxListWrapper'>
                 <h3>Categories</h3>
                 <select id='categories' size=20>
-                    {% for category in object_list %}
-                        <option>{{category.letter}} - {{ category.name }}</option>
+                    {% for category in categories %}
+                        <option>{{ category }}</option>
                     {% endfor %}
                 </select>
             </div>
