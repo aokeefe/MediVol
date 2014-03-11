@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Intervol | Item Info</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}catalog/css/itemInfo.css' />
+{% endblock %}
+
+{% block body %}
+    {% if item %}
+        <h2 class='itemNameValue'>{{ item.name }}</h2>
+        <input type='hidden' id='categoryLetter' value='{{ item.box_name.category.letter }}' />
+
+        <div id='itemInfo'>
+            <p id='requiredFieldsMessage' class='requiredText requiredMessage'></p>
+
+            <h3 class='attributeLabel'>Name</h3>
+            <p id='itemNameValue' class='attributeValue itemNameValue'>{{ item.name }}</p>
+            <input id='name' type='text' value='{{ item.name }}' class='textField' />
+
+            <h3 class='attributeLabel'>Box Name</h3>
+            <p id='boxNameValue' class='attributeValue'>{{ item.box_name.name }}</p>
+            <input id='boxName' type='text' value='{{ item.box_name.name }}' class='textField' />
+
+            <h3 class='attributeLabel'>Description</h3>
+            <p id='descriptionValue' class='attributeValue'>
+                {% if item.description == '' %}
+                    <i>no description</i>
+                {% else %}
+                    {{ item.description|linebreaksbr }}
+                {% endif %}
+            </p>
+            <textarea id='description' class='textField'>{{ item.description }}</textarea>
+
+            <div id='buttons'>
+                <button class='button' id='editItem'>Edit</button>
+                <a href='?confirm=true' class='deleteDialog'>
+                    <button class='button' id='deleteItem'>Delete Item</button>
+                </a>
+                <button class='button' id='cancelEdit'>Cancel Edit</button>
+                <button class='button' id='saveItem'>Save Changes</button>
+                <div class='dialog' id='deleteQuestion'>
+                    Are you sure you want to delete this item from the catalog?
+                </div>
+            </div>
+
+            <div class='clear'></div>
+        </div>
+
+        <hr />
+
+        <div id='boxesWithItem'>
+            <h2>
+                {% if boxes_with_item %}
+                    <span id='expandBoxes'>[+]</span>
+                {% endif %}
+                Boxes with <span class='itemNameValue'>{{ item.name }}</span>
+            </h2>
+
+            {% if boxes_with_item %}
+                <div id='boxes'>
+                    {% for box in boxes_with_item %}
+                        <a class='boxLink' href='/inventory/view_box_info/{{ box.box_id }}' target='_blank'>
+                            <div class='box'>
+                                <h3 class='attributeValue'>
+                                    Box {{ box.box_id }}
+                                </h3>
+
+                                <div class='boxLeft'>
+                                    <h4>Size</h4>
+                                    <p>
+                                        {{ box.get_box_size_display }}
+                                    </p>
+
+                                    <h4>Weight</h4>
+                                    <p>{{ box.weight }} lbs</p>
+                                </div>
+
+                                <div class='boxRight'>
+                                    <h4>Contents</h4>
+                                    <p>{{ box.get_contents_string }}</p>
+
+                                    <h4>Expires</h4>
+                                    <p>
+                                        {% if box.get_expiration == None %}
+                                            Never
+                                        {% else %}
+                                            {{ box.get_expiration_display }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+
+                                <div class='clear'></div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div id='itemInfo'><h3><i>no boxes with this item</i></h3></div>
+            {% endif %}
+        </div>
+
+        <hr />
+
+        <div id='ordersWithItem'>
+            <h2>
+                {% if orders_with_item %}
+                    <span id='expandOrders'>[+]</span>
+                {% endif %}
+                Orders with <span class='itemNameValue'>{{ item.name }}</span>
+            </h2>
+
+            {% if orders_with_item %}
+                <div id='orders'>
+                    {% for order in orders_with_item %}
+                        <a class='boxLink' href='/orders/review/{{ order.order_number }}' target='_blank'>
+                            <div class='box'>
+                                <h3 class='attributeValue'>
+                                    Order {{ order.order_number }}
+                                </h3>
+
+                                <div class='boxLeft'>
+                                    <h4>Customer</h4>
+                                    <p>
+                                        {{ order.reserved_for.get_search_results_string }}
+                                    </p>
+
+                                    <h4>Weight</h4>
+                                    <p>
+                                        {{ order.get_weight }} lbs
+                                    </p>
+
+                                    <h4>Created Date</h4>
+                                    <p>
+                                        {{ order.get_creation_date_display }}
+                                    </p>
+                                </div>
+
+                                <div class='boxRight'>
+                                    <h4>Price</h4>
+                                    <p>
+                                        {% if order.get_cost == 0 %}
+                                            ${{ order.get_cost }}
+                                        {% else %}
+                                            <i>no prices set</i>
+                                        {% endif %}
+                                    </p>
+
+                                    <h4>Status</h4>
+                                    <p>
+                                        {{ order.get_order_status_display }}
+                                    </p>
+                                </div>
+
+                                <div class='clear'></div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div id='itemInfo'><h3><i>no orders with this item</i></h3></div>
+            {% endif %}
+        </div>
+    {% else %}
+        <h2>Item Does Not Exist</h2>
+
+        <p>
+            <a href='/catalog/'>&larr; Back to Catalog</a>
+        </p>
+    {% endif %}
+{% endblock %}
+
+{% block javascript %}
+    <script type='text/javascript' src='{{ STATIC_URL }}catalog/js/itemInfo.js'></script>
+{% endblock %}

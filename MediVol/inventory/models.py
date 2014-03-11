@@ -57,6 +57,9 @@ class Box(models.Model):
         box.save()
         return box
 
+    def get_size_word(self):
+        return self.SIZE_CHOICES[self.box_size]
+
     def __unicode__(self):
         """
         Returns a printable, human readable, string to represent the Box
@@ -66,7 +69,7 @@ class Box(models.Model):
     def save(self, *args, **kwargs):
         """
         During that save process we will assign a barcode to the Box, if it does not already have one (ie a new box)
-        To make a barcode this method will generate an 8 digit number (with leading zeros), then validate that the 
+        To make a barcode this method will generate an 8 digit number (with leading zeros), then validate that the
         generated number is not already in use.
         """
         #TODO remove try catch as something is figured out with id uniqueness
@@ -108,7 +111,7 @@ class Box(models.Model):
     def get_expiration(self):
         """
         Finds the oldest date amoung the contents of a Box, and return it.
-        For example if an item is expireing on 01-01-2014 and another is expireing on 01-01-2012, 01-01-2012 will be 
+        For example if an item is expireing on 01-01-2014 and another is expireing on 01-01-2012, 01-01-2012 will be
         returned
         """
         if self.old_expiration is not None:
@@ -122,6 +125,34 @@ class Box(models.Model):
         if expiration is NOT_EXPIRING_IN_THIS_MILLENIUM:
             return None
         return expiration
+
+    def get_expiration_display(self):
+        expiration = self.get_expiration()
+
+        if expiration is None:
+            return 'Never'
+        else:
+            expiration = str(expiration).split(' ')[0]
+            expiration_array = expiration.split('-')
+            return expiration_array[1] + '/' + expiration_array[2] + '/' + expiration_array[0]
+
+    def get_search_results_string(self):
+        return 'Box ' + self.box_id
+
+    def get_contents_string(self):
+        if self.old_contents is None:
+            contents_strings = []
+            contents = Contents.objects.filter(box_within=self)
+
+            for content in contents:
+                if content.quantity > 0:
+                    contents_strings.append(content.item.name + ' x ' + str(content.quantity))
+                else:
+                    contents_strings.append(content.item.name)
+
+            return ', '.join(contents_strings)
+
+        return self.old_contents
 
 class Contents(models.Model):
     contents_id = models.IntegerField(unique=True)
@@ -146,6 +177,9 @@ class Contents(models.Model):
         Returns a printable, human readable, string to represent the Contents
         """
         return self.item.name
+
+    def get_search_results_string(self):
+        return self.item.box_name.category.name + ' > ' + self.item.box_name.name + ' > ' + self.item.name + ' > Box ' + self.box_within.box_id
 
     def save(self, *args, **kwargs):
         super(Contents, self).save(*args, **kwargs)

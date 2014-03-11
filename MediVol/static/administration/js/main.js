@@ -58,14 +58,18 @@ function prepareWarehouseManagement() {
         createWarehouse(name, abbreviation, address);
     });
 
-    $('.removeWarehouse').click(function(event) {
+    $('.removeWarehouse').click(function() {
         // what has my life become?
         var abbreviation = $($(this).parent().parent().children('td')[0]).html();
-        var name = $($(this).parent().parent().children('td')[1]).html();
+        var warehouse = $($(this).parent().parent().children('td')[1]).html();
 
-        if (confirm('Are you sure you want to remove the "' + name + '" warehouse?')) {
-            removeWarehouse(abbreviation);
-        }
+        $.jConfirm('Are you sure you want to remove the "' + warehouse + '" warehouse?', '',
+            function(result) {
+                if (result) {
+                    removeWarehouse(abbreviation);
+                }
+            }
+        );
     });
 }
 
@@ -167,28 +171,36 @@ function changeEmail(newEmail) {
 }
 
 function prepareUserManagement() {
-    $('.removeUser').click(function() {
+    $('.removeUser').click(function(index, element) {
         var userToRemove = $($(this).parent().parent().children('td')[0]).html();
 
-        if (confirm('Are you sure you want to remove the user "' + userToRemove + '"?')) {
-            removeUser(userToRemove);
-        }
+        $.jConfirm('Are you sure you want to remove the user "' + userToRemove + '"?', '',
+            function(result) {
+                if (result) {
+                    removeUser(userToRemove);
+                }
+            }
+        );
     });
 
     var oldGroup;
 
     $('.changeGroupSelect').focus(function() {
-        oldGroup = $(this).val()
+        oldGroup = $(this).val();
     }).change(function() {
         var newGroup = $(this).val();
         var userToChange = $($(this).parent().parent().children('td')[0]).html();
 
-        if (confirm('Are you sure you want to change ' + userToChange +
-                '\'s group from "' + oldGroup + '" to "' + newGroup + '"?')) {
-            changeUserGroup(userToChange, newGroup);
-        } else {
-            $(this).val(oldGroup);
-        }
+        $.jConfirm('Are you sure you want to change ' + userToChange +
+                '\'s group from "' + oldGroup + '" to "' + newGroup + '"?', '',
+            function(result) {
+                if (result) {
+                    changeUserGroup(userToChange, newGroup);
+                } else {
+                    $(this).val(oldGroup);
+                }
+            }
+        );
     });
 
     $('#createUser').click(function() {
@@ -198,8 +210,8 @@ function prepareUserManagement() {
         var password = $('#password').val();
         var confirmPassword = $('#confirmPassword').val();
 
-        if (username == '' || email == '' ||
-                password == '' || confirmPassword == '') {
+        if (username === '' || email === '' ||
+                password === '' || confirmPassword === '') {
             $('.requiredMessage').html('All fields are required.');
             $('.requiredMessage').show();
 
@@ -217,15 +229,19 @@ function prepareUserManagement() {
     $('.sendPasswordReset').click(function() {
         var user = $($(this).parent().parent().children('td')[0]).html();
 
-        if (confirm('Are you sure you want to send a password reset to "' + user + '"?')) {
-            sendPasswordReset(user);
-        }
+        $.jConfirm('Are you sure you want to send a password reset to "' + user + '"?', '',
+            function(result) {
+                if (result) {
+                    sendPasswordReset(user);
+                }
+            }
+        );
     });
 
     $('#sendReset').click(function() {
         var user = $('#username').val();
 
-        if (user == '') {
+        if (user === '') {
             $('.requiredMessage').html('Please enter a username.');
             $('.requiredMessage').show();
 

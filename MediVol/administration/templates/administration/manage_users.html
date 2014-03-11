@@ -59,21 +59,23 @@
                     {% if userToShow.username != user.username %}
                         <select class='changeGroupSelect'>
                             {% for group in groups %}
-                                <option
-                                    {% if group.name == userToShow.groups.all.0.name %}
-                                        selected='selected'
-                                    {% endif %}
-                                >{{ group.name }}</option>
+                                {% if group.name == userToShow.groups.all.0.name %}
+                                    <option selected='selected'>{{ group.name }}</option>
+                                {% else %}
+                                    <option>{{ group.name }}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                     {% else %}
                         {{ userToShow.groups.all.0.name }}
                     {% endif %}
                 </td>
-                <td><a class='sendPasswordReset' href='javascript:void(0)'>Send password reset</a></td>
+                <td>
+                    <a href='javascript:void(0)' class='sendPasswordReset'>Send password reset</a>
+                </td>
                 <td>
                     {% if userToShow.username != user.username %}
-                        <a class='removeUser' href='javascript:void(0)'>Remove</a>
+                        <a href='javascript:void(0)' class='removeUser'>Remove</a>
                     {% endif %}
                 </td>
             </tr>
