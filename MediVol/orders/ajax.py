@@ -86,38 +86,17 @@ def get_info(request, boxid):
     box_info.append(str(box_weight))
     box_info.append(str(box_size))
     box_info.append(str(box_id))
-
-    if box_old_contents is None:
-        for box_content in box_content_ids:
-            if box_content.quantity == 0:
-                box_items.append(box_content.item.name)
-            else:
-                box_items.append(box_content.item.name + ' x ' + str(box_content.quantity))
-
-        box_info.append(box_items)
-    else:
-        box_info.append(box_old_contents)
-
-    if box.get_expiration() is None:
-        box_info.append('Never')
-    else:
-        expiration_date = str(box.get_expiration()).split(' ')[0]
-        expiration_array = expiration_date.split('-')
-        expiration_date = expiration_array[1] + '/' + expiration_array[2] + '/' + expiration_array[0]
-        box_info.append(expiration_date)
+    box_info.append(box.get_contents_string())
+    box_info.append(box.get_expiration_display())
 
     return simplejson.dumps(box_info)
 
 # Registers order to database.
 @dajaxice_register
 def create_order(request, customer_name, customer_email, businessName, businessAddress, shipping, box_ids):
-
-    # Check if customer exists if not create a new customer
-    customer = None
-    if Customer.objects.filter(contact_email=customer_email).exists():
-
-        customer = Customer.objects.filter(contact_email=customer_email)
-    else:
+    try:
+        customer = Customer.objects.get(contact_email=customer_email)
+    except Customer.DoesNotExist:
         customer = Customer(contact_name=customer_name, contact_email=customer_email,
                             business_name=businessName, business_address=businessAddress,
                             shipping_address=shipping)

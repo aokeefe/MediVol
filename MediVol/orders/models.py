@@ -10,7 +10,10 @@ class Customer(models.Model):
 
     def __unicode__(self):
         return "contact info for: " + self.business_name
-        
+
+    def get_search_results_string(self):
+        return self.contact_name + ' (' + self.business_name + ')'
+
 class Order(models.Model):
     CREATED = 'C'
     UNPAID = 'U'
@@ -46,6 +49,11 @@ class Order(models.Model):
         for order_box in self.orderbox_set.all():
             order_cost = float(order_cost) + float(order_box.cost)
         return ("%.2f" % order_cost)
+
+    def get_creation_date_display(self):
+        creation_date = str(self.creation_date).split(' ')[0]
+        creation_array = creation_date.split('-')
+        return creation_array[1] + '/' + creation_array[2] + '/' + creation_array[0]
 
 class OrderBox(models.Model):
     order_for = models.ForeignKey(Order)
