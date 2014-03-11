@@ -65,13 +65,6 @@ function updateDescription(response){
     var item = $('#items option:selected').val();
     var description = response.message;
 
-    /*$('#item_details').unbind('click');
-    $('#item_details').click(function(e) {
-        e.preventDefault();
-        var win = window.open('/catalog/item_info/' + response.item_id, '_blank');
-        win.focus();
-    });*/
-
     $('#item_details').parent().attr('href', '/catalog/item_info/' + response.item_id);
     $('#item_details').show();
 
