@@ -33,7 +33,8 @@ letter_mapping = (
     ('W', 'Surgical Supplies'),
     ('X', 'Plastic'),
     ('Y', 'UNKNOWN'),
-    ('Z', 'Little Things'))
+    ('Z', 'Little Things'),
+    ('#', 'Equipment'))
 categories = Category.objects.all()
 categories.delete()
 
@@ -240,7 +241,9 @@ box_name_mapping = (
     ('Hot/Cold Packs','Z', True,True),
     ('Lubricating Gel & Surgical Lubricant','Z', True,False),
     ('Spill Kits','Z', True,True),
-    ('Ultrasound Gel','Z', True,False)
+    ('Ultrasound Gel','Z', True,False),
+    ('Large Equipment','#',False,False),
+    ('Small Equipment','#',False,False)
     )
 
 for pair in box_name_mapping:
