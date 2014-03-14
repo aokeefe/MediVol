@@ -17,6 +17,12 @@ class Customer(models.Model):
     class Meta:
         unique_together=('contact_name', 'business_name')
 
+class Address(models.Model):
+    address = models.CharField(max_length=200, unique=True)
+
+    def __unicode__(self):
+        return address
+
 class Order(models.Model):
     CREATED = 'C'
     UNPAID = 'U'
