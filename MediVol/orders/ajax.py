@@ -63,6 +63,25 @@ def get_search_results(request, query):
 
     return simplejson.dumps(results_array)
 
+@dajaxice_register(method='GET')
+def get_customer_search_results(request, query):
+    return simplejson.dumps(Searcher.search(query=query, models=[ Customer ]))
+
+@dajaxice_register(method='GET')
+def get_customer_info(request, contact_name, organization_name):
+    try:
+        customer = Customer.objects.get(contact_name=contact_name, business_name=organization_name)
+    except Customer.DoesNotExist:
+        return False
+
+    return simplejson.dumps(
+        {
+            'contact_email': customer.contact_email,
+            'organization_address': customer.business_address,
+            'shipping_address': customer.shipping_address
+        }
+    )
+
 # Get Box Info
 @dajaxice_register(method='GET')
 def get_info(request, boxid):

@@ -376,6 +376,47 @@ $(document).ready(function() {
 
     $('#itemSearch').focus();
 
+    $('#contact_name').autocomplete(
+        {
+            autoFocus: true,
+            source: function(request, response) {
+                Dajaxice.orders.get_customer_search_results(function(returned) {
+                    response(returned);
+                }, { 'query': request.term });
+            },
+            messages: {
+                noResults: '',
+                results: function() {}
+            },
+            close: function() {
+                // This is the search result given by the AJAX function.
+                // It is of the form:
+                // Customer (Organization)
+                var query = $('#contact_name').val();
+                var splitQuery = query.split(' (');
+                var contactName = splitQuery[0];
+                var orgName = splitQuery[1].substring(0, splitQuery[1].length - 1);
+
+                $('#contact_name').val(contactName);
+
+                Dajaxice.orders.get_customer_info(function(returned) {
+                    if (returned == 'False') {
+                        return;
+                    }
+
+                    var contactEmail = returned.contact_email;
+                    var orgAddress = returned.organization_address;
+                    var shippingAddress = returned.shipping_address;
+
+                    $('#contact_email').val(contactEmail);
+                    $('#organization_name').val(orgName);
+                    $('#organization_address').val(orgAddress);
+                    $('#shipping_address').val(shippingAddress);
+                }, { 'contact_name': contactName, 'organization_name': orgName });
+            }
+        }
+    );
+
     // Set the 'on change' event for the categories list.
     $('#categories').change(function() {
         var selectedCategory = $('#categories option:selected').val();
