@@ -1,12 +1,17 @@
 from django.db import models
 from inventory.models import Box
 
+class Address(models.Model):
+    address_for = models.ForeignKey(Customer)
+    address = models.CharField(max_length=200, unique=True)
+
+    def __unicode__(self):
+        return address
+
 class Customer(models.Model):
     contact_name = models.CharField(max_length=80)
     contact_email = models.CharField(max_length=80)
     business_name = models.CharField(max_length=80)
-    business_address = models.CharField(max_length=200, null=True)
-    shipping_address = models.CharField(max_length=200)
 
     def __unicode__(self):
         return "contact info for: " + self.business_name
@@ -16,12 +21,6 @@ class Customer(models.Model):
 
     class Meta:
         unique_together=('contact_name', 'business_name')
-
-class Address(models.Model):
-    address = models.CharField(max_length=200, unique=True)
-
-    def __unicode__(self):
-        return address
 
 class Order(models.Model):
     CREATED = 'C'
@@ -34,11 +33,11 @@ class Order(models.Model):
         (PAID, 'Paid For'),
         (SHIPPED, 'Shipped Out'),
     )
-    #This may need revisiting as a more detailed model becomes available
+
     reserved_for = models.ForeignKey(Customer, null=True)
     paid_for = models.BooleanField(default=False)
     shipped = models.BooleanField(default=False)
-    ship_to = models.CharField(max_length=300, null=True)
+    ship_to = models.ForeignKey(Address)
     order_number = models.IntegerField()
     creation_date = models.DateTimeField('Date the order was made')
     order_status = models.CharField(max_length=1, choices=ORDER_STATUS, default=CREATED)
