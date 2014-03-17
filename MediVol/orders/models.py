@@ -38,7 +38,7 @@ class Order(models.Model):
     reserved_for = models.ForeignKey(Customer, null=True)
     paid_for = models.BooleanField(default=False)
     shipped = models.BooleanField(default=False)
-    ship_to = models.ForeignKey(ShippingAddress)
+    ship_to = models.ForeignKey(ShippingAddress, null=True)
     order_number = models.IntegerField()
     creation_date = models.DateTimeField('Date the order was made')
     order_status = models.CharField(max_length=1, choices=ORDER_STATUS, default=CREATED)
