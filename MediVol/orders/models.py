@@ -1,7 +1,7 @@
 from django.db import models
 from inventory.models import Box
 
-class Address(models.Model):
+class ShippingAddress(models.Model):
     address_for = models.ForeignKey(Customer)
     address = models.CharField(max_length=200, unique=True)
 
@@ -12,6 +12,7 @@ class Customer(models.Model):
     contact_name = models.CharField(max_length=80)
     contact_email = models.CharField(max_length=80)
     business_name = models.CharField(max_length=80)
+    business_address = models.CharField(max_length=200, null=True)
 
     def __unicode__(self):
         return "contact info for: " + self.business_name
@@ -37,7 +38,7 @@ class Order(models.Model):
     reserved_for = models.ForeignKey(Customer, null=True)
     paid_for = models.BooleanField(default=False)
     shipped = models.BooleanField(default=False)
-    ship_to = models.ForeignKey(Address)
+    ship_to = models.ForeignKey(ShippingAddress)
     order_number = models.IntegerField()
     creation_date = models.DateTimeField('Date the order was made')
     order_status = models.CharField(max_length=1, choices=ORDER_STATUS, default=CREATED)
