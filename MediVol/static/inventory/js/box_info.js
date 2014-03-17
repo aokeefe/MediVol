@@ -3,7 +3,7 @@
 * Callback for get_label AJAX call.
 */
 function print(response){
-	if (response != 'False') {
+    if (response != 'False') {
         var iframe = document.createElement('iframe');
         var html = '<head><script type"text/javascript">window.print();</script></head>' +
                 '<body>' + response + '</body>';
@@ -20,5 +20,5 @@ function print(response){
 
 
 function print_label(box_id){
-	Dajaxice.inventory.get_label(print, {"box_id" : box_id});
+    Dajaxice.inventory.get_label(print, {"box_id" : box_id});
 }
