@@ -119,6 +119,9 @@ def add_boxes_to_order(request, order_number, boxes={}, price=False):
     except Order.DoesNotExist:
         return simplejson.dumps({ 'result': 0 })
 
+    if price == '':
+        price = False
+
     total_price = 0
 
     for box_id, box_price in boxes.iteritems():
@@ -127,7 +130,7 @@ def add_boxes_to_order(request, order_number, boxes={}, price=False):
         if box_price != '':
             box_price = float(box_price)
         else:
-            box_price = 0.0
+            box_price = 0.00
 
         box_for_order = Box.objects.get(box_id=box_id)
 

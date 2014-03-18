@@ -280,7 +280,7 @@ label {
 
 .priceLeft, .priceRight {
     float: right;
-    height: 33px;
+    min-height: 33px;
 }
 
 .priceLeft {

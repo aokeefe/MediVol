@@ -36,7 +36,7 @@ class Order(models.Model):
     order_number = models.IntegerField()
     creation_date = models.DateTimeField('Date the order was made')
     order_status = models.CharField(max_length=1, choices=ORDER_STATUS, default=CREATED)
-    price = models.IntegerField(null=True)
+    price = models.FloatField(null=True)
 
     def __unicode__(self):
         return "Order " + str(self.order_number)

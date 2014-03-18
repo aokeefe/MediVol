@@ -580,15 +580,15 @@ $(document).ready(function() {
 
         if (orderNumber === 0) {
             // Call the create_order AJAX function.
-            // Dajaxice.orders.create_order(createOrder,
-            //     {
-            //         'customer_name': contact_name,
-            //         'customer_email': contact_email,
-            //         'businessName':  organization_name,
-            //         'businessAddress': organization_address,
-            //         'shipping': shipping_address
-            //     }
-            // );
+            Dajaxice.orders.create_order(createOrder,
+                {
+                    'customer_name': contact_name,
+                    'customer_email': contact_email,
+                    'businessName':  organization_name,
+                    'businessAddress': organization_address,
+                    'shipping': shipping_address
+                }
+            );
         } else {
             // TODO: trigger order edit
         }
@@ -599,6 +599,11 @@ $(document).ready(function() {
     // Set the 'on click' event for creating a box.
     $('#submit').click(function(e) {
         e.preventDefault();
+        var price = $('#price').val();
+
+        if (price !== '') {
+            price = parseFloat(price).toFixed(2);
+        }
 
         var boxes = {};
 
@@ -624,8 +629,8 @@ $(document).ready(function() {
             },
             {
                 'order_number': orderNumber,
-                'boxes': boxes//,
-                //'price':
+                'boxes': boxes,
+                'price': price
             }
         );
     });
