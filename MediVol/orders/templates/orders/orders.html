@@ -182,7 +182,7 @@
 
             <div class='orderPriceRow'>
                 <div class='priceRight'>
-                    <input type='number' id='price' class='textField' step='any' min='0' />
+                    <input type='text' id='price' class='textField' />
                     <i>* overrides total price</i>
                 </div>
                 <div class='priceLeft customPrice'>Custom Price </div>
@@ -195,30 +195,8 @@
         <input type='button' class='back button' value='&larr; Back' />
         <input type='submit' id='submit' class='button' value='Save Order' />
     </div>
-
-    <!--<div id='stepThree'>
-        <div id='tableWrapper'>
-            <table id='review_boxes'>
-                <tr id='table_header'>
-                    <td>Box ID</td>
-                    <td>Size</td>
-                    <td>Weight</td>
-                    <td>Price</td>
-                </tr>
-            </table>
-        </div>
-
-        <h3>Total Weight of Order: </h3>
-        <h3>Total Price of Order: </h3>
-        <p id='total_price'></p>
-
-        <input type='button' class='back button' value='&larr; Back' />
-        <input type='submit' id='submit' class='button' value='Create Order' />
-        <div class='clear'></div>
-    </div>-->
 {% endblock %}
 
 {% block javascript %}
     <script type='text/javascript' src='{{ STATIC_URL }}orders/js/main.js'></script>
-    <!--<script type='text/javascript' src='{{ STATIC_URL }}orders/js/order_review.js'></script>-->
 {% endblock %}

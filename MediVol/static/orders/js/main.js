@@ -10,7 +10,7 @@ var ITEM_TEMPLATE = '<tr>' +
         '<td>{box_id}</td>' +
         '<td>{box_size}</td>' +
         '<td>{weight}</td>' +
-        '<td class="priceRow">$ <input type="number" class="textField boxPrice" step="any" min="0" /></td>' +
+        '<td class="priceRow">$ <input type="text" class="textField boxPrice" step="any" min="0" /></td>' +
         '<td><a class="remove_item" href="javascript:void(0)">Remove</a></td>' +
     '</tr>';
 
@@ -46,8 +46,8 @@ function getBoxInfo(response) {
             .replace('{weight}', boxWeight + ' lbs')
     );
 
-    $('#boxes_added tr td :input').unbind('keyup input paste');
-    $('#boxes_added tr td :input').bind('keyup input paste', displayTotalPrice);
+    $('#boxes_added tr td :input').unbind('input paste');
+    $('#boxes_added tr td :input').bind('input paste', displayTotalPrice);
 
     displayTotalPrice();
 
@@ -263,16 +263,36 @@ function displayTotalPrice() {
     var totalPrice = 0.0;
 
     $('#boxes_added tr td :input').each(function() {
-        var price = $(this).val();
+        var price = 0.00;
+        var rawValue = $(this).val();
 
-        if (price === '') {
-            price = 0;
+        if (isNaN(rawValue) && rawValue !== '') {
+            $(this).addClass('requiredTextField');
+            return;
+        } else if (rawValue !== '') {
+            price = parseFloat(rawValue);
         }
 
-        totalPrice += parseFloat(price);
+        totalPrice += price;
+        $(this).removeClass('requiredTextField');
     });
 
     $('#totalPrice').html(totalPrice.toFixed(2));
+}
+
+function pricesHaveErrors() {
+    var hasErrors = false;
+
+    $('#boxes_added tr td :input').each(function() {
+        var rawValue = $(this).val();
+
+        if (isNaN(rawValue) && rawValue !== '') {
+            hasErrors = true;
+            return false;
+        }
+    });
+
+    return hasErrors;
 }
 
 $(document).ready(function() {
@@ -575,7 +595,7 @@ $(document).ready(function() {
         var shipping_address = $('#shipping_address').val();
 
         if (missingRequired) {
-            //return;
+            return;
         }
 
         if (orderNumber === 0) {
@@ -599,6 +619,11 @@ $(document).ready(function() {
     // Set the 'on click' event for creating a box.
     $('#submit').click(function(e) {
         e.preventDefault();
+
+        if (pricesHaveErrors()) {
+            return;
+        }
+
         var price = $('#price').val();
 
         if (price !== '') {
