@@ -88,7 +88,7 @@ def get_customer_shipping_addresses(request, contact_name, organization_name):
     except Customer.DoesNotExist:
         return False
 
-    addresses = customer.get_shippingaddress_set.all()
+    addresses = customer.shippingaddress_set.all()
     return simplejson.dumps(addresses)
 
 # Get Box Info
