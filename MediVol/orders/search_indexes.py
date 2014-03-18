@@ -7,7 +7,6 @@ class CustomerIndex(indexes.SearchIndex, indexes.Indexable):
     contact_email = indexes.CharField(model_attr='contact_email')
     business_name = indexes.CharField(model_attr='business_name')
     business_address = indexes.CharField(model_attr='business_address')
-    shipping_address = indexes.CharField(model_attr='shipping_address')
 
     content_auto = indexes.EdgeNgramField(use_template=True)
 

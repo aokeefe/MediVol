@@ -17,7 +17,7 @@ class Customer(models.Model):
         unique_together=('contact_name', 'business_name')
 
 class ShippingAddress(models.Model):
-    address_for = models.ForeignKey(Customer)
+    customer = models.ForeignKey(Customer)
     address = models.CharField(max_length=200, unique=True)
 
     def __unicode__(self):
