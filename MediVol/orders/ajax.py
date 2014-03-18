@@ -121,24 +121,27 @@ def add_boxes_to_order(request, order_number, boxes={}, price=False):
 
     total_price = 0
 
-    if price is not False:
-        order.price = price
-        order.save()
-
     for box_id, box_price in boxes.iteritems():
         box_id = int(box_id)
-        box_price = int(box_price)
+
+        if box_price != '':
+            box_price = float(box_price)
+        else:
+            box_price = 0.0
 
         box_for_order = Box.objects.get(box_id=box_id)
 
-        if price is False:
-            total_price = total_price + box_price
-            order_box = OrderBox(order_for=order, box=box_for_order, cost=box_price)
-        else:
-            order_box = OrderBox(order_for=order, box=box_for_order)
+        total_price = total_price + box_price
+        order_box = OrderBox(order_for=order, box=box_for_order, cost=box_price)
 
         order_box.save()
 
+    if price is not False:
+        order.price = price
+    else:
+        order.price = total_price
+
+    order.save()
 
     return simplejson.dumps({ 'result': 1 })
 

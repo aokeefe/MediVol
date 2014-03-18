@@ -10,7 +10,7 @@ var ITEM_TEMPLATE = '<tr>' +
         '<td>{box_id}</td>' +
         '<td>{box_size}</td>' +
         '<td>{weight}</td>' +
-        '<td class="priceRow">$ <input type="number" class="textField boxPrice" /></td>' +
+        '<td class="priceRow">$ <input type="number" class="textField boxPrice" step="any" min="0" /></td>' +
         '<td><a class="remove_item" href="javascript:void(0)">Remove</a></td>' +
     '</tr>';
 
@@ -45,6 +45,11 @@ function getBoxInfo(response) {
             .replace('{box_size}', boxSize)
             .replace('{weight}', boxWeight + ' lbs')
     );
+
+    $('#boxes_added tr td :input').unbind('keyup input paste');
+    $('#boxes_added tr td :input').bind('keyup input paste', displayTotalPrice);
+
+    displayTotalPrice();
 
     // Set the remove button again. We need to do this every time we
     // add another remove button.
@@ -252,6 +257,22 @@ function setSelectedBox(selectedBox, clearBoxes) {
 
         $('#boxDetails').html('');
     }
+}
+
+function displayTotalPrice() {
+    var totalPrice = 0.0;
+
+    $('#boxes_added tr td :input').each(function() {
+        var price = $(this).val();
+
+        if (price === '') {
+            price = 0;
+        }
+
+        totalPrice += parseFloat(price);
+    });
+
+    $('#totalPrice').html(totalPrice.toFixed(2));
 }
 
 $(document).ready(function() {
@@ -554,20 +575,20 @@ $(document).ready(function() {
         var shipping_address = $('#shipping_address').val();
 
         if (missingRequired) {
-            return;
+            //return;
         }
 
         if (orderNumber === 0) {
             // Call the create_order AJAX function.
-            Dajaxice.orders.create_order(createOrder,
-                {
-                    'customer_name': contact_name,
-                    'customer_email': contact_email,
-                    'businessName':  organization_name,
-                    'businessAddress': organization_address,
-                    'shipping': shipping_address
-                }
-            );
+            // Dajaxice.orders.create_order(createOrder,
+            //     {
+            //         'customer_name': contact_name,
+            //         'customer_email': contact_email,
+            //         'businessName':  organization_name,
+            //         'businessAddress': organization_address,
+            //         'shipping': shipping_address
+            //     }
+            // );
         } else {
             // TODO: trigger order edit
         }

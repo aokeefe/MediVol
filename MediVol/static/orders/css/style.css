@@ -264,3 +264,41 @@ label {
 .priceRow {
     width: 125px;
 }
+
+#priceWrapper {
+    margin-top: 25px;
+    width: 100%;
+
+    text-align: right;
+}
+
+.orderPriceRow {
+    float: right;
+    clear: right;
+    margin-top: 10px;
+}
+
+.priceLeft, .priceRight {
+    float: right;
+    height: 33px;
+}
+
+.priceLeft {
+    width: 110px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.priceRight {
+    width: 225px;
+}
+
+.customPrice {
+    padding-top: 6px;
+}
+
+#price {
+    width: 216px;
+    margin-right: 1px;
+    text-align: right;
+}
