@@ -6,7 +6,7 @@ class Customer(models.Model):
     contact_email = models.CharField(max_length=80)
     business_name = models.CharField(max_length=80)
     business_address = models.CharField(max_length=200, null=True)
-    shipping_address = models.CharField(max_length=200)
+    shipping_address = models.CharField(max_length=200, null=True)
 
     def __unicode__(self):
         return "contact info for: " + self.business_name
@@ -33,6 +33,7 @@ class Order(models.Model):
     order_number = models.IntegerField()
     creation_date = models.DateTimeField('Date the order was made')
     order_status = models.CharField(max_length=1, choices=ORDER_STATUS, default=CREATED)
+    price = models.IntegerField(null=True)
 
     def __unicode__(self):
         return "Order " + str(self.order_number)

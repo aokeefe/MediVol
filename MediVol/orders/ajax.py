@@ -8,6 +8,8 @@ from inventory.models import Box, Contents
 from catalog.models import Category, BoxName, Item
 from search.Searcher import Searcher
 
+ORDER_BASE_NUMBER = 100
+
 # Gets all of the box names associated with a given category
 @dajaxice_register(method='GET')
 def get_box_names(request, category_name):
@@ -110,32 +112,62 @@ def get_info(request, boxid):
 
     return simplejson.dumps(box_info)
 
-# Registers order to database.
-@dajaxice_register
-def create_order(request, customer_name, customer_email, businessName, businessAddress, shipping, box_ids):
+@dajaxice_register(method='POST')
+def add_boxes_to_order(request, order_number, box_ids=[], box_prices=[], price=False):
     try:
-        customer = Customer.objects.get(contact_email=customer_email)
+        order = Order.objects.get(order_number=order_number)
+    except Order.DoesNotExist:
+        return simplejson.dumps({ 'result': 0 })
+
+    total_price = 0
+
+    if price is not False:
+        total_price = price
+
+    for i in range(0..len(box_ids)):
+        box_id = box_ids[i]
+
+        box_for_order = Box.objects.get(box_id=box_id)
+
+        if price is False:
+            box_price = box_prices[i]
+            total_price = total_price + box_price
+            order_box = OrderBox(order_for=order, box=box_for_order, cost=box_price)
+        else:
+            order_box = OrderBox(order_for=order, box=box_for_order)
+
+        order_box.save()
+
+    if price is False:
+        order.price = total_price
+        order.save()
+
+    return simplejson.dumps({ 'result': 1 })
+
+# Registers order to database.
+@dajaxice_register(method='POST')
+def create_order(request, customer_name, customer_email, businessName, businessAddress, shipping=None):
+    if shipping == '':
+        shipping = None
+
+    try:
+        customer = Customer.objects.get(contact_name=customer_name, business_name=businessName)
+
+        customer.customer_email = customer_email
+        customer.business_address = businessAddress
+        customer.shipping_address = shipping
+
+        customer.save()
     except Customer.DoesNotExist:
         customer = Customer(contact_name=customer_name, contact_email=customer_email,
                             business_name=businessName, business_address=businessAddress,
                             shipping_address=shipping)
         customer.save()
 
-    order_base_number = 100
-    order_number_array = []
-
     # Calculate order number
-    order_number = Order.objects.count() + order_base_number
+    order_number = len(Order.objects.all()) + ORDER_BASE_NUMBER
 
     new_order = Order(reserved_for=customer, ship_to=customer_name, order_number=order_number, creation_date=datetime.today())
     new_order.save()
 
-    for box_id in box_ids:
-        boxOrder = Box.objects.get(box_id=box_id)
-        order_box = OrderBox(order_for=new_order, box=boxOrder)
-        order_box.save()
-
-    orderNumber = Order.objects.get(order_number=order_number).order_number
-    order_number_array.append(orderNumber)
-
-    return simplejson.dumps(order_number_array)
+    return simplejson.dumps({ 'order_number': order_number })

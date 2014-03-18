@@ -79,7 +79,7 @@ h3 {
     margin: 15px;
 }
 
-#next, #submit, #back {
+#next, #submit, .back {
     font-size: 2.5em;
     height: 60px;
     margin-top: 20px;
@@ -89,20 +89,24 @@ h3 {
     float: right;
 }
 
+.createButton {
+    width: 325px !important;
+}
+
 #next {
     width: 260px;
 }
 
 #submit {
-    width: 225px;
+    width: 275px;
 }
 
-#back {
+.back {
     float: left;
     width: 175px;
 }
 
-#stepTwo {
+#stepTwo, #stepThree {
     display: none;
 }
 
@@ -113,8 +117,7 @@ h3 {
 }
 
 #stepTwoFields {
-    width: 40%;
-    min-width: 250px;
+    width: 480px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -184,6 +187,8 @@ input[type='radio'] {
     appearance: none;
 }
 
+
+
 .sizeLabel, .weightLabel, .contentsLabel, .expiresLabel {
     margin-top: 5px;
     margin-bottom: 0px;
@@ -227,9 +232,35 @@ input[type='radio'] {
 
 }
 
+.label {
+    width: 230px;
+}
+
+.textField {
+    width: 250px;
+}
+
 #ordersHr {
     float: left;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: -8px;
+}
+
+#shipping_address, #organization_address {
+    resize: none;
+    height: 100px;
+}
+
+label {
+    font-size: 0.7em;
+}
+
+.boxPrice {
+    text-align: center;
+    width: 100px;
+}
+
+.priceRow {
+    width: 100px;
 }
