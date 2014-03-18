@@ -1,13 +1,6 @@
 from django.db import models
 from inventory.models import Box
 
-class ShippingAddress(models.Model):
-    address_for = models.ForeignKey(Customer)
-    address = models.CharField(max_length=200, unique=True)
-
-    def __unicode__(self):
-        return address
-
 class Customer(models.Model):
     contact_name = models.CharField(max_length=80)
     contact_email = models.CharField(max_length=80)
@@ -22,6 +15,13 @@ class Customer(models.Model):
 
     class Meta:
         unique_together=('contact_name', 'business_name')
+
+class ShippingAddress(models.Model):
+    address_for = models.ForeignKey(Customer)
+    address = models.CharField(max_length=200, unique=True)
+
+    def __unicode__(self):
+        return address
 
 class Order(models.Model):
     CREATED = 'C'
