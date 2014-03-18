@@ -14,6 +14,9 @@ class Customer(models.Model):
     def get_search_results_string(self):
         return self.contact_name + ' (' + self.business_name + ')'
 
+    class Meta:
+        unique_together=('contact_name', 'business_name')
+
 class Order(models.Model):
     CREATED = 'C'
     UNPAID = 'U'
