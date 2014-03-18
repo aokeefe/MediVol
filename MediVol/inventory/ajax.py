@@ -70,3 +70,8 @@ def create_box(request, initials, weight, size, items, note=''):
         contents.save()
 
     return BoxLabel(new_box.barcode).get_image()
+
+@dajaxice_register(method='POST')
+def get_label(request, box_id):
+    box = Box.objects.get(box_id=box_id)
+    return BoxLabel(box.barcode).get_image()
