@@ -91,7 +91,7 @@
             </div>
         </div>
 
-        <input type='button' id='next' class='button createButton' value='Create Order &rarr;' />
+        <input type='button' class='next button createButton' value='Create Order &rarr;' />
         <div class='clear'></div>
     </div>
 
@@ -175,7 +175,7 @@
         </div>
 
         <input type='button' class='back button' value='&larr; Back' />
-        <input type='button' id='next' class='button' value='Save Order' />
+        <input type='submit' id='submit' class='button' value='Save Order' />
     </div>
 
     <!--<div id='stepThree'>
@@ -202,5 +202,5 @@
 
 {% block javascript %}
     <script type='text/javascript' src='{{ STATIC_URL }}orders/js/main.js'></script>
-    <script type='text/javascript' src='{{ STATIC_URL }}orders/js/order_review.js'></script>
+    <!--<script type='text/javascript' src='{{ STATIC_URL }}orders/js/order_review.js'></script>-->
 {% endblock %}

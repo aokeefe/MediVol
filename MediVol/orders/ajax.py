@@ -113,7 +113,7 @@ def get_info(request, boxid):
     return simplejson.dumps(box_info)
 
 @dajaxice_register(method='POST')
-def add_boxes_to_order(request, order_number, box_ids=[], box_prices=[], price=False):
+def add_boxes_to_order(request, order_number, boxes={}, price=False):
     try:
         order = Order.objects.get(order_number=order_number)
     except Order.DoesNotExist:
@@ -122,15 +122,16 @@ def add_boxes_to_order(request, order_number, box_ids=[], box_prices=[], price=F
     total_price = 0
 
     if price is not False:
-        total_price = price
+        order.price = price
+        order.save()
 
-    for i in range(0..len(box_ids)):
-        box_id = box_ids[i]
+    for box_id, box_price in boxes.iteritems():
+        box_id = int(box_id)
+        box_price = int(box_price)
 
         box_for_order = Box.objects.get(box_id=box_id)
 
         if price is False:
-            box_price = box_prices[i]
             total_price = total_price + box_price
             order_box = OrderBox(order_for=order, box=box_for_order, cost=box_price)
         else:
@@ -138,9 +139,6 @@ def add_boxes_to_order(request, order_number, box_ids=[], box_prices=[], price=F
 
         order_box.save()
 
-    if price is False:
-        order.price = total_price
-        order.save()
 
     return simplejson.dumps({ 'result': 1 })
 
@@ -156,13 +154,12 @@ def create_order(request, customer_name, customer_email, businessName, businessA
         customer.customer_email = customer_email
         customer.business_address = businessAddress
         customer.shipping_address = shipping
-
-        customer.save()
     except Customer.DoesNotExist:
         customer = Customer(contact_name=customer_name, contact_email=customer_email,
                             business_name=businessName, business_address=businessAddress,
                             shipping_address=shipping)
-        customer.save()
+
+    customer.save()
 
     # Calculate order number
     order_number = len(Order.objects.all()) + ORDER_BASE_NUMBER

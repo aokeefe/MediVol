@@ -10,7 +10,7 @@ var ITEM_TEMPLATE = '<tr>' +
         '<td>{box_id}</td>' +
         '<td>{box_size}</td>' +
         '<td>{weight}</td>' +
-        '<td class="priceRow"><input type="text" class="textField boxPrice" /></td>' +
+        '<td class="priceRow">$ <input type="number" class="textField boxPrice" /></td>' +
         '<td><a class="remove_item" href="javascript:void(0)">Remove</a></td>' +
     '</tr>';
 
@@ -188,8 +188,8 @@ function setRemoveButton() {
 /**
  * Returns an array of the items that have been added to the box.
  */
-function getAddedItems() {
-    var items = [];
+function getAddedBoxes() {
+    var boxes = [];
 
     // Go through each item in the table and add it to the items array.
     // Each item is added as an array with the following format:
@@ -202,11 +202,11 @@ function getAddedItems() {
             var itemInfo = element.children('td');
             var boxId = $(itemInfo[0]).html();
 
-            items.push(boxId);
+            boxes.push(boxId);
         }
     });
 
-    return items;
+    return boxes;
 }
 
 function goBack() {
@@ -475,7 +475,7 @@ $(document).ready(function() {
         $('#emptyBoxMessage').hide();
     });
 
-    $('#next').click(function(e) {
+    $('.next').click(function(e) {
         e.preventDefault();
 
         goForward();
@@ -554,20 +554,20 @@ $(document).ready(function() {
         var shipping_address = $('#shipping_address').val();
 
         if (missingRequired) {
-            // return;
+            return;
         }
 
         if (orderNumber === 0) {
             // Call the create_order AJAX function.
-            // Dajaxice.orders.create_order(createOrder,
-            //     {
-            //         'customer_name': contact_name,
-            //         'customer_email': contact_email,
-            //         'businessName':  organization_name,
-            //         'businessAddress': organization_address,
-            //         'shipping': shipping_address
-            //     }
-            // );
+            Dajaxice.orders.create_order(createOrder,
+                {
+                    'customer_name': contact_name,
+                    'customer_email': contact_email,
+                    'businessName':  organization_name,
+                    'businessAddress': organization_address,
+                    'shipping': shipping_address
+                }
+            );
         } else {
             // TODO: trigger order edit
         }
@@ -579,18 +579,33 @@ $(document).ready(function() {
     $('#submit').click(function(e) {
         e.preventDefault();
 
-        var prices = [];
+        var boxes = {};
 
-        $('#review_boxes tr').each(function(index, element) {
+        $('#boxes_added tr').each(function(index, element) {
             element = $(element);
 
             if (element.attr('id') != 'placeholder_row' &&
                     element.attr('id') != 'table_header') {
                 var boxInfo = element.children('td');
+                var boxId = $(boxInfo[0]).html();
                 var boxPrice = $($(boxInfo[3]).children('input')[0]).val();
 
-                prices.push(boxPrice);
+                boxes[boxId] = boxPrice;
             }
         });
+
+        Dajaxice.orders.add_boxes_to_order(
+            function(returned) {
+                console.log(returned);
+                if (returned.result == 1) {
+                    window.location = '/orders/';
+                }
+            },
+            {
+                'order_number': orderNumber,
+                'boxes': boxes//,
+                //'price':
+            }
+        );
     });
 });

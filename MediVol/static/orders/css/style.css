@@ -79,13 +79,13 @@ h3 {
     margin: 15px;
 }
 
-#next, #submit, .back {
+.next, #submit, .back {
     font-size: 2.5em;
     height: 60px;
     margin-top: 20px;
 }
 
-#next, #submit {
+.next, #submit {
     float: right;
 }
 
@@ -262,5 +262,5 @@ label {
 }
 
 .priceRow {
-    width: 100px;
+    width: 125px;
 }
