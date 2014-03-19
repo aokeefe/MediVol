@@ -5,7 +5,9 @@ from orders.models import Order, OrderBox
 from inventory.models import Box
 
 def orders_home(request):
-    return render(request, 'orders/orders.html')
+    context = { 'orders': Order.objects.all() }
+
+    return render(request, 'orders/orders.html', context)
 
 #Display the create page of ordering
 def create_order(request):
