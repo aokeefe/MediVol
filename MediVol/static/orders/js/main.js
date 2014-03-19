@@ -499,6 +499,10 @@ $(document).ready(function() {
 
         var boxId = $('#boxes option:selected').val();
 
+        if (typeof(boxId) === 'undefined') {
+            return;
+        }
+
         // Remove the placeholder row if it's there.
         $('#placeholder_row').remove();
 
@@ -519,7 +523,9 @@ $(document).ready(function() {
     $('.next').click(function(e) {
         e.preventDefault();
 
-        goForward();
+        if (!$(this).hasClass('createButton')) {
+            goForward();
+        }
     });
 
     $('.back').click(function(e) {
@@ -649,7 +655,7 @@ $(document).ready(function() {
             function(returned) {
                 console.log(returned);
                 if (returned.result == 1) {
-                    window.location = '/orders/';
+                    window.location = '/orders/order_review/' + orderNumber;
                 }
             },
             {

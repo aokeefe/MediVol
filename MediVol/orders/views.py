@@ -2,11 +2,14 @@ from django.shortcuts import render, render_to_response
 
 from catalog.models import Category
 from orders.models import Order, OrderBox
-from inventory.models import Box 
+from inventory.models import Box
 
-#Display the main page of ordering 
-def orders_main(request):
-    
+def orders_home(request):
+    return render(request, 'orders/orders.html')
+
+#Display the create page of ordering
+def create_order(request):
+
     categories = Category.objects.all()
     categoryStrings = []
 
@@ -15,7 +18,7 @@ def orders_main(request):
 
     context = { 'categories': sorted(categoryStrings) }
 
-    return render(request, 'orders/orders.html', context)
+    return render(request, 'orders/create_order.html', context)
 
 # Display order review page
 def order_review(request, orderid):
@@ -24,23 +27,23 @@ def order_review(request, orderid):
         boxes = []
         boxOrderBoxPair = []
 
-        #Try and get order to review, if the order id exists return 
+        #Try and get order to review, if the order id exists return
         order = Order.objects.get(order_number=orderid)
-        
-        #Try and get boxes in order 
+
+        #Try and get boxes in order
         orderBoxes = OrderBox.objects.filter(order_for=order)
-                   
+
         for orderBox in orderBoxes:
             box = Box.objects.get(box_id=orderBox.box)
-            
+
             boxOrderBoxPair.append(box)
             boxOrderBoxPair.append(orderBox)
 
             boxes.append(boxOrderBoxPair)
 
         response = { 'boxes': boxes, 'order': order}
-        return render(request, 'orders/review_order.html', response) 
+        return render(request, 'orders/review_order.html', response)
 
   except:
         # If order id does not exist in database redirect to order not found page
-        return render_to_response('orders/order_not_found.html')  
+        return render_to_response('orders/order_not_found.html')
