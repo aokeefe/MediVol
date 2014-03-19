@@ -437,7 +437,6 @@ $(document).ready(function() {
 
                     var contactEmail = returned.contact_email;
                     var orgAddress = returned.organization_address;
-                    var shippingAddress = returned.shipping_address;
 
                     $('#contact_email').val(contactEmail).removeClass('requiredTextField');
 
