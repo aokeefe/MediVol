@@ -2,7 +2,7 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from datetime import datetime
 
-from orders.models import Order, OrderBox, Customer
+from orders.models import Order, OrderBox, Customer, ShippingAddress
 from orders import views as orderView
 from inventory.models import Box, Contents
 from catalog.models import Category, BoxName, Item
@@ -76,11 +76,16 @@ def get_customer_info(request, contact_name, organization_name):
     except Customer.DoesNotExist:
         return False
 
+    addresses = []
+
+    for shipping_address in customer.shippingaddress_set.all():
+        addresses.append(shipping_address.address)
+
     return simplejson.dumps(
         {
             'contact_email': customer.contact_email,
             'organization_address': customer.business_address,
-            'shipping_address': customer.shipping_address
+            'shipping_addresses': addresses
         }
     )
 
@@ -160,27 +165,44 @@ def add_boxes_to_order(request, order_number, boxes={}, price=False):
 
 # Registers order to database.
 @dajaxice_register(method='POST')
-def create_order(request, customer_name, customer_email, businessName, businessAddress, shipping=None):
-    if shipping == '':
-        shipping = None
+def create_order(request, customer_name, customer_email, businessName, businessAddress,
+        new_shipping_address=None, shipping_address=None):
+    if new_shipping_address == '':
+        new_shipping_address = None
+
+    if shipping_address == '':
+        shipping_address = None;
 
     try:
         customer = Customer.objects.get(contact_name=customer_name, business_name=businessName)
 
         customer.customer_email = customer_email
         customer.business_address = businessAddress
-        customer.shipping_address = shipping
     except Customer.DoesNotExist:
         customer = Customer(contact_name=customer_name, contact_email=customer_email,
-                            business_name=businessName, business_address=businessAddress,
-                            shipping_address=shipping)
+                            business_name=businessName, business_address=businessAddress)
 
     customer.save()
+
+    ship_to = None
+
+    if new_shipping_address is not None:
+        try:
+            ship_to = ShippingAddress.objects.get(customer=customer, address=new_shipping_address)
+        except ShippingAddress.DoesNotExist:
+            ship_to = ShippingAddress(customer=customer, address=new_shipping_address)
+            ship_to.save()
+    elif shipping_address is not None:
+        try:
+            ship_to = ShippingAddress.objects.get(customer=customer, address=shipping_address)
+        except ShippingAddress.DoesNotExist:
+            ship_to = ShippingAddress(customer=customer, address=shipping_address)
+            ship_to.save()
 
     # Calculate order number
     order_number = len(Order.objects.all()) + ORDER_BASE_NUMBER
 
-    new_order = Order(reserved_for=customer, ship_to=customer_name, order_number=order_number, creation_date=datetime.today())
+    new_order = Order(reserved_for=customer, ship_to=ship_to, order_number=order_number, creation_date=datetime.today())
     new_order.save()
 
     return simplejson.dumps({ 'order_number': order_number })

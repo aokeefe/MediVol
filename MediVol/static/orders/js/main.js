@@ -295,6 +295,37 @@ function pricesHaveErrors() {
     return hasErrors;
 }
 
+function autofillCustomerInfo(contactName, orgName) {
+    Dajaxice.orders.get_customer_info(function(returned) {
+        if (returned == 'False') {
+            $('#shippingAddressesWrapper').html('<i>no shipping addresses saved</i>');
+            return;
+        }
+
+        var contactEmail = returned.contact_email;
+        var orgAddress = returned.organization_address;
+        var shippingAddresses = returned.shipping_addresses;
+
+        if (shippingAddresses.length > 0) {
+            $('#shippingAddressesWrapper').html('<select id="shippingAddresses"></select>');
+
+            for (var i = 0; i < shippingAddresses.length; i++) {
+                var shippingAddress = shippingAddresses[i];
+
+                $('#shippingAddresses').append('<option>' + shippingAddress + '</option');
+            }
+        } else {
+            $('#shippingAddressesWrapper').html('<i>no shipping addresses saved</i>');
+        }
+
+        $('#contact_email').val(contactEmail).removeClass('requiredTextField');
+
+        $('#organization_name').val(orgName).removeClass('requiredTextField');
+
+        $('#organization_address').val(orgAddress).removeClass('requiredTextField');
+    }, { 'contact_name': contactName, 'organization_name': orgName });
+}
+
 $(document).ready(function() {
     // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
@@ -426,26 +457,17 @@ $(document).ready(function() {
                 var query = $('#contact_name').val();
                 var splitQuery = query.split(' (');
                 var contactName = splitQuery[0];
-                var orgName = splitQuery[1].substring(0, splitQuery[1].length - 1);
 
                 $('#contact_name').val(contactName).removeClass('requiredTextField');
 
-                Dajaxice.orders.get_customer_info(function(returned) {
-                    if (returned == 'False') {
-                        return;
-                    }
+                if (splitQuery.length < 2) {
+                    $('#shippingAddressesWrapper').html('<i>no shipping addresses saved</i>');
+                    return;
+                }
 
-                    var contactEmail = returned.contact_email;
-                    var orgAddress = returned.organization_address;
+                var orgName = splitQuery[1].substring(0, splitQuery[1].length - 1);
 
-                    $('#contact_email').val(contactEmail).removeClass('requiredTextField');
-
-                    $('#organization_name').val(orgName).removeClass('requiredTextField');
-
-                    $('#organization_address').val(orgAddress).removeClass('requiredTextField');
-
-                    $('#shipping_address').val(shippingAddress).removeClass('requiredTextField');
-                }, { 'contact_name': contactName, 'organization_name': orgName });
+                autofillCustomerInfo(contactName, orgName);
             }
         }
     );
@@ -597,7 +619,12 @@ $(document).ready(function() {
             missingRequired = true;
         }
 
-        var shipping_address = $('#shipping_address').val();
+        var new_shipping_address = $('#shipping_address').val();
+        var shipping_address = '';
+
+        if ($('#shippingAddressesWrapper').html() !== '<i>no shipping addresses saved</i>') {
+            shipping_address = $('#shippingAddresses option:selected').val();
+        }
 
         if (missingRequired) {
             return;
@@ -611,11 +638,21 @@ $(document).ready(function() {
                     'customer_email': contact_email,
                     'businessName':  organization_name,
                     'businessAddress': organization_address,
-                    'shipping': shipping_address
+                    'new_shipping_address': new_shipping_address,
+                    'shipping_address': shipping_address
                 }
             );
         } else {
             // TODO: trigger order edit
+        }
+
+        if ($('#shippingAddressesWrapper').html() !== '<i>no shipping addresses saved</i>' &&
+                new_shipping_address !== '') {
+            $('#shippingAddressesWrapper').append('<option selected="selected">' + new_shipping_address + '</option>');
+        } else if (new_shipping_address !== '') {
+            console.log('new one');
+            $('#shippingAddressesWrapper').html('<select id="shippingAddresses"></select>');
+            $('#shippingAddresses').append('<option>' + new_shipping_address + '</option>');
         }
 
         goForward();
@@ -654,7 +691,7 @@ $(document).ready(function() {
             function(returned) {
                 console.log(returned);
                 if (returned.result == 1) {
-                    window.location = '/orders/order_review/' + orderNumber;
+                    window.location = '/orders/review/' + orderNumber;
                 }
             },
             {

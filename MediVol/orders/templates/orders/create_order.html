@@ -46,7 +46,7 @@
                 </div>
 
                 <div class='stepTwoFieldWrapper'>
-                    <input name='contact_email' id='contact_email' type='text' class='textField' />
+                    <input name='contact_email' id='contact_email' type='email' class='textField' />
                 </div>
 
                 <div class='clear'></div>
@@ -78,7 +78,20 @@
 
             <div class='stepTwoField'>
                 <div class='label'>
-                    Shipping Address<br />
+                    Shipping Address
+                </div>
+
+                <div id='shippingAddressesWrapper' class='stepTwoFieldWrapper'>
+                    <i>no shipping addresses saved</i>
+                </div>
+
+                <div class='clear'></div>
+            </div>
+
+            <div class='stepTwoField'>
+                <div class='label'>
+                    New Shipping Address<br />
+                    <span class='note'>* overrides shipping address</span><br />
                     <input type='checkbox' id='same_as_business' />
                     <label for='same_as_business'>Same as organization address</label>
                 </div>

@@ -302,3 +302,12 @@ label {
     margin-right: 1px;
     text-align: right;
 }
+
+.note {
+    font-size: 0.75em;
+    font-style: italic;
+}
+
+#shippingAddresses {
+    font-size: 1em;
+}
