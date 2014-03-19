@@ -125,26 +125,26 @@ sudo apt-get install sl;
 
 sleep 15;
 
-python /var/www/MediVol/syncdb_script.py;
-python /var/www/MediVol/catalog/initialize_categories.py;
-python /var/www/MediVol/inventory/CSV_Importer.py /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_1.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_2.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_3.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_4.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_5.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_6.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_7.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_8.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_9.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_10.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_11.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_12.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_13.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_14.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_15.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_16.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_17.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_18.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_19.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_20.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_21.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_22.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_23.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_24.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_25.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_26.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_27.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_28.csv /var/www/MediVol/inventory/Medivol_DBImport/old_inventory_29.csv \
-/var/www/MediVol/inventory/Medivol_DBImport/old_inventory_30.csv;
+python /var/www/MediVol/MediVol/syncdb_script.py;
+python /var/www/MediVol/MediVol/catalog/initialize_categories.py;
+python /var/www/MediVol/MediVol/inventory/CSV_Importer.py /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_1.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_2.csv /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_3.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_4.csv /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_5.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_6.csv /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_7.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_8.csv /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_9.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_10.csv /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_11.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_12.csv /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_13.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_14.csv /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_15.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_16.csv /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_17.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_18.csv /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_19.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_20.csv /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_21.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_22.csv /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_23.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_24.csv /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_25.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_26.csv /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_27.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_28.csv /var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_29.csv \
+/var/www/MediVol/MediVol/inventory/Medivol_DBImport/old_inventory_30.csv;
 
-cd /var/www/MediVol/;
+cd /var/www/MediVol/MediVol/;
 python manage.py collectstatic --noinput;
 
 sudo service apache2 restart;

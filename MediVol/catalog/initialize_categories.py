@@ -1,5 +1,5 @@
 import os, sys
-sys.path.append('/var/www/MediVol/')
+sys.path.append('/var/www/MediVol/MediVol/')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
 from django.db import models
 from catalog.models import Category, BoxName, Item
@@ -250,7 +250,7 @@ for pair in box_name_mapping:
     box_name = BoxName(name=pair[0], category=Category.objects.get(letter=pair[1]), can_expire=pair[2], can_count=pair[3])
     box_name.save()
 
-item_file = file('/var/www/MediVol/catalog/item_list.txt', 'r')
+item_file = file('/var/www/MediVol/MediVol/catalog/item_list.txt', 'r')
 box_name = None
 for line in item_file:
     if ':' in line:

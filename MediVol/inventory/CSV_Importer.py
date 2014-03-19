@@ -4,7 +4,7 @@ import time
 import re
 import os, sys
 import pytz
-sys.path.append('/var/www/MediVol/')
+sys.path.append('/var/www/MediVol/MediVol/')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
 from django.db import models
 from inventory.models import Box

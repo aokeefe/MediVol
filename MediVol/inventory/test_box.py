@@ -1,5 +1,5 @@
 import os, sys
-sys.path.append('/var/www/MediVol/')
+sys.path.append('/var/www/MediVol/MediVol/')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
 from inventory.models import Box, Contents
 from catalog.models import Item, Category

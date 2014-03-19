@@ -1,5 +1,5 @@
 import sys, os, datetime
-sys.path.append('/var/www/MediVol/')
+sys.path.append('/var/www/MediVol/MediVol/')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
 from django.db import models
 from catalog.models import Category, BoxName, Item

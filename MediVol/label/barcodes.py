@@ -1,6 +1,6 @@
 import os, sys
 import time
-sys.path.append('/var/www/MediVol/')
+sys.path.append('/var/www/MediVol/MediVol/')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
 from base64 import b64encode
 from reportlab.graphics.barcode import createBarcodeDrawing
