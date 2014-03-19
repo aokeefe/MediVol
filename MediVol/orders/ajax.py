@@ -78,9 +78,18 @@ def get_customer_info(request, contact_name, organization_name):
         {
             'contact_email': customer.contact_email,
             'organization_address': customer.business_address,
-            'shipping_address': customer.shipping_address
         }
     )
+
+@dajaxice_register(method='GET')
+def get_customer_shipping_addresses(request, contact_name, organization_name):
+    try:
+        customer = Customer.objects.get(contact_name=contact_name, business_name=organization_name)
+    except Customer.DoesNotExist:
+        return False
+
+    addresses = customer.shippingaddress_set.all()
+    return simplejson.dumps(addresses)
 
 # Get Box Info
 @dajaxice_register(method='GET')
@@ -112,13 +121,12 @@ def get_info(request, boxid):
 
 # Registers order to database.
 @dajaxice_register
-def create_order(request, customer_name, customer_email, businessName, businessAddress, shipping, box_ids):
+def create_order(request, customer_name, customer_email, businessName, businessAddress, box_ids):
     try:
         customer = Customer.objects.get(contact_email=customer_email)
     except Customer.DoesNotExist:
         customer = Customer(contact_name=customer_name, contact_email=customer_email,
-                            business_name=businessName, business_address=businessAddress,
-                            shipping_address=shipping)
+                            business_name=businessName, business_address=businessAddress)
         customer.save()
 
     order_base_number = 100
