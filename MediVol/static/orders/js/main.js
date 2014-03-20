@@ -697,7 +697,7 @@ $(document).ready(function() {
             {
                 'order_number': orderNumber,
                 'boxes': boxes,
-                'price': price
+                'custom_price': price
             }
         );
     });

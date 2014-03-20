@@ -89,16 +89,6 @@ def get_customer_info(request, contact_name, organization_name):
         }
     )
 
-@dajaxice_register(method='GET')
-def get_customer_shipping_addresses(request, contact_name, organization_name):
-    try:
-        customer = Customer.objects.get(contact_name=contact_name, business_name=organization_name)
-    except Customer.DoesNotExist:
-        return False
-
-    addresses = customer.shippingaddress_set.all()
-    return simplejson.dumps(addresses)
-
 # Get Box Info
 @dajaxice_register(method='GET')
 def get_info(request, boxid):
@@ -128,16 +118,16 @@ def get_info(request, boxid):
     return simplejson.dumps(box_info)
 
 @dajaxice_register(method='POST')
-def add_boxes_to_order(request, order_number, boxes={}, price=False):
+def add_boxes_to_order(request, order_number, boxes={}, custom_price=False):
     try:
         order = Order.objects.get(order_number=order_number)
     except Order.DoesNotExist:
         return simplejson.dumps({ 'result': 0 })
 
-    if price == '':
-        price = False
+    if custom_price == '':
+        custom_price = False
 
-    total_price = 0
+    order_price = 0
 
     for box_id, box_price in boxes.iteritems():
         box_id = int(box_id)
@@ -149,15 +139,15 @@ def add_boxes_to_order(request, order_number, boxes={}, price=False):
 
         box_for_order = Box.objects.get(box_id=box_id)
 
-        total_price = total_price + box_price
         order_box = OrderBox(order_for=order, box=box_for_order, cost=box_price)
-
         order_box.save()
 
-    if price is not False:
-        order.price = price
+        order_price = order_price + box_price
+
+    if custom_price is not False:
+        order.price = custom_price
     else:
-        order.price = total_price
+        order.price = order_price
 
     order.save()
 
@@ -167,9 +157,13 @@ def add_boxes_to_order(request, order_number, boxes={}, price=False):
 @dajaxice_register(method='POST')
 def create_order(request, customer_name, customer_email, businessName, businessAddress,
         new_shipping_address=None, shipping_address=None):
+    # new_shipping_address is if they are using an address that has never
+    # been used for the customer
     if new_shipping_address == '':
         new_shipping_address = None
 
+    # shipping_address is if they are using an address that we already
+    # have saved and is already associated with this customer
     if shipping_address == '':
         shipping_address = None;
 
