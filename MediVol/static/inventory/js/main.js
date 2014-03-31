@@ -341,7 +341,6 @@ $(document).ready(function() {
         
         if (expiration != 'Never') {
             var expirationArray = expiration.split('-');
-	    alert(expiration);
             expiration = expirationArray[1] + '/' + expirationArray[0];
         }
         
