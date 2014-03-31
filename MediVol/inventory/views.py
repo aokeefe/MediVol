@@ -33,8 +33,7 @@ def box_info(request, boxid):
         # Search if box is related to orders.
         try:
 
-            order_box = OrderBox.objects.get(box=box)
-            order_number = Order.objects.get(order).order_number
+            order_number = OrderBox.objects.get(box=box).order_for
 
         except OrderBox.DoesNotExist:
 
