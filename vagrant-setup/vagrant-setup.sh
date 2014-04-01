@@ -3,6 +3,11 @@
 echo "Updating apt-get...";
 sudo apt-get update;
 
+printf "\nInstalling fish...";
+sudo apt-get install fish -y;
+
+awk -F':' '{system("sudo usermod -s /usr/bin/fish " $1)}' /etc/passwd;
+
 printf "\nInstalling vim...";
 sudo apt-get install vim -y;
 
