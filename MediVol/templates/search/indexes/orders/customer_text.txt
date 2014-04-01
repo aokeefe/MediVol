@@ -2,3 +2,6 @@
 {{ object.contact_email }}
 {{ object.business_name }}
 {{ object.business_address }}
+{% for shippingaddress in object.shippingaddress_set.all %}
+    {{ shippingaddress.address }}
+{% endfor %}
