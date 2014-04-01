@@ -13,7 +13,11 @@
 {% endblock %}
 
 {% block body %}
-    <h2>Create Order - Step <span id='stepNumber'>1</span>/2</h2>
+    {% if order_id == 0 %}
+        <h2>Create Order - Step <span id='stepNumber'>1</span>/2</h2>
+    {% else %}
+        <h2>Edit Order {{ order_id }} - Step <span id='stepNumber'>1</span>/2</h2>
+    {% endif %}
 
     <div id='stepOne'>
         <p id='requiredFieldsMessage' class='requiredText requiredMessage'>Please fill out the required fields.</p>
