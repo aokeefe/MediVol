@@ -10,15 +10,40 @@ def orders_home(request):
     return render(request, 'orders/orders.html', context)
 
 #Display the create page of ordering
-def create_order(request):
-
+def create_order(request, order_id=0):
     categories = Category.objects.all()
     categoryStrings = []
+    order = False
+    num_addresses = 0
+    num_boxes = 0
+    total_price = 0.00
+    custom_price = 0.00
+
+    if order_id != 0:
+        try:
+            order = Order.objects.get(order_number=order_id)
+            num_addresses = len(order.reserved_for.shippingaddress_set.all())
+            num_boxes = len(order.orderbox_set.all())
+
+            for orderbox in order.orderbox_set.all():
+                total_price = total_price + orderbox.cost
+
+            custom_price = order.price
+        except Order.DoesNotExist:
+            order_id = 0
 
     for category in categories:
         categoryStrings.append(category.name)
 
-    context = { 'categories': sorted(categoryStrings) }
+    context = {
+        'categories': sorted(categoryStrings),
+        'order_id': order_id,
+        'order': order,
+        'num_address': num_addresses,
+        'num_boxes': num_boxes,
+        'total_price': '%.2f' % total_price,
+        'custom_price': '%.2f' % custom_price
+    }
 
     return render(request, 'orders/create_order.html', context)
 

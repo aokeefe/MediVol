@@ -6,7 +6,7 @@ if (typeof String.prototype.startsWith != 'function') {
 }
 
 // Template for adding new item to the table.
-var ITEM_TEMPLATE = '<tr>' +
+var BOX_TEMPLATE = '<tr>' +
         '<td>{box_id}</td>' +
         '<td>{box_size}</td>' +
         '<td>{weight}</td>' +
@@ -29,7 +29,6 @@ var itemToChoose = '';
 var boxToChoose = '';
 var boxesToOrder = [];
 var stepNum = 1;
-var orderNumber = 0;
 
 /**
 * Function for getting a specific box information
@@ -41,7 +40,7 @@ function getBoxInfo(response) {
     var boxWeight = response[0];
 
     $('#boxes_added').append(
-        ITEM_TEMPLATE.replace('{box_id}', boxId)
+        BOX_TEMPLATE.replace('{box_id}', boxId)
             .replace('{box_size}', boxSize)
             .replace('{weight}', boxWeight + ' lbs')
     );
@@ -327,6 +326,9 @@ function autofillCustomerInfo(contactName, orgName) {
 }
 
 $(document).ready(function() {
+    setRemoveButton();
+    $('#boxes_added tr td :input').bind('input paste', displayTotalPrice);
+
     // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
         {
@@ -630,30 +632,28 @@ $(document).ready(function() {
             return;
         }
 
-        if (orderNumber === 0) {
-            // Call the create_order AJAX function.
-            Dajaxice.orders.create_order(createOrder,
-                {
-                    'customer_name': contact_name,
-                    'customer_email': contact_email,
-                    'businessName':  organization_name,
-                    'businessAddress': organization_address,
-                    'new_shipping_address': new_shipping_address,
-                    'shipping_address': shipping_address
-                }
-            );
-        } else {
-            // TODO: trigger order edit
-        }
+        // Call the create_order AJAX function.
+        Dajaxice.orders.create_order(createOrder,
+            {
+                'customer_name': contact_name,
+                'customer_email': contact_email,
+                'business_name':  organization_name,
+                'business_address': organization_address,
+                'new_shipping_address': new_shipping_address,
+                'shipping_address': shipping_address,
+                'order_number': orderNumber
+            }
+        );
 
         if ($('#shippingAddressesWrapper').html() !== '<i>no shipping addresses saved</i>' &&
                 new_shipping_address !== '') {
             $('#shippingAddressesWrapper').append('<option selected="selected">' + new_shipping_address + '</option>');
         } else if (new_shipping_address !== '') {
-            console.log('new one');
             $('#shippingAddressesWrapper').html('<select id="shippingAddresses"></select>');
             $('#shippingAddresses').append('<option>' + new_shipping_address + '</option>');
         }
+
+        $('.createButton').val('Save Order \u2192');
 
         goForward();
     });
