@@ -25,8 +25,8 @@ def create_order(request, order_id=0):
             num_addresses = len(order.reserved_for.shippingaddress_set.all())
             num_boxes = len(order.orderbox_set.all())
 
-            for orderbox in order.orderbox_set.all():
-                total_price = total_price + orderbox.cost
+            for order_box in order.orderbox_set.all():
+                total_price = total_price + order_box.cost
 
             custom_price = order.price
         except Order.DoesNotExist:
@@ -49,28 +49,16 @@ def create_order(request, order_id=0):
 
 # Display order review page
 def order_review(request, orderid):
-
-  try:
+    try:
         boxes = []
-        boxOrderBoxPair = []
+        box_orderbox_pair = []
 
         #Try and get order to review, if the order id exists return
         order = Order.objects.get(order_number=orderid)
 
-        #Try and get boxes in order
-        orderBoxes = OrderBox.objects.filter(order_for=order)
+        response = { 'order_boxes': OrderBox.objects.filter(order_for=order), 'order': order }
 
-        for orderBox in orderBoxes:
-            box = Box.objects.get(box_id=orderBox.box)
-
-            boxOrderBoxPair.append(box)
-            boxOrderBoxPair.append(orderBox)
-
-            boxes.append(boxOrderBoxPair)
-
-        response = { 'boxes': boxes, 'order': order}
         return render(request, 'orders/review_order.html', response)
-
-  except:
+    except:
         # If order id does not exist in database redirect to order not found page
         return render_to_response('orders/order_not_found.html')

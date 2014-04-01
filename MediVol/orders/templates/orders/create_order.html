@@ -109,7 +109,7 @@
                                     {% if shipping_address == order.ship_to %}
                                         <option selected='selected'>{{ shipping_address.address }}</option>
                                     {% else %}
-                                        <option>{{ shippping_address.address }}</option>
+                                        <option>{{ shipping_address.address }}</option>
                                     {% endif %}
                                 {% endfor %}
                             </select>
@@ -241,7 +241,7 @@
                                     <td class='priceRow'>$ <input type='text' class='textField boxPrice' step='any' min='0' /></td>
                                 {% else %}
                                     <td class='priceRow'>$ <input type='text' class='textField boxPrice' step='any' min='0'
-                                        value="{{ orderbox.cost }}" /></td>
+                                        value="{{ orderbox.cost|floatformat:'2' }}" /></td>
                                 {% endif %}
                                 <td><a class='remove_item' href='javascript:void(0)'>Remove</a></td>
                             </tr>
@@ -256,7 +256,7 @@
                 {% if order_id == 0 %}
                     <div class='priceRight'>$<span id='totalPrice'>0.00</span></div>
                 {% else %}
-                    <div class='priceRight'>$<span id='totalPrice'>{{ total_price }}</span></div>
+                    <div class='priceRight'>$<span id='totalPrice'>{{ total_price|floatformat:'2' }}</span></div>
                 {% endif %}
                 <div class='priceLeft'>Total Price </div>
             </div>
@@ -267,7 +267,7 @@
                         <input type='text' id='price' class='textField' />
                     {% else %}
                         {% if total_price != custom_price %}
-                            <input type='text' id='price' class='textField' value="{{ custom_price }}" />
+                            <input type='text' id='price' class='textField' value="{{ custom_price|floatformat:'2' }}" />
                         {% else %}
                             <input type='text' id='price' class='textField' />
                         {% endif %}

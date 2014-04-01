@@ -1,42 +1,78 @@
 {% extends 'base.html' %}
 
-{% block title %} 
+{% block title %}
     <title>Order Review Page </title>
 {% endblock %}
 
 {% block styles %}
     <link rel='stylesheet' href='{{ STATIC_URL }}orders/css/style.css' />
+    <link rel='stylesheet' href='{{ STATIC_URL }}orders/css/review_style.css' />
 {% endblock %}
 
 {% block body %}
-    <h2>Review Order Number: {{ order.order_number }}</h2>
+    <h2>Order {{ order.order_number }}</h2>
 
-    <div id='stepOne'> 
-        <div id='tableWrapper'>
-            <table id='boxes_added'>
-                <tr id='table_header'>
-                    <th>Box ID</th>
-                    <th>Size</th>
-                    <th>Weight</th>
-                    <th>Price</th>
-                </tr>
-                
-                {% for box, orderbox in boxes %}
-                    <tr id="box_info">
-                        <td>{{ box.box_id }}</td>
-                        <td>{{ box.box_size }}</td>
-                        <td>{{ box.box_weight }}</td>
-                        <td><input type="text" id="box {{box.box_id}} price"  name="box {{box.box_id}} price" value="{{orderbox.cost}}" onchange="displayTotalPrice()" ></td>
-                    </tr>
-                {% endfor %}
-            </table>
+    <div id='customerInfoWrapper'>
+        <p class='contactName'>{{ order.reserved_for.contact_name }}</p>
+        <p class='businessName'>{{ order.reserved_for.business_name }}</p>
+
+        <div class='addressWrapper'>
+            <p class='addressHeader'>Business Address</p>
+            <p class='businessAddress'>{{ order.reserved_for.business_address|linebreaksbr }}</p>
         </div>
-        <h3>Total Weight of Order: </h3>
-        <h3>Total Price of Order: </h3>
-        <p id="total_price"></p>
-    </div> 
+
+        {% if order.ship_to != None %}
+            <div class='addressWrapper'>
+                <p class='addressHeader'>Shipping Address</p>
+                <p class='shippingAddress'>{{ order.ship_to.address|linebreaksbr }}</p>
+            </div>
+        {% endif %}
+
+        <div class='clear'></div>
+    </div>
+
+    <div id='tableWrapper'>
+        <table id='boxes_added'>
+            <tr id='table_header'>
+                <td>Box ID</td>
+                <td>Size</td>
+                <td>Weight</td>
+                <td>Price</td>
+            </tr>
+
+            {% for order_box in order_boxes %}
+                <tr id='box_info'>
+                    <td>
+                        <a href='/inventory/view_box_info/{{ order_box.box.box_id }}' target='_blank'>
+                            {{ order_box.box.box_id }}
+                        </a>
+                    </td>
+                    <td>{{ order_box.box.get_box_size_display }}</td>
+                    <td>{{ order_box.box.weight|floatformat:'1' }} lbs</td>
+                    <td>
+                        ${{ order_box.cost|floatformat:'2' }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div id='orderInfoWrapper'>
+        <div id='orderInfoLeft'>
+            <a href='/orders/create/{{ order.order_number }}'>
+                <button class='button editOrderButton'>Edit Order</button>
+            </a>
+        </div>
+
+        <div id='orderInfoRight'>
+            <h3>Total Weight: {{ order.get_weight|floatformat:'1' }} lbs</h3>
+            <h3>Order Price: ${{ order.price|floatformat:'2' }}</h3>
+        </div>
+
+        <div class='clear'></div>
+    </div>
 {% endblock %}
 
-{% block javascript %} 
-  <script type='text/javascript' src='{{ STATIC_URL }}orders/js/order_review.js'></script>
+{% block javascript %}
+
 {% endblock %}

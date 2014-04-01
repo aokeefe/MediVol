@@ -311,3 +311,11 @@ label {
 #shippingAddresses {
     font-size: 1em;
 }
+
+#shippingAddressesWrapper {
+    width: 52%;
+}
+
+#shippingAddresses {
+    width: 100%;
+}
