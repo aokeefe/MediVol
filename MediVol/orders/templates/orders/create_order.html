@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <title>Intervol | Orders Page </title>
+    {% if order_id == 0 %}
+        <title>Intervol | Create Order </title>
+    {% else %}
+        <title>Intervol | Edit Order {{ order_id }} </title>
+    {% endif %}
 {% endblock %}
 
 {% block styles %}
