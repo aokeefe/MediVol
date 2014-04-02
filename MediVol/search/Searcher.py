@@ -1,5 +1,6 @@
 from haystack.query import SearchQuerySet
 from catalog.models import Category, BoxName, Item
+from types import NoneType
 
 class Searcher:
     @classmethod
@@ -37,6 +38,9 @@ class Searcher:
 
         for result in results:
             result = result.object
+
+            if isinstance(result, NoneType):
+                continue
 
             if not as_objects:
                 results_array.append(result.get_search_results_string())
