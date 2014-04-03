@@ -1,5 +1,4 @@
-import string
-import random
+import uuid
 
-def id_generator(size, characters=string.ascii_uppercase + string.digits):
-	return ''.join(random.choice(characters) for _ in range(size))
+def id_generator(size):
+	return uuid.uuid4().hex[:size]
