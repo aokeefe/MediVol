@@ -32,7 +32,7 @@ fi
 if [ ! -f /etc/apache2/sites-available/medivol ];
 then
 printf "\nAdding medivol config...";
-sudo cp /var/www/medivol_apache_conf /etc/apache2/sites-available/medivol;
+sudo cp /var/www/MediVol/medivol_apache_conf /etc/apache2/sites-available/medivol;
 sudo a2ensite medivol;
 sudo service apache2 reload;
 fi
@@ -109,7 +109,7 @@ sudo apt-get install openjdk-7-jre-headless -y;
 printf '\nInstalling elasticsearch...';
 sudo pip install pyelasticsearch==0.6.1;
 sudo pip install elasticsearch==1.0.0;
-cd /var/www/vagrant-setup;
+cd /var/www/MediVol/vagrant-setup;
 sudo dpkg -i elasticsearch-0.90.11.deb;
 sudo service elasticsearch restart;
 
