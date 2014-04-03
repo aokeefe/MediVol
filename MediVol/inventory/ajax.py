@@ -56,15 +56,15 @@ def create_box(request, initials, weight, size, items, note=''):
 
     new_box.save()
 
-    for item in items:
-        expiration_date = item[1]
+    for item_info in items:
+        expiration_date = item_info[1]
 
         if expiration_date == 'Never':
             expiration_date = None
 
         contents = Contents(box_within=new_box,
-            item=Item.objects.get(name=item[0], box_name=BoxName.objects.get(name=item[3])),
-            quantity=item[2],
+            item=Item.objects.get(name=item_info[0], box_name=BoxName.objects.get(name=item_info[3])),
+            quantity=item_info[2],
             expiration=expiration_date)
 
         contents.save()
