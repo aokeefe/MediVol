@@ -1,4 +1,5 @@
 from django.utils import simplejson
+from itertools import chain
 from dajaxice.decorators import dajaxice_register
 from datetime import datetime
 
@@ -42,7 +43,7 @@ def get_box_ids(request, item):
     contents = Contents.objects.filter(item=item)
 
     for content in contents:
-        box_ids.append(content.box_within.box_id)
+        box_ids.append(content.box_within.get_id())
 
     return simplejson.dumps(sorted(box_ids))
 
@@ -57,11 +58,19 @@ def get_search_results(request, query):
         # shrug
         box = None
 
-    boxes = Box.objects.filter(box_id__startswith=query)
+    query = '%%%s%%' % query
 
-    if len(boxes) > 0:
-        for box in boxes:
-            results_array.insert(0, box.get_search_results_string())
+    boxes = chain(Box.objects.filter(box_id__istartswith=query),
+        Box.objects.raw(
+            '''SELECT * FROM inventory_box
+            INNER JOIN catalog_category ON inventory_box.box_category_id = catalog_category.id
+            WHERE CONCAT(catalog_category.letter, inventory_box.box_id) LIKE %s''',
+            [query]
+        )
+    )
+
+    for box in boxes:
+        results_array.insert(0, box.get_search_results_string())
 
     return simplejson.dumps(results_array)
 
@@ -95,7 +104,19 @@ def get_info(request, boxid):
     box_info = []
     box_items = []
 
-    box = Box.objects.get(box_id=boxid)
+    try:
+        box = Box.objects.get(box_id=boxid)
+    except Box.DoesNotExist:
+        boxes = Box.objects.raw(
+            '''SELECT * FROM inventory_box
+            INNER JOIN catalog_category ON inventory_box.box_category_id = catalog_category.id
+            WHERE CONCAT(catalog_category.letter, inventory_box.box_id) = %s''',
+            [boxid]
+        )
+
+        for box_found in boxes:
+            box = Box.objects.get(box_id=box_found.box_id)
+            break
 
     box_id = box.box_id
 

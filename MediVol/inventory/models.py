@@ -144,7 +144,7 @@ class Box(models.Model):
             return expiration_array[1] + '/' + expiration_array[2] + '/' + expiration_array[0]
 
     def get_search_results_string(self):
-        return 'Box ' + self.box_id
+        return 'Box ' + self.get_id()
 
     def get_contents_string(self):
         if self.old_contents is None:
