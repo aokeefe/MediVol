@@ -296,8 +296,7 @@ $(document).ready(function() {
             datePlusOneYear.setYear(datePlusOneYear.getFullYear() + 1);
             
             var newDateString = datePlusOneYear.getFullYear() + '-' + 
-                    ('0' + (datePlusOneYear.getMonth() + 1)).slice(-2) + '-' +
-                    ('0' + datePlusOneYear.getDate()).slice(-2);
+                    ('0' + (datePlusOneYear.getMonth() + 1)).slice(-2);
             
             $('#expiration').val(newDateString);
         }
@@ -317,7 +316,7 @@ $(document).ready(function() {
         var category = $('#categories option:selected').val();
         var boxName = $('#box_names option:selected').val();
         var item = $('#items option:selected').val();
-        var expiration = ($('#expiration').val() == '') ? 'Never' : $('#expiration').val();
+        var expiration = ($('#expiration').val() == '') ? 'Never' : $('#expiration').val(); 
         var count = $('#count').val();
         
         // Required fields to add an item.
@@ -342,7 +341,7 @@ $(document).ready(function() {
         
         if (expiration != 'Never') {
             var expirationArray = expiration.split('-');
-            expiration = expirationArray[1] + '/' + expirationArray[2] + '/' + expirationArray[0];
+            expiration = expirationArray[1] + '/' + expirationArray[0];
         }
         
         // Remove the placeholder row if it's there.

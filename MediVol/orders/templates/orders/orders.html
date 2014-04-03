@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>InterVol | Orders</title>
+{% endblock %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block body %}
+    <h2>Orders</h2>
+
+    <a href='/orders/create'><button class='button'>Create Order</button></a>
+
+    <ul>
+        {% for order in orders %}
+            <li><a href='/orders/review/{{ order.order_number }}'>{{ order.order_number }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
