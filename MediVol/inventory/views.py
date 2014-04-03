@@ -7,51 +7,48 @@ from orders.models import Order, OrderBox
 def create(request):
     categories = Category.objects.all()
     categoryStrings = []
-    
+
     for category in categories:
         categoryStrings.append(category.name)
-    
+
     context = { 'categories': sorted(categoryStrings) }
-    
+
     return render(request, 'inventory/create.html', context)
 
-def box_info(request, boxid): 
-    
-    try: 
-        #Try and get box info from the box id if exists return 
-        box = Box.objects.get(box_id=boxid)
-        box_contents = []
-    
-        if box.old_contents is None: 
-          
-            box_contents = Contents.objects.filter(box_within=box)
+def box_info(request, boxid):
+    #Try and get box info from the box id if exists return
+    box = Box.get_box(boxid)
 
-        else: 
-      
-            box_contents = box.old_contents    
- 
-        # Search if box is related to orders.
-        try:
+    if box is None:
+        return render(request, 'inventory/box_not_found.html')
 
-            order_number = OrderBox.objects.get(box=box).order_for
+    box_contents = []
 
-        except OrderBox.DoesNotExist:
+    if box.old_contents is None:
 
-            order_number = None
+        box_contents = Contents.objects.filter(box_within=box)
 
-        context = { 'box': box, 'box_contents': box_contents, 'order_number': order_number }
-        return render(request, 'inventory/box_info.html', context)
-        
-    except Box.DoesNotExist: 
-        
-        #If box does not exist in database redirect to box not found page
-        return render_to_response('inventory/box_not_found.html') 
+    else:
+
+        box_contents = box.old_contents
+
+    # Search if box is related to orders.
+    try:
+
+        order_number = OrderBox.objects.get(box=box).order_for
+
+    except OrderBox.DoesNotExist:
+
+        order_number = None
+
+    context = { 'box': box, 'box_contents': box_contents, 'order_number': order_number }
+    return render(request, 'inventory/box_info.html', context)
 
 def barcode_box_info(request, barcodeid):
-    
+
     try:
-        
-        #Try and get the box info from the box id if exists return 
+
+        #Try and get the box info from the box id if exists return
         box = Box.objects.get(barcode=barcodeid)
         box_contents = []
 

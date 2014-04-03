@@ -1,5 +1,4 @@
 from django.utils import simplejson
-from itertools import chain
 from dajaxice.decorators import dajaxice_register
 from datetime import datetime
 
@@ -58,16 +57,7 @@ def get_search_results(request, query):
         # shrug
         box = None
 
-    query = '%%%s%%' % query
-
-    boxes = chain(Box.objects.filter(box_id__istartswith=query),
-        Box.objects.raw(
-            '''SELECT * FROM inventory_box
-            INNER JOIN catalog_category ON inventory_box.box_category_id = catalog_category.id
-            WHERE CONCAT(catalog_category.letter, inventory_box.box_id) LIKE %s''',
-            [query]
-        )
-    )
+    boxes = Searcher.search_box_ids(query)
 
     for box in boxes:
         results_array.insert(0, box.get_search_results_string())
@@ -104,21 +94,9 @@ def get_info(request, boxid):
     box_info = []
     box_items = []
 
-    try:
-        box = Box.objects.get(box_id=boxid)
-    except Box.DoesNotExist:
-        boxes = Box.objects.raw(
-            '''SELECT * FROM inventory_box
-            INNER JOIN catalog_category ON inventory_box.box_category_id = catalog_category.id
-            WHERE CONCAT(catalog_category.letter, inventory_box.box_id) = %s''',
-            [boxid]
-        )
+    box = Box.get_box(boxid)
 
-        for box_found in boxes:
-            box = Box.objects.get(box_id=box_found.box_id)
-            break
-
-    box_id = box.box_id
+    box_id = box.get_id()
 
     box_size = box.box_size
     if box_size == 'S':
@@ -159,14 +137,12 @@ def add_boxes_to_order(request, order_number, boxes={}, custom_price=False):
     order_price = 0
 
     for box_id, box_price in boxes.iteritems():
-        box_id = int(box_id)
-
         if box_price != '':
             box_price = float(box_price)
         else:
             box_price = 0.00
 
-        box_for_order = Box.objects.get(box_id=box_id)
+        box_for_order = Box.get_box(box_id)
 
         order_box = OrderBox(order_for=order, box=box_for_order, cost=box_price)
         order_box.save()
