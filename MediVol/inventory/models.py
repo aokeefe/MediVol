@@ -5,6 +5,10 @@ from import_export.to_csv import to_csv_from_array, to_array_from_csv
 from datetime import datetime
 import random
 
+NAME_LENGTH = 80
+ABBREV_LENGTH = 4
+ADDRESS_LENGTH = 200
+
 class Box(models.Model):
     SMALL = 'S'
     LARGE = 'L'
@@ -199,11 +203,6 @@ class Contents(models.Model):
                   self.quantity,
                   self.expiration]
         return to_csv_from_array(values)
-
-NAME_LENGTH = 80
-ABBREV_LENGTH = 4
-ADDRESS_LENGTH = 200
-
 
 class Warehouse(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
