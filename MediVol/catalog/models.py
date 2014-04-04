@@ -3,7 +3,7 @@ from import_export.to_csv import to_csv_from_array, to_array_from_csv
 
 #TODO is this a valid number?
 NAME_LENGTH = 128
-LETTER_LENGTH = 1
+LETTER_LENGTH = 2
 
 class Category(models.Model):
     letter = models.CharField(max_length=LETTER_LENGTH, unique=True)
