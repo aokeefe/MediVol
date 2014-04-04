@@ -159,7 +159,6 @@ class Box(models.Model):
         return self.old_contents
 
 class Contents(models.Model):
-    contents_id = models.IntegerField(unique=True)
     box_within = models.ForeignKey(Box)
     item = models.ForeignKey(Item)
     quantity = models.IntegerField(default=0)
