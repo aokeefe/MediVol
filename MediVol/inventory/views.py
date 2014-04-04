@@ -4,14 +4,17 @@ from catalog.models import Category
 from inventory.models import Box, Contents
 from orders.models import Order, OrderBox
 
-def create(request):
+def create(request, order_id=0):
     categories = Category.objects.all()
     categoryStrings = []
 
     for category in categories:
         categoryStrings.append(category.name)
 
-    context = { 'categories': sorted(categoryStrings) }
+    context = {
+        'categories': sorted(categoryStrings),
+        'order_id': order_id
+    }
 
     return render(request, 'inventory/create.html', context)
 

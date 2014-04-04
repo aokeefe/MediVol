@@ -10,7 +10,8 @@ def orders_home(request):
     return render(request, 'orders/orders.html', context)
 
 #Display the create page of ordering
-def create_order(request, order_id=0):
+def create_order(request, order_id=0, step_num=1, box_to_add=0):
+    step_num = int(step_num)
     categories = Category.objects.all()
     categoryStrings = []
     order = False
@@ -35,6 +36,22 @@ def create_order(request, order_id=0):
     for category in categories:
         categoryStrings.append(category.name)
 
+    if total_price is None:
+        total_price = 0.00
+
+    if custom_price is None:
+        custom_price = 0.00
+
+    box = None
+    box_to_add = int(box_to_add)
+
+    if box_to_add != 0:
+        try:
+            box = Box.objects.get(box_id=box_to_add)
+        except Box.DoesNotExist:
+            # shrug
+            box = None
+
     context = {
         'categories': sorted(categoryStrings),
         'order_id': order_id,
@@ -42,7 +59,9 @@ def create_order(request, order_id=0):
         'num_address': num_addresses,
         'num_boxes': num_boxes,
         'total_price': '%.2f' % total_price,
-        'custom_price': '%.2f' % custom_price
+        'custom_price': '%.2f' % custom_price,
+        'step_num': step_num,
+        'box_to_add': box
     }
 
     return render(request, 'orders/create_order.html', context)

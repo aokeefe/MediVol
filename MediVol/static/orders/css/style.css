@@ -70,13 +70,26 @@ h3 {
     width: 100%;
 }
 
-#add_box {
-    float: right;
+#create_box, #add_box {
     font-size: 2em;
     height: 50px;
-    width: 125px;
-    min-width: 150px;
     margin: 15px;
+    float: right;
+    padding: 0px 15px;
+}
+
+#addBoxButton {
+    width: 100%;
+}
+
+.addBoxOr {
+    float: right;
+    margin-right: 15px;
+    font-size: 1.5em;
+}
+
+#create_box {
+    margin-bottom: 30px;
 }
 
 .next, #submit, .back {
@@ -104,10 +117,6 @@ h3 {
 .back {
     float: left;
     width: 175px;
-}
-
-#stepTwo, #stepThree {
-    display: none;
 }
 
 #stepOneFields {

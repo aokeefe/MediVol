@@ -4,6 +4,12 @@
     font-weight: 300;
 }
 
+.forOrder {
+    margin-top: -20px;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
 #itemSearch {
     width: 97.5%;
     margin-bottom: 20px;
@@ -45,7 +51,7 @@ h3 {
 }
 
 .infoFieldWrapper {
-    
+
 }
 
 .infoFieldWrapper input {
