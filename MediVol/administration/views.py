@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User, Group
 
 from administration.UserTests import UserTests
-from administration.models import Warehouse, ResetCode
+from inventory.models import Warehouse
+from administration.models import ResetCode
 
 @login_required
 @user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')

@@ -1,8 +1,13 @@
 import pytz
 from django.db import models
 from catalog.models import Item, Category
+from import_export.to_csv import to_csv_from_array, to_array_from_csv
 from datetime import datetime
 import random
+
+NAME_LENGTH = 80
+ABBREV_LENGTH = 4
+ADDRESS_LENGTH = 200
 
 class Box(models.Model):
     SMALL = 'S'
@@ -13,12 +18,11 @@ class Box(models.Model):
         (LARGE, 'Large'),
         (UNKNOWN, 'Unknown'),
     )
+    box_id = models.CharField(max_length=4, null=True, unique=True)
     box_category = models.ForeignKey(Category, null=True)
-    box_id = models.CharField(max_length=6, null=True, unique=True)
 
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
-    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True)
-    old_contents = models.CharField(max_length=300, null=True)
+    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True) 
     barcode = models.CharField(max_length=8, unique=True)
     initials = models.CharField(max_length=5, default="")
     entered_date = models.DateTimeField('date the box was entered', null=True)
@@ -59,28 +63,21 @@ class Box(models.Model):
 
     @classmethod
     def create_from_csv(cls, csv):
-        values = csv.split(",")
-        filtered_values = []
-        for value in values:
-            filtered_values.append(value.replace('<CMA>', ','))
-
-        if filtered_values[3] == "None":
-            box_weight = None
-        else:
-            box_weight = float(filtered_values[3])
-
-        box = Box(box_category=Category.objects.get(letter=filtered_values[0]),
-                  box_id=filtered_values[1],
+        filtered_values = to_array_from_csv(csv)
+        box = Box(box_id=filtered_values[0],
+                  box_category=Category.objects.get(letter=filtered_values[1]),
                   box_size=filtered_values[2],
-                  weight=box_weight,
-                  initials=filtered_values[4],
-                  entered_date=filtered_values[5],
-                  old_expiration=filtered_values[6],
-                  old_contents=filtered_values[7],
-                  box_date=filtered_values[8],
-                  audit=filtered_values[9],
+                  weight=filtered_values[3],
+                  barcode=filtered_values[4],
+                  initials=filtered_values[5],
+                  entered_date=filtered_values[6],
+                  old_box_flag=filtered_values[7],
+                  old_expiration=filtered_values[8],
+                  old_contents=filtered_values[9],
                   shipped_to=filtered_values[10],
-                  reserved_for=filtered_values[11])
+                  reserved_for=filtered_values[11],
+                  box_date=filtered_values[12],
+                  audit=filtered_values[13])
         box.save()
         return box
 
@@ -99,6 +96,7 @@ class Box(models.Model):
         To make a barcode this method will generate an 8 digit number (with leading zeros), then validate that the
         generated number is not already in use.
         """
+        #TODO remove try catch as something is figured out with id uniqueness
         try:
             if self.barcode == None or self.barcode== '':
                 while True: #guess until we have a unique barcode
@@ -106,29 +104,28 @@ class Box(models.Model):
                     if not Box.objects.filter(barcode=self.barcode).exists():
                         break #if the guess was unique stop
             super(Box, self).save(*args, **kwargs)
-        except Exception as e:
-            print '%s (%s)' % (e.message, type(e))
+        except Exception as e: 
+            print ('%s (%s)' % ('The Box did not save correctly', type(e)))
 
     def to_csv(self):
         """
         Returns a string containing all the CSV information of the Box.  Used in creating database backups
         """
-        values = [self.box_category.letter,
-                  self.box_id,
-                  self.box_size,
+        values = [self.box_id,
+                  self.box_category.letter, 
+                  self.box_size, 
                   str(self.weight),
+                  str(self.barcode),
                   self.initials,
                   str(self.entered_date),
+                  self.old_box_flag,
                   str(self.old_expiration),
                   self.old_contents,
-                  str(self.box_date),
-                  str(self.audit),
                   self.shipped_to,
-                  self.reserved_for]
-        filtered_values = []
-        for value in values:
-            filtered_values.append(value.replace(',', '<CMA>').replace('\n', ''))
-        return ','.join(filtered_values)
+                  self.reserved_for,
+                  str(self.box_date),
+                  str(self.audit)]
+        return to_csv_from_array(values)
 
     def get_id(self):
         if len(self.box_id) == 4:
@@ -189,14 +186,12 @@ class Contents(models.Model):
 
     @classmethod
     def create_from_csv(cls, csv):
-        values = csv.split(",")
-        filtered_values = []
-        for value in values:
-            filtered_values.append(value.replace('<CMA>', ','))
-        contents = Contents(box_within=Box.objects.get(box_id=filtered_values[0]),
-                            item=Item.objects.get(name=filtered_values[1]),
-                            quantity=filtered_values[2],
-                            expiration=filtered_values[3])
+        filtered_values = to_array_from_csv(csv)
+        contents = Contents(contents_id=filtered_values[0],
+                            box_within=Box.objects.get(box_id=filtered_values[1]),
+                            item=Item.objects.get(name=filtered_values[2]),
+                            quantity=filtered_values[3],
+                            expiration=filtered_values[4])
         contents.save()
         return contents
 
@@ -221,11 +216,17 @@ class Contents(models.Model):
         """
         Returns a string containing all the CSV information of the Contents.  Used in creating database backups
         """
-        values = [self.box_within.box_id,
+        values = [self.contents_id,
+                  self.box_within.box_id,
                   self.item.name,
                   self.quantity,
                   self.expiration]
-        filtered_values = []
-        for value in values:
-            filtered_values.append(value.replace(',', '<CMA>'))
-        return ','.join(filtered_values)
+        return to_csv_from_array(values)
+
+class Warehouse(models.Model):
+    name = models.CharField(max_length=NAME_LENGTH)
+    abbreviation = models.CharField(max_length=ABBREV_LENGTH)
+    address = models.CharField(max_length=ADDRESS_LENGTH)
+
+    def __unicode__(self):
+        return self.name

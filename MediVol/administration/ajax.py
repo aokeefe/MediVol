@@ -1,6 +1,7 @@
 from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
-from administration.models import Warehouse, ResetCode
+from inventory.models import Warehouse
+from administration.models import ResetCode
 from django.contrib.auth.models import User, Group
 from django.core.validators import validate_email
 from notifications.notifier import send_message
