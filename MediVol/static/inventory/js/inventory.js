@@ -1,5 +1,6 @@
 // Template for adding new item to the table.
 var ITEM_TEMPLATE = '<tr>' + 
+        '<td>{order_id}</td>' + 
         '<td>{box_id}</td>' + 
         '<td>{size}</td>' + 
         '<td>{weight}</td>' + 
@@ -12,6 +13,7 @@ var ITEM_TEMPLATE = '<tr>' +
 // Simple template used to insert a blank row below the table header 
 // when there are no items in the box.
 var BLANK_ROW = "<tr id='placeholder_row'>" + 
+                    "<td></td>" + 
                     "<td></td>" + 
                     "<td></td>" + 
                     "<td></td>" + 
@@ -116,6 +118,10 @@ function sortByContents(a,b){
 }
 
 function sortByExp(a,b){
+    if(a[2].toLowerCase() === 'never' || b[2].toLowerCase() === 'never'){
+        var x = a[2].toLowerCase(), y = b[2].toLowerCase();
+        return x < y ? -1 : x > y ? 1 : 0;
+    }
     var x = a[2].split("/");
     var y = b[2].split("/");
     var aDate = new Date(x[2],x[0],x[1]);
@@ -155,6 +161,10 @@ function fillTable(boxes) {
     }
     else{
         for(var i=0;i<boxes.length;i++) {
+            var order = '';
+            if(boxes[i][6] !== ''){
+                order = '<a href="/orders/review/' + boxes[i][6] + '">' + boxes[i][6] + '</a>';
+            }
             $('#boxes_body').append(
                 ITEM_TEMPLATE.replace('{box_id}', '<a href="/inventory/view_box_info/' + 
                     boxes[i][0].substr(1) + '">' + boxes[i][0] + '</a>')
@@ -165,6 +175,7 @@ function fillTable(boxes) {
                     .replace('{warehouse}',WAREHOUSE_SELECT)
                     .replace('{check}',boxes[i][5])
                     .replace('{row}',i+(currentPage*maxPerPage))
+                    .replace('{order_id}',order)
             );
         }
     }

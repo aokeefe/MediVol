@@ -6,6 +6,7 @@ from random import randint
 from catalog.models import Category, BoxName, Item
 from inventory.models import Box, Contents
 from label.barcodes import BoxLabel
+from orders.models import OrderBox, Order
 
 from haystack.query import SearchQuerySet
 
@@ -88,12 +89,17 @@ def get_boxes_with_item(request, item_name, box_name):
         if content.box_within.box_id not in boxes:
             box = content.box_within
             boxes.append(box.box_id)
+            try:
+                order = OrderBox.objects.get(box=box).order_for.order_number
+            except OrderBox.DoesNotExist:
+                order = ''
             temp = [box.get_id(),
                     box.get_contents_string(),
                     box.get_expiration_display(),
                     box.box_size,
                     box.weight,
-                    ''
+                    '',
+                    order
                     ]
             box_list.append(temp)
     return simplejson.dumps(box_list)
