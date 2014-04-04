@@ -91,9 +91,11 @@ class Box(models.Model):
 
         if self.box_id is None:
             self.box_id = id_generator.id_generator(4)
-            while Box.objects.get(box_id=self.box_id):
+            while True:
                 self.box_id = id_generator.id_generator(4)
-        
+                if not Box.objects.filter(box_id=self.box_id).exists():
+                    break
+
         super(Box, self).save(*args, **kwargs)
 
     def to_csv(self):
