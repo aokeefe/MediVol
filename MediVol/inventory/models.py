@@ -38,6 +38,26 @@ class Box(models.Model):
     audit = models.IntegerField(default=1, null=True)
 
     @classmethod
+    def get_box(self, box_id_to_get):
+        box = None
+
+        try:
+            box = Box.objects.get(box_id=box_id_to_get)
+        except Box.DoesNotExist:
+            boxes = Box.objects.raw(
+                '''SELECT * FROM inventory_box
+                INNER JOIN catalog_category ON inventory_box.box_category_id = catalog_category.id
+                WHERE CONCAT(catalog_category.letter, inventory_box.box_id) = %s''',
+                [box_id_to_get]
+            )
+
+            for box_found in boxes:
+                box = Box.objects.get(box_id=box_found.box_id)
+                break
+
+        return box
+
+    @classmethod
     def create_from_csv(cls, csv):
         values = csv.split(",")
         filtered_values = []
@@ -144,7 +164,7 @@ class Box(models.Model):
             return expiration_array[1] + '/' + expiration_array[2] + '/' + expiration_array[0]
 
     def get_search_results_string(self):
-        return 'Box ' + self.box_id
+        return 'Box ' + self.get_id()
 
     def get_contents_string(self):
         if self.old_contents is None:
