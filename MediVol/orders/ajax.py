@@ -2,11 +2,13 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from datetime import datetime
 
-from orders.models import Order, OrderBox, Customer
+from orders.models import Order, OrderBox, Customer, ShippingAddress
 from orders import views as orderView
 from inventory.models import Box, Contents
 from catalog.models import Category, BoxName, Item
 from search.Searcher import Searcher
+
+ORDER_BASE_NUMBER = 100
 
 # Gets all of the box names associated with a given category
 @dajaxice_register(method='GET')
@@ -63,6 +65,30 @@ def get_search_results(request, query):
 
     return simplejson.dumps(results_array)
 
+@dajaxice_register(method='GET')
+def get_customer_search_results(request, query):
+    return simplejson.dumps(Searcher.search(query=query, models=[ Customer ]))
+
+@dajaxice_register(method='GET')
+def get_customer_info(request, contact_name, organization_name):
+    try:
+        customer = Customer.objects.get(contact_name=contact_name, business_name=organization_name)
+    except Customer.DoesNotExist:
+        return False
+
+    addresses = []
+
+    for shipping_address in customer.shippingaddress_set.all():
+        addresses.append(shipping_address.address)
+
+    return simplejson.dumps(
+        {
+            'contact_email': customer.contact_email,
+            'organization_address': customer.business_address,
+            'shipping_addresses': addresses
+        }
+    )
+
 # Get Box Info
 @dajaxice_register(method='GET')
 def get_info(request, boxid):
@@ -91,32 +117,104 @@ def get_info(request, boxid):
 
     return simplejson.dumps(box_info)
 
-# Registers order to database.
-@dajaxice_register
-def create_order(request, customer_name, customer_email, businessName, businessAddress, shipping, box_ids):
+def remove_all_boxes_from_order(order):
+    order_boxes = order.orderbox_set.all()
+
+    for order_box in order_boxes:
+        order_box.delete()
+
+@dajaxice_register(method='POST')
+def add_boxes_to_order(request, order_number, boxes={}, custom_price=False):
     try:
-        customer = Customer.objects.get(contact_email=customer_email)
-    except Customer.DoesNotExist:
-        customer = Customer(contact_name=customer_name, contact_email=customer_email,
-                            business_name=businessName, business_address=businessAddress,
-                            shipping_address=shipping)
-        customer.save()
+        order = Order.objects.get(order_number=order_number)
+    except Order.DoesNotExist:
+        return simplejson.dumps({ 'result': 0 })
 
-    order_base_number = 100
-    order_number_array = []
+    remove_all_boxes_from_order(order)
 
-    # Calculate order number
-    order_number = Order.objects.count() + order_base_number
+    if custom_price == '':
+        custom_price = False
 
-    new_order = Order(reserved_for=customer, ship_to=customer_name, order_number=order_number, creation_date=datetime.today())
-    new_order.save()
+    order_price = 0
 
-    for box_id in box_ids:
-        boxOrder = Box.objects.get(box_id=box_id)
-        order_box = OrderBox(order_for=new_order, box=boxOrder)
+    for box_id, box_price in boxes.iteritems():
+        box_id = int(box_id)
+
+        if box_price != '':
+            box_price = float(box_price)
+        else:
+            box_price = 0.00
+
+        box_for_order = Box.objects.get(box_id=box_id)
+
+        order_box = OrderBox(order_for=order, box=box_for_order, cost=box_price)
         order_box.save()
 
-    orderNumber = Order.objects.get(order_number=order_number).order_number
-    order_number_array.append(orderNumber)
+        order_price = order_price + box_price
 
-    return simplejson.dumps(order_number_array)
+    if custom_price is not False:
+        order.price = custom_price
+    else:
+        order.price = order_price
+
+    order.save()
+
+    return simplejson.dumps({ 'result': 1 })
+
+# Registers order to database.
+@dajaxice_register(method='POST')
+def create_order(request, customer_name, customer_email, business_name, business_address,
+        new_shipping_address=None, shipping_address=None, order_number=0):
+    # new_shipping_address is if they are using an address that has never
+    # been used for the customer
+    if new_shipping_address == '':
+        new_shipping_address = None
+
+    # shipping_address is if they are using an address that we already
+    # have saved and is already associated with this customer
+    if shipping_address == '':
+        shipping_address = None;
+
+    try:
+        customer = Customer.objects.get(contact_name=customer_name, business_name=business_name)
+
+        customer.contact_email = customer_email
+        customer.business_address = business_address
+    except Customer.DoesNotExist:
+        customer = Customer(contact_name=customer_name, contact_email=customer_email,
+                            business_name=business_name, business_address=business_address)
+
+    customer.save()
+
+    ship_to = None
+
+    if new_shipping_address is not None:
+        try:
+            ship_to = ShippingAddress.objects.get(customer=customer, address=new_shipping_address)
+        except ShippingAddress.DoesNotExist:
+            ship_to = ShippingAddress(customer=customer, address=new_shipping_address)
+            ship_to.save()
+    elif shipping_address is not None:
+        try:
+            ship_to = ShippingAddress.objects.get(customer=customer, address=shipping_address)
+        except ShippingAddress.DoesNotExist:
+            ship_to = ShippingAddress(customer=customer, address=shipping_address)
+            ship_to.save()
+
+    if order_number == 0:
+        # Calculate order number
+        order_number = len(Order.objects.all()) + ORDER_BASE_NUMBER
+
+        new_order = Order(reserved_for=customer, ship_to=ship_to, order_number=order_number, creation_date=datetime.today())
+        new_order.save()
+    else:
+        try:
+            edited_order = Order.objects.get(order_number=order_number)
+        except Order.DoesNotExist:
+            return simplejson.dumps({ 'order_number': 0 })
+
+        edited_order.reserved_for = customer
+        edited_order.ship_to = ship_to
+        edited_order.save()
+
+    return simplejson.dumps({ 'order_number': order_number })

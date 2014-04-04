@@ -8,7 +8,6 @@ class Customer(models.Model):
     contact_email = models.CharField(max_length=80)
     business_name = models.CharField(max_length=80)
     business_address = models.CharField(max_length=200, null=True)
-    shipping_address = models.CharField(max_length=200)
 
     def __unicode__(self):
         return "Contact info for: " + self.contact_name + ' at ' + self.business_name
@@ -37,6 +36,16 @@ class Customer(models.Model):
     def get_search_results_string(self):
         return self.contact_name + ' (' + self.business_name + ')'
 
+    class Meta:
+        unique_together=('contact_name', 'business_name')
+
+class ShippingAddress(models.Model):
+    customer = models.ForeignKey(Customer)
+    address = models.CharField(max_length=200, unique=True)
+
+    def __unicode__(self):
+        return address
+
 class Order(models.Model):
     CREATED = 'C'
     UNPAID = 'U'
@@ -48,12 +57,14 @@ class Order(models.Model):
         (PAID, 'Paid For'),
         (SHIPPED, 'Shipped Out'),
     )
-    #This may need revisiting as a more detailed model becomes available
     order_number = models.IntegerField(unique=True)
     reserved_for = models.ForeignKey(Customer, null=True)
     paid_for = models.BooleanField(default=False)
+    shipped = models.BooleanField(default=False)
+    ship_to = models.ForeignKey(ShippingAddress, null=True)
     creation_date = models.DateTimeField('Date the order was made')
     order_status = models.CharField(max_length=1, choices=ORDER_STATUS, default=CREATED)
+    price = models.FloatField(null=True)
 
     def __unicode__(self):
         return "Order " + str(self.order_number)
@@ -68,6 +79,8 @@ class Order(models.Model):
         values = [self.order_number,
                   reservation,
                   self.paid_for,
+                  self.shipped,
+                  self.ship_to.address,
                   self.creation_date,
                   self.order_status]
         return to_csv_from_array(values)
@@ -78,8 +91,10 @@ class Order(models.Model):
         order = Order(order_number=filtered_values[0],
                       reserved_for=Customer.objects.get(contact_id=filtered_values[1]),
                       paid_for=filtered_values[2],
-                      creation_date=filtered_values[3],
-                      order_status=filtered_values[4])
+                      shipped=filtered_values[3],
+                      ship_to=ShippingAddress.objects.get(address=filtered_values[4]),
+                      creation_date=filtered_values[5],
+                      order_status=filtered_values[6])
         order.save()
         return order
 

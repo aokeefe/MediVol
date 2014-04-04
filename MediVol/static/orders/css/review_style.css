@@ -1,0 +1,52 @@
+#orderInfoWrapper {
+    width: 100%;
+    padding-right: 1px;
+    margin-top: 20px;
+}
+
+#orderInfoLeft, #orderInfoRight {
+    width: 50%;
+    float: left;
+}
+
+#orderInfoLeft {
+    text-align: left;
+}
+
+#orderInfoRight {
+    text-align: right;
+}
+
+.contactName {
+    font-size: 1.5em;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.businessName {
+    margin: 0;
+    font-style: italic;
+}
+
+.addressHeader {
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.businessAddress {
+    margin-top: 0;
+}
+
+.shippingAddress {
+    margin-top: 0;
+}
+
+.addressWrapper {
+    float: left;
+    width: 25%;
+    margin-right: 7px;
+}
+
+.editOrderButton {
+    font-size: 2em;
+}

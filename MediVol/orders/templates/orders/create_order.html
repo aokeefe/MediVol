@@ -1,0 +1,303 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if order_id == 0 %}
+        <title>Intervol | Create Order </title>
+    {% else %}
+        <title>Intervol | Edit Order {{ order_id }} </title>
+    {% endif %}
+{% endblock %}
+
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}orders/css/style.css' />
+{% endblock %}
+
+{% block body %}
+    {% if order_id == 0 %}
+        <h2>Create Order - Step <span id='stepNumber'>1</span>/2</h2>
+    {% else %}
+        <h2>Edit Order {{ order_id }} - Step <span id='stepNumber'>1</span>/2</h2>
+    {% endif %}
+
+    <div id='stepOne'>
+        <p id='requiredFieldsMessage' class='requiredText requiredMessage'>Please fill out the required fields.</p>
+
+        <div id='stepTwoFields'>
+            <div class='stepTwoField'>
+                <div class='label'>
+                    &nbsp;
+                </div>
+
+                <div class='stepTwoFieldWrapper requiredText'>
+                    *required
+                </div>
+
+                <div class='clear'></div>
+            </div>
+
+            <div class='stepTwoField'>
+                <div class='label'>
+                    Contact Name <span class='requiredText'>*</span>
+                </div>
+
+                <div class='stepTwoFieldWrapper'>
+                    {% if order_id == 0 %}
+                        <input type='text' id='contact_name' name='contact_name' class='textField' />
+                    {% else %}
+                        <input type='text' id='contact_name' name='contact_name' class='textField'
+                             value='{{ order.reserved_for.contact_name }}' />
+                    {% endif %}
+                </div>
+
+                <div class='clear'></div>
+            </div>
+
+            <div class='stepTwoField'>
+                <div class='label'>
+                    Contact Email <span class='requiredText'>*</span>
+                </div>
+
+                <div class='stepTwoFieldWrapper'>
+                    {% if order_id == 0 %}
+                        <input name='contact_email' id='contact_email' type='email' class='textField' />
+                    {% else %}
+                        <input name='contact_email' id='contact_email' type='email' class='textField'
+                            value='{{ order.reserved_for.contact_email }}' />
+                    {% endif %}
+                </div>
+
+                <div class='clear'></div>
+            </div>
+
+            <div class='stepTwoField'>
+                <div class='label'>
+                    Organization Name <span class='requiredText'>*</span>
+                </div>
+
+                <div class='stepTwoFieldWrapper'>
+                    {% if order_id == 0 %}
+                        <input name='organization_name' id='organization_name' type='text' class='textField' />
+                    {% else %}
+                        <input name='organization_name' id='organization_name' type='text' class='textField'
+                            value='{{ order.reserved_for.business_name }}' />
+                    {% endif %}
+                </div>
+
+                <div class='clear'></div>
+            </div>
+
+            <div class='stepTwoField'>
+                <div class='label'>
+                    Organization Address <span class='requiredText'>*</span>
+                </div>
+
+                <div class='stepTwoFieldWrapper'>
+                    {% if order_id == 0 %}
+                        <textarea name='organization_address' id='organization_address' class='textField'></textarea>
+                    {% else %}
+                        <textarea name='organization_address' id='organization_address' class='textField'>{{ order.reserved_for.business_address }}</textarea>
+                    {% endif %}
+                </div>
+
+                <div class='clear'></div>
+            </div>
+
+            <div class='stepTwoField'>
+                <div class='label'>
+                    Shipping Address
+                </div>
+
+                <div id='shippingAddressesWrapper' class='stepTwoFieldWrapper'>
+                    {% if order_id == 0 %}
+                        <i>no shipping addresses saved</i>
+                    {% else %}
+                        {% if num_addresses != 0 %}
+                            <select id="shippingAddresses">
+                                {% for shipping_address in order.reserved_for.shippingaddress_set.all %}
+                                    {% if shipping_address == order.ship_to %}
+                                        <option selected='selected'>{{ shipping_address.address }}</option>
+                                    {% else %}
+                                        <option>{{ shipping_address.address }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        {% else %}
+                            <i>no shipping addresses saved</i>
+                        {% endif %}
+                    {% endif %}
+                </div>
+
+                <div class='clear'></div>
+            </div>
+
+            <div class='stepTwoField'>
+                <div class='label'>
+                    New Shipping Address<br />
+                    <span class='note'>* overrides shipping address</span><br />
+                    <input type='checkbox' id='same_as_business' />
+                    <label for='same_as_business'>Same as organization address</label>
+                </div>
+
+                <div class='stepTwoFieldWrapper'>
+                    <textarea name='shipping_address' id='shipping_address' class='textField'></textarea>
+                </div>
+
+                <div class='clear'></div>
+            </div>
+        </div>
+
+        {% if order_id == 0 %}
+            <input type='button' class='next button createButton' value='Create Order &rarr;' />
+        {% else %}
+            <input type='button' class='next button createButton' value='Save Order &rarr;' />
+        {% endif %}
+        <div class='clear'></div>
+    </div>
+
+    <div id='stepTwo'>
+        <div id='stepOneFields'>
+
+            <p id='emptyBoxMessage' class='requiredText requiredMessage'>Order must have at least one box.</p>
+
+            <input type='text' id='itemSearch' class='textField'
+            placeholder='Search for category, box name, item, or box.' />
+
+            <div id='or'>
+                -- or --
+            </div>
+
+            <div id='createBoxLists'>
+                <div class='createBoxListWrapper'>
+                    <h3>Categories</h3>
+
+                    <select id='categories' size=10>
+                        {% for category in categories %}
+                        <option>{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class='createBoxListWrapper'>
+                    <h3>Box Names</h3>
+
+                    <select id='box_names' size=10></select>
+                </div>
+
+                <div class='createBoxListWrapper'>
+                    <h3>Items</h3>
+
+                    <select id='items' size=10></select>
+                </div>
+
+                <hr id='ordersHr' />
+
+                <div class='createBoxListWrapper boxesList'>
+                    <h3>Boxes</h3>
+
+                    <select id='boxes' size=10></select>
+                </div>
+
+                <div class='createBoxListWrapper boxInfo'>
+                    <h3>Box Information </h3>
+
+                    <div id='boxDetails'></div>
+                </div>
+
+                <div class='clear'></div>
+            </div>
+
+            <div id='itemSelectedMessage' class='noItemSelected'>
+                Please select a box.
+            </div>
+
+            <div id='addBoxWrapper'>
+                <button id='add_box' class='button'>Add Box</button>
+            </div>
+        </div>
+
+        <div id='tableWrapper'>
+            <table id='boxes_added'>
+                <tr id='table_header'>
+                    <td>Box ID</td>
+                    <td>Size</td>
+                    <td>Weight</td>
+                    <td>Price</td>
+                </tr>
+
+                {% if order_id == 0 %}
+                    <tr id='placeholder_row'>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                {% else %}
+                    {% if num_boxes == 0 %}
+                        <tr id='placeholder_row'>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    {% else %}
+                        {% for orderbox in order.orderbox_set.all %}
+                            <tr>
+                                <td>{{ orderbox.box.box_id }}</td>
+                                <td>{{ orderbox.box.get_box_size_display }}</td>
+                                <td>{{ orderbox.box.weight }} lbs</td>
+                                {% if orderbox.cost == 0 %}
+                                    <td class='priceRow'>$ <input type='text' class='textField boxPrice' step='any' min='0' /></td>
+                                {% else %}
+                                    <td class='priceRow'>$ <input type='text' class='textField boxPrice' step='any' min='0'
+                                        value="{{ orderbox.cost|floatformat:'2' }}" /></td>
+                                {% endif %}
+                                <td><a class='remove_item' href='javascript:void(0)'>Remove</a></td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
+            </table>
+        </div>
+
+        <div id='priceWrapper'>
+            <div class='orderPriceRow'>
+                {% if order_id == 0 %}
+                    <div class='priceRight'>$<span id='totalPrice'>0.00</span></div>
+                {% else %}
+                    <div class='priceRight'>$<span id='totalPrice'>{{ total_price|floatformat:'2' }}</span></div>
+                {% endif %}
+                <div class='priceLeft'>Total Price </div>
+            </div>
+
+            <div class='orderPriceRow'>
+                <div class='priceRight'>
+                    {% if order_id == 0%}
+                        <input type='text' id='price' class='textField' />
+                    {% else %}
+                        {% if total_price != custom_price %}
+                            <input type='text' id='price' class='textField' value="{{ custom_price|floatformat:'2' }}" />
+                        {% else %}
+                            <input type='text' id='price' class='textField' />
+                        {% endif %}
+                    {% endif %}
+                    <i>* overrides total price</i>
+                </div>
+                <div class='priceLeft customPrice'>Custom Price </div>
+                <div class='clear'></div>
+            </div>
+
+            <div class='clear'></div>
+        </div>
+
+        <input type='button' class='back button' value='&larr; Back' />
+        <input type='submit' id='submit' class='button' value='Save Order' />
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type='text/javascript'>
+        var orderNumber = {{ order_id }};
+    </script>
+
+    <script type='text/javascript' src='{{ STATIC_URL }}orders/js/main.js'></script>
+{% endblock %}

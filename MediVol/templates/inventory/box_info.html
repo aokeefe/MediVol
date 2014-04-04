@@ -17,7 +17,9 @@
         <p>Initials of Who Entered The Box: {{ box.initials }} </p>
         <p>Order Number of Box: {{order_number}} </p>
         <a href="#"><button>Back to Inventory</button></a>
+        <button id="print_label" onclick="print_label('{{box.box_id }}')">Print Label</button>
     </section>
 {% endblock %}
 
+{% block javascript %}<script type='text/javascript' src='{{ STATIC_URL }}inventory/js/box_info.js'></script>{% endblock %}
 
