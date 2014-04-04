@@ -187,8 +187,7 @@ class Contents(models.Model):
     @classmethod
     def create_from_csv(cls, csv):
         filtered_values = to_array_from_csv(csv)
-        contents = Contents(contents_id=filtered_values[0],
-                            box_within=Box.objects.get(box_id=filtered_values[1]),
+        contents = Contents(box_within=Box.objects.get(box_id=filtered_values[1]),
                             item=Item.objects.get(name=filtered_values[2]),
                             quantity=filtered_values[3],
                             expiration=filtered_values[4])
@@ -216,8 +215,7 @@ class Contents(models.Model):
         """
         Returns a string containing all the CSV information of the Contents.  Used in creating database backups
         """
-        values = [self.contents_id,
-                  self.box_within.box_id,
+        values = [self.box_within.box_id,
                   self.item.name,
                   self.quantity,
                   self.expiration]

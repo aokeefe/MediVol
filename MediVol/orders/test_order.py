@@ -21,8 +21,8 @@ print item2
 try:
     steve = Customer.objects.get(contact_id=1)
     steves_box = Box.objects.get(box_id='A678')
-    steves_box_item1 = Contents.objects.get(contents_id=1)
-    steves_box_item2 = Contents.objects.get(contents_id=2)
+    steves_box_item1 = Contents.objects.all()[0]
+    steves_box_item2 = Contents.objects.all()[1]
     steves_order = Order.objects.get(order_id=777)
 except Exception:
     steve = Customer(contact_id=1,
@@ -47,15 +47,13 @@ except Exception:
                  box_date=datetime.datetime.now())
     steves_box.save()
 
-    steves_box_item1 = Contents(contents_id=1,
-                                box_within=steves_box,
+    steves_box_item1 = Contents(box_within=steves_box,
                                 item=item1,
                                 quantity=1,
                                 expiration=None)
     steves_box_item1.save()
 
-    steves_box_item2 = Contents(contents_id=2,
-                                box_within=steves_box,
+    steves_box_item2 = Contents(box_within=steves_box,
                                 item=item2,
                                 quantity=5,
                                 expiration=None)
