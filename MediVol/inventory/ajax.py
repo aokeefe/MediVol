@@ -75,3 +75,28 @@ def create_box(request, initials, weight, size, items, note=''):
 def get_label(request, box_id):
     box = Box.objects.get(box_id=box_id)
     return BoxLabel(box.barcode).get_image()
+    return BoxLabel(new_box.barcode).get_image()
+
+@dajaxice_register(method='GET')
+def get_boxes_with_item(request, item_name, box_name):
+    box = BoxName.objects.get(name=box_name)
+    item = Item.objects.get(name=item_name, box_name=box)
+    box_list = []
+    boxes = []
+    contents = Contents.objects.filter(item=item)
+    for content in contents:
+        if content.box_within.box_id not in boxes:
+            box = content.box_within
+            boxes.append(box.box_id)
+            temp = [box.get_id(),
+                    box.get_contents_string(),
+                    box.get_expiration_display(),
+                    box.box_size,
+                    box.weight,
+                    ''
+                    ]
+            box_list.append(temp)
+    return simplejson.dumps(box_list)
+    
+        
+    
