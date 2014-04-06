@@ -4,6 +4,7 @@ from catalog.models import Item, Category
 from import_export.to_csv import to_csv_from_array, to_array_from_csv
 from datetime import datetime
 import random
+import id_generator
 
 NAME_LENGTH = 80
 ABBREV_LENGTH = 4
@@ -104,9 +105,17 @@ class Box(models.Model):
                     self.barcode = "%0.8d" % random.randint(0,99999999) #make a guess
                     if not Box.objects.filter(barcode=self.barcode).exists():
                         break #if the guess was unique stop
-            super(Box, self).save(*args, **kwargs)
-        except Exception as e: 
+        except Exception as e:
             print ('%s (%s)' % ('The Box did not save correctly', type(e)))
+
+        if self.box_id is None:
+            self.box_id = id_generator.id_generator(4)
+            while True:
+                self.box_id = id_generator.id_generator(4)
+                if not Box.objects.filter(box_id=self.box_id).exists():
+                    break
+
+        super(Box, self).save(*args, **kwargs)
 
     def to_csv(self):
         """

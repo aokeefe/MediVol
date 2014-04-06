@@ -43,15 +43,9 @@ That is, there is an array with arrays inside it that describe the items.
 """
 @dajaxice_register(method='POST')
 def create_box(request, initials, weight, size, items, note=''):
-    # TODO: generate a real box ID
     # TODO: store note in box
-    box_id = randint(100, 999)
 
-    # Generates IDs until we find one that isn't in use yet
-    while Box.objects.filter(box_id=box_id).exists():
-        box_id = randint(100, 999)
-
-    new_box = Box(box_id=box_id, box_size=size[:1], weight=weight,
+    new_box = Box(box_size=size[:1], weight=weight,
         entered_date=datetime.today(), initials=initials.upper())
 
     new_box.save()
