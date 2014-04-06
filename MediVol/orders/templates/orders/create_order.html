@@ -14,12 +14,16 @@
 
 {% block body %}
     {% if order_id == 0 %}
-        <h2>Create Order - Step <span id='stepNumber'>1</span>/2</h2>
+        <h2>Create Order - Step <span id='stepNumber'>{{ step_num }}</span>/2</h2>
     {% else %}
-        <h2>Edit Order {{ order_id }} - Step <span id='stepNumber'>1</span>/2</h2>
+        <h2>Edit Order {{ order_id }} - Step <span id='stepNumber'>{{ step_num }}</span>/2</h2>
     {% endif %}
 
-    <div id='stepOne'>
+    {% if step_num == 1 %}
+        <div id='stepOne'>
+    {% else %}
+        <div id='stepOne' style='display:none'>
+    {% endif %}
         <p id='requiredFieldsMessage' class='requiredText requiredMessage'>Please fill out the required fields.</p>
 
         <div id='stepTwoFields'>
@@ -154,7 +158,11 @@
         <div class='clear'></div>
     </div>
 
-    <div id='stepTwo'>
+    {% if step_num == 2 %}
+        <div id='stepTwo'>
+    {% else %}
+        <div id='stepTwo' style='display:none'>
+    {% endif %}
         <div id='stepOneFields'>
 
             <p id='emptyBoxMessage' class='requiredText requiredMessage'>Order must have at least one box.</p>
@@ -211,7 +219,26 @@
             </div>
 
             <div id='addBoxWrapper'>
-                <button id='add_box' class='button'>Add Box</button>
+                <div class='addBoxButton'>
+                    <button id='add_box' class='button'>Add Box</button>
+                    <div class='clear'></div>
+                </div>
+
+                <div class='addBoxButton'>
+                    <div class='addBoxOr'>-- or --</div>
+                    <div class='clear'></div>
+                </div>
+
+                <div class='addBoxButton'>
+                    {% if order_id == 0 %}
+                        <a id='create_box_link' href='javascript:void(0)'>
+                    {% else %}
+                        <a id='create_box_link' href='/inventory/create/{{ order_id }}'>
+                    {% endif %}
+                            <button id='create_box' class='button'>Create and Add New Box</button>
+                        </a>
+                    <div class='clear'></div>
+                </div>
             </div>
         </div>
 
@@ -232,7 +259,7 @@
                         <td>&nbsp;</td>
                     </tr>
                 {% else %}
-                    {% if num_boxes == 0 %}
+                    {% if num_boxes == 0 and box_to_add == None %}
                         <tr id='placeholder_row'>
                             <td></td>
                             <td></td>
@@ -254,6 +281,16 @@
                                 <td><a class='remove_item' href='javascript:void(0)'>Remove</a></td>
                             </tr>
                         {% endfor %}
+
+                        {% if box_to_add != None %}
+                            <tr>
+                                <td>{{ box_to_add.box_id }}</td>
+                                <td>{{ box_to_add.get_box_size_display }}</td>
+                                <td>{{ box_to_add.weight }} lbs</td>
+                                <td class='priceRow'>$ <input type='text' class='textField boxPrice' step='any' min='0' /></td>
+                                <td><a class='remove_item' href='javascript:void(0)'>Remove</a></td>
+                            </tr>
+                        {% endif %}
                     {% endif %}
                 {% endif %}
             </table>
@@ -297,6 +334,7 @@
 {% block javascript %}
     <script type='text/javascript'>
         var orderNumber = {{ order_id }};
+        var stepNum = {{ step_num }};
     </script>
 
     <script type='text/javascript' src='{{ STATIC_URL }}orders/js/main.js'></script>

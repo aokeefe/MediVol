@@ -28,7 +28,6 @@ var boxNameToChoose = '';
 var itemToChoose = '';
 var boxToChoose = '';
 var boxesToOrder = [];
-var stepNum = 1;
 
 /**
 * Function for getting a specific box information
@@ -166,6 +165,7 @@ function getBoxDetails(response) {
 */
 function createOrder(response) {
     orderNumber = response.order_number;
+    $('#create_box_link').attr('href', '/inventory/create/' + orderNumber);
 }
 
 /**

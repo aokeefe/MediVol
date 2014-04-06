@@ -50,20 +50,20 @@ def create_box(request, initials, weight, size, items, note=''):
 
     new_box.save()
 
-    for item in items:
-        expiration_date = item[1]
+    for item_info in items:
+        expiration_date = item_info[1]
 
         if expiration_date == 'Never':
             expiration_date = None
 
         contents = Contents(box_within=new_box,
-            item=Item.objects.get(name=item[0]),
-            quantity=item[2],
+            item=Item.objects.get(name=item_info[0], box_name=BoxName.objects.get(name=item_info[3])),
+            quantity=item_info[2],
             expiration=expiration_date)
 
         contents.save()
 
-    return BoxLabel(new_box.barcode).get_image()
+    return simplejson.dumps({ 'label': BoxLabel(new_box.barcode).get_image(), 'box_id': new_box.box_id })
 
 @dajaxice_register(method='POST')
 def get_label(request, box_id):
