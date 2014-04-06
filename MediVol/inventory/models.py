@@ -90,7 +90,7 @@ class Box(models.Model):
             print '%s (%s)' % (e.message, type(e))
 
         if self.box_id is None:
-            self.box_id = id_generator.id_generator(4)
+            self.box_id = id_generator.id_generator(4).upper()
             while True:
                 self.box_id = id_generator.id_generator(4)
                 if not Box.objects.filter(box_id=self.box_id).exists():
