@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>InterVol | {{ box.get_id }}</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/box_info.css' />
+{% endblock %}
+
+{% block body %}
+    <h2>Box {{ box.get_id }} </h2>
+    <h3 id='createdDate'>Created on {{ box.entered_date }}</h3>
+
+    <div id='boxInfoWrapper'>
+        <p>Box Category: {{ box.box_category }}</p>
+        <p>Box Contents: {% for box_content in box_contents %} <br /> {{box_content}} <br /> {% endfor %}</p>
+        <p>Box Size: {{ box.box_size }} </p>
+        <p>Box Weight: {{ box.weight }} </p>
+        <p>Box Entry Date: {{ box.entered_date }} </p>
+        <p>Box Shipped To: {{ box.shipped_to }} </p>
+        <p>Initials of Who Entered The Box: {{ box.initials }} </p>
+        <p>Order Number of Box: {{order_number}} </p>
+
+        <div id='boxInfoButtons'>
+            <a href="#"><button>Back to Inventory</button></a>
+            <button id="print_label" onclick="print_label('{{box.box_id }}')">Print Label</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type='text/javascript' src='{{ STATIC_URL }}inventory/js/box_info.js'></script>
+{% endblock %}
