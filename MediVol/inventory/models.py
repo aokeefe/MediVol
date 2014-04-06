@@ -108,7 +108,7 @@ class Box(models.Model):
             print ('%s (%s)' % ('The Box did not save correctly', type(e)))
 
         if self.box_id is None:
-            self.box_id = id_generator.id_generator(4).upper()
+            self.box_id = id_generator.id_generator(4)
             while True:
                 self.box_id = id_generator.id_generator(4)
                 if not Box.objects.filter(box_id=self.box_id).exists():
