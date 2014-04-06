@@ -28,7 +28,6 @@ class Box(models.Model):
     entered_date = models.DateTimeField('date the box was entered', null=True)
     old_box_flag = models.BooleanField(default=False)
 
-    #location = models.CharField(max_length=300)
     #None is no expiration
     #TODO remove
     old_expiration = models.DateTimeField('expiration date', null=True)
@@ -40,6 +39,7 @@ class Box(models.Model):
     box_date = models.DateTimeField('Box date', null=True)
     #TODO what does this mean?
     audit = models.IntegerField(default=1, null=True)
+    warehouse = models.ForeignKey(Warehouse, null=True)
 
     @classmethod
     def get_box(self, box_id_to_get):
@@ -77,7 +77,8 @@ class Box(models.Model):
                   shipped_to=filtered_values[10],
                   reserved_for=filtered_values[11],
                   box_date=filtered_values[12],
-                  audit=filtered_values[13])
+                  audit=filtered_values[13],
+                  warehouse=Warehouse.objects.get(abbreviation=filtered_values[14]))
         box.save()
         return box
 
@@ -124,7 +125,8 @@ class Box(models.Model):
                   self.shipped_to,
                   self.reserved_for,
                   str(self.box_date),
-                  str(self.audit)]
+                  str(self.audit),
+                  self.warehouse.abbreviation]
         return to_csv_from_array(values)
 
     def get_id(self):
@@ -223,7 +225,7 @@ class Contents(models.Model):
 
 class Warehouse(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
-    abbreviation = models.CharField(max_length=ABBREV_LENGTH)
+    abbreviation = models.CharField(max_length=ABBREV_LENGTH, unique=True)
     address = models.CharField(max_length=ADDRESS_LENGTH)
 
     def __unicode__(self):
