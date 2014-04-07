@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from catalog.models import Category
-from inventory.models import Box, Contents
+from inventory.models import Box, Contents, Warehouse
 from orders.models import Order, OrderBox
 
 def create(request, order_id=0):
@@ -13,7 +13,8 @@ def create(request, order_id=0):
 
     context = {
         'categories': sorted(categoryStrings),
-        'order_id': order_id
+        'order_id': order_id,
+        'warehouses': Warehouse.objects.all()
     }
 
     return render(request, 'inventory/create.html', context)
@@ -80,3 +81,17 @@ def barcode_box_info(request, barcodeid):
 
         #If box does not exist in databse redirect to box not found page
         return render_to_response('inventory/box_not_found.html')
+
+def inventory_view(request):
+    categories = Category.objects.all()
+    categoryStrings = []
+    
+    for category in categories:
+        categoryStrings.append(category.name)
+    
+    context = { 'categories': sorted(categoryStrings) }
+    
+    return render(request, 'inventory/inventory.html', context)
+    
+    
+    
