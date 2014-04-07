@@ -245,7 +245,7 @@ function fillTable(boxes) {
             }
             $('#boxes_body').append(
                 ITEM_TEMPLATE.replace('{box_id}', '<a href="/inventory/view_box_info/' + 
-                    boxes[i].box_id.substr(1) + '">' + boxes[i].box_id + '</a>')
+                    boxes[i].box_id + '">' + boxes[i].box_id + '</a>')
                     .replace('{contents}', boxes[i].contents)
                     .replace('{expiration}', boxes[i].expiration)
                     .replace('{size}', boxes[i].size)
