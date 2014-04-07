@@ -1,5 +1,7 @@
+from itertools import chain
 from haystack.query import SearchQuerySet
 from catalog.models import Category, BoxName, Item
+from inventory.models import Box
 from types import NoneType
 
 class Searcher:
@@ -26,6 +28,19 @@ class Searcher:
             items_array.append(item.name)
 
         return sorted(items_array)
+
+    @classmethod
+    def search_box_ids(self, query):
+        query = '%%%s%%' % query
+
+        return chain(Box.objects.filter(box_id__istartswith=query),
+            Box.objects.raw(
+                '''SELECT * FROM inventory_box
+                INNER JOIN catalog_category ON inventory_box.box_category_id = catalog_category.id
+                WHERE CONCAT(catalog_category.letter, inventory_box.box_id) LIKE %s''',
+                [query]
+            )
+        )
 
     @classmethod
     def search(self, query='', as_objects=False, models=[]):
