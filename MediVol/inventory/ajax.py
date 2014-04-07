@@ -4,8 +4,9 @@ from datetime import datetime
 from random import randint
 
 from catalog.models import Category, BoxName, Item
-from inventory.models import Box, Contents
+from inventory.models import Box, Contents, Warehouse
 from label.barcodes import BoxLabel
+from orders.models import OrderBox, Order
 
 from haystack.query import SearchQuerySet
 
@@ -69,3 +70,55 @@ def create_box(request, initials, weight, size, items, note=''):
 def get_label(request, box_id):
     box = Box.objects.get(box_id=box_id)
     return BoxLabel(box.barcode).get_image()
+
+@dajaxice_register(method='GET')
+def get_boxes_with_item(request, item_name, box_name):
+    box = BoxName.objects.get(name=box_name)
+    item = Item.objects.get(name=item_name, box_name=box)
+    box_list = []
+    boxes = []
+    contents = Contents.objects.filter(item=item)
+    for content in contents:
+        if content.box_within.box_id not in boxes:
+            box = content.box_within
+            boxes.append(box.box_id)
+            try:
+                order = OrderBox.objects.get(box=box).order_for.order_number
+            except OrderBox.DoesNotExist:
+                order = ''
+            try:
+                warehouse = box.warehouse.abbreviation
+            except AttributeError:
+                warehouse = ''
+            temp = [box.get_id(),
+                    box.box_size,
+                    box.weight,
+                    box.get_contents_string(),
+                    box.get_expiration_display(),
+                    warehouse,
+                    order
+                    ]
+            box_list.append(temp)
+    return simplejson.dumps(box_list)
+
+@dajaxice_register(method='GET')
+def get_warehouse_abbreviations(request):        
+    abbreviations = []
+    warehouses = Warehouse.objects.all()
+    for warehouse in warehouses:
+        abbreviations.append(warehouse.abbreviation)
+    return simplejson.dumps(abbreviations)
+
+@dajaxice_register(method='POST')
+def set_warehouse(request,box_id,warehouse_abbreviation):
+    try:
+        warehouse = Warehouse.objects.get(abbreviation=warehouse_abbreviation)
+    except Warehouse.DoesNotExist:
+        return simplejson.dumps({'message': 'False'})
+    try:
+        box = Box.objects.get(box_id=box_id)
+    except Box.DoesNotExist:
+        return simplejson.dumps({'message': 'False'})
+    box.warehouse = warehouse
+    box.save();
+    return simplejson.dumps({'message': 'True'})
