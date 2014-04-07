@@ -25,19 +25,17 @@ try:
     steves_box_item2 = Contents.objects.all()[1]
     steves_order = Order.objects.get(order_id=777)
 except Exception:
-    steve = Customer(contact_id=1,
-                     contact_name='Steve Doe',
+    steve = Customer(contact_name='Steve   Doe',
                      contact_email='Steve@Doe.net',
                      business_name='Steve\'s Shop',
-                     business_address='123 Steve Street',
-                     shipping_address='123 Steve Street')
+                     business_address='123 Steve Street')
     steve.save()
+    print ("Steve's id: " + steve.contact_id)
 
-    steves_box = Box(box_id='A678',
+"""    steves_box = Box(box_id='A684',
                  box_category=Category.objects.get(letter=mother_child.letter),
                  box_size='S',
                  weight=3.23,
-                 barcode='12345678',
                  initials='WKB',
                  entered_date=datetime.datetime.now(),
                  old_expiration=None,
@@ -46,6 +44,8 @@ except Exception:
                  reserved_for='',
                  box_date=datetime.datetime.now())
     steves_box.save()
+
+    print steves_box.box_id
 
     steves_box_item1 = Contents(box_within=steves_box,
                                 item=item1,
@@ -59,10 +59,9 @@ except Exception:
                                 expiration=None)
     steves_box_item2.save()
 
-    steves_order = Order(order_id=777,
+    steves_order = Order(order_number=779,
                          reserved_for=steve,
                          paid_for=False,
-                         order_number=777,
                          creation_date=datetime.datetime.now(),
                          order_status='U')
     steves_order.save()
@@ -82,8 +81,7 @@ except:
                    contact_name='Joe Doe',
                    contact_email='Joe@Doe.net',
                    business_name='Joe\'s Shop',
-                   business_address=None,
-                   shipping_address='125 Steve Street')
+                   business_address=None,)
     joe.save()
 
-print joe
+print joe"""
