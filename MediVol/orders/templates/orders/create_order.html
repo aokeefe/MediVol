@@ -269,7 +269,7 @@
                     {% else %}
                         {% for orderbox in order.orderbox_set.all %}
                             <tr>
-                                <td>{{ orderbox.box.box_id }}</td>
+                                <td>{{ orderbox.box.get_id }}</td>
                                 <td>{{ orderbox.box.get_box_size_display }}</td>
                                 <td>{{ orderbox.box.weight }} lbs</td>
                                 {% if orderbox.cost == 0 %}
@@ -284,7 +284,7 @@
 
                         {% if box_to_add != None %}
                             <tr>
-                                <td>{{ box_to_add.box_id }}</td>
+                                <td>{{ box_to_add.get_id }}</td>
                                 <td>{{ box_to_add.get_box_size_display }}</td>
                                 <td>{{ box_to_add.weight }} lbs</td>
                                 <td class='priceRow'>$ <input type='text' class='textField boxPrice' step='any' min='0' /></td>

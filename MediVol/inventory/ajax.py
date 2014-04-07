@@ -63,7 +63,7 @@ def create_box(request, initials, weight, size, items, note=''):
 
         contents.save()
 
-    return simplejson.dumps({ 'label': BoxLabel(new_box.barcode).get_image(), 'box_id': new_box.box_id })
+    return simplejson.dumps({ 'label': BoxLabel(new_box.barcode).get_image(), 'box_id': new_box.get_id() })
 
 @dajaxice_register(method='POST')
 def get_label(request, box_id):
