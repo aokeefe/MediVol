@@ -10,6 +10,14 @@ NAME_LENGTH = 80
 ABBREV_LENGTH = 4
 ADDRESS_LENGTH = 200
 
+class Warehouse(models.Model):
+    name = models.CharField(max_length=NAME_LENGTH)
+    abbreviation = models.CharField(max_length=ABBREV_LENGTH, unique=True)
+    address = models.CharField(max_length=ADDRESS_LENGTH)
+
+    def __unicode__(self):
+        return self.name
+
 class Box(models.Model):
     SMALL = 'S'
     LARGE = 'L'
@@ -23,7 +31,7 @@ class Box(models.Model):
     box_category = models.ForeignKey(Category, null=True)
 
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
-    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True) 
+    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     barcode = models.CharField(max_length=8, unique=True)
     initials = models.CharField(max_length=5, default="")
     entered_date = models.DateTimeField('date the box was entered', null=True)
@@ -122,8 +130,8 @@ class Box(models.Model):
         Returns a string containing all the CSV information of the Box.  Used in creating database backups
         """
         values = [self.box_id,
-                  self.box_category.letter, 
-                  self.box_size, 
+                  self.box_category.letter,
+                  self.box_size,
                   str(self.weight),
                   str(self.barcode),
                   self.initials,
@@ -231,11 +239,3 @@ class Contents(models.Model):
                   self.quantity,
                   self.expiration]
         return to_csv_from_array(values)
-
-class Warehouse(models.Model):
-    name = models.CharField(max_length=NAME_LENGTH)
-    abbreviation = models.CharField(max_length=ABBREV_LENGTH, unique=True)
-    address = models.CharField(max_length=ADDRESS_LENGTH)
-
-    def __unicode__(self):
-        return self.name
