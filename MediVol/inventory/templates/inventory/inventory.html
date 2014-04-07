@@ -8,9 +8,11 @@
 {% endblock %}
 
 {% block body %}
+    <h2>Inventory</h2>
+
     <input type='text' id='itemSearch' class='textField'
         placeholder='Search for category, box name, item, or box.' />
-    
+
     <div id='createBoxLists'>
         <div class='createBoxListWrapper'>
             <h3>Categories</h3>
@@ -23,7 +25,7 @@
 
         <div class='createBoxListWrapper'>
             <h3>Box Names</h3>
-            
+
             <select id='box_names' size=10></select>
         </div>
 
@@ -33,7 +35,7 @@
             <select id='items' size=10></select>
         </div>
     </div>
-    
+
     <div id='tableWrapper'>
         <table id='boxes_found'>
             <tr id='table_header'>
