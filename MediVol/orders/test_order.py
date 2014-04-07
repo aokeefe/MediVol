@@ -25,14 +25,14 @@ try:
     steves_box_item2 = Contents.objects.all()[1]
     steves_order = Order.objects.get(order_id=777)
 except Exception:
-    steve = Customer(contact_id=1,
-                     contact_name='Steve Doe',
+    steve = Customer(contact_name='Steve   Doe',
                      contact_email='Steve@Doe.net',
                      business_name='Steve\'s Shop',
                      business_address='123 Steve Street')
     steve.save()
+    print ("Steve's id: " + steve.contact_id)
 
-    steves_box = Box(box_id='A683',
+"""    steves_box = Box(box_id='A684',
                  box_category=Category.objects.get(letter=mother_child.letter),
                  box_size='S',
                  weight=3.23,
@@ -84,4 +84,4 @@ except:
                    business_address=None,)
     joe.save()
 
-print joe
+print joe"""
