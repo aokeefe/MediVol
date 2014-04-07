@@ -66,6 +66,11 @@ function getItems(response) {
 */
 function createBox(response) {
     if (response != 'False') {
+
+        var warehouse = $("#warehouse_options option:selected").attr('id');
+        Dajaxice.inventory.set_warehouse(null,
+            { 'box_id': response.box_id, 'warehouse_abbreviation': warehouse });
+        
         var iframe = document.createElement('iframe');
         var html = '<head><script type"text/javascript">window.print();</script></head>' +
                 '<body>' + response.label + '</body>';
