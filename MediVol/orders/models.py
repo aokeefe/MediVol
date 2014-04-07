@@ -1,9 +1,10 @@
 from django.db import models
+import uuid
 from inventory.models import Box
 from import_export.to_csv import to_csv_from_array, to_array_from_csv
 
 class Customer(models.Model):
-    contact_id = models.IntegerField(unique=True)
+    contact_id = models.CharField(unique=True)
     contact_name = models.CharField(max_length=80)
     contact_email = models.CharField(max_length=80)
     business_name = models.CharField(max_length=80)
@@ -32,7 +33,11 @@ class Customer(models.Model):
                             shipping_address=filtered_values[5])
         customer.save()
         return customer
-        
+
+    def save(self, *args, **kwargs):
+        if self.contact_id is None:
+            self.contact_id=uuid.uuid4()
+
     def get_search_results_string(self):
         return self.contact_name + ' (' + self.business_name + ')'
 
