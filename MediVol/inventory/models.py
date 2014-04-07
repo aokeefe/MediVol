@@ -4,10 +4,19 @@ from catalog.models import Item, Category
 from import_export.to_csv import to_csv_from_array, to_array_from_csv
 from datetime import datetime
 import random
+import id_generator
 
 NAME_LENGTH = 80
 ABBREV_LENGTH = 4
 ADDRESS_LENGTH = 200
+
+class Warehouse(models.Model):
+    name = models.CharField(max_length=NAME_LENGTH)
+    abbreviation = models.CharField(max_length=ABBREV_LENGTH, unique=True)
+    address = models.CharField(max_length=ADDRESS_LENGTH)
+
+    def __unicode__(self):
+        return self.name
 
 class Box(models.Model):
     SMALL = 'S'
@@ -18,17 +27,16 @@ class Box(models.Model):
         (LARGE, 'Large'),
         (UNKNOWN, 'Unknown'),
     )
-    box_id = models.CharField(max_length=4, null=True, unique=True)
+    box_id = models.CharField(max_length=6, null=True, unique=True)
     box_category = models.ForeignKey(Category, null=True)
 
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
-    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True) 
+    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     barcode = models.CharField(max_length=8, unique=True)
     initials = models.CharField(max_length=5, default="")
     entered_date = models.DateTimeField('date the box was entered', null=True)
     old_box_flag = models.BooleanField(default=False)
 
-    #location = models.CharField(max_length=300)
     #None is no expiration
     #TODO remove
     old_expiration = models.DateTimeField('expiration date', null=True)
@@ -40,6 +48,7 @@ class Box(models.Model):
     box_date = models.DateTimeField('Box date', null=True)
     #TODO what does this mean?
     audit = models.IntegerField(default=1, null=True)
+    warehouse = models.ForeignKey(Warehouse, null=True)
 
     @classmethod
     def get_box(self, box_id_to_get):
@@ -77,7 +86,8 @@ class Box(models.Model):
                   shipped_to=filtered_values[10],
                   reserved_for=filtered_values[11],
                   box_date=filtered_values[12],
-                  audit=filtered_values[13])
+                  audit=filtered_values[13],
+                  warehouse=Warehouse.objects.get(abbreviation=filtered_values[14]))
         box.save()
         return box
 
@@ -103,17 +113,25 @@ class Box(models.Model):
                     self.barcode = "%0.8d" % random.randint(0,99999999) #make a guess
                     if not Box.objects.filter(barcode=self.barcode).exists():
                         break #if the guess was unique stop
-            super(Box, self).save(*args, **kwargs)
-        except Exception as e: 
+        except Exception as e:
             print ('%s (%s)' % ('The Box did not save correctly', type(e)))
+
+        if self.box_id is None:
+            self.box_id = id_generator.id_generator(4)
+            while True:
+                self.box_id = id_generator.id_generator(4)
+                if not Box.objects.filter(box_id=self.box_id).exists():
+                    break
+
+        super(Box, self).save(*args, **kwargs)
 
     def to_csv(self):
         """
         Returns a string containing all the CSV information of the Box.  Used in creating database backups
         """
         values = [self.box_id,
-                  self.box_category.letter, 
-                  self.box_size, 
+                  self.box_category.letter,
+                  self.box_size,
                   str(self.weight),
                   str(self.barcode),
                   self.initials,
@@ -124,11 +142,12 @@ class Box(models.Model):
                   self.shipped_to,
                   self.reserved_for,
                   str(self.box_date),
-                  str(self.audit)]
+                  str(self.audit),
+                  self.warehouse.abbreviation]
         return to_csv_from_array(values)
 
     def get_id(self):
-        if len(self.box_id) == 4:
+        if self.old_box_flag:
             return self.box_id
         return self.box_category.letter + self.box_id
 
@@ -220,11 +239,3 @@ class Contents(models.Model):
                   self.quantity,
                   self.expiration]
         return to_csv_from_array(values)
-
-class Warehouse(models.Model):
-    name = models.CharField(max_length=NAME_LENGTH)
-    abbreviation = models.CharField(max_length=ABBREV_LENGTH)
-    address = models.CharField(max_length=ADDRESS_LENGTH)
-
-    def __unicode__(self):
-        return self.name
