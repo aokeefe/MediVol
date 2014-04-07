@@ -27,7 +27,7 @@ class Box(models.Model):
         (LARGE, 'Large'),
         (UNKNOWN, 'Unknown'),
     )
-    box_id = models.CharField(max_length=4, null=True, unique=True)
+    box_id = models.CharField(max_length=6, null=True, unique=True)
     box_category = models.ForeignKey(Category, null=True)
 
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
@@ -147,7 +147,7 @@ class Box(models.Model):
         return to_csv_from_array(values)
 
     def get_id(self):
-        if len(self.box_id) == 4:
+        if self.old_box_flag:
             return self.box_id
         return self.box_category.letter + self.box_id
 
