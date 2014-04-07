@@ -43,33 +43,27 @@ That is, there is an array with arrays inside it that describe the items.
 """
 @dajaxice_register(method='POST')
 def create_box(request, initials, weight, size, items, note=''):
-    # TODO: generate a real box ID
     # TODO: store note in box
-    box_id = randint(100, 999)
 
-    # Generates IDs until we find one that isn't in use yet
-    while Box.objects.filter(box_id=box_id).exists():
-        box_id = randint(100, 999)
-
-    new_box = Box(box_id=box_id, box_size=size[:1], weight=weight,
+    new_box = Box(box_size=size[:1], weight=weight,
         entered_date=datetime.today(), initials=initials.upper())
 
     new_box.save()
 
-    for item in items:
-        expiration_date = item[1]
+    for item_info in items:
+        expiration_date = item_info[1]
 
         if expiration_date == 'Never':
             expiration_date = None
 
         contents = Contents(box_within=new_box,
-            item=Item.objects.get(name=item[0]),
-            quantity=item[2],
+            item=Item.objects.get(name=item_info[0], box_name=BoxName.objects.get(name=item_info[3])),
+            quantity=item_info[2],
             expiration=expiration_date)
 
         contents.save()
 
-    return BoxLabel(new_box.barcode).get_image()
+    return simplejson.dumps({ 'label': BoxLabel(new_box.barcode).get_image(), 'box_id': new_box.get_id() })
 
 @dajaxice_register(method='POST')
 def get_label(request, box_id):

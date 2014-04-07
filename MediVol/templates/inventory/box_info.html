@@ -1,13 +1,13 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
-{% block title %} 
+{% block title %}
     <title>Information for Box. </title>
-{% endblock %} 
+{% endblock %}
 
-{% block body %} 
-    <h2>Box Information for {{ box.box_id }} </h2>
+{% block body %}
+    <h2>Box Information for {{ box.get_id }} </h2>
 
-    <section> 
+    <section>
         <p>Box Category: {{ box.box_category }}</p>
         <p>Box Contents: {% for box_content in box_contents %} <br /> {{box_content}} <br /> {% endfor %}</p>
         <p>Box Size: {{ box.box_size }} </p>
@@ -22,4 +22,3 @@
 {% endblock %}
 
 {% block javascript %}<script type='text/javascript' src='{{ STATIC_URL }}inventory/js/box_info.js'></script>{% endblock %}
-

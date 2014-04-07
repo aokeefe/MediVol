@@ -1,76 +1,81 @@
 {% extends "base.html" %}
 
 {% block title %}<title>Intervol - Create Box</title>{% endblock %}
-        
+
 {% block styles %}<link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/styles.css' />{% endblock %}
 
 {% block body %}
 
 <h2>Create Box - Step <span id='stepNumber'>1</span>/2</h2>
+{% if order_id != 0 %}
+    <h3 class='forOrder'>For Order {{ order_id }}</h2>
+{% endif %}
 
 <form id='create_box_form' action='' method='post'>
 {% csrf_token %}
 
+<input type='hidden' id='orderId' value='{{ order_id }}' />
+
 <div id='stepOne'>
     <div id='stepOneFields'>
         <p id='emptyBoxMessage' class='requiredText requiredMessage'>Boxes must have at least one item.</p>
-    
-        <input type='text' id='itemSearch' class='textField' 
+
+        <input type='text' id='itemSearch' class='textField'
             placeholder='Search for a category, box name, or item...' />
-            
+
         <div id='or'>
             -- or --
         </div>
-            
+
         <div id='createBoxLists'>
             <div class='createBoxListWrapper'>
                 <h3>Categories</h3>
-                
+
                 <select id='categories' size=10>
                     {% for category in categories %}
                         <option>{{ category }}</option>
                     {% endfor %}
                 </select>
             </div>
-            
+
             <div class='createBoxListWrapper'>
                 <h3>Box Names</h3>
-                
+
                 <select id='box_names' size=10></select>
             </div>
-            
+
             <div class='createBoxListWrapper'>
                 <h3>Items</h3>
-                
+
                 <select id='items' size=10></select>
             </div>
-            
+
             <div class='clear'></div>
         </div>
-        
+
         <div id='itemSelectedMessage' class='noItemSelected'>
             Please select an item.
         </div>
-        
+
         <div id='itemInfoWrapper'>
             <div class='infoFieldWrapper'>
                 <p>How many?</p>
                 <input type='number' class='textField' min=1 id='count' />
                 <p class='smallNote'>* Leave blank for not counted.</p>
             </div>
-            
+
             <div class='infoFieldWrapper'>
                 <p>Expiration date?</p>
                 <input type='month' class='textField' id='expiration' />
                 <p class='smallNote'>* Leave as is for never.</p>
             </div>
-            
+
             <div class='infoFieldWrapper'>
                 <button id='add_item' class='button'>Add Item</button>
             </div>
         </div>
     </div>
-    
+
     <div id='tableWrapper'>
         <table id='items_added'>
             <tr id='table_header'>
@@ -80,7 +85,7 @@
                 <td>Expiration</td>
                 <td>Count</td>
             </tr>
-            
+
             <tr id='placeholder_row'>
                 <td></td>
                 <td></td>
@@ -90,7 +95,7 @@
             </tr>
         </table>
     </div>
-    
+
     <input type='button' id='next' class='button' value='Next Step &rarr;' />
 </div>
 
@@ -102,67 +107,67 @@
             <div class='label'>
                 &nbsp;
             </div>
-            
+
             <div class='stepTwoFieldWrapper requiredText'>
                 *required
             </div>
-            
+
             <div class='clear'></div>
         </div>
-        
+
         <div class='stepTwoField'>
             <div class='label'>
                 Initials<span class='requiredText'>*</span>
             </div>
-            
+
             <div class='stepTwoFieldWrapper'>
                 <input type='text' placeholder='(required)' id='initials' name='initials' class='textField' />
             </div>
-            
+
             <div class='clear'></div>
         </div>
-        
+
         <div class='stepTwoField'>
             <div class='label'>
                 Weight<span class='requiredText'>*</span>
             </div>
-            
+
             <div class='stepTwoFieldWrapper'>
                 <input name='weight' id='weight' type='number' class='textField' />
             </div>
-            
+
             <div class='clear'></div>
         </div>
-        
+
         <div class='stepTwoField'>
             <div class='label'>
                 Size<span class='requiredText'>*</span>
             </div>
-            
+
             <div class='stepTwoFieldWrapper'>
                 <label for='small'><input type='radio' name='size' id='small' value='Small'> Small</label><br />
                 <label for='large'><input type='radio' name='size' id='large' value='Large' class='largeRadio'> Large</label>
             </div>
-            
+
             <div class='clear'></div>
         </div>
-        
+
         <div class='stepTwoField'>
             <div class='label'>
                 Note
             </div>
-            
+
             <div class='stepTwoFieldWrapper'>
                 <textarea id='note' name='note' class='textField'></textarea>
             </div>
-            
+
             <div class='clear'></div>
         </div>
     </div>
-    
+
     <input type='button' id='back' class='button' value='&larr; Back' />
     <input type='submit' id='submit' class='button' value='Create Box' />
-    
+
     <div class='clear'></div>
 </div>
 

@@ -43,8 +43,8 @@
             {% for order_box in order_boxes %}
                 <tr id='box_info'>
                     <td>
-                        <a href='/inventory/view_box_info/{{ order_box.box.box_id }}' target='_blank'>
-                            {{ order_box.box.box_id }}
+                        <a href='/inventory/view_box_info/{{ order_box.box.get_id }}' target='_blank'>
+                            {{ order_box.box.get_id }}
                         </a>
                     </td>
                     <td>{{ order_box.box.get_box_size_display }}</td>
