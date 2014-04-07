@@ -5,19 +5,7 @@ import string
 from django.core.mail import send_mail
 from notifications.notifier import send_message
 
-NAME_LENGTH = 80
-ABBREV_LENGTH = 4
-ADDRESS_LENGTH = 200
-
 RESET_CODE_LENGTH = 20
-
-class Warehouse(models.Model):
-    name = models.CharField(max_length=NAME_LENGTH)
-    abbreviation = models.CharField(max_length=ABBREV_LENGTH)
-    address = models.CharField(max_length=ADDRESS_LENGTH)
-
-    def __unicode__(self):
-        return self.name
 
 class ResetCode(models.Model):
     user = models.ForeignKey(User)
