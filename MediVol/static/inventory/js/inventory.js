@@ -6,7 +6,7 @@ var ITEM_TEMPLATE = '<tr>' +
         '<td>{weight}</td>' + 
         '<td>{contents}</td>' + 
         '<td>{expiration}</td>' + 
-        "<td>{warehouse}</td>" + 
+        '<td>{warehouse}</td>' + 
         '<td><input type="checkbox" onclick="checkBoxClick({row})" {check}></td>' + 
     '</tr>';
     
@@ -23,7 +23,7 @@ var BLANK_ROW = "<tr id='placeholder_row'>" +
                     "<td>&nbsp;</td>" + 
                 "</tr>";
 
-var WAREHOUSE_SELECT = "<select>{options}</select>";
+var WAREHOUSE_SELECT = '<select id="{id}" onchange="warehouseChange({row},&quot;{id}&quot;)">{options}</select>';
 
 // Need these to update lists for box names and items.
 var boxNameToChoose = '';
@@ -75,8 +75,38 @@ function getItems(response) {
     }
 }
 
+function setWarehouses(response){
+    var warehouses = '';
+    for(var i=0;i<response.length;i++){
+        warehouses = warehouses + '<option>' + response[i] + '</option>';
+    }
+    WAREHOUSE_SELECT = WAREHOUSE_SELECT.replace('{options}',warehouses);
+}
+
+//object to represent one row in the table
+function boxRow(box_id, size, weight, contents, expiration, warehouse, order_id){
+    this.box_id = box_id;
+    this.contents = contents;
+    this.expiration = expiration;
+    this.size = size;
+    this.weight = weight;
+    this.warehouse = warehouse;
+    this.order_id = order_id;
+    this.check = '';
+}
+
 function setTableList(response) {
-    currentBoxes = response;
+    currentBoxes.length = 0;
+    for(var i=0;i<response.length;i++){
+        currentBoxes.push(new boxRow(response[i][0],
+            response[i][1],
+            response[i][2],
+            response[i][3],
+            response[i][4],
+            response[i][5],
+            response[i][6]
+        ));
+    }
     showTable();
 }
 
@@ -99,39 +129,68 @@ function showTable() {
 }
 
 function sortById(a,b){
-    var x = a[0].toLowerCase(), y = b[0].toLowerCase();
-    return x < y ? -1 : x > y ? 1 : 0;
+    return compareString(a.box_id,b.box_id);
 }
 
 function sortBySize(a,b){
-    var x = a[3].toLowerCase(), y = b[3].toLowerCase();
-    return x < y ? -1 : x > y ? 1 : 0;
+    return compareString(a.size,b.size);
 }
 
 function sortByWeight(a,b){
-    return a[4] - b[4];
+    return a.weight - b.weight;
 }
 
 function sortByContents(a,b){
-    var x = a[1].toLowerCase(), y = b[1].toLowerCase();
-    return x < y ? -1 : x > y ? 1 : 0;
+    return compareString(a.contents,b.contents);
 }
 
 function sortByExp(a,b){
-    if(a[2].toLowerCase() === 'never' || b[2].toLowerCase() === 'never'){
-        var x = a[2].toLowerCase(), y = b[2].toLowerCase();
-        return x < y ? -1 : x > y ? 1 : 0;
+    if(a.expiration.toLowerCase() === 'never' || b.expiration.toLowerCase() === 'never'){
+        return compareString(a.expiration,b.expiration);
     }
-    var x = a[2].split("/");
-    var y = b[2].split("/");
+    var x = a.expiration.split("/");
+    var y = b.expiration.split("/");
     var aDate = new Date(x[2],x[0],x[1]);
     var bDate = new Date(y[2],y[0],y[1]);
-    return aDate < bDate ? -1 : aDate > bDate ? 1 : 0;
+    if(aDate < bDate){
+      return 1;
+    }
+    else if(aDate > bDate){
+        return -1;
+    }
+    else{
+        return 0;
+    }
 }
 
 function sortByFilter(a,b){
-    var x = a[5].toLowerCase(), y = b[5].toLowerCase();
-    return x < y ? 1 : x > y ? -1 : 0;
+    return compareString(a.check,b.check);
+}
+
+function sortByReverseFilter(a,b){
+    return -1*compareString(a.check,b.check);
+}
+
+function sortByWarehouse(a,b){
+    return compareString(a.warehouse,b.warehouse);
+}
+
+function sortByReverseWarehouse(a,b){
+    return -1*compareString(a.warehouse,b.warehouse);
+}
+
+function compareString(a,b){
+    var x = a.toLowerCase();
+    var y = b.toLowerCase();
+    if(x < y){
+      return 1;
+    }
+    else if(x > y){
+        return -1;
+    }
+    else{
+        return 0;
+    }
 }
 
 function checkBoxClick(row){
@@ -142,14 +201,33 @@ function checkBoxClick(row){
     else{
         boxes = currentBoxes;
     }
-    if (boxes[row][5] === ''){
-        boxes[row][5] = 'checked';
-        filteredBoxes.push(currentBoxes[row]);
-        
+    if (boxes[row].check === ''){
+        boxes[row].check = 'checked';
+        if(filteredBoxes.indexOf(boxes[row]) === -1){
+            filteredBoxes.push(currentBoxes[row]);
+        }      
     }
     else{
-        boxes[row][5] = '';
-        filteredBoxes.splice(filteredBoxes.indexOf(boxes[row]),1);
+        boxes[row].check = '';
+    }
+}
+
+function warehouseChange(row,id){
+    var boxes;
+    if(filtered){
+        boxes = filteredBoxes;
+    }
+    else{
+        boxes = currentBoxes;
+    }
+    boxes[row].warehouse = $('#' + id + ' option:selected').text();
+    Dajaxice.inventory.set_warehouse(warehouseChangeResponse,
+        {'box_id':boxes[row].box_id, 'warehouse_abbreviation':boxes[row].warehouse});
+}
+
+function warehouseChangeResponse(response){
+    if(response.message === 'False'){
+        alert('could not save warehouse');
     }
 }
 
@@ -162,18 +240,23 @@ function fillTable(boxes) {
     else{
         for(var i=0;i<boxes.length;i++) {
             var order = '';
-            if(boxes[i][6] !== ''){
-                order = '<a href="/orders/review/' + boxes[i][6] + '">' + boxes[i][6] + '</a>';
+            if(boxes[i].order_id !== ''){
+                order = '<a href="/orders/review/' + boxes[i].order_id + '">' + boxes[i].order_id + '</a>';
             }
             $('#boxes_body').append(
                 ITEM_TEMPLATE.replace('{box_id}', '<a href="/inventory/view_box_info/' + 
-                    boxes[i][0].substr(1) + '">' + boxes[i][0] + '</a>')
-                    .replace('{contents}', boxes[i][1])
-                    .replace('{expiration}', boxes[i][2])
-                    .replace('{size}', boxes[i][3])
-                    .replace('{weight}', boxes[i][4])
-                    .replace('{warehouse}',WAREHOUSE_SELECT)
-                    .replace('{check}',boxes[i][5])
+                    boxes[i].box_id.substr(1) + '">' + boxes[i].box_id + '</a>')
+                    .replace('{contents}', boxes[i].contents)
+                    .replace('{expiration}', boxes[i].expiration)
+                    .replace('{size}', boxes[i].size)
+                    .replace('{weight}', boxes[i].weight)
+                    .replace('{warehouse}',WAREHOUSE_SELECT
+                        .replace('<option>' + boxes[i].warehouse + '</option>',
+                        '<option selected>' + boxes[i].warehouse + '</option>')
+                        .replace('{row}',(i+currentPage*maxPerPage))
+                        .replace(/{id}/gi,'select' + (i+currentPage*maxPerPage))
+                        )
+                    .replace('{check}',boxes[i].check)
                     .replace('{row}',i+(currentPage*maxPerPage))
                     .replace('{order_id}',order)
             );
@@ -182,9 +265,8 @@ function fillTable(boxes) {
 }
 
 
-$(document).ready(function() {
-    //need to change when warehouse model is changed
-    WAREHOUSE_SELECT.replace('{options}','');
+$(document).ready(function() {    
+    Dajaxice.inventory.get_warehouse_abbreviations(setWarehouses);
     
     $('#max_per_page').change(function() {
         maxPerPage = $('#max_per_page option:selected').text();
@@ -193,6 +275,12 @@ $(document).ready(function() {
     
     $('#filter_button').click(function() {
         filtered = true;
+        for(var i=0;i<filteredBoxes.length;i++){
+            if(filteredBoxes[i].check === ''){
+                filteredBoxes.splice(i,1);
+                i--;
+            }
+        }
         showTable();
     });
     
@@ -293,10 +381,26 @@ $(document).ready(function() {
         }
     });
     
-    $('#filterHeader').click(function() {
+    $('#warehouseHeader').click(function(){
+        if (currentSort === 'warehouse'){
+            currentSort = 'warehouse2';
+            currentBoxes = currentBoxes.sort(sortByReverseWarehouse);
+            filteredBoxes = filteredBoxes.sort(sortByReverseWarehouse);
+            showTable();
+        }
+        else{
+            currentSort = 'warehouse';
+            currentBoxes = currentBoxes.sort(sortByWarehouse);
+            filteredBoxes = filteredBoxes.sort(sortByWarehouse);
+            showTable();
+        }
+    });
+    
+    $('#filterHeader').click(function(){
         if (currentSort === 'filter'){
-            currentBoxes = currentBoxes.reverse();
-            filteredBoxes = filteredBoxes.reverse();
+            currentSort = 'filter2';
+            currentBoxes = currentBoxes.sort(sortByReverseFilter);
+            filteredBoxes = filteredBoxes.sort(sortByReverseFilter);
             showTable();
         }
         else{
