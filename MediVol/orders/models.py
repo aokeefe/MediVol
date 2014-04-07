@@ -4,7 +4,7 @@ from inventory.models import Box
 from import_export.to_csv import to_csv_from_array, to_array_from_csv
 
 class Customer(models.Model):
-    contact_id = models.CharField(unique=True)
+    contact_id = models.CharField(max_length=36,unique=True)
     contact_name = models.CharField(max_length=80)
     contact_email = models.CharField(max_length=80)
     business_name = models.CharField(max_length=80)
