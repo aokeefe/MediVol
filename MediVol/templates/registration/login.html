@@ -28,9 +28,6 @@
 
             {% if next %}
                 <input type='hidden' name='next' value='{{ next }}' />
-            {% else %}
-                <!-- TODO: change this depending on who is logged in -->
-                <input type='hidden' name='next' value='/administration' />
             {% endif %}
 
             <input type='submit' value='Log In' class='button loginButton' />

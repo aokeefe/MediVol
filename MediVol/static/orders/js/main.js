@@ -311,7 +311,8 @@ function autofillCustomerInfo(contactName, orgName) {
             for (var i = 0; i < shippingAddresses.length; i++) {
                 var shippingAddress = shippingAddresses[i];
 
-                $('#shippingAddresses').append('<option>' + shippingAddress + '</option');
+                $('#shippingAddresses').append('<option value="' + shippingAddress + '">' +
+                    shippingAddress + '</option');
             }
         } else {
             $('#shippingAddressesWrapper').html('<i>no shipping addresses saved</i>');
@@ -647,10 +648,12 @@ $(document).ready(function() {
 
         if ($('#shippingAddressesWrapper').html() !== '<i>no shipping addresses saved</i>' &&
                 new_shipping_address !== '') {
-            $('#shippingAddressesWrapper').append('<option selected="selected">' + new_shipping_address + '</option>');
+            $('#shippingAddressesWrapper').append('<option value="' + new_shipping_address +
+                '" selected="selected">' + new_shipping_address + '</option>');
         } else if (new_shipping_address !== '') {
             $('#shippingAddressesWrapper').html('<select id="shippingAddresses"></select>');
-            $('#shippingAddresses').append('<option>' + new_shipping_address + '</option>');
+            $('#shippingAddresses').append('<option value="' + new_shipping_address +
+                '">' + new_shipping_address + '</option>');
         }
 
         $('.createButton').val('Save Order \u2192');

@@ -78,7 +78,11 @@ def order_review(request, orderid):
         #Try and get order to review, if the order id exists return
         order = Order.objects.get(order_number=orderid)
 
-        response = { 'order_boxes': OrderBox.objects.filter(order_for=order), 'order': order }
+        response = {
+            'order_boxes': OrderBox.objects.filter(order_for=order),
+            'order': order,
+            'order_statuses': Order.ORDER_STATUS
+        }
 
         return render(request, 'orders/review_order.html', response)
     except:
