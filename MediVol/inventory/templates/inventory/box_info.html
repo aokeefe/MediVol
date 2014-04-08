@@ -34,7 +34,7 @@
             <h3 class='attributeLabel'>Weight</h3>
 
             {% if box.weight != None %}
-                <p class='attributeValue'>{{ box.weight }} lbs</p>
+                <p class='attributeValue'>{{ box.weight|floatformat:'1' }} lbs</p>
             {% else %}
                 <p class='attributeValue'>Unknown</p>
             {% endif %}
