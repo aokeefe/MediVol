@@ -9,6 +9,19 @@ from inventory.models import Warehouse
 from administration.models import ResetCode
 
 @login_required
+def redirect(request):
+    user_group = request.user.groups.all()[0].name
+
+    if user_group == 'Admin':
+        return HttpResponseRedirect('/inventory')
+    elif user_group == 'Box Transfer':
+        return HttpResponseRedirect('/inventory')
+    if user_group == 'Guest':
+        return HttpResponseRedirect('/inventory/create')
+    if user_group == 'Read Only':
+        return HttpResponseRedirect('/inventory')
+
+@login_required
 @user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
 def main_page(request):
     return render(request, 'administration/index.html')

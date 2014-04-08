@@ -29,32 +29,22 @@ if len(Group.objects.filter(name='Admin')) == 0:
     read_only_group = Group(name='Read Only')
     read_only_group.save()
 
-    new_user = User(username='mikelentini', email='mike@mikelentini.com')
-    new_user.set_password('mikelentini')
+    new_user = User(username='admin', email='admin@admin.com')
+    new_user.set_password('admin')
     new_user.save()
+    admin_group.user_set.add(new_user)
 
+    new_user = User(username='readonly', email='read@only.com')
+    new_user.set_password('readonly')
+    new_user.save()
     read_only_group.user_set.add(new_user)
 
-    new_user = User(username='bill', email='bill@bill.com')
-    new_user.set_password('bill')
+    new_user = User(username='boxtransfer', email='box@transfer.com')
+    new_user.set_password('boxtransfer')
     new_user.save()
-
     box_transfer_group.user_set.add(new_user)
 
-    new_user = User(username='shun', email='shun@shun.com')
-    new_user.set_password('shun')
+    new_user = User(username='guest', email='guest@guest.com')
+    new_user.set_password('guest')
     new_user.save()
-
-    guest_group.user_set.add(new_user)
-
-    new_user = User(username='boom', email='boom@boom.com')
-    new_user.set_password('boom')
-    new_user.save()
-
-    box_transfer_group.user_set.add(new_user)
-
-    new_user = User(username='anthony', email='anthony@anthony.com')
-    new_user.set_password('anthony')
-    new_user.save()
-
     guest_group.user_set.add(new_user)
