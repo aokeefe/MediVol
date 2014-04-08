@@ -14,6 +14,7 @@ class Warehouse(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
     abbreviation = models.CharField(max_length=ABBREV_LENGTH, unique=True)
     address = models.CharField(max_length=ADDRESS_LENGTH)
+    is_default = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
