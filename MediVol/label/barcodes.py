@@ -17,26 +17,39 @@ class BoxLabel(Drawing):
         self.add(barcode, name='barcode')
 
         box = Box.objects.get(barcode=barcode_value)
-        loc = String(10, 300, "Box Id:")
-        loc.fontSize = 20
 
-        box_id = String(15, 250, box.box_id)
-        box_id.fontSize = 60
+        box_category = String(10, 275, box.box_category.letter)
+        box_category.fontSize = 55
 
-        category = String(12, 235, box.box_category.name)
+        box_id = String(10, 230, box.box_id)
+        box_id.fontSize = 55
+
+        expiration = String(12, 195, "Exp: " + box.get_printable_expiration())
+        expiration.fontSize = 30
+
+        category = String(12, 165, box.box_category.name)
         category.fontSize = 15
 
-        expiration = String(12, 220, "Expiration date: " + str(box.get_expiration()))
-        expiration.fontSize = 15
-
-        weight = String(12, 205, "Weight: " + str(box.weight))
+        weight = String(12, 150, "Weight: " + "%.1f" % box.weight + ' lbs.')
         weight.fontSize = 15 
 
-        self.add(loc, "loc")
+        contents = String(12, 135, "Contents:")
+        contents.fontSize = 15
+
+        count = 120
+
+        for content in box.contents_set.all():
+            item = String(17, count, content.item.name)
+            item.fontSize = 15
+            self.add(item, "item")
+            count = count - 15
+
+        self.add(box_category, "box_category")
         self.add(box_id, "boxId")
         self.add(category, "category")
         self.add(expiration, "expiration")
         self.add(weight, "weight")
+        self.add(contents, name="contents_of_box")
 
     def save_img(self, fileName, Dir='.'):
         self.save(formats=['png'], fnRoot=fileName)

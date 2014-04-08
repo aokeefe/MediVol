@@ -29,6 +29,25 @@ def remove_warehouse(request, abbreviation):
     return True
 
 @dajaxice_register(method='POST')
+def set_default_warehouse(request, abbreviation):
+    try:
+        default_warehouse = Warehouse.objects.get(abbreviation=abbreviation)
+    except Warehouse.DoesNotExist:
+        return simplejson.dumps({ 'result': 'False' })
+
+    warehouses = Warehouse.objects.all()
+
+    for warehouse in warehouses:
+        if warehouse.is_default is True:
+            warehouse.is_default = False
+            warehouse.save()
+
+    default_warehouse.is_default = True
+    default_warehouse.save()
+
+    return simplejson.dumps({ 'result': 'True' })
+
+@dajaxice_register(method='POST')
 def remove_user(request, username):
     user_to_remove = User.objects.get(username=username)
     user_to_remove.delete()

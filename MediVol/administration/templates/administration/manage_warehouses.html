@@ -44,6 +44,13 @@
                     <td>{{ warehouse.name }}</td>
                     <td>{{ warehouse.address }}</td>
                     <td>
+                        {% if warehouse.is_default %}
+                            Default
+                        {% else %}
+                            <a href='javascript:void(0)' class='setDefault'>Set Default</a>
+                        {% endif %}
+                    </td>
+                    <td>
                         <a href='javascript:void(0)' class='removeWarehouse'>Remove</a>
                     </td>
                 </tr>

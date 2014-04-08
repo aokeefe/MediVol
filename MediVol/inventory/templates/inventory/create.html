@@ -69,16 +69,6 @@
                 <input type='month' class='textField' id='expiration' />
                 <p class='smallNote'>* Leave as is for never.</p>
             </div>
-
-            <div class='infoFieldWrapper'> 
-                <p>Warehouse Location?</p>
-                <select id='warehouse_options'> 
-                    <option></option>
-                    {% for warehouse in warehouses %} 
-                        <option {{ warehouse.abbreviation }}>{{ warehouse.name }}</option>
-                    {% endfor %} 
-                </select>
-            </div>
             <div class='infoFieldWrapper'>
                 <button id='add_item' class='button'>Add Item</button>
             </div>
@@ -156,6 +146,26 @@
             <div class='stepTwoFieldWrapper'>
                 <label for='small'><input type='radio' name='size' id='small' value='Small'> Small</label><br />
                 <label for='large'><input type='radio' name='size' id='large' value='Large' class='largeRadio'> Large</label>
+            </div>
+
+            <div class='clear'></div>
+        </div>
+
+        <div class='stepTwoField'>
+            <div class='label'>
+                Warehouse location<span class='requiredText'>*</span>
+            </div>
+
+            <div class='stepTwoFieldWrapper'>
+                <select id='warehouse_options'>
+                    {% for warehouse in warehouses %}
+                        {% if warehouse.is_default %}
+                            <option selected='selected' value='{{ warehouse.abbreviation }}'>{{ warehouse.name }}</option>
+                        {% else %}
+                            <option value='{{ warehouse.abbreviation }}'>{{ warehouse.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
             </div>
 
             <div class='clear'></div>

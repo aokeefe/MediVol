@@ -1,0 +1,43 @@
+#boxInfoWrapper {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#createdDate {
+    font-style: italic;
+    margin-top: -20px;
+    color: gray;
+}
+
+#boxInfoButtons {
+    width: 100%;
+    font-size: 2em;
+}
+
+#buttonsLeft {
+    float: left;
+}
+
+#buttonsRight {
+    float: right;
+}
+
+.attributeLabel {
+    font-size: 1.15em;
+    margin-bottom: 0px;
+}
+
+.attributeValue {
+    font-size: 1.5em;
+    margin-top: 5px;
+}
+
+.attributeWrapper {
+    float: left;
+    width: 50%;
+}
+
+#warehouse {
+    font-size: 1em;
+}
