@@ -64,6 +64,11 @@ h3 {
     margin-bottom: 0;
 }
 
+.infoFieldWrapper select { 
+   font-size : 1.25em; 
+   width: 100;
+}
+
 #add_item {
     margin-top: 10%;
     float: right;

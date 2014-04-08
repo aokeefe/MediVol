@@ -7,4 +7,5 @@ urlpatterns = patterns('',
     url(r'^create/(?P<order_id>\w+)/$', views.create, name='create'),
     url(r'^view_box_info/(?P<boxid>\w+)/$', views.box_info, name='box_info'),
     url(r'^view_box_info/barcode/(?P<barcodeid>\w+)/$', views.barcode_box_info, name='box_info'),
+    url(r'^$',views.inventory_view,name='inventory_view')
 )
