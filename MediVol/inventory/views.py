@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from catalog.models import Category
 from inventory.models import Box, Contents, Warehouse
 from orders.models import Order, OrderBox
 
+@login_required(login_url='/login/')
 def create(request, order_id=0):
     categories = Category.objects.all()
     categoryStrings = []
@@ -19,6 +21,7 @@ def create(request, order_id=0):
 
     return render(request, 'inventory/create.html', context)
 
+@login_required(login_url='/login')
 def box_info(request, boxid):
     #Try and get box info from the box id if exists return
     box = Box.get_box(boxid)
@@ -48,6 +51,7 @@ def box_info(request, boxid):
     
     return render(request, 'inventory/box_info.html', context)
 
+@login_required(login_url='/login/')
 def barcode_box_info(request, barcodeid):
 
     try:
@@ -82,6 +86,7 @@ def barcode_box_info(request, barcodeid):
         #If box does not exist in databse redirect to box not found page
         return render_to_response('inventory/box_not_found.html')
 
+@login_required(login_url='/login/')
 def inventory_view(request):
     categories = Category.objects.all()
     categoryStrings = []

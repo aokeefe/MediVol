@@ -73,6 +73,10 @@
                 <button id='add_item' class='button'>Add Item</button>
             </div>
         </div>
+
+        <p id='boxCategoryMessage' class='requiredText requiredMessage'>
+            Boxes can only contain one category of items
+        </p>
     </div>
 
     <div id='tableWrapper'>
@@ -194,4 +198,10 @@
 
 {% endblock %}
 
-{% block javascript %}<script type='text/javascript' src='{{ STATIC_URL }}inventory/js/main.js'></script>{% endblock %}
+{% block javascript %}
+    <script type='text/javascript'>
+        var groupName = '{{ user.groups.all.0.name }}';
+    </script>
+
+    <script type='text/javascript' src='{{ STATIC_URL }}inventory/js/main.js'></script>
+{% endblock %}
