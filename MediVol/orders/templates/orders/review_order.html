@@ -28,6 +28,21 @@
             </div>
         {% endif %}
 
+        <div class='addressWrapper'>
+            <p class='addressHeader'>Status</p>
+            <p class='shippingAddress'>
+                <select id='orderStatus'>
+                    {% for order_status in order_statuses %}
+                        {% if order_status.0 == order.order_status %}
+                            <option value='{{ order_status.0 }}' selected='selected'>{{ order_status.1 }}</option>
+                        {% else %}
+                            <option value='{{ order_status.0 }}'>{{ order_status.1 }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </p>
+        </div>
+
         <div class='clear'></div>
     </div>
 
@@ -74,5 +89,8 @@
 {% endblock %}
 
 {% block javascript %}
-
+    <script type='text/javascript'>
+        var orderNumber = {{ order.order_number }};
+    </script>
+    <script type='text/javascript' src='{{ STATIC_URL }}orders/js/review.js'></script>
 {% endblock %}

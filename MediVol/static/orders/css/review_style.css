@@ -50,3 +50,7 @@
 .editOrderButton {
     font-size: 2em;
 }
+
+#orderStatus {
+    font-size: 1em;
+}
