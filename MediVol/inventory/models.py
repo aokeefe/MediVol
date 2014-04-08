@@ -151,6 +151,11 @@ class Box(models.Model):
             return self.box_id
         return self.box_category.letter + self.box_id
 
+    def get_printable_id(self):
+        if self.old_box_flag:
+            return self.box_id
+        return self.box_category.letter + '-' + self.box_id
+
     def get_expiration(self):
         """
         Finds the oldest date amoung the contents of a Box, and return it.
@@ -179,6 +184,19 @@ class Box(models.Model):
 
             if formatted_expiration == 'January, 1970':
                 return 'Unknown'
+            else:
+                return formatted_expiration
+
+    def get_printable_expiration(self):
+        expiration = self.get_expiration()
+
+        if expiration is None:
+            return 'Never'
+        else:
+            formatted_expiration = expiration.strftime('%m/%Y')
+
+            if formatted_expiration == 'January, 1970':
+                return '??/????'
             else:
                 return formatted_expiration
 
