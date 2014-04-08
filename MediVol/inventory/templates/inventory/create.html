@@ -70,13 +70,12 @@
                 <p class='smallNote'>* Leave as is for never.</p>
             </div>
 
-            <div class='infoFieldWrapper'> 
-                <p>Warehouse Location?</p>
-                <select id='warehouse_options'> 
-                    <option></option>
-                    {% for warehouse in warehouses %} 
+            <div class='infoFieldWrapper'>
+                <p>Warehouse location?</p>
+                <select id='warehouse_options'>
+                    {% for warehouse in warehouses %}
                         <option {{ warehouse.abbreviation }}>{{ warehouse.name }}</option>
-                    {% endfor %} 
+                    {% endfor %}
                 </select>
             </div>
             <div class='infoFieldWrapper'>
