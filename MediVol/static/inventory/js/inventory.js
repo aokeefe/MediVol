@@ -1,3 +1,10 @@
+// because JS is weird and doesn't have a startsWith method
+if (typeof String.prototype.startsWith != 'function') {
+    String.prototype.startsWith = function (str){
+        return this.slice(0, str.length) == str;
+    };
+}
+
 // Template for adding new item to the table.
 var ITEM_TEMPLATE = '<tr>' +
         '<td>{order_id}</td>' +
@@ -50,7 +57,7 @@ function getBoxNames(response) {
 
     // If this was a search, we have to select the right box name
     // and trigger the change event so it will populate the items list.
-    if (boxNameToChoose != '') {
+    if (boxNameToChoose !== '') {
         $('#box_names').val(boxNameToChoose);
         boxNameToChoose = '';
         $('#box_names').change();
@@ -62,13 +69,14 @@ function getBoxNames(response) {
 * the getBoxNames callback, just for items instead.
 */
 function getItems(response) {
+
     $('#items').empty();
 
     for (var i = 0; i < response.length; i++) {
         $('#items').append('<option>' + response[i] + '</option>');
     }
 
-    if (itemToChoose != '') {
+    if (itemToChoose !== '') {
         $('#items').val(itemToChoose);
         itemToChoose = '';
         $('#items').change();
@@ -93,6 +101,19 @@ function boxRow(box_id, size, weight, contents, expiration, warehouse, order_id)
     this.warehouse = warehouse;
     this.order_id = order_id;
     this.check = '';
+}
+
+function addSingleBox(response){
+    currentBoxes.length = 0;
+    currentBoxes.push(new boxRow(response[0],
+        response[1],
+        response[2],
+        response[3],
+        response[4],
+        response[5],
+        response[6]
+    ));
+    showTable();
 }
 
 function setTableList(response) {
@@ -418,6 +439,7 @@ $(document).ready(function() {
     });
 
     // This sets up the google-style autocomplete field.
+    // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
         {
             autoFocus: true,
@@ -428,7 +450,15 @@ $(document).ready(function() {
             // search results.
             source: function(request, response) {
                 // Call the get_search_results AJAX function.
-                Dajaxice.inventory.get_search_results(function(returned) {
+                Dajaxice.orders.get_search_results(function(returned) {
+
+                    for (var i = 0; i < returned.length; i++) {
+                        if (returned[i].startsWith('Box')) {
+                            var box = returned[i].split(' ');
+                            var boxId = box[1];
+                        }
+                    }
+
                     // 'returned' is passed to us from the AJAX function.
                     // It is an array of relevant search results which we pass
                     // to the 'response' callback.
@@ -467,6 +497,7 @@ $(document).ready(function() {
                 var category = queryArray[0];
                 var boxName = '';
                 var item = '';
+                var box = '';
 
                 // If the array has two phrases, then it has a Category and
                 // Box Name, so we set the box name. We also set the boxNameToChoose
@@ -482,25 +513,37 @@ $(document).ready(function() {
                 if (queryArray.length > 2) {
                     item = queryArray[2];
                     itemToChoose = item;
-                    $('#count').focus();
+                }
+
+                // If it has four phrases, it also has a box_id so we can set the box_id too.
+                // We can set the boxToChoose to the item can be autoselected in the list.
+                if (queryArray.length > 3) {
+                    box = queryArray[3];
+                    boxToChoose = box;
                 }
 
                 // Now we set the selected category in the list and trigger the
                 // change event for the categories list, so the box name field will be
                 // autopopulated and that will cascade down to the item list if necessary.
-                $('#categories').val(category).change();
+                if (!category.startsWith('Box')) {
+                    $('#categories').val(category).change();
+                } else {
+                    box = category.split(' ');
+                    var boxId = box[1];
+                    Dajaxice.inventory.get_box_by_id(addSingleBox, { 'box_id': boxId });
+                }
             }
         }
     );
 
     $('#itemSearch').focus();
-
-	// Set the 'on change' event for the categories list.
+	
+    // Set the 'on change' event for the categories list.
     $('#categories').change(function() {
         var selectedCategory = $('#categories option:selected').val();
 
         // Get the list of box names for the selected category.
-        Dajaxice.inventory.get_box_names(getBoxNames, { 'category_name': selectedCategory });
+        Dajaxice.orders.get_box_names(getBoxNames, { 'category_name': selectedCategory });
     });
 
     // Set the 'on change' event for the box names list.
@@ -508,9 +551,9 @@ $(document).ready(function() {
         var selectedBoxName = $('#box_names option:selected').val();
 
         // Get the list of items for the selected box name.
-        Dajaxice.inventory.get_items(getItems, { 'box_name': selectedBoxName });
+        Dajaxice.orders.get_items(getItems, { 'box_name': selectedBoxName });
     });
-
+    
     // Set the 'on change' event for the items list.
     $('#items').change(function() {
     	var selectedItemName = $('#items option:selected').val();
