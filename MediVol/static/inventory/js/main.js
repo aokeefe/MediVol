@@ -119,6 +119,7 @@ function getAddedItems() {
             var itemName = $(itemInfo[2]).html();
             var boxName = $(itemInfo[1]).html();
             var expiration = $(itemInfo[3]).html();
+            var category = $(itemInfo[0]).html();
             var count = 0;
 
             if ($(itemInfo[4]).html() != 'No count') {
@@ -131,7 +132,7 @@ function getAddedItems() {
                 expiration = expirationArray[1] + '-' + expirationArray[0] + '-01';
             }
 
-            items.push([ itemName, expiration, count, boxName ]);
+            items.push([ itemName, expiration, count, boxName, category ]);
         }
     });
 
@@ -157,7 +158,7 @@ function goBack() {
 }
 
 function goForward() {
-    if (getAddedItems().length == 0) {
+    if (getAddedItems().length === 0) {
         $('#emptyBoxMessage').html('Cannot create an empty box.');
         $('#emptyBoxMessage').show();
         $('html, body').animate({
@@ -326,12 +327,19 @@ $(document).ready(function() {
         var item = $('#items option:selected').val();
         var expiration = ($('#expiration').val() == '') ? 'Never' : $('#expiration').val();
         var count = $('#count').val();
+        var alreadyAddedItems = getAddedItems();
 
         // Required fields to add an item.
         if (typeof(category) == 'undefined' ||
                 typeof(boxName) == 'undefined' ||
                 typeof(item) == 'undefined') {
             return;
+        } else if (alreadyAddedItems.length !== 0 && groupName !== 'Admin') {
+            if (alreadyAddedItems[0][4] !== category) {
+                $('#boxCategoryMessage').html('Boxes can only contain one category of items.');
+                $('#boxCategoryMessage').show();
+                return;
+            }
         }
 
         if (count < 0) {
@@ -369,6 +377,7 @@ $(document).ready(function() {
         );
 
         $('#emptyBoxMessage').hide();
+        $('#boxCategoryMessage').hide();
 
         // Set the remove button again. We need to do this every time we
         // add another remove button.

@@ -16,7 +16,8 @@ class BoxIndex(indexes.SearchIndex, indexes.Indexable):
 
 class ContentsIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
-    expiration = indexes.DateTimeField(model_attr='expiration', null=True)
+    # TODO: fix this
+    # expiration = indexes.DateTimeField(model_attr='expiration', null=True)
 
     content_auto = indexes.EdgeNgramField(use_template=True)
 
