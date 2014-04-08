@@ -222,3 +222,8 @@ def change_order_status(request, order_number, order_status):
         order = Order.objects.get(order_number=order_number)
     except Order.DoesNotExist:
         return simplejson.dumps({ 'result': 'False' })
+
+    order.order_status = order_status
+    order.save()
+
+    return simplejson.dumps({ 'result': 'True' })
