@@ -37,6 +37,21 @@ function removeWarehouse(abbreviation) {
     );
 }
 
+function setDefaultWarehouse(abbreviation) {
+    Dajaxice.administration.set_default_warehouse(
+        function(response) {
+            if (response.result === 'True') {
+                window.location.reload();
+            } else if (response.result === 'False') {
+                $.jAlert('There was an error setting the default warehouse.', 'error', null);
+            }
+        },
+        {
+            'abbreviation': abbreviation
+        }
+    );
+}
+
 function prepareWarehouseManagement() {
     $('#addWarehouse').click(function() {
         var name = $('#warehouseName').val();
@@ -67,6 +82,19 @@ function prepareWarehouseManagement() {
             function(result) {
                 if (result) {
                     removeWarehouse(abbreviation);
+                }
+            }
+        );
+    });
+
+    $('.setDefault').click(function() {
+        var abbreviation = $($(this).parent().parent().children('td')[0]).html();
+        var warehouse = $($(this).parent().parent().children('td')[1]).html();
+
+        $.jConfirm('Set "' + warehouse + '" warehouse as the default warehouse?', '',
+            function(result) {
+                if (result) {
+                    setDefaultWarehouse(abbreviation);
                 }
             }
         );

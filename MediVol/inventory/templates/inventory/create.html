@@ -159,7 +159,11 @@
             <div class='stepTwoFieldWrapper'>
                 <select id='warehouse_options'>
                     {% for warehouse in warehouses %}
-                        <option value='{{ warehouse.abbreviation }}'>{{ warehouse.name }}</option>
+                        {% if warehouse.is_default %}
+                            <option selected='selected' value='{{ warehouse.abbreviation }}'>{{ warehouse.name }}</option>
+                        {% else %}
+                            <option value='{{ warehouse.abbreviation }}'>{{ warehouse.name }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </div>
