@@ -2,9 +2,9 @@
 
 {% block title %}
     {% if order_id == 0 %}
-        <title>Intervol | Create Order </title>
+        <title>Intervol | Create Order</title>
     {% else %}
-        <title>Intervol | Edit Order {{ order_id }} </title>
+        <title>Intervol | Edit Order {{ order_id }}</title>
     {% endif %}
 {% endblock %}
 
@@ -234,11 +234,7 @@
                 </div>
 
                 <div class='addBoxButton'>
-                    {% if order_id == 0 %}
                         <a id='create_box_link' href='javascript:void(0)'>
-                    {% else %}
-                        <a id='create_box_link' href='/inventory/create/{{ order_id }}'>
-                    {% endif %}
                             <button id='create_box' class='button'>Create and Add New Box</button>
                         </a>
                     <div class='clear'></div>
