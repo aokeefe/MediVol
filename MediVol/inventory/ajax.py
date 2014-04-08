@@ -121,6 +121,9 @@ def get_warehouse_abbreviations(request):
 
 @dajaxice_register(method='POST')
 def set_warehouse(request, box_id, warehouse_abbreviation):
+    if request.user.groups.all()[0].name != 'Admin' or request.user.groups.all()[0].name != 'Box Transfer':
+        return simplejson.dumps({'message': 'False'})
+
     try:
         warehouse = Warehouse.objects.get(abbreviation=warehouse_abbreviation)
     except Warehouse.DoesNotExist:

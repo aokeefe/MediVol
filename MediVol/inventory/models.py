@@ -99,7 +99,7 @@ class Box(models.Model):
         """
         Returns a printable, human readable, string to represent the Box
         """
-        return self.box_id
+        return self.get_id()
 
     def save(self, *args, **kwargs):
         """
@@ -257,7 +257,7 @@ class Contents(models.Model):
         return self.item.name
 
     def get_search_results_string(self):
-        return self.item.box_name.category.name + ' > ' + self.item.box_name.name + ' > ' + self.item.name + ' > Box ' + self.box_within.box_id
+        return self.item.box_name.category.name + ' > ' + self.item.box_name.name + ' > ' + self.item.name + ' > Box ' + self.box_within.get_id()
 
     def save(self, *args, **kwargs):
         super(Contents, self).save(*args, **kwargs)

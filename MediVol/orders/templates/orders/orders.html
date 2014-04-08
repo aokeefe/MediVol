@@ -11,7 +11,7 @@
 {% block body %}
     <h2>Orders</h2>
 
-    <a href='/orders/create'><button class='button'>Create Order</button></a>
+    <a id='createOrder' href='/orders/create'><button class='button'>Create Order</button></a>
 
     <ul>
         {% for order in orders %}

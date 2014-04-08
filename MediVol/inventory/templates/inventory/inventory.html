@@ -12,7 +12,9 @@
 {% block body %}
     <h2>Inventory</h2>
 
-    <p><a href='/inventory/create'><button class='button'>Create New Box</button></a></p>
+    {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
+        <p><a id='createNewBox' href='/inventory/create'><button class='button'>Create New Box</button></a></p>
+    {% endif %}
 
     <input type='text' id='itemSearch' class='textField'
         placeholder='Search for category, box name, item, or box.' />
@@ -81,5 +83,8 @@
 {% endblock %}
 
 {% block javascript %}
+    <script type='text/javascript'>
+        var groupName = '{{ user.groups.all.0.name }}';
+    </script>
     <script type='text/javascript' src='{{ STATIC_URL }}inventory/js/inventory.js'></script>
 {% endblock %}

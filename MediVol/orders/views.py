@@ -1,14 +1,20 @@
 from django.shortcuts import render, render_to_response
+from django.contrib.auth.decorators import login_required, user_passes_test
+from administration.UserTests import UserTests
 
 from catalog.models import Category
 from orders.models import Order, OrderBox
 from inventory.models import Box
 
+@login_required(login_url='/login/')
+@user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
 def orders_home(request):
     context = { 'orders': Order.objects.all() }
 
     return render(request, 'orders/orders.html', context)
 
+@login_required(login_url='/login/')
+@user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
 #Display the create page of ordering
 def create_order(request, order_id=0, step_num=1, box_to_add='0'):
     step_num = int(step_num)
@@ -61,6 +67,8 @@ def create_order(request, order_id=0, step_num=1, box_to_add='0'):
 
     return render(request, 'orders/create_order.html', context)
 
+@login_required(login_url='/login/')
+@user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
 # Display order review page
 def order_review(request, orderid):
     try:
@@ -70,7 +78,11 @@ def order_review(request, orderid):
         #Try and get order to review, if the order id exists return
         order = Order.objects.get(order_number=orderid)
 
-        response = { 'order_boxes': OrderBox.objects.filter(order_for=order), 'order': order }
+        response = {
+            'order_boxes': OrderBox.objects.filter(order_for=order),
+            'order': order,
+            'order_statuses': Order.ORDER_STATUS
+        }
 
         return render(request, 'orders/review_order.html', response)
     except:

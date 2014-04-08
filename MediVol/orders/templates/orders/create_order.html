@@ -119,9 +119,13 @@
                             <select id="shippingAddresses">
                                 {% for shipping_address in order.reserved_for.shippingaddress_set.all %}
                                     {% if shipping_address == order.ship_to %}
-                                        <option selected='selected'>{{ shipping_address.address }}</option>
+                                        <option selected='selected' value='{{ shipping_address.address }}'>
+                                            {{ shipping_address.address }}
+                                        </option>
                                     {% else %}
-                                        <option>{{ shipping_address.address }}</option>
+                                        <option value='{{ shipping_address.address }}'>
+                                            {{ shipping_address.address }}
+                                        </option>
                                     {% endif %}
                                 {% endfor %}
                             </select>
