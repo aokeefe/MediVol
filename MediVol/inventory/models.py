@@ -190,6 +190,19 @@ class Box(models.Model):
             else:
                 return formatted_expiration
 
+    def get_printable_expiration(self):
+        expiration = self.get_expiration()
+
+        if expiration is None:
+            return 'Never'
+        else:
+            formatted_expiration = expiration.strftime('%m/%Y')
+
+            if formatted_expiration == 'January, 1970':
+                return '??/????'
+            else:
+                return formatted_expiration
+
     def get_search_results_string(self):
         return 'Box ' + self.get_id()
 
