@@ -7,7 +7,7 @@ import pytz
 from datetime import datetime
 import re
 
-from catalog.models import Category
+from catalog.models import Category, BoxName
 from inventory.models import Box
 
 ERROR_COUNT = 0
@@ -25,6 +25,35 @@ def get_category(data):
         category = Category.objects.get(letter='Y')
     return category
 
+def get_box_size(data):
+    if re.match("^[LS] - +\d{1,2}\.\d lbs\.{0,1}", data.strip()):
+        return data.strip()[0]
+    else:
+        print '[ERROR] Could not import size: ' + data
+        global ERROR_COUNT
+        ERROR_COUNT = ERROR_COUNT + 1
+        return 'U'
+
+def get_box_weight(data):
+    if re.match("^[LS] - +\d{1,2}\.\d lbs\.{0,1}", data.strip()):
+        return float(data.split('-')[1].strip().split(' ')[0])
+    else:
+        print '[ERROR] Could not import weight: ' + data
+        global ERROR_COUNT
+        ERROR_COUNT = ERROR_COUNT + 1
+        return 0.0
+
+def get_items(data):
+    if re.match("^.*:.*\Z", data.strip()) is not None:
+        box_name_text = data.split(":")[0].strip()
+        try:
+            box_name = BoxName.objects.get(name=box_name_text)
+        except:
+            box_name = None
+            print 'NOPE! ' + box_name_text
+
+        print box_name
+
 def get_date(data):
     if re.match('^\d{1,2}/\d{4}\Z', data.strip()) is not None:
         formattedDate = data.strip().split("/")
@@ -39,7 +68,6 @@ def get_date(data):
         global ERROR_COUNT
         ERROR_COUNT = ERROR_COUNT + 1
         return UNKNOWN_EXPIRATION
-
 
 def importer(file_name):
     print("\nStarting " + file_name + " Import to MySQL Database") 
@@ -63,10 +91,10 @@ def importer(file_name):
 
     print 'Starting new data import'
     for line in csvArray[line_count:]:
-        line_data = [get_category(line[0]), get_date(line[3])]
+        line_data = [get_category(line[0]), get_box_size(line[1]), get_box_weight(line[1]), get_items(line[2]), get_date(line[3])]
         global READ_LINE_COUNT
         READ_LINE_COUNT = READ_LINE_COUNT + 1
-        print line_data
+        #print line_data
     print 'Finished new data import'
 
 
