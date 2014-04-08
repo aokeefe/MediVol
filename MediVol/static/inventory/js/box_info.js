@@ -1,4 +1,3 @@
-
 /**
 * Callback for get_label AJAX call.
 */
@@ -11,7 +10,7 @@ function print(response){
         iframe.width = 0;
         iframe.height = 0;
         document.body.appendChild(iframe);
-        
+
         setTimeout(function() {
             location.reload();
         }, 1);
