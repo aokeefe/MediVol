@@ -49,7 +49,7 @@ class BoxLabel(Drawing):
         self.add(category, "category")
         self.add(expiration, "expiration")
         self.add(weight, "weight")
-        self.add(contents, name="contents2")
+        self.add(contents, name="contents_of_box")
 
     def save_img(self, fileName, Dir='.'):
         self.save(formats=['png'], fnRoot=fileName)

@@ -163,10 +163,7 @@ class Box(models.Model):
         returned
         """
         if self.old_expiration is not None:
-            if self.old_expiration.year == 1970:
-                return None
-            else:
-                return self.old_expiration
+            return self.old_expiration
         NOT_EXPIRING_IN_THIS_MILLENIUM = datetime(3013,1,1,0,0,0,0,pytz.UTC)
         expiration = NOT_EXPIRING_IN_THIS_MILLENIUM
         for item in self.contents_set.all():
