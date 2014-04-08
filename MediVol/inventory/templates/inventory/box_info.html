@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    <title>InterVol | {{ box.get_id }}</title>
+    <title>InterVol | Box {{ box.get_id }}</title>
 {% endblock %}
 
 {% block styles %}
@@ -10,21 +10,57 @@
 
 {% block body %}
     <h2>Box {{ box.get_id }} </h2>
+    {% if order != None %}
+        <h3 id='createdDate'>
+            In <a href='/orders/review/{{ order.order_number }}'>Order {{ order.order_number }}</a>
+        </h3>
+    {% endif %}
     <h3 id='createdDate'>Created on {{ box.entered_date }}</h3>
 
     <div id='boxInfoWrapper'>
-        <p>Box Category: {{ box.box_category }}</p>
-        <p>Box Contents: {% for box_content in box_contents %} <br /> {{box_content}} <br /> {% endfor %}</p>
-        <p>Box Size: {{ box.box_size }} </p>
-        <p>Box Weight: {{ box.weight }} </p>
-        <p>Box Entry Date: {{ box.entered_date }} </p>
-        <p>Box Shipped To: {{ box.shipped_to }} </p>
-        <p>Initials of Who Entered The Box: {{ box.initials }} </p>
-        <p>Order Number of Box: {{order_number}} </p>
+        <div class='attributeWrapper'>
+            <h3 class='attributeLabel'>Category</h3>
+            <p class='attributeValue'>{{ box.box_category }}</p>
+            <div class='clear'></div>
+        </div>
+
+        <div class='attributeWrapper'>
+            <h3 class='attributeLabel'>Size</h3>
+            <p class='attributeValue'>{{ box.get_box_size_display }}</p>
+            <div class='clear'></div>
+        </div>
+
+        <div class='attributeWrapper'>
+            <h3 class='attributeLabel'>Weight</h3>
+            <p class='attributeValue'>{{ box.weight }} lbs</p>
+            <div class='clear'></div>
+        </div>
+
+        <div class='attributeWrapper'>
+            <h3 class='attributeLabel'>Entered By</h3>
+            <p class='attributeValue'>{{ box.initials }}</p>
+            <div class='clear'></div>
+        </div>
+
+        <h3 class='attributeLabel'>Expires</h3>
+        <p class='attributeValue'>{{ box.get_expiration_display }}</p>
+
+        <h3 class='attributeLabel'>Contents</h3>
+        <p class='attributeValue'>{{ box.get_contents_string_with_links|safe }}</p>
+
+        {% if box.shipped_to != None and box.shipped_to != '' %}
+            <h3 class='attributeLabel'>Shipped To</h3>
+            <p class='attributeValue'>{{ box.shipped_to }}</p>
+        {% endif %}
 
         <div id='boxInfoButtons'>
-            <a href="#"><button>Back to Inventory</button></a>
-            <button id="print_label" onclick="print_label('{{box.box_id }}')">Print Label</button>
+            <div id='buttonsLeft'>
+                <a href='/inventory/'><button class='button'>&larr; Back to Inventory</button></a>
+            </div>
+
+            <div id='buttonsRight'>
+                <button id="print_label" onclick="print_label('{{box.box_id }}')" class='button'>Print Label</button>
+            </div>
         </div>
     </div>
 {% endblock %}

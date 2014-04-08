@@ -2,7 +2,7 @@ import pytz
 from django.db import models
 from catalog.models import Item, Category
 from import_export.to_csv import to_csv_from_array, to_array_from_csv
-from datetime import datetime
+from datetime import datetime, date
 import random
 import id_generator
 
@@ -175,27 +175,45 @@ class Box(models.Model):
         if expiration is None:
             return 'Never'
         else:
-            expiration = str(expiration).split(' ')[0]
-            expiration_array = expiration.split('-')
-            return expiration_array[1] + '/' + expiration_array[2] + '/' + expiration_array[0]
+            formatted_expiration = expiration.strftime('%B, %Y')
+
+            if formatted_expiration == 'January, 1970':
+                return 'Unknown'
+            else:
+                return formatted_expiration
 
     def get_search_results_string(self):
         return 'Box ' + self.get_id()
 
-    def get_contents_string(self):
+    def get_contents_string(self, with_links=False):
         if self.old_contents is None:
             contents_strings = []
             contents = Contents.objects.filter(box_within=self)
 
             for content in contents:
-                if content.quantity > 0:
-                    contents_strings.append(content.item.name + ' x ' + str(content.quantity))
+                if with_links:
+                    if content.quantity > 0:
+                        contents_strings.append(
+                            '<a href="/catalog/item_info/%s" target="_blank">%s</a> x %s' % \
+                            (content.item.id, content.item.name, str(content.quantity))
+                        )
+                    else:
+                        contents_strings.append(
+                            '<a href="/catalog/item_info/%s" target="_blank">%s</a>' % \
+                            (content.item.id, content.item.name)
+                        )
                 else:
-                    contents_strings.append(content.item.name)
+                    if content.quantity > 0:
+                        contents_strings.append(content.item.name + ' x ' + str(content.quantity))
+                    else:
+                        contents_strings.append(content.item.name)
 
             return ', '.join(contents_strings)
 
         return self.old_contents
+
+    def get_contents_string_with_links(self):
+        return self.get_contents_string(True)
 
 class Contents(models.Model):
     box_within = models.ForeignKey(Box)
