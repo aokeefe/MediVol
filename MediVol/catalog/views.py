@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from catalog.models import Category, BoxName, Item
 from inventory.models import Box, Contents
 from orders.models import Order, OrderBox
 
+@login_required(login_url='/login/')
 def catalog(request):
     categories = Category.objects.all()
     categoryStrings = []
@@ -22,6 +24,7 @@ def catalog(request):
     #     context['now'] = timezone.now()
     #     return context
 
+@login_required(login_url='/login/')
 def item_info(request, item_id):
     try:
         item = Item.objects.get(id=item_id)

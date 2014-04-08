@@ -1,14 +1,17 @@
 from django.shortcuts import render, render_to_response
+from django.contrib.auth.decorators import login_required
 
 from catalog.models import Category
 from orders.models import Order, OrderBox
 from inventory.models import Box
 
+@login_required(login_url='/login/')
 def orders_home(request):
     context = { 'orders': Order.objects.all() }
 
     return render(request, 'orders/orders.html', context)
 
+@login_required(login_url='/login/')
 #Display the create page of ordering
 def create_order(request, order_id=0, step_num=1, box_to_add='0'):
     step_num = int(step_num)
@@ -61,6 +64,7 @@ def create_order(request, order_id=0, step_num=1, box_to_add='0'):
 
     return render(request, 'orders/create_order.html', context)
 
+@login_required(login_url='/login/')
 # Display order review page
 def order_review(request, orderid):
     try:
