@@ -20,7 +20,7 @@ class BoxLabel(Drawing):
         loc = String(10, 300, "Box Id:")
         loc.fontSize = 20
 
-        box_id = String(15, 250, box.box_id)
+        box_id = String(15, 250, box.get_printable_id())
         box_id.fontSize = 60
 
         category = String(12, 235, box.box_category.name)

@@ -151,6 +151,11 @@ class Box(models.Model):
             return self.box_id
         return self.box_category.letter + self.box_id
 
+    def get_printable_id(self):
+        if self.old_box_flag:
+            return self.box_id
+        return self.box_category.letter + '-' + self.box_id
+
     def get_expiration(self):
         """
         Finds the oldest date amoung the contents of a Box, and return it.
