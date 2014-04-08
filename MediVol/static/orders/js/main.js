@@ -165,7 +165,6 @@ function getBoxDetails(response) {
 */
 function createOrder(response) {
     orderNumber = response.order_number;
-    $('#create_box_link').attr('href', '/inventory/create/' + orderNumber);
 }
 
 /**
@@ -324,6 +323,52 @@ function autofillCustomerInfo(contactName, orgName) {
 
         $('#organization_address').val(orgAddress).removeClass('requiredTextField');
     }, { 'contact_name': contactName, 'organization_name': orgName });
+}
+
+function addBoxesToOrder(forNewBox) {
+    forNewBox = (typeof(forNewBox) == 'undefined') ? false : true;
+
+    if (pricesHaveErrors()) {
+        return;
+    }
+
+    var price = $('#price').val();
+
+    if (price !== '') {
+        price = parseFloat(price).toFixed(2);
+    }
+
+    var boxes = {};
+
+    $('#boxes_added tr').each(function(index, element) {
+        element = $(element);
+
+        if (element.attr('id') != 'placeholder_row' &&
+                element.attr('id') != 'table_header') {
+            var boxInfo = element.children('td');
+            var boxId = $(boxInfo[0]).html();
+            var boxPrice = $($(boxInfo[3]).children('input')[0]).val();
+
+            boxes[boxId] = boxPrice;
+        }
+    });
+
+    Dajaxice.orders.add_boxes_to_order(
+        function(returned) {
+            if (returned.result == 1) {
+                if (!forNewBox) {
+                    window.location = '/orders/review/' + orderNumber;
+                } else {
+                    window.location = '/inventory/create/' + orderNumber;
+                }
+            }
+        },
+        {
+            'order_number': orderNumber,
+            'boxes': boxes,
+            'custom_price': price
+        }
+    );
 }
 
 $(document).ready(function() {
@@ -665,43 +710,12 @@ $(document).ready(function() {
     $('#submit').click(function(e) {
         e.preventDefault();
 
-        if (pricesHaveErrors()) {
-            return;
-        }
+        addBoxesToOrder();
+    });
 
-        var price = $('#price').val();
+    $('#create_box_link').click(function(e) {
+        e.preventDefault();
 
-        if (price !== '') {
-            price = parseFloat(price).toFixed(2);
-        }
-
-        var boxes = {};
-
-        $('#boxes_added tr').each(function(index, element) {
-            element = $(element);
-
-            if (element.attr('id') != 'placeholder_row' &&
-                    element.attr('id') != 'table_header') {
-                var boxInfo = element.children('td');
-                var boxId = $(boxInfo[0]).html();
-                var boxPrice = $($(boxInfo[3]).children('input')[0]).val();
-
-                boxes[boxId] = boxPrice;
-            }
-        });
-
-        Dajaxice.orders.add_boxes_to_order(
-            function(returned) {
-                console.log(returned);
-                if (returned.result == 1) {
-                    window.location = '/orders/review/' + orderNumber;
-                }
-            },
-            {
-                'order_number': orderNumber,
-                'boxes': boxes,
-                'custom_price': price
-            }
-        );
+        addBoxesToOrder(true);
     });
 });
