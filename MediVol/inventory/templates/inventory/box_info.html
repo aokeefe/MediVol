@@ -32,7 +32,12 @@
 
         <div class='attributeWrapper'>
             <h3 class='attributeLabel'>Weight</h3>
-            <p class='attributeValue'>{{ box.weight }} lbs</p>
+
+            {% if box.weight != None %}
+                <p class='attributeValue'>{{ box.weight }} lbs</p>
+            {% else %}
+                <p class='attributeValue'>Unknown</p>
+            {% endif %}
             <div class='clear'></div>
         </div>
 
@@ -42,8 +47,30 @@
             <div class='clear'></div>
         </div>
 
-        <h3 class='attributeLabel'>Expires</h3>
-        <p class='attributeValue'>{{ box.get_expiration_display }}</p>
+        <div class='attributeWrapper'>
+            <h3 class='attributeLabel'>Expires</h3>
+            <p class='attributeValue'>{{ box.get_expiration_display }}</p>
+        </div>
+
+        <div class='attributeWrapper'>
+            <h3 class='attributeLabel'>Warehouse</h3>
+
+            <p class='attributeValue'>
+                <select id='warehouse'>
+                    {% if box.warehouse == None %}
+                        <option id='unknownOption' value='unknown'>Unknown</p>
+                    {% endif %}
+
+                    {% for warehouse in warehouses %}
+                        {% if warehouse == box.warehouse %}
+                            <option value='{{ warehouse.abbreviation }}' selected='selected'>{{ warehouse }}</option>
+                        {% else %}
+                            <option value='{{ warehouse.abbreviation }}'>{{ warehouse }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </p>
+        </div>
 
         <h3 class='attributeLabel'>Contents</h3>
         <p class='attributeValue'>{{ box.get_contents_string_with_links|safe }}</p>
@@ -66,5 +93,9 @@
 {% endblock %}
 
 {% block javascript %}
+    <script type='text/javascript'>
+        var boxId = '{{ box.get_id }}';
+    </script>
+
     <script type='text/javascript' src='{{ STATIC_URL }}inventory/js/box_info.js'></script>
 {% endblock %}

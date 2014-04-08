@@ -39,7 +39,13 @@ def box_info(request, boxid):
     except OrderBox.DoesNotExist:
         order = None
 
-    context = { 'box': box, 'box_contents': box_contents, 'order': order }
+    context = {
+        'box': box,
+        'box_contents': box_contents,
+        'order': order,
+        'warehouses': Warehouse.objects.all()
+    }
+    
     return render(request, 'inventory/box_info.html', context)
 
 def barcode_box_info(request, barcodeid):

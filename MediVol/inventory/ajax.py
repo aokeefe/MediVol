@@ -120,15 +120,17 @@ def get_warehouse_abbreviations(request):
     return simplejson.dumps(abbreviations)
 
 @dajaxice_register(method='POST')
-def set_warehouse(request,box_id,warehouse_abbreviation):
+def set_warehouse(request, box_id, warehouse_abbreviation):
     try:
         warehouse = Warehouse.objects.get(abbreviation=warehouse_abbreviation)
     except Warehouse.DoesNotExist:
         return simplejson.dumps({'message': 'False'})
-    try:
-        box = Box.objects.get(box_id=box_id)
-    except Box.DoesNotExist:
+
+    box = Box.get_box(box_id)
+
+    if box is None:
         return simplejson.dumps({'message': 'False'})
+
     box.warehouse = warehouse
     box.save();
     return simplejson.dumps({'message': 'True'})
