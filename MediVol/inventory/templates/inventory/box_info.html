@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>InterVol | Box {{ box.get_id }}</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/box_info.css' />
+{% endblock %}
+
+{% block body %}
+    <h2>Box {{ box.get_id }} </h2>
+    {% if order != None %}
+        <h3 id='createdDate'>
+            In <a href='/orders/review/{{ order.order_number }}'>Order {{ order.order_number }}</a>
+        </h3>
+    {% endif %}
+    <h3 id='createdDate'>Created on {{ box.entered_date }}</h3>
+
+    <div id='boxInfoWrapper'>
+        <div class='attributeWrapper'>
+            <h3 class='attributeLabel'>Category</h3>
+            <p class='attributeValue'>{{ box.box_category }}</p>
+            <div class='clear'></div>
+        </div>
+
+        <div class='attributeWrapper'>
+            <h3 class='attributeLabel'>Size</h3>
+            <p class='attributeValue'>{{ box.get_box_size_display }}</p>
+            <div class='clear'></div>
+        </div>
+
+        <div class='attributeWrapper'>
+            <h3 class='attributeLabel'>Weight</h3>
+            <p class='attributeValue'>{{ box.weight }} lbs</p>
+            <div class='clear'></div>
+        </div>
+
+        <div class='attributeWrapper'>
+            <h3 class='attributeLabel'>Entered By</h3>
+            <p class='attributeValue'>{{ box.initials }}</p>
+            <div class='clear'></div>
+        </div>
+
+        <h3 class='attributeLabel'>Expires</h3>
+        <p class='attributeValue'>{{ box.get_expiration_display }}</p>
+
+        <h3 class='attributeLabel'>Contents</h3>
+        <p class='attributeValue'>{{ box.get_contents_string_with_links|safe }}</p>
+
+        {% if box.shipped_to != None and box.shipped_to != '' %}
+            <h3 class='attributeLabel'>Shipped To</h3>
+            <p class='attributeValue'>{{ box.shipped_to }}</p>
+        {% endif %}
+
+        <div id='boxInfoButtons'>
+            <div id='buttonsLeft'>
+                <a href='/inventory/'><button class='button'>&larr; Back to Inventory</button></a>
+            </div>
+
+            <div id='buttonsRight'>
+                <button id="print_label" onclick="print_label('{{box.box_id }}')" class='button'>Print Label</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type='text/javascript' src='{{ STATIC_URL }}inventory/js/box_info.js'></script>
+{% endblock %}
