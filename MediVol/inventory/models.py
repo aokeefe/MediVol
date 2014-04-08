@@ -2,7 +2,7 @@ import pytz
 from django.db import models
 from catalog.models import Item, Category
 from import_export.to_csv import to_csv_from_array, to_array_from_csv
-from datetime import datetime
+from datetime import datetime, date
 import random
 import id_generator
 
@@ -14,6 +14,7 @@ class Warehouse(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
     abbreviation = models.CharField(max_length=ABBREV_LENGTH, unique=True)
     address = models.CharField(max_length=ADDRESS_LENGTH)
+    is_default = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
@@ -151,6 +152,11 @@ class Box(models.Model):
             return self.box_id
         return self.box_category.letter + self.box_id
 
+    def get_printable_id(self):
+        if self.old_box_flag:
+            return self.box_id
+        return self.box_category.letter + '-' + self.box_id
+
     def get_expiration(self):
         """
         Finds the oldest date amoung the contents of a Box, and return it.
@@ -175,27 +181,58 @@ class Box(models.Model):
         if expiration is None:
             return 'Never'
         else:
-            expiration = str(expiration).split(' ')[0]
-            expiration_array = expiration.split('-')
-            return expiration_array[1] + '/' + expiration_array[2] + '/' + expiration_array[0]
+            formatted_expiration = expiration.strftime('%B, %Y')
+
+            if formatted_expiration == 'January, 1970':
+                return 'Unknown'
+            else:
+                return formatted_expiration
+
+    def get_printable_expiration(self):
+        expiration = self.get_expiration()
+
+        if expiration is None:
+            return 'Never'
+        else:
+            formatted_expiration = expiration.strftime('%m/%Y')
+
+            if formatted_expiration == 'January, 1970':
+                return '??/????'
+            else:
+                return formatted_expiration
 
     def get_search_results_string(self):
         return 'Box ' + self.get_id()
 
-    def get_contents_string(self):
+    def get_contents_string(self, with_links=False):
         if self.old_contents is None:
             contents_strings = []
             contents = Contents.objects.filter(box_within=self)
 
             for content in contents:
-                if content.quantity > 0:
-                    contents_strings.append(content.item.name + ' x ' + str(content.quantity))
+                if with_links:
+                    if content.quantity > 0:
+                        contents_strings.append(
+                            '<a href="/catalog/item_info/%s" target="_blank">%s</a> x %s' % \
+                            (content.item.id, content.item.name, str(content.quantity))
+                        )
+                    else:
+                        contents_strings.append(
+                            '<a href="/catalog/item_info/%s" target="_blank">%s</a>' % \
+                            (content.item.id, content.item.name)
+                        )
                 else:
-                    contents_strings.append(content.item.name)
+                    if content.quantity > 0:
+                        contents_strings.append(content.item.name + ' x ' + str(content.quantity))
+                    else:
+                        contents_strings.append(content.item.name)
 
             return ', '.join(contents_strings)
 
         return self.old_contents
+
+    def get_contents_string_with_links(self):
+        return self.get_contents_string(True)
 
 class Contents(models.Model):
     box_within = models.ForeignKey(Box)

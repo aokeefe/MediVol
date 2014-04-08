@@ -29,23 +29,23 @@ def box_info(request, boxid):
     box_contents = []
 
     if box.old_contents is None:
-
         box_contents = Contents.objects.filter(box_within=box)
-
     else:
-
         box_contents = box.old_contents
 
     # Search if box is related to orders.
     try:
-
-        order_number = OrderBox.objects.get(box=box).order_for
-
+        order = OrderBox.objects.get(box=box).order_for
     except OrderBox.DoesNotExist:
+        order = None
 
-        order_number = None
-
-    context = { 'box': box, 'box_contents': box_contents, 'order_number': order_number }
+    context = {
+        'box': box,
+        'box_contents': box_contents,
+        'order': order,
+        'warehouses': Warehouse.objects.all()
+    }
+    
     return render(request, 'inventory/box_info.html', context)
 
 def barcode_box_info(request, barcodeid):
@@ -85,13 +85,10 @@ def barcode_box_info(request, barcodeid):
 def inventory_view(request):
     categories = Category.objects.all()
     categoryStrings = []
-    
+
     for category in categories:
         categoryStrings.append(category.name)
-    
+
     context = { 'categories': sorted(categoryStrings) }
-    
+
     return render(request, 'inventory/inventory.html', context)
-    
-    
-    
