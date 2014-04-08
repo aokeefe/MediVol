@@ -1,26 +1,26 @@
 // Template for adding new item to the table.
-var ITEM_TEMPLATE = '<tr>' + 
-        '<td>{order_id}</td>' + 
-        '<td>{box_id}</td>' + 
-        '<td>{size}</td>' + 
-        '<td>{weight}</td>' + 
-        '<td>{contents}</td>' + 
-        '<td>{expiration}</td>' + 
-        '<td>{warehouse}</td>' + 
-        '<td><input type="checkbox" onclick="checkBoxClick({row})" {check}></td>' + 
+var ITEM_TEMPLATE = '<tr>' +
+        '<td>{order_id}</td>' +
+        '<td>{box_id}</td>' +
+        '<td>{size}</td>' +
+        '<td>{weight}</td>' +
+        '<td>{contents}</td>' +
+        '<td>{expiration}</td>' +
+        '<td>{warehouse}</td>' +
+        '<td><input type="checkbox" onclick="checkBoxClick({row})" {check}></td>' +
     '</tr>';
-    
-// Simple template used to insert a blank row below the table header 
+
+// Simple template used to insert a blank row below the table header
 // when there are no items in the box.
-var BLANK_ROW = "<tr id='placeholder_row'>" + 
-                    "<td></td>" + 
-                    "<td></td>" + 
-                    "<td></td>" + 
-                    "<td></td>" + 
+var BLANK_ROW = "<tr id='placeholder_row'>" +
                     "<td></td>" +
-                    "<td></td>" + 
-                    "<td></td>" + 
-                    "<td>&nbsp;</td>" + 
+                    "<td></td>" +
+                    "<td></td>" +
+                    "<td></td>" +
+                    "<td></td>" +
+                    "<td></td>" +
+                    "<td></td>" +
+                    "<td>&nbsp;</td>" +
                 "</tr>";
 
 var WAREHOUSE_SELECT = '<select id="{id}" onchange="warehouseChange({row},&quot;{id}&quot;)">{options}</select>';
@@ -42,13 +42,13 @@ var filtered = false;
 function getBoxNames(response) {
     $('#box_names').empty();
     $('#items').empty();
-    
+
     // Add the box names to the list of box names.
     for (var i = 0; i < response.length; i++) {
         $('#box_names').append('<option>' + response[i] + '</option>');
     }
-    
-    // If this was a search, we have to select the right box name 
+
+    // If this was a search, we have to select the right box name
     // and trigger the change event so it will populate the items list.
     if (boxNameToChoose != '') {
         $('#box_names').val(boxNameToChoose);
@@ -58,16 +58,16 @@ function getBoxNames(response) {
 }
 
 /**
-* Callback for the get_items AJAX call. Does the same things as 
+* Callback for the get_items AJAX call. Does the same things as
 * the getBoxNames callback, just for items instead.
 */
 function getItems(response) {
     $('#items').empty();
-    
+
     for (var i = 0; i < response.length; i++) {
         $('#items').append('<option>' + response[i] + '</option>');
     }
-    
+
     if (itemToChoose != '') {
         $('#items').val(itemToChoose);
         itemToChoose = '';
@@ -120,7 +120,7 @@ function showTable() {
     }
     if (boxes.length > maxPerPage){
         fillTable(boxes.slice(currentPage*maxPerPage,currentPage*maxPerPage+maxPerPage));
-        
+
     }
     else{
         fillTable(boxes);
@@ -205,7 +205,7 @@ function checkBoxClick(row){
         boxes[row].check = 'checked';
         if(filteredBoxes.indexOf(boxes[row]) === -1){
             filteredBoxes.push(currentBoxes[row]);
-        }      
+        }
     }
     else{
         boxes[row].check = '';
@@ -227,7 +227,7 @@ function warehouseChange(row,id){
 
 function warehouseChangeResponse(response){
     if(response.message === 'False'){
-        alert('could not save warehouse');
+        $.jAlert('There was a problem changing the warehouse.', 'error', null);
     }
 }
 
@@ -243,36 +243,42 @@ function fillTable(boxes) {
             if(boxes[i].order_id !== ''){
                 order = '<a href="/orders/review/' + boxes[i].order_id + '">' + boxes[i].order_id + '</a>';
             }
-            $('#boxes_body').append(
-                ITEM_TEMPLATE.replace('{box_id}', '<a href="/inventory/view_box_info/' + 
-                    boxes[i].box_id + '">' + boxes[i].box_id + '</a>')
-                    .replace('{contents}', boxes[i].contents)
-                    .replace('{expiration}', boxes[i].expiration)
-                    .replace('{size}', boxes[i].size)
-                    .replace('{weight}', boxes[i].weight)
-                    .replace('{warehouse}',WAREHOUSE_SELECT
-                        .replace('<option>' + boxes[i].warehouse + '</option>',
-                        '<option selected>' + boxes[i].warehouse + '</option>')
-                        .replace('{row}',(i+currentPage*maxPerPage))
-                        .replace(/{id}/gi,'select' + (i+currentPage*maxPerPage))
-                        )
-                    .replace('{check}',boxes[i].check)
-                    .replace('{row}',i+(currentPage*maxPerPage))
-                    .replace('{order_id}',order)
-            );
+
+            var rowString = ITEM_TEMPLATE.replace('{box_id}', '<a href="/inventory/view_box_info/' +
+                boxes[i].box_id + '">' + boxes[i].box_id + '</a>')
+                .replace('{contents}', boxes[i].contents)
+                .replace('{expiration}', boxes[i].expiration)
+                .replace('{size}', boxes[i].size)
+                .replace('{weight}', boxes[i].weight)
+                .replace('{check}',boxes[i].check)
+                .replace('{row}',i+(currentPage*maxPerPage))
+                .replace('{order_id}',order)
+
+            if (groupName === 'Admin' || groupName === 'Box Transfer') {
+                rowString = rowString.replace('{warehouse}',WAREHOUSE_SELECT
+                    .replace('<option>' + boxes[i].warehouse + '</option>',
+                    '<option selected>' + boxes[i].warehouse + '</option>')
+                    .replace('{row}',(i+currentPage*maxPerPage))
+                    .replace(/{id}/gi,'select' + (i+currentPage*maxPerPage))
+                );
+            } else {
+                rowString = rowString.replace('{warehouse}', boxes[i].warehouse);
+            }
+
+            $('#boxes_body').append(rowString);
         }
     }
 }
 
 
-$(document).ready(function() {    
+$(document).ready(function() {
     Dajaxice.inventory.get_warehouse_abbreviations(setWarehouses);
-    
+
     $('#max_per_page').change(function() {
         maxPerPage = $('#max_per_page option:selected').text();
         showTable();
     });
-    
+
     $('#filter_button').click(function() {
         filtered = true;
         for(var i=0;i<filteredBoxes.length;i++){
@@ -283,12 +289,12 @@ $(document).ready(function() {
         }
         showTable();
     });
-    
+
     $('#unfilter_button').click(function() {
         filtered = false;
         showTable();
     });
-    
+
     $('#next_button').click(function() {
         var boxes;
         if(filtered){
@@ -299,17 +305,17 @@ $(document).ready(function() {
         }
         if(currentPage + 1 < boxes.length/maxPerPage){
             currentPage = currentPage + 1;
-            showTable(); 
+            showTable();
         }
     });
-    
+
     $('#previous_button').click(function() {
         if(currentPage > 0){
             currentPage = currentPage - 1;
-            showTable(); 
+            showTable();
         }
     });
-    
+
     $('#idHeader').click(function() {
         if (currentSort === 'id'){
             currentBoxes = currentBoxes.reverse();
@@ -322,9 +328,9 @@ $(document).ready(function() {
             filteredBoxes = filteredBoxes.sort(sortById);
             showTable();
         }
-        
+
     });
-    
+
     $('#sizeHeader').click(function() {
         if (currentSort === 'size'){
             currentBoxes = currentBoxes.reverse();
@@ -338,7 +344,7 @@ $(document).ready(function() {
             showTable();
         }
     });
-    
+
     $('#weightHeader').click(function() {
         if (currentSort === 'weight'){
             currentBoxes = currentBoxes.reverse();
@@ -352,7 +358,7 @@ $(document).ready(function() {
             showTable();
         }
     });
-    
+
     $('#contentHeader').click(function() {
         if (currentSort === 'content'){
             currentBoxes = currentBoxes.reverse();
@@ -366,7 +372,7 @@ $(document).ready(function() {
             showTable();
         }
     });
-    
+
     $('#expHeader').click(function() {
         if (currentSort === 'exp'){
             currentBoxes = currentBoxes.reverse();
@@ -380,7 +386,7 @@ $(document).ready(function() {
             showTable();
         }
     });
-    
+
     $('#warehouseHeader').click(function(){
         if (currentSort === 'warehouse'){
             currentSort = 'warehouse2';
@@ -395,7 +401,7 @@ $(document).ready(function() {
             showTable();
         }
     });
-    
+
     $('#filterHeader').click(function(){
         if (currentSort === 'filter'){
             currentSort = 'filter2';
@@ -410,101 +416,101 @@ $(document).ready(function() {
             showTable();
         }
     });
-    
+
     // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
         {
-            autoFocus: true, 
-            // The 'source' attribute is a function that is called 
-            // which provides the data for the autocomplete. It passes 
-            // in request, which provides the search query, and the response 
-            // callback, which we are expected to give an array of relevant 
+            autoFocus: true,
+            // The 'source' attribute is a function that is called
+            // which provides the data for the autocomplete. It passes
+            // in request, which provides the search query, and the response
+            // callback, which we are expected to give an array of relevant
             // search results.
             source: function(request, response) {
                 // Call the get_search_results AJAX function.
                 Dajaxice.inventory.get_search_results(function(returned) {
-                    // 'returned' is passed to us from the AJAX function. 
-                    // It is an array of relevant search results which we pass 
+                    // 'returned' is passed to us from the AJAX function.
+                    // It is an array of relevant search results which we pass
                     // to the 'response' callback.
                     response(returned);
                 }, { 'query': request.term });
             },
-            // This is just a setting so that the autocomplete plugin doesn't 
+            // This is just a setting so that the autocomplete plugin doesn't
             // add any messages next to our search field.
             messages: {
                 noResults: '',
                 results: function() {}
             },
-            // This is a callback that says what to do when the autocomplete 
+            // This is a callback that says what to do when the autocomplete
             // dropdown is closed.
             close: function() {
-                // This is the search result given by the AJAX function. 
-                // It is of one of the following forms: 
+                // This is the search result given by the AJAX function.
+                // It is of one of the following forms:
                 // Category > Box Name > Item
                 // Category > Box Name
                 // Category
                 var query = $('#itemSearch').val();
                 var actualQuery = query;
-                
-                // We want to get what the user was actually searching for, so we 
+
+                // We want to get what the user was actually searching for, so we
                 // find last term after the last '> '.
                 if (query.lastIndexOf('> ') != -1) {
                     actualQuery = query.substr(query.lastIndexOf('> ') + 2, query.length);
                 }
-                
+
                 // Then we put the actual query back into the field.
                 $('#itemSearch').val(actualQuery);
-                
-                // Here we want to split up the returned search result so 
+
+                // Here we want to split up the returned search result so
                 // we can find the category, box name, and item.
                 var queryArray = query.split(' > ');
                 var category = queryArray[0];
                 var boxName = '';
                 var item = '';
-                
-                // If the array has two phrases, then it has a Category and 
-                // Box Name, so we set the box name. We also set the boxNameToChoose 
+
+                // If the array has two phrases, then it has a Category and
+                // Box Name, so we set the box name. We also set the boxNameToChoose
                 // so the box name can be autoselected in the list.
                 if (queryArray.length > 1) {
                     boxName = queryArray[1];
                     boxNameToChoose = boxName;
                 }
-                
-                // If it has three phrases, it also has an item so we 
-                // can set the item name too. We also set the itemToChoose so 
+
+                // If it has three phrases, it also has an item so we
+                // can set the item name too. We also set the itemToChoose so
                 // the item can be autoselected in the list.
                 if (queryArray.length > 2) {
                     item = queryArray[2];
                     itemToChoose = item;
                     $('#count').focus();
                 }
-                
-                // Now we set the selected category in the list and trigger the 
-                // change event for the categories list, so the box name field will be 
+
+                // Now we set the selected category in the list and trigger the
+                // change event for the categories list, so the box name field will be
                 // autopopulated and that will cascade down to the item list if necessary.
                 $('#categories').val(category).change();
             }
         }
     );
-    
+
     $('#itemSearch').focus();
-	
+
 	// Set the 'on change' event for the categories list.
     $('#categories').change(function() {
         var selectedCategory = $('#categories option:selected').val();
-        
+
         // Get the list of box names for the selected category.
         Dajaxice.inventory.get_box_names(getBoxNames, { 'category_name': selectedCategory });
     });
-    
+
     // Set the 'on change' event for the box names list.
     $('#box_names').change(function() {
         var selectedBoxName = $('#box_names option:selected').val();
-       
+
         // Get the list of items for the selected box name.
         Dajaxice.inventory.get_items(getItems, { 'box_name': selectedBoxName });
     });
-    
+
     // Set the 'on change' event for the items list.
     $('#items').change(function() {
     	var selectedItemName = $('#items option:selected').val();
