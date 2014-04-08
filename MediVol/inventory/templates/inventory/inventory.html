@@ -13,7 +13,7 @@
     <h2>Inventory</h2>
 
     {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
-        <p><a href='/inventory/create'><button class='button'>Create New Box</button></a></p>
+        <p><a id='createNewBox' href='/inventory/create'><button class='button'>Create New Box</button></a></p>
     {% endif %}
 
     <input type='text' id='itemSearch' class='textField'
