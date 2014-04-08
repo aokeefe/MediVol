@@ -215,3 +215,10 @@ def create_order(request, customer_name, customer_email, business_name, business
         edited_order.save()
 
     return simplejson.dumps({ 'order_number': order_number })
+
+@dajaxice_register(method='POST')
+def change_order_status(request, order_number, order_status):
+    try:
+        order = Order.objects.get(order_number=order_number)
+    except Order.DoesNotExist:
+        return simplejson.dumps({ 'result': 'False' })
