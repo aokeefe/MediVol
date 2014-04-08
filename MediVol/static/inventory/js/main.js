@@ -65,12 +65,7 @@ function getItems(response) {
 * Callback for create_box AJAX call.
 */
 function createBox(response) {
-    if (response != 'False') {
-
-        var warehouse = $("#warehouse_options option:selected").attr('id');
-        Dajaxice.inventory.set_warehouse(null,
-            { 'box_id': response.box_id, 'warehouse_abbreviation': warehouse });
-        
+    if (response.result != 'False') {
         var iframe = document.createElement('iframe');
         var html = '<head><script type"text/javascript">window.print();</script></head>' +
                 '<body>' + response.label + '</body>';
@@ -454,6 +449,8 @@ $(document).ready(function() {
             return;
         }
 
+        var warehouse = $("#warehouse_options option:selected").val();
+
         // Call the create_box AJAX function.
         Dajaxice.inventory.create_box(createBox,
             {
@@ -461,6 +458,7 @@ $(document).ready(function() {
                 'weight': weight,
                 'size': size,
                 'items': items,
+                'warehouse_abbrev': warehouse,
                 'note': note
             }
         );

@@ -1,5 +1,9 @@
 /* Styles specific to the create box page */
 
+.label {
+    width: 150px;
+}
+
 #stepNumber {
     font-weight: 300;
 }
@@ -64,8 +68,8 @@ h3 {
     margin-bottom: 0;
 }
 
-.infoFieldWrapper select { 
-   font-size : 1.25em; 
+.infoFieldWrapper select {
+   font-size : 1.25em;
    width: 100;
 }
 
@@ -112,7 +116,7 @@ h3 {
 }
 
 #stepTwoFields {
-    width: 40%;
+    width: 50%;
     min-width: 250px;
     margin-left: auto;
     margin-right: auto;
@@ -180,4 +184,8 @@ h3 {
 
 input[type='radio'] {
     appearance: none;
+}
+
+#warehouse_options {
+    font-size: 1em;
 }
