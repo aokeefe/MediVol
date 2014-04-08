@@ -203,20 +203,51 @@
 
                 <hr id='ordersHr' />
 
-                <div class='createBoxListWrapper boxesList'>
-                    <h3>Boxes</h3>
-
-                    <select id='boxes' size=10></select>
-                </div>
-
-                <div class='createBoxListWrapper boxInfo'>
-                    <h3>Box Information </h3>
-
-                    <div id='boxDetails'></div>
-                </div>
-
                 <div class='clear'></div>
             </div>
+
+
+
+            <div id='tableWrapper'>
+                <table id='boxes_found'>
+                    <tr id='table_header'>
+                        <td></td>
+                        <td id='idHeader'>Box ID</td>
+                        <td id='sizeHeader'>Size</td>
+                        <td id='weightHeader'>Weight</td>
+                        <td id='contentHeader'>Contents</td>
+                        <td id='expHeader'>Exp date</td>
+                        <td id='warehouseHeader'>Warehouse</td>
+                        <td id='filterHeader'>Filter/Add</td>
+                    </tr>
+                    <tbody id="boxes_body">
+                        <tr id='placeholder_row'>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id='buttons'>
+                <button type="button" id="previous_button">previous</button>
+                <div id="page_numbers">Page 0 of 0</div>
+                <button type="button" id="next_button">next</button>
+                <button type="button" id="filter_button">filter</button>
+                <button type="button" id="unfilter_button">unfilter</button>
+                <select id="max_per_page">
+                    <option>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                </select>
+            </div>
+
+
 
             <div id='itemSelectedMessage' class='noItemSelected'>
                 Please select a box.
@@ -337,5 +368,6 @@
         var stepNum = {{ step_num }};
     </script>
 
+    <script type='text/javascript' src='{{ STATIC_URL }}inventory/js/box_table.js'></script>
     <script type='text/javascript' src='{{ STATIC_URL }}orders/js/main.js'></script>
 {% endblock %}

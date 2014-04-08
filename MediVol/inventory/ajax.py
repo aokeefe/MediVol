@@ -112,6 +112,27 @@ def get_boxes_with_item(request, item_name, box_name):
     return simplejson.dumps(box_list)
 
 @dajaxice_register(method='GET')
+def get_box_by_id(request, box_id):
+    box = Box.get_box(box_id)
+    try:
+        order = OrderBox.objects.get(box=box).order_for.order_number
+    except OrderBox.DoesNotExist:
+        order = ''
+    try:
+        warehouse = box.warehouse.abbreviation
+    except AttributeError:
+        warehouse = ''
+    info = [box.get_id(),
+            box.box_size,
+            box.weight,
+            box.get_contents_string(),
+            box.get_expiration_display(),
+            warehouse,
+            order
+            ]
+    return simplejson.dumps(info)
+
+@dajaxice_register(method='GET')
 def get_warehouse_abbreviations(request):
     abbreviations = []
     warehouses = Warehouse.objects.all()
