@@ -21,22 +21,32 @@ class BoxLabel(Drawing):
         loc.fontSize = 20
 
         box_id = String(15, 250, box.get_printable_id())
-        box_id.fontSize = 60
+        box_id.fontSize = 55
 
         category = String(12, 235, box.box_category.name)
         category.fontSize = 15
 
-        expiration = String(12, 220, "Expiration date: " + str(box.get_expiration()))
+        expiration_date = box.get_expiration()
+
+        if expiration_date is not None:
+            expiration = String(12, 220, "Expiration date: " + box.get_expiration_display())
+        else:
+            expiration = String(12, 220, "Expiration date: Never")
+
         expiration.fontSize = 15
 
         weight = String(12, 205, "Weight: " + str(box.weight))
         weight.fontSize = 15 
+
+        contents = String(12, 300, "Contents:")
+        contents.fontSize = 15
 
         self.add(loc, "loc")
         self.add(box_id, "boxId")
         self.add(category, "category")
         self.add(expiration, "expiration")
         self.add(weight, "weight")
+        #self.add(contents, "contents")
 
     def save_img(self, fileName, Dir='.'):
         self.save(formats=['png'], fnRoot=fileName)
