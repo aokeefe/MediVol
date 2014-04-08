@@ -175,17 +175,19 @@
             <div class='clear'></div>
         </div>
 
-        <div class='stepTwoField'>
-            <div class='label'>
-                Note
-            </div>
+        {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
+            <div class='stepTwoField'>
+                <div class='label'>
+                    Note
+                </div>
 
-            <div class='stepTwoFieldWrapper'>
-                <textarea id='note' name='note' class='textField'></textarea>
-            </div>
+                <div class='stepTwoFieldWrapper'>
+                    <textarea id='note' name='note' class='textField'></textarea>
+                </div>
 
-            <div class='clear'></div>
-        </div>
+                <div class='clear'></div>
+            </div>
+        {% endif %}
     </div>
 
     <input type='button' id='back' class='button' value='&larr; Back' />
