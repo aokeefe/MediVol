@@ -17,7 +17,35 @@ function print(response){
     }
 }
 
-
 function print_label(box_id){
     Dajaxice.inventory.get_label(print, {"box_id" : box_id});
 }
+
+function changeWarehouse(newWarehouse) {
+    Dajaxice.inventory.set_warehouse(function(response) {
+        if (response.message === 'True') {
+            $('#unknownOption').remove();
+        } else if (response.message === 'False') {
+            $.jAlert('There was an error changing the warehouse.', 'error', null);
+        }
+    }, { 'box_id': boxId, 'warehouse_abbreviation': newWarehouse });
+}
+
+$(document).ready(function() {
+    $('#warehouse').change(function() {
+        var warehouseName = $('#warehouse option:selected').html();
+        var warehouseAbbreviation = $('#warehouse option:selected').val();
+
+        if (warehouseAbbreviation === 'unknown') {
+            return;
+        }
+
+        $.jConfirm('Move this box to "' + warehouseName + '" warehouse?', '',
+            function(result) {
+                if (result) {
+                    changeWarehouse(warehouseAbbreviation);
+                }
+            }
+        );
+    });
+});

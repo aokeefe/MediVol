@@ -43,11 +43,15 @@ Item array should be of the form:
 That is, there is an array with arrays inside it that describe the items.
 """
 @dajaxice_register(method='POST')
-def create_box(request, initials, weight, size, items, note=''):
-    # TODO: store note in box
+def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''):
+    try:
+        warehouse = Warehouse.objects.get(abbreviation=warehouse_abbrev)
+    except Warehouse.DoesNotExist:
+        return simplejson.dumps({'result': 'False'})
 
+    # TODO: store note in box
     new_box = Box(box_size=size[:1], weight=weight,
-        entered_date=datetime.today(), initials=initials.upper())
+        entered_date=datetime.today(), initials=initials.upper(), warehouse=warehouse)
 
     new_box.save()
 
@@ -64,7 +68,13 @@ def create_box(request, initials, weight, size, items, note=''):
 
         contents.save()
 
-    return simplejson.dumps({ 'label': BoxLabel(new_box.barcode).get_image(), 'box_id': new_box.get_id() })
+    return simplejson.dumps(
+        {
+            'result': 'True',
+            'label': BoxLabel(new_box.barcode).get_image(),
+            'box_id': new_box.get_id()
+        }
+    )
 
 @dajaxice_register(method='POST')
 def get_label(request, box_id):
@@ -102,7 +112,7 @@ def get_boxes_with_item(request, item_name, box_name):
     return simplejson.dumps(box_list)
 
 @dajaxice_register(method='GET')
-def get_warehouse_abbreviations(request):        
+def get_warehouse_abbreviations(request):
     abbreviations = []
     warehouses = Warehouse.objects.all()
     for warehouse in warehouses:
@@ -110,15 +120,17 @@ def get_warehouse_abbreviations(request):
     return simplejson.dumps(abbreviations)
 
 @dajaxice_register(method='POST')
-def set_warehouse(request,box_id,warehouse_abbreviation):
+def set_warehouse(request, box_id, warehouse_abbreviation):
     try:
         warehouse = Warehouse.objects.get(abbreviation=warehouse_abbreviation)
     except Warehouse.DoesNotExist:
         return simplejson.dumps({'message': 'False'})
-    try:
-        box = Box.objects.get(box_id=box_id)
-    except Box.DoesNotExist:
+
+    box = Box.get_box(box_id)
+
+    if box is None:
         return simplejson.dumps({'message': 'False'})
+
     box.warehouse = warehouse
     box.save();
     return simplejson.dumps({'message': 'True'})
