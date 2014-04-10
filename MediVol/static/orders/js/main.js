@@ -175,7 +175,7 @@ function createOrder(response) {
 function setRemoveButton(){
     $('.remove_item').unbind('click').click(function() {
         // Remove the row for the item.
-        var id = $(this).parent().children([0]).text();
+        var id = $(this).parent().parent().children(":first").text();
         $(this).parent().parent().remove();
 
         // If there are no items, append the empty placeholder row.
@@ -186,7 +186,6 @@ function setRemoveButton(){
         var selectedItemName = $('#items option:selected').val();
         var selectedBoxName = $('#box_names option:selected').val();
         boxesInOrder.splice(boxesInOrder.indexOf(id),1);
-        
         if (selectedItemName !== '') {
             Dajaxice.inventory.get_boxes_with_item(setTableList, { 'item_name': selectedItemName,'box_name' : selectedBoxName });
         }
@@ -354,14 +353,17 @@ function remove_selected_rows(){
 
 function addSingleBox(response){
     currentBoxes.length = 0;
-    currentBoxes.push(new boxRow(response[0],
-        response[1],
-        response[2],
-        response[3],
-        response[4],
-        response[5],
-        response[6]
-    ));
+    if(boxesInOrder.indexOf(response[0]) === -1){
+        currentBoxes.push(new boxRow(response[0],
+            response[1],
+            response[2],
+            response[3],
+            response[4],
+            response[5],
+            response[6]
+        
+        ));
+    }
     showTable();
 }
 
