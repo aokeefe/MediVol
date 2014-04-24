@@ -45,6 +45,12 @@ That is, there is an array with arrays inside it that describe the items.
 """
 @dajaxice_register(method='POST')
 def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''):
+    htmlParser = HTMLParser()
+
+    initials = htmlParser.unescape(initials)
+    warehouse_abbrev = htmlParser.unescape(warehouse_abbrev)
+    note = htmlParser.unescape(note)
+
     try:
         warehouse = Warehouse.objects.get(abbreviation=warehouse_abbrev)
     except Warehouse.DoesNotExist:
@@ -55,8 +61,6 @@ def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''
         entered_date=datetime.today(), initials=initials.upper(), warehouse=warehouse)
 
     new_box.save()
-
-    htmlParser = HTMLParser()
 
     for item_info in items:
         # convert HTML entities in item name (e.g. &amp;)
