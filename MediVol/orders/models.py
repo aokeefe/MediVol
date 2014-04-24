@@ -62,11 +62,15 @@ class Order(models.Model):
     UNPAID = 'U'
     PAID = 'P'
     SHIPPED = 'S'
+    PAID_DEPOSIT = 'D'
+    CANCELLED = 'F'
     ORDER_STATUS = (
         (CREATED, 'Created'),
         (UNPAID, 'Unpaid For'),
         (PAID, 'Paid For'),
         (SHIPPED, 'Shipped Out'),
+        (PAID_DEPOSIT, 'Deposit Paid'),
+        (CANCELLED, 'Cancelled'),
     )
     order_number = models.CharField(unique=True, max_length=ORDER_number_LENGTH)
     reserved_for = models.ForeignKey(Customer, null=True)
