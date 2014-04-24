@@ -120,7 +120,7 @@ class Box(models.Model):
 
         if self.box_id is None:
             while True:
-                self.box_id = "%0.8d" % random.ranint(0,999999)
+                self.box_id = "%0.6d" % random.ranint(0,999999)
                 if not Box.objects.filter(box_id=self.box_id).exists():
                     break
 
