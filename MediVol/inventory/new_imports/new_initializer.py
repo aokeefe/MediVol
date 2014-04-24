@@ -48,9 +48,12 @@ def get_items(data):
         box_name_text = data.split(":")[0].strip()
         try:
             box_name = BoxName.objects.get(name=box_name_text)
+            
         except:
-            box_name = None
-            print 'NOPE! ' + box_name_text
+            print '[ERROR] Could not import items: ' + data
+            global ERROR_COUNT
+            ERROR_COUNT = ERROR_COUNT + 1
+            return None
 
         print box_name
 
