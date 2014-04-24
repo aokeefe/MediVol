@@ -69,7 +69,7 @@ class Order(models.Model):
         (UNPAID, 'Unpaid For'),
         (PAID, 'Paid For'),
         (SHIPPED, 'Shipped Out'),
-        (PAID_DEPOSIT, 'Deposite Paid'),
+        (PAID_DEPOSIT, 'Deposit Paid'),
         (CANCELLED, 'Cancelled'),
     )
     order_number = models.CharField(unique=True, max_length=ORDER_number_LENGTH)
