@@ -2,6 +2,9 @@ from django.db import models
 import uuid
 from inventory.models import Box
 from import_export.to_csv import to_csv_from_array, to_array_from_csv
+from MediVol import id_generator
+
+ORDER_ID_LENGTH = 5
 
 class Customer(models.Model):
     contact_id = models.CharField(max_length=40, unique=True)
@@ -65,7 +68,7 @@ class Order(models.Model):
         (PAID, 'Paid For'),
         (SHIPPED, 'Shipped Out'),
     )
-    order_number = models.IntegerField(unique=True)
+    order_id = models.CharField(unique=True, max_length=ORDER_ID_LENGTH)
     reserved_for = models.ForeignKey(Customer, null=True)
     paid_for = models.BooleanField(default=False)
     shipped = models.BooleanField(default=False)
@@ -75,7 +78,7 @@ class Order(models.Model):
     price = models.FloatField(null=True)
 
     def __unicode__(self):
-        return "Order " + str(self.order_number)
+        return "Order " + str(self.order_id)
 
     def to_csv(self):
 
@@ -84,7 +87,7 @@ class Order(models.Model):
         else:
             reservation = None
 
-        values = [self.order_number,
+        values = [self.order_id,
                   reservation,
                   self.paid_for,
                   self.shipped,
@@ -96,7 +99,7 @@ class Order(models.Model):
     @classmethod
     def create_from_csv(cls, csv):
         filtered_values = to_array_from_csv(csv)
-        order = Order(order_number=filtered_values[0],
+        order = Order(order_id=filtered_values[0],
                       reserved_for=Customer.objects.get(contact_id=filtered_values[1]),
                       paid_for=filtered_values[2],
                       shipped=filtered_values[3],
@@ -122,6 +125,16 @@ class Order(models.Model):
         creation_date = str(self.creation_date).split(' ')[0]
         creation_array = creation_date.split('-')
         return creation_array[1] + '/' + creation_array[2] + '/' + creation_array[0]
+
+    def save(self, *args, **kwargs):
+        if self.order_id is None:
+            self.order_id = id_generator.id_generator(ORDER_ID_LENGTH)
+            while True:
+                self.box_id = id_generator.id_generator(ORDER_ID_LENGTH)
+                if not Order.objects.filter(order_id=self.box_id).exists():
+                    break
+
+        super(Order, self).save(*args, **kwargs)
 
 class OrderBox(models.Model):
     order_for = models.ForeignKey(Order)
