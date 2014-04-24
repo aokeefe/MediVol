@@ -239,3 +239,14 @@ input[type='radio'] {
 .warehouseChange {
     font-size: 1em;
 }
+
+#createNewBox {
+    font-size: 2em;
+    float: right;
+    margin-right: 5px;
+    margin-bottom: 20px;
+}
+
+#inventoryHeader {
+    margin-bottom: 0px !important;
+}

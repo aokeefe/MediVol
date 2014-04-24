@@ -10,13 +10,13 @@
 {% endblock %}
 
 {% block body %}
-    <h2>Inventory</h2>
+    <h2 id='inventoryHeader'>Inventory</h2>
+
+    {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
+        <a id='createNewBox' href='/inventory/create'><button class='button'>Create New Box</button></a>
+    {% endif %}
 
     <div id='inventorySearchWrapper'>
-        {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
-            <p><a id='createNewBox' href='/inventory/create'><button class='button'>Create New Box</button></a></p>
-        {% endif %}
-
         <input type='text' id='itemSearch' class='textField inventoryItemSearch'
             placeholder='Search for category, box name, item, or box.' />
 
@@ -80,7 +80,8 @@
         <div id='buttonsLeft'>
             <button type='button' id='previous_button' class='button'>&larr; Previous</button>
             <div id='page_numbers'>Page 0 of 0</div>
-            <button type='button' id='next_button' class='button'>Next &rarr;</button>
+            <button type='button' id='next_button' class='button'>Next &rarr;</button><br /><br />
+
             <label for='max_per_page'>Boxes Per Page: </label>
             <select id='max_per_page'>
                 <option>10</option>
