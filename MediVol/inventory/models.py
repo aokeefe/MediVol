@@ -9,6 +9,7 @@ import id_generator
 NAME_LENGTH = 80
 ABBREV_LENGTH = 4
 ADDRESS_LENGTH = 200
+BOX_ID_LENGTH = 6
 
 class Warehouse(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
@@ -28,7 +29,7 @@ class Box(models.Model):
         (LARGE, 'Large'),
         (UNKNOWN, 'Unknown'),
     )
-    box_id = models.CharField(max_length=6, null=True, unique=True)
+    box_id = models.CharField(max_length=BOX_ID_LENGTH, null=True, unique=True)
     box_category = models.ForeignKey(Category, null=True)
 
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
@@ -118,9 +119,8 @@ class Box(models.Model):
             print ('%s (%s)' % ('The Box did not save correctly', type(e)))
 
         if self.box_id is None:
-            self.box_id = id_generator.id_generator(4)
             while True:
-                self.box_id = id_generator.id_generator(4)
+                self.box_id = "%0.8d" % random.ranint(0,999999)
                 if not Box.objects.filter(box_id=self.box_id).exists():
                     break
 
