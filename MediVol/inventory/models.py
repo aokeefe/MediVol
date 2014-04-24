@@ -4,7 +4,7 @@ from catalog.models import Item, Category
 from import_export.to_csv import to_csv_from_array, to_array_from_csv
 from datetime import datetime, date
 import random
-import id_generator
+from MediVol import id_generator
 
 NAME_LENGTH = 80
 ABBREV_LENGTH = 4
