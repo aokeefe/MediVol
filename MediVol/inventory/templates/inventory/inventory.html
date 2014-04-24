@@ -5,56 +5,64 @@
 {% endblock %}
 
 {% block styles %}
-    <link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/styles.css' />
     <link rel='stylesheet' href='{{ STATIC_URL }}catalog/css/styles.css' />
+    <link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/styles.css' />
 {% endblock %}
 
 {% block body %}
     <h2>Inventory</h2>
 
-    {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
-        <p><a id='createNewBox' href='/inventory/create'><button class='button'>Create New Box</button></a></p>
-    {% endif %}
+    <div id='inventorySearchWrapper'>
+        {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
+            <p><a id='createNewBox' href='/inventory/create'><button class='button'>Create New Box</button></a></p>
+        {% endif %}
 
-    <input type='text' id='itemSearch' class='textField'
-        placeholder='Search for category, box name, item, or box.' />
+        <input type='text' id='itemSearch' class='textField inventoryItemSearch'
+            placeholder='Search for category, box name, item, or box.' />
 
-    <div id='createBoxLists'>
-        <div class='createBoxListWrapper'>
-            <h3>Categories</h3>
-            <select id='categories' size=10>
-                {% for category in categories %}
-                    <option>{{ category }}</option>
-                {% endfor %}
-            </select>
+        <div id='or'>
+            -- or --
         </div>
 
-        <div class='createBoxListWrapper'>
-            <h3>Box Names</h3>
+        <div id='createBoxLists'>
+            <div class='createBoxListWrapper inventoryCreateBoxListWrapper'>
+                <h3>Categories</h3>
+                <select id='categories' size=10>
+                    {% for category in categories %}
+                        <option>{{ category }}</option>
+                    {% endfor %}
+                </select>
+            </div>
 
-            <select id='box_names' size=10></select>
+            <div class='createBoxListWrapper inventoryCreateBoxListWrapper'>
+                <h3>Box Names</h3>
+
+                <select id='box_names' size=10></select>
+            </div>
+
+            <div class='createBoxListWrapper inventoryCreateBoxListWrapper'>
+                <h3>Items</h3>
+
+                <select id='items' size=10></select>
+            </div>
         </div>
 
-        <div class='createBoxListWrapper'>
-            <h3>Items</h3>
-
-            <select id='items' size=10></select>
-        </div>
+        <div class='clear'></div>
     </div>
 
-    <div id='tableWrapper'>
+    <div id='tableWrapper' class='inventoryTableWrapper'>
         <table id='boxes_found'>
             <tr id='table_header'>
                 <td></td>
-                <td id='idHeader'>Box ID</td>
-                <td id='sizeHeader'>Size</td>
-                <td id='weightHeader'>Weight</td>
-                <td id='contentHeader'>Contents</td>
-                <td id='expHeader'>Exp date</td>
+                <td id='idHeader' class='clickableHeader'>Box ID</td>
+                <td id='sizeHeader' class='clickableHeader'>Size</td>
+                <td id='weightHeader' class='clickableHeader'>Weight</td>
+                <td id='contentHeader' class='clickableHeader'>Contents</td>
+                <td id='expHeader' class='clickableHeader'>Exp date</td>
                 <td id='warehouseHeader'>Warehouse</td>
                 <td id='filterHeader'>Filter</td>
             </tr>
-            <tbody id="boxes_body">
+            <tbody id='boxes_body'>
                 <tr id='placeholder_row'>
                     <td></td>
                     <td></td>
@@ -69,16 +77,22 @@
         </table>
     </div>
     <div id='buttons'>
-        <button type="button" id="previous_button">previous</button>
-        <div id="page_numbers">Page 0 of 0</div>
-        <button type="button" id="next_button">next</button>
-        <button type="button" id="filter_button">filter</button>
-        <button type="button" id="unfilter_button">unfilter</button>
-        <select id="max_per_page">
-            <option>10</option>
-            <option>25</option>
-            <option>50</option>
-        </select>
+        <div id='buttonsLeft'>
+            <button type='button' id='previous_button' class='button'>&larr; Previous</button>
+            <div id='page_numbers'>Page 0 of 0</div>
+            <button type='button' id='next_button' class='button'>Next &rarr;</button>
+            <label for='max_per_page'>Boxes Per Page: </label>
+            <select id='max_per_page'>
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+            </select>
+        </div>
+
+        <div id='buttonsRight'>
+            <button type='button' id='filter_button' class='button'>Filter</button>
+            <button type='button' id='unfilter_button' class='button'>Unfilter</button>
+        </div>
     </div>
 {% endblock %}
 
