@@ -145,7 +145,7 @@ class OrderBox(models.Model):
         return str(self.box) + " in order " + str(self.order_for)
 
     def to_csv(self):
-        values = [self.order_for.order_number,
+        values = [self.order_for.order_id,
                   self.box.box_id,
                   self.cost]
         return to_csv_from_array(values)
@@ -153,7 +153,7 @@ class OrderBox(models.Model):
     @classmethod
     def create_from_csv(cls, csv):
         filtered_values = to_array_from_csv(csv)
-        order_box = OrderBox(order_for=Order.objects.get(order_number=filtered_values[0]),
+        order_box = OrderBox(order_for=Order.objects.get(order_id=filtered_values[0]),
                              box=Box.objects.get(box_id=filtered_values[1]),
                              cost=filtered_values[2])
         order_box.save()
