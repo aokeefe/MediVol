@@ -2,6 +2,7 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from datetime import datetime
 from random import randint
+from HTMLParser import HTMLParser
 
 from catalog.models import Category, BoxName, Item
 from inventory.models import Box, Contents, Warehouse
@@ -55,7 +56,15 @@ def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''
 
     new_box.save()
 
+    htmlParser = HTMLParser()
+
     for item_info in items:
+        # convert HTML entities in item name (e.g. &amp;)
+        item_info[0] = htmlParser.unescape(item_info[0])
+
+        # convert HTML entities in box name
+        item_info[3] = htmlParser.unescape(item_info[3])
+
         expiration_date = item_info[1]
 
         if expiration_date == 'Never':
