@@ -1,6 +1,6 @@
 // Template for adding new item to the table.
 var ITEM_TEMPLATE = '<tr>' +
-        '<td>{order_id}</td>' +
+        '<td class="tagColumn">{tags}</td>' +
         '<td>{box_id}</td>' +
         '<td>{size}</td>' +
         '<td>{weight}</td>' +
@@ -10,10 +10,13 @@ var ITEM_TEMPLATE = '<tr>' +
         '<td><input type="checkbox" onclick="checkBoxClick({row})" {check}></td>' +
     '</tr>';
 
+var ORDER_TAG_TEMPLATE = '<a class="orderTag" href="/orders/review/{order_id}"' +
+    ' target="_blank">Order {order_id}</a>';
+
 // Simple template used to insert a blank row below the table header
 // when there are no items in the box.
 var BLANK_ROW = "<tr id='placeholder_row'>" +
-                    "<td></td>" +
+                    "<td class='tagColumn'></td>" +
                     "<td></td>" +
                     "<td></td>" +
                     "<td></td>" +
@@ -79,7 +82,7 @@ function getItems(response) {
 function setWarehouses(response){
     var warehouses = '';
 
-    for (var i=0; i < response.length; i++) {
+    for (var i = 0; i < response.length; i++) {
         warehouses = warehouses + '<option>' + response[i] + '</option>';
     }
 
@@ -101,7 +104,7 @@ function boxRow(box_id, size, weight, contents, expiration, warehouse, order_id)
 function setTableList(response) {
     currentBoxes.length = 0;
 
-    for (var i=0; i < response.length; i++){
+    for (var i = 0; i < response.length; i++){
         currentBoxes.push(new boxRow(response[i][0],
             response[i][1],
             response[i][2],
@@ -245,11 +248,11 @@ function fillTable(boxes) {
     if(boxes.length === 0) {
         $('#boxes_body').append(BLANK_ROW);
     } else {
-        for (var i=0; i < boxes.length; i++) {
-            var order = '';
+        for (var i = 0; i < boxes.length; i++) {
+            var order = false;
 
             if(boxes[i].order_id !== ''){
-                order = '<a href="/orders/review/' + boxes[i].order_id + '">' + boxes[i].order_id + '</a>';
+                order = boxes[i].order_id;
             }
 
             var rowString = ITEM_TEMPLATE.replace('{box_id}', '<a href="/inventory/view_box_info/' +
@@ -259,8 +262,15 @@ function fillTable(boxes) {
                 .replace('{size}', boxes[i].size)
                 .replace('{weight}', boxes[i].weight)
                 .replace('{check}',boxes[i].check)
-                .replace('{row}',i+(currentPage*maxPerPage))
-                .replace('{order_id}',order);
+                .replace('{row}',i+(currentPage*maxPerPage));
+
+            var tags = '';
+
+            if (order !== false) {
+                tags += ORDER_TAG_TEMPLATE.replace(/{order_id}/gi,order);
+            }
+
+            rowString = rowString.replace('{tags}', tags);
 
             if (groupName === 'Admin' || groupName === 'Box Transfer') {
                 rowString = rowString.replace('{warehouse}',WAREHOUSE_SELECT
@@ -290,7 +300,7 @@ $(document).ready(function() {
     $('#filter_button').click(function() {
         filtered = true;
 
-        for(var i=0; i < filteredBoxes.length; i++){
+        for(var i = 0; i < filteredBoxes.length; i++){
             if(filteredBoxes[i].check === ''){
                 filteredBoxes.splice(i,1);
                 i--;

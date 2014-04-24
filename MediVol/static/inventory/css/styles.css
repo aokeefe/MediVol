@@ -250,3 +250,15 @@ input[type='radio'] {
 #inventoryHeader {
     margin-bottom: 0px !important;
 }
+
+.tagColumn {
+    border: none;
+}
+
+.orderTag {
+    text-decoration: none;
+    background-color: #ff9600;
+    border-radius: 5px;
+    padding: 5px;
+    color: #141414;
+}
