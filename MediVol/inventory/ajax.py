@@ -114,8 +114,8 @@ def get_boxes_with_item(request, item_name, box_name):
             except AttributeError:
                 warehouse = ''
             temp = [box.get_id(),
-                    box.box_size,
-                    box.weight,
+                    box.get_box_size_display(),
+                    str(box.weight) + ' lbs',
                     box.get_contents_string(),
                     box.get_expiration_display(),
                     warehouse,
