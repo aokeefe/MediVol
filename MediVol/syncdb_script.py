@@ -3,6 +3,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
 from django.contrib.auth.management.commands import changepassword
 from django.core import management
 from django.contrib.auth.models import User, Group
+from inventory.models import Warehouse
 # Run the syncdb
 management.call_command('syncdb', interactive=False)
 
@@ -13,6 +14,13 @@ if len(User.objects.filter(username='root')) == 0:
     command = changepassword.Command()
     command._get_pass = lambda *args: 'root'
     command.execute("root")
+
+if len(Warehouse.objects.all()) == 0:
+    riedman = Warehouse(name='Riedman', abbreviation='RIED', address='100 Kings Highway S', is_default=True)
+    riedman.save()
+
+    clinton = Warehouse(name='Clinton', abbreviation='CLIN', address='123 Clinton Way')
+    clinton.save()
 
 # If we made the Admin group, we probably made all the groups and users already
 if len(Group.objects.filter(name='Admin')) == 0:

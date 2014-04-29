@@ -2,6 +2,9 @@ from django.db import models
 import uuid
 from inventory.models import Box
 from import_export.to_csv import to_csv_from_array, to_array_from_csv
+from MediVol import id_generator
+
+ORDER_number_LENGTH = 5
 
 class Customer(models.Model):
     contact_id = models.CharField(max_length=40, unique=True)
@@ -59,13 +62,17 @@ class Order(models.Model):
     UNPAID = 'U'
     PAID = 'P'
     SHIPPED = 'S'
+    PAID_DEPOSIT = 'D'
+    CANCELLED = 'F'
     ORDER_STATUS = (
         (CREATED, 'Created'),
         (UNPAID, 'Unpaid For'),
         (PAID, 'Paid For'),
         (SHIPPED, 'Shipped Out'),
+        (PAID_DEPOSIT, 'Deposit Paid'),
+        (CANCELLED, 'Cancelled'),
     )
-    order_number = models.IntegerField(unique=True)
+    order_number = models.CharField(unique=True, max_length=ORDER_number_LENGTH)
     reserved_for = models.ForeignKey(Customer, null=True)
     paid_for = models.BooleanField(default=False)
     shipped = models.BooleanField(default=False)
@@ -122,6 +129,15 @@ class Order(models.Model):
         creation_date = str(self.creation_date).split(' ')[0]
         creation_array = creation_date.split('-')
         return creation_array[1] + '/' + creation_array[2] + '/' + creation_array[0]
+
+    def save(self, *args, **kwargs):
+        if self.order_number is None:
+            while True:
+                self.order_number = id_generator.id_generator(ORDER_number_LENGTH)
+                if not Order.objects.filter(order_number=self.order_number).exists():
+                    break
+
+        super(Order, self).save(*args, **kwargs)
 
 class OrderBox(models.Model):
     order_for = models.ForeignKey(Order)

@@ -2,6 +2,7 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from datetime import datetime
 from random import randint
+from HTMLParser import HTMLParser
 
 from catalog.models import Category, BoxName, Item
 from inventory.models import Box, Contents, Warehouse
@@ -44,18 +45,33 @@ That is, there is an array with arrays inside it that describe the items.
 """
 @dajaxice_register(method='POST')
 def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''):
+    htmlParser = HTMLParser()
+
+    initials = htmlParser.unescape(initials)
+    warehouse_abbrev = htmlParser.unescape(warehouse_abbrev)
+    note = htmlParser.unescape(note)
+
     try:
         warehouse = Warehouse.objects.get(abbreviation=warehouse_abbrev)
     except Warehouse.DoesNotExist:
         return simplejson.dumps({'result': 'False'})
 
+    if note == '':
+        note = None
+
     # TODO: store note in box
     new_box = Box(box_size=size[:1], weight=weight,
-        entered_date=datetime.today(), initials=initials.upper(), warehouse=warehouse)
+        entered_date=datetime.today(), initials=initials.upper(), warehouse=warehouse, note=note)
 
     new_box.save()
 
     for item_info in items:
+        # convert HTML entities in item name (e.g. &amp;)
+        item_info[0] = htmlParser.unescape(item_info[0])
+
+        # convert HTML entities in box name
+        item_info[3] = htmlParser.unescape(item_info[3])
+
         expiration_date = item_info[1]
 
         if expiration_date == 'Never':
@@ -101,8 +117,8 @@ def get_boxes_with_item(request, item_name, box_name):
             except AttributeError:
                 warehouse = ''
             temp = [box.get_id(),
-                    box.box_size,
-                    box.weight,
+                    box.get_box_size_display(),
+                    str(box.weight) + ' lbs',
                     box.get_contents_string(),
                     box.get_expiration_display(),
                     warehouse,
@@ -110,6 +126,27 @@ def get_boxes_with_item(request, item_name, box_name):
                     ]
             box_list.append(temp)
     return simplejson.dumps(box_list)
+
+@dajaxice_register(method='GET')
+def get_box_by_id(request, box_id):
+    box = Box.get_box(box_id)
+    try:
+        order = OrderBox.objects.get(box=box).order_for.order_number
+    except OrderBox.DoesNotExist:
+        order = ''
+    try:
+        warehouse = box.warehouse.abbreviation
+    except AttributeError:
+        warehouse = ''
+    info = [box.get_id(),
+            box.box_size,
+            box.weight,
+            box.get_contents_string(),
+            box.get_expiration_display(),
+            warehouse,
+            order
+            ]
+    return simplejson.dumps(info)
 
 @dajaxice_register(method='GET')
 def get_warehouse_abbreviations(request):
