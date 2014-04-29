@@ -457,6 +457,89 @@ function checkBoxClick(row){
     }
 }
 
+function get_selected_boxes(){
+    var boxes = get_current_boxes();
+    var selected_boxes = [];
+    for(var i=0;i<boxes.length;i++){
+        if(boxes[i].check !== ''){
+            selected_boxes.push(boxes[i].box_id);
+            }
+        }
+    return selected_boxes;
+}
+
+function remove_selected_rows(){
+    var boxes = get_current_boxes();
+    var selected_rows = [];
+    for(var i=0;i<boxes.length;i++){
+        if(boxes[i].check !== ''){
+            boxes.splice(i,1);
+            i--;
+        }
+    }
+}
+
+function addSingleBox(response){
+    currentBoxes.length = 0;
+    if(boxesInOrder.indexOf(response[0]) === -1){
+        currentBoxes.push(new boxRow(response[0],
+            response[1],
+            response[2],
+            response[3],
+            response[4],
+            response[5],
+            response[6]
+        
+        ));
+    }
+    showTable();
+}
+
+function setTableList(response) {
+    currentBoxes.length = 0;
+    for(var i=0;i<response.length;i++){
+        if(boxesInOrder.indexOf(response[i][0]) === -1){
+            currentBoxes.push(new boxRow(response[i][0],
+            response[i][1],
+            response[i][2],
+            response[i][3],
+            response[i][4],
+            response[i][5],
+            response[i][6]
+            ));
+        }
+
+    }
+    showTable();
+}
+
+function checkBoxClick(row){
+    var boxes;
+    if(filtered){
+        boxes = filteredBoxes;
+    }
+    else{
+        boxes = currentBoxes;
+    }
+    if (boxes[row].check === ''){
+        boxes[row].check = 'checked';
+        setSelectedBox(get_selected_boxes().join(' , '));
+        if(filteredBoxes.indexOf(boxes[row]) === -1){
+            filteredBoxes.push(currentBoxes[row]);
+        }      
+    }
+    else{
+        boxes[row].check = '';
+        box_ids = get_selected_boxes();
+        if(box_ids.length != 0){
+            setSelectedBox(get_selected_boxes().join(' , '));
+        }
+        else{
+            setSelectedBox(false);
+        }
+    }
+}
+
 $(document).ready(function() {
     setRemoveButton();
     $('#boxes_added tr td :input').bind('input paste', displayTotalPrice);
