@@ -72,6 +72,11 @@
             </p>
         </div>
 
+        {% if box.note != None %}
+            <h3 class='attributeLabel'>Note</h3>
+            <p class='attributeValue'>{{ box.note }}</p>
+        {% endif %}
+
         <h3 class='attributeLabel'>Contents</h3>
         {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
             <p class='attributeValue'>{{ box.get_contents_string_with_links|safe }}</p>

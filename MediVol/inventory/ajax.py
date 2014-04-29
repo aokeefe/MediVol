@@ -56,9 +56,12 @@ def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''
     except Warehouse.DoesNotExist:
         return simplejson.dumps({'result': 'False'})
 
+    if note == '':
+        note = None
+
     # TODO: store note in box
     new_box = Box(box_size=size[:1], weight=weight,
-        entered_date=datetime.today(), initials=initials.upper(), warehouse=warehouse)
+        entered_date=datetime.today(), initials=initials.upper(), warehouse=warehouse, note=note)
 
     new_box.save()
 
@@ -114,8 +117,8 @@ def get_boxes_with_item(request, item_name, box_name):
             except AttributeError:
                 warehouse = ''
             temp = [box.get_id(),
-                    box.box_size,
-                    box.weight,
+                    box.get_box_size_display(),
+                    str(box.weight) + ' lbs',
                     box.get_contents_string(),
                     box.get_expiration_display(),
                     warehouse,
