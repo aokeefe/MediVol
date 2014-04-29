@@ -39,6 +39,8 @@ class Box(models.Model):
     entered_date = models.DateTimeField('date the box was entered', null=True)
     old_box_flag = models.BooleanField(default=False)
 
+    note = models.CharField(max_length=300, null=True)
+
     #None is no expiration
     #TODO remove
     old_expiration = models.DateTimeField('expiration date', null=True)
@@ -120,7 +122,7 @@ class Box(models.Model):
 
         if self.box_id is None:
             while True:
-                self.box_id = "%0.6d" % random.ranint(0,999999)
+                self.box_id = "%0.6d" % random.randint(0,999999)
                 if not Box.objects.filter(box_id=self.box_id).exists():
                     break
 

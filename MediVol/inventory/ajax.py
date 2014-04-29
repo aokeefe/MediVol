@@ -56,9 +56,12 @@ def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''
     except Warehouse.DoesNotExist:
         return simplejson.dumps({'result': 'False'})
 
+    if note == '':
+        note = None
+
     # TODO: store note in box
     new_box = Box(box_size=size[:1], weight=weight,
-        entered_date=datetime.today(), initials=initials.upper(), warehouse=warehouse)
+        entered_date=datetime.today(), initials=initials.upper(), warehouse=warehouse, note=note)
 
     new_box.save()
 
