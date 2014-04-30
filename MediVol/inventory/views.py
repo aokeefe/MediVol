@@ -97,6 +97,6 @@ def inventory_view(request):
 @login_required(login_url='/login/')
 @user_passes_test(UserTests.user_can_transfer_boxes, login_url='/administration/forbidden')
 def box_transfer(request):
-    context = {}
+    context = { 'warehouses': Warehouse.objects.all() }
 
     return render(request, 'inventory/box_transfer.html', context)

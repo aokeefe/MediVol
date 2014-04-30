@@ -127,7 +127,6 @@ function getAddedItems() {
             }
 
             if (expiration != 'Never') {
-                console.log(expiration);
                 var expirationArray = expiration.split('/');
                 expiration = expirationArray[1] + '-' + expirationArray[0] + '-01';
             }

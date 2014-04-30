@@ -149,6 +149,24 @@ def get_box_by_id(request, box_id):
     return simplejson.dumps(info)
 
 @dajaxice_register(method='GET')
+def get_box_by_barcode(request, barcode):
+    try:
+        box = Box.objects.get(barcode=barcode)
+    except Box.DoesNotExist:
+        return simplejson.dumps({ 'result': False })
+
+    return simplejson.dumps(
+        {
+            'result': True,
+            'box_id': box.get_id(),
+            'warehouse': box.warehouse.name,
+            'weight': '%.1f' % box.weight,
+            'size': box.get_box_size_display(),
+            'expiration': box.get_expiration_display()
+        }
+    )
+
+@dajaxice_register(method='GET')
 def get_warehouse_abbreviations(request):
     abbreviations = []
     warehouses = Warehouse.objects.all()

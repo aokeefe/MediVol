@@ -1,0 +1,12 @@
+#boxNotFoundWrapper {
+    height: 30px;
+    margin: 20px 0px;
+}
+
+#boxNotFoundWrapper p {
+    margin: 0px;
+}
+
+#boxTransferBarcode {
+    width: 99.5%;
+}
