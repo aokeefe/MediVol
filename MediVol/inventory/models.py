@@ -10,6 +10,7 @@ NAME_LENGTH = 80
 ABBREV_LENGTH = 4
 ADDRESS_LENGTH = 200
 BOX_ID_LENGTH = 6
+BARCODE_LENGTH = 8
 
 class Warehouse(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
@@ -34,7 +35,7 @@ class Box(models.Model):
 
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
     weight = models.DecimalField(max_digits=5, decimal_places=2, null=True)
-    barcode = models.CharField(max_length=8, unique=True)
+    barcode = models.CharField(max_length=BARCODE_LENGTH, unique=True)
     initials = models.CharField(max_length=5, default="")
     entered_date = models.DateTimeField('date the box was entered', null=True)
     old_box_flag = models.BooleanField(default=False)
@@ -53,6 +54,7 @@ class Box(models.Model):
     #TODO what does this mean?
     audit = models.IntegerField(default=1, null=True)
     warehouse = models.ForeignKey(Warehouse, null=True)
+    sold = models.BooleanField(default=False)
 
     @classmethod
     def get_box(self, box_id_to_get):
@@ -91,7 +93,8 @@ class Box(models.Model):
                   reserved_for=filtered_values[11],
                   box_date=filtered_values[12],
                   audit=filtered_values[13],
-                  warehouse=Warehouse.objects.get(abbreviation=filtered_values[14]))
+                  warehouse=Warehouse.objects.get(abbreviation=filtered_values[14]),
+                  sold=filtered_values[15])
         box.save()
         return box
 
@@ -146,7 +149,8 @@ class Box(models.Model):
                   self.reserved_for,
                   str(self.box_date),
                   str(self.audit),
-                  self.warehouse.abbreviation]
+                  self.warehouse.abbreviation,
+                  self.sold]
         return to_csv_from_array(values)
 
     def get_id(self):
