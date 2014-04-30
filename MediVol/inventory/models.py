@@ -64,6 +64,7 @@ class Box(models.Model):
             box = Box.objects.get(box_id=box_id_to_get)
         except Box.DoesNotExist:
             boxes = Box.objects.raw(
+                #THIS IS NOT SAFE IF USERS CAN SELECT THE BOX_ID
                 '''SELECT * FROM inventory_box
                 INNER JOIN catalog_category ON inventory_box.box_category_id = catalog_category.id
                 WHERE CONCAT(catalog_category.letter, inventory_box.box_id) = %s''',
@@ -121,6 +122,7 @@ class Box(models.Model):
                     if not Box.objects.filter(barcode=self.barcode).exists():
                         break #if the guess was unique stop
         except Exception as e:
+            #I think if this gets called, it will crash the webpage for trying to execute print
             print ('%s (%s)' % ('The Box did not save correctly', type(e)))
 
         if self.box_id is None:
