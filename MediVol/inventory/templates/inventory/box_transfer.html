@@ -38,18 +38,26 @@
         </table>
     </div>
 
-    Transfer to:
-    <select id='toWarehouse'>
-        {% for warehouse in warehouses %}
-            {% if warehouse.is_default %}
-                <option value='{{ warehouse.abbreviation }}' selected='selected'>{{ warehouse.name }}</option>
-            {% else %}
-                <option value='{{ warehouse.abbreviation }}'>{{ warehouse.name }}</option>
-            {% endif %}
-        {% endfor %}
-    </select>
+    <div id='transferOptions'>
+        <div id='selectWarehouse'>
+            Transfer to:
+            <select id='toWarehouse'>
+                {% for warehouse in warehouses %}
+                    {% if warehouse.is_default %}
+                        <option value='{{ warehouse.abbreviation }}' selected='selected'>{{ warehouse.name }}</option>
+                    {% else %}
+                        <option value='{{ warehouse.abbreviation }}'>{{ warehouse.name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
 
-    <button id='transferBoxes' class='button'>Transfer Boxes</a>
+        <div id='transferBoxesWrapper'>
+            <button id='transferBoxes' class='button'>Transfer Boxes</button>
+        </div>
+
+        <div class='clear'></div>
+    </div>
 {% endblock %}
 
 {% block javascript %}

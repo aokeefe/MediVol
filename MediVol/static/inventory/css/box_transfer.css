@@ -10,3 +10,22 @@
 #boxTransferBarcode {
     width: 99.5%;
 }
+
+#transferOptions {
+    margin: 0px auto;
+    width: 375px;
+    margin-top: 50px;
+}
+
+#toWarehouse {
+    font-size: 1em;
+}
+
+#selectWarehouse, #transferBoxesWrapper {
+    float: right;
+    font-size: 2em;
+}
+
+#transferBoxesWrapper {
+    margin-top: 15px;
+}

@@ -78,7 +78,8 @@ function addBox(response) {
 }
 
 $(document).ready(function() {
-    $('#boxTransferBarcode').bind(
+
+    $('#boxTransferBarcode').focus().bind(
         'input',
         function() {
             var barcode = $(this).val();
