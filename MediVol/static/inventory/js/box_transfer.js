@@ -88,4 +88,32 @@ $(document).ready(function() {
             }
         }
     );
+
+    $('#transferBoxes').click(function() {
+        var boxes = getAddedBoxes();
+        var warehouse = $('#toWarehouse option:selected').val();
+        var fullWarehouseName = $('#toWarehouse option:selected').html();
+
+        if (boxes.length > 0) {
+            $.jConfirm('Transfer these boxes to the "' + fullWarehouseName + '" warehouse?', '',
+                function(result) {
+                    if (result) {
+                        Dajaxice.inventory.transfer_boxes(
+                            function(response) {
+                                if (response.result === true) {
+                                    window.location.reload();
+                                } else if (response.result === false) {
+                                    $.jAlert('There was a problem transferring these boxes.', 'error', null);
+                                }
+                            },
+                            {
+                                'boxes': boxes,
+                                'warehouse_abbreviation': warehouse
+                            }
+                        );
+                    }
+                }
+            );
+        }
+    });
 });

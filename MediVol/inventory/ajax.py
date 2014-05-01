@@ -192,3 +192,19 @@ def set_warehouse(request, box_id, warehouse_abbreviation):
     box.warehouse = warehouse
     box.save();
     return simplejson.dumps({'message': 'True'})
+
+@dajaxice_register(method='POST')
+def transfer_boxes(request, boxes, warehouse_abbreviation):
+    try:
+        warehouse = Warehouse.objects.get(abbreviation=warehouse_abbreviation)
+    except Warehouse.DoesNotExist:
+        return simplejson.dumps({ 'result': False })
+
+    for box_id in boxes:
+        box = Box.get_box(box_id)
+
+        if box is not None:
+            box.warehouse = warehouse
+            box.save()
+
+    return simplejson.dumps({ 'result': True })
