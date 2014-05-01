@@ -48,7 +48,7 @@
                     {% elif user.groups.all.0.name == 'Guest' %}
                         <a id='inventoryNavButton' href='/inventory/create'><li>Create Box</li></a>
                     {% elif user.groups.all.0.name == 'Box Transfer' %}
-                        <a id='boxTransferNavButton' href='/inventory'><li>Inventory</li></a>
+                        <a id='boxTransferNavButton' href='/inventory/box_transfer'><li>Box Transfer</li></a>
                         <a id='settingsNavButton' href='/administration/settings'><li>Settings</li></a>
                     {% elif user.groups.all.0.name == 'Read Only' %}
                         <a id='inventoryNavButton' href='/inventory/'><li>Inventory</li></a>
