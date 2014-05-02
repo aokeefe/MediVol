@@ -131,7 +131,7 @@ class Order(models.Model):
         return creation_array[1] + '/' + creation_array[2] + '/' + creation_array[0]
 
     def save(self, *args, **kwargs):
-        if self.order_number is None:
+        if self.order_number is None or self.order_number == '':
             while True:
                 self.order_number = id_generator.id_generator(ORDER_number_LENGTH)
                 if not Order.objects.filter(order_number=self.order_number).exists():
@@ -145,7 +145,7 @@ class OrderBox(models.Model):
     cost = models.FloatField(default=0.0)
 
     def __unicode__(self):
-        return str(self.box) + " in order " + str(self.order_for)
+        return str(self.box) + " in " + str(self.order_for)
 
     def to_csv(self):
         values = [self.order_for.order_number,

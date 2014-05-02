@@ -30,31 +30,32 @@ class Box(models.Model):
         (LARGE, 'Large'),
         (UNKNOWN, 'Unknown'),
     )
+    #set on save
     box_id = models.CharField(max_length=BOX_ID_LENGTH, null=True, unique=True)
+    barcode = models.CharField(max_length=BARCODE_LENGTH, unique=True)
+
+    #set on box_contents save
     box_category = models.ForeignKey(Category, null=True)
 
+    #set on creation
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
     weight = models.DecimalField(max_digits=5, decimal_places=2, null=True)
-    barcode = models.CharField(max_length=BARCODE_LENGTH, unique=True)
     initials = models.CharField(max_length=5, default="")
-    entered_date = models.DateTimeField('date the box was entered', null=True)
-    old_box_flag = models.BooleanField(default=False)
-
     note = models.CharField(max_length=300, null=True)
+    entered_date = models.DateTimeField('date the box was entered', null=True)
+    warehouse = models.ForeignKey(Warehouse, null=True)
 
-    #None is no expiration
-    #TODO remove
+    #set later
+    sold = models.BooleanField(default=False)
+
+    #working with old boxes
+    old_box_flag = models.BooleanField(default=False)
     old_expiration = models.DateTimeField('expiration date', null=True)
     old_contents = models.CharField(max_length=300, null=True)
-    shipped_to = models.CharField(max_length=300, null=True)
-    reserved_for = models.CharField(max_length=300, null=True)
-
     #TODO: Ask Amy what this could mean
     box_date = models.DateTimeField('Box date', null=True)
     #TODO what does this mean?
     audit = models.IntegerField(default=1, null=True)
-    warehouse = models.ForeignKey(Warehouse, null=True)
-    sold = models.BooleanField(default=False)
 
     @classmethod
     def get_box(self, box_id_to_get):
@@ -81,23 +82,38 @@ class Box(models.Model):
     def create_from_csv(cls, csv):
         filtered_values = to_array_from_csv(csv)
         box = Box(box_id=filtered_values[0],
-                  box_category=Category.objects.get(letter=filtered_values[1]),
-                  box_size=filtered_values[2],
-                  weight=filtered_values[3],
-                  barcode=filtered_values[4],
+                  barcode=filtered_values[1],
+
+                  box_category=Category.objects.get(letter=filtered_values[2]),
+                  
+                  box_size=filtered_values[3],
+                  weight=filtered_values[4],
                   initials=filtered_values[5],
-                  entered_date=filtered_values[6],
-                  old_box_flag=filtered_values[7],
-                  old_expiration=filtered_values[8],
-                  old_contents=filtered_values[9],
-                  shipped_to=filtered_values[10],
-                  reserved_for=filtered_values[11],
-                  box_date=filtered_values[12],
-                  audit=filtered_values[13],
-                  warehouse=Warehouse.objects.get(abbreviation=filtered_values[14]),
-                  sold=filtered_values[15])
+                  note=filtered_values[6],
+                  entered_date=filtered_values[7],
+                  warehouse=Warehouse.objects.get(abbreviation=filtered_values[8]),
+                  
+                  sold=filtered_values[9],
+                  
+                  old_box_flag=filtered_values[10],
+                  old_expiration=filtered_values[11],
+                  old_contents=filtered_values[12],
+                  box_date=filtered_values[13],
+                  audit=filtered_values[14])
         box.save()
         return box
+
+    def is_availible(self):
+        return not sold
+
+    #Any better name ideas?
+    def lock_out(self, order):
+        self.sold = True
+        order_list = self.orderbox_set.all()
+        for node in order_list:
+            if node not in order.orderbox_set.all():
+                #add logic to record the deleation
+                node.delete()
 
     def get_size_word(self):
         return self.SIZE_CHOICES[self.box_size]
@@ -138,21 +154,24 @@ class Box(models.Model):
         Returns a string containing all the CSV information of the Box.  Used in creating database backups
         """
         values = [self.box_id,
+                  str(self.barcode),
+
                   self.box_category.letter,
+
                   self.box_size,
                   str(self.weight),
-                  str(self.barcode),
                   self.initials,
+                  self.note,
                   str(self.entered_date),
+                  self.warehouse.abbreviation,
+
+                  self.sold,
+
                   self.old_box_flag,
                   str(self.old_expiration),
                   self.old_contents,
-                  self.shipped_to,
-                  self.reserved_for,
                   str(self.box_date),
-                  str(self.audit),
-                  self.warehouse.abbreviation,
-                  self.sold]
+                  str(self.audit)]
         return to_csv_from_array(values)
 
     def get_id(self):
