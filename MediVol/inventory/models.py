@@ -65,7 +65,6 @@ class Box(models.Model):
             box = Box.objects.get(box_id=box_id_to_get)
         except Box.DoesNotExist:
             boxes = Box.objects.raw(
-                #THIS IS NOT SAFE IF USERS CAN SELECT THE BOX_ID
                 '''SELECT * FROM inventory_box
                 INNER JOIN catalog_category ON inventory_box.box_category_id = catalog_category.id
                 WHERE CONCAT(catalog_category.letter, inventory_box.box_id) = %s''',
