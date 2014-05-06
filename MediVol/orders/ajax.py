@@ -227,3 +227,34 @@ def change_order_status(request, order_number, order_status):
     order.save()
 
     return simplejson.dumps({ 'result': 'True' })
+
+@dajaxice_register(method='POST')
+def get_orders(request):
+    orders = Order.objects.all()
+    order_list = []
+    for order in orders:
+        boxes = OrderBox.objects.filter(order_for=order)
+        box_ids = []
+        for box in boxes:
+            box_ids.append(box.box.get_id())
+        temp = [order.order_number,
+                order.order_status,
+                box_ids,
+                order.reserved_for.contact_name,
+                order.get_creation_date_display(),
+                order.get_cost(),
+                order.get_weight()]
+        order_list.append(temp)
+    return simplejson.dumps(order_list)
+
+#helper method
+def get_box_name_for_order(order):
+    boxes = OrderBox.objects.filter(order_for=order)
+    box_string = []
+    if boxes.len() < 0:
+        return 'none'
+    else:
+        for box in boxes:
+            box_name = box.get_contents_string()
+            box_string.append(box_name)
+        return ','.join(box_string)
