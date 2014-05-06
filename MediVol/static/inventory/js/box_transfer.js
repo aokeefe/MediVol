@@ -13,6 +13,8 @@ var BLANK_ROW = "<tr id='placeholder_row'>" +
         "<td>&nbsp;</td>" +
     "</tr>";
 
+var BOX_ERROR_TEMPLATE = 'Box with barcode "{barcode}" could not be found.';
+
 function getAddedBoxes() {
     var boxes = [];
 
@@ -72,8 +74,12 @@ function addBox(response) {
         $('#boxes_added').append(newRow);
 
         setRemoveButton();
-    } else {
-        $('#boxNotFoundMessage').show();
+    } else if (response.result === false) {
+        $('#boxTransferBarcode').val('');
+
+        var boxError = BOX_ERROR_TEMPLATE.replace('{barcode}', response.barcode);
+
+        $('#boxNotFoundMessage').html(boxError).show();
     }
 }
 

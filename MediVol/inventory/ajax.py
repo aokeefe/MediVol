@@ -153,7 +153,7 @@ def get_box_by_barcode(request, barcode):
     try:
         box = Box.objects.get(barcode=barcode)
     except Box.DoesNotExist:
-        return simplejson.dumps({ 'result': False })
+        return simplejson.dumps({ 'result': False, 'barcode': barcode })
 
     return simplejson.dumps(
         {
