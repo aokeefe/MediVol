@@ -10,6 +10,7 @@
 
 {% block styles %}
     <link rel='stylesheet' href='{{ STATIC_URL }}orders/css/style.css' />
+    <link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/styles.css' />
 {% endblock %}
 
 {% block body %}
@@ -211,7 +212,7 @@
             <div id='tableWrapper'>
                 <table id='boxes_found'>
                     <tr id='table_header'>
-                        <td></td>
+                        <td class='tagColumn'></td>
                         <td id='idHeader'>Box ID</td>
                         <td id='sizeHeader'>Size</td>
                         <td id='weightHeader'>Weight</td>
@@ -222,7 +223,7 @@
                     </tr>
                     <tbody id="boxes_body">
                         <tr id='placeholder_row'>
-                            <td></td>
+                            <td class='tagColumn'></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -234,20 +235,28 @@
                     </tbody>
                 </table>
             </div>
+
             <div id='buttons'>
-                <button type="button" id="previous_button">previous</button>
-                <div id="page_numbers">Page 0 of 0</div>
-                <button type="button" id="next_button">next</button>
-                <button type="button" id="filter_button">filter</button>
-                <button type="button" id="unfilter_button">unfilter</button>
-                <select id="max_per_page">
-                    <option>10</option>
-                    <option>25</option>
-                    <option>50</option>
-                </select>
+                <div id='buttonsLeft'>
+                    <button type='button' id='previous_button' class='button'>&larr; Previous</button>
+                    <div id='page_numbers'>Page 0 of 0</div>
+                    <button type='button' id='next_button' class='button'>Next &rarr;</button><br /><br />
+
+                    <label for='max_per_page'>Boxes Per Page: </label>
+                    <select id='max_per_page'>
+                        <option>10</option>
+                        <option>25</option>
+                        <option>50</option>
+                    </select>
+                </div>
+
+                <div id='buttonsRight'>
+                    <button type='button' id='filter_button' class='button'>Filter</button>
+                    <button type='button' id='unfilter_button' class='button'>Unfilter</button>
+                </div>
+
+                <div class='clear'></div>
             </div>
-
-
 
             <div id='itemSelectedMessage' class='noItemSelected'>
                 Please select a box.

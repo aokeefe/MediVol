@@ -177,14 +177,14 @@ h3 {
     background-color: #ff3535;
     border: 1px solid #ff5151;
     color: #4b1111;
-    padding-top: 27px;
+    padding-top: 27px !important;
 }
 
 .itemSelected {
     background-color: #2ad141;
     border: 1px solid #2ad641;
     color: #0f5018;
-    padding-top: 27px;
+    padding-top: 27px !important;
 }
 
 .itemSelected b {
