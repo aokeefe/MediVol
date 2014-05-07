@@ -38,10 +38,17 @@ for box in Box.objects.all():
     else:
         boxes_not_expiring.append(box)
 
-print ('/var/www/MediVol/records/'+str(now)).replace(' ', '_').replace(':', '_').replace('.', '_')+'.txt'
-
+#maintains a record on the server
 export = file(('/var/www/MediVol/records/'+str(now)).replace(' ', '_').replace(':', '_').replace('.', '_')+'.txt', 'w')
+#placeholder for if someone wants to make this more pretty
 message = ''
+
+export.write('Boxes that have already expired:\n')
+message += ('<p>Boxes that have already expired:<ul>')
+for box in boxes_expired:
+    export.write(str(box)+'\n')
+    message += ('<li>' + str(box) + '</li>')
+message += '</ul></p>'
 
 export.write('Boxes expiring next month:\n')
 message += ('<p>Boxes expiring next month:<ul>')
@@ -64,4 +71,5 @@ for box in boxes_unknown_expiration:
     message += ('<li>' + str(box) + '</li>')
 message += '</ul></p>'
 
-send_message('Monly Expiring Boxes Update', 'Nothingatall544@gmail.com', 'Bill Beers', message)
+send_message('Monly Expiring Boxes Update', 'sxb5828@rit.edu', 'Shun', message)
+send_message('Monly Expiring Boxes Update', 'nothingatall544@gmail.com', 'Bill', message)
