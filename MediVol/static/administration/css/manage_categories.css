@@ -1,0 +1,16 @@
+.letterColumn, .letterInput {
+    width: 75px;
+}
+
+.letterInput {
+    text-align: center;
+}
+
+.nameColumn {
+
+}
+
+.nameInput {
+    width: 100%;
+    text-align: center;
+}

@@ -2,6 +2,7 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from inventory.models import Warehouse
 from administration.models import ResetCode
+from catalog.models import Category, BoxName
 from django.contrib.auth.models import User, Group
 from django.core.validators import validate_email
 from notifications.notifier import send_message
@@ -125,3 +126,27 @@ def change_email(request, new_email):
     send_message('InterVol Email Changed', request.user.email, request.user.username, message)
 
     return True
+
+@dajaxice_register(method='POST')
+def delete_category(request, letter, name):
+    try:
+        category = Category.objects.get(letter=letter, name=name)
+    except Category.DoesNotExist:
+        return simplejson.dumps(
+            {
+                'result': False,
+                'message': '"' + letter + ' - ' + name + '" category does not exist.'
+            }
+        )
+
+    if len(BoxName.objects.filter(category=category)) > 0:
+        return simplejson.dumps(
+            {
+                'result': False,
+                'message': '"' + letter + ' - ' + name + '" category could not be deleted because it still has box names in it.'
+            }
+        )
+
+    category.delete()
+
+    return simplejson.dumps({ 'result': True })

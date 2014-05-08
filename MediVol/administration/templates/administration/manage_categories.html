@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>InterVol | Manage Categories</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}administration/css/styles.css' />
+    <link rel='stylesheet' href='{{ STATIC_URL }}administration/css/manage_categories.css' />
+{% endblock %}
+
+{% block body %}
+    <h2>Manage Categories</h2>
+
+    <!-- <div id='addWarehouseWrapper'>
+        <div class='addWarehouseField'>
+            <div class='label'>Name</div>
+            <input type='text' id='warehouseName' class='textField' />
+        </div>
+
+        <div class='addWarehouseField'>
+            <div class='label'>Abbreviation</div>
+            <input type='text' id='warehouseAbbreviation' class='textField' />
+        </div>
+
+        <div class='addWarehouseField'>
+            <div class='label'>Address</div>
+            <input type='text' id='warehouseAddress' class='textField' />
+        </div>
+
+        <button id='addWarehouse' class='button'>Add Warehouse</button>
+
+        <div class='errorMessage'><p class='requiredMessage requiredText'></p></div>
+
+        <div class='clear'></div>
+    </div> -->
+
+    <div id='categories'>
+        <table>
+            <tr>
+                <td>Letter</td>
+                <td>Name</td>
+            </tr>
+
+            {% for category in categories %}
+                <tr>
+                    <td class='letterColumn'>
+                        <input class='letterInput textField' type='text' value='{{ category.letter }}' />
+                    </td>
+                    <td class='nameColumn'>
+                        <input class='nameInput textField' type='text' value='{{ category.name }}' />
+                    </td>
+                    <td>
+                        <a href='javascript:void(0)' class='deleteCategory'>Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type='text/javascript' src='{{ STATIC_URL }}administration/js/categories.js'></script>
+{% endblock %}
