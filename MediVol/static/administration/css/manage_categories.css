@@ -14,3 +14,12 @@
     width: 100%;
     text-align: center;
 }
+
+.deleteColumn {
+    width: 80px;
+}
+
+.saveColumn {
+    width: 130px;
+    border: none;
+}

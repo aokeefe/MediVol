@@ -143,10 +143,29 @@ def delete_category(request, letter, name):
         return simplejson.dumps(
             {
                 'result': False,
-                'message': '"' + letter + ' - ' + name + '" category could not be deleted because it still has box names in it.'
+                'message': '"' + letter + ' - ' + name + '" category could not be deleted because it still has Box Names in it.'
             }
         )
 
     category.delete()
+
+    return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def save_category(request, original_letter, original_name, letter, name):
+    try:
+        category = Category.objects.get(letter=original_letter, name=original_name)
+    except Category.DoesNotExist:
+        return simplejson.dumps(
+            {
+                'result': False,
+                'message': '"' + original_letter + ' - ' + original_name + '" category does not exist.'
+            }
+        )
+
+    category.letter = letter
+    category.name = name
+
+    category.save()
 
     return simplejson.dumps({ 'result': True })

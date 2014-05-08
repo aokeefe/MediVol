@@ -45,14 +45,17 @@
             {% for category in categories %}
                 <tr>
                     <td class='letterColumn'>
-                        <input class='letterInput textField' type='text' value='{{ category.letter }}' />
+                        <input class='letterInput textField' type='text'
+                            original='{{ category.letter }}' value='{{ category.letter }}' />
                     </td>
                     <td class='nameColumn'>
-                        <input class='nameInput textField' type='text' value='{{ category.name }}' />
+                        <input class='nameInput textField' type='text'
+                            original='{{ category.name }}' value='{{ category.name }}' />
                     </td>
-                    <td>
+                    <td class='deleteColumn'>
                         <a href='javascript:void(0)' class='deleteCategory'>Delete</a>
                     </td>
+                    <td class='saveColumn'></td>
                 </tr>
             {% endfor %}
         </table>
