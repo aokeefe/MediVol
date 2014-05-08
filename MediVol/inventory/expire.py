@@ -71,5 +71,6 @@ for box in boxes_unknown_expiration:
     message += ('<li>' + str(box) + '</li>')
 message += '</ul></p>'
 
-send_message('Monly Expiring Boxes Update', 'sxb5828@rit.edu', 'Shun', message)
-send_message('Monly Expiring Boxes Update', 'nothingatall544@gmail.com', 'Bill', message)
+send_message('Automated: Monthly Expiring Boxes Update', 'sxb5828@rit.edu', 'Shun', message)
+send_message('Automated: Monthly Expiring Boxes Update', 'shunmok@me.com', 'Shun', message)
+send_message('Automated: Monthly Expiring Boxes Update', 'nothingatall544@gmail.com', 'Bill', message)
