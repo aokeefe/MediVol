@@ -2,7 +2,7 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from inventory.models import Warehouse
 from administration.models import ResetCode
-from catalog.models import Category, BoxName
+from catalog.models import Category, BoxName, Item
 from django.contrib.auth.models import User, Group
 from django.core.validators import validate_email
 from notifications.notifier import send_message
@@ -198,5 +198,24 @@ def add_category(request, letter, name):
 
     category = Category(letter=letter, name=name)
     category.save()
+
+    return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def delete_box_name(request, letter, name):
+    try:
+        category = Category.objects.get(letter=letter)
+    except Category.DoesNotExist:
+        return simplejson.dumps({ 'result': False, 'message': 'The category does not exist.' })
+
+    try:
+        box_name = BoxName.objects.get(category=category, name=name)
+    except BoxName.DoesNotExist:
+        return simplejson.dumps({ 'result': False, 'message': 'The box name "' + name + '" does not exist.' })
+
+    if len(Item.objects.filter(box_name=box_name)) > 0:
+        return simplejson.dumps({ 'result': False, 'message': 'The box name "' + name + '" could not be deleted because there are still items in it.' })
+
+    box_name.delete()
 
     return simplejson.dumps({ 'result': True })

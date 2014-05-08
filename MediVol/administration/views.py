@@ -63,7 +63,7 @@ def manage_categories(request):
 @login_required
 @user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
 def manage_box_names(request):
-    context = { 'box_names': BoxName.objects.all() }
+    context = { 'box_names': BoxName.objects.all(), 'categories': Category.objects.all() }
 
     return render(request, 'administration/manage_box_names.html', context)
 

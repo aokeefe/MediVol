@@ -6,12 +6,78 @@
 
 {% block styles %}
     <link rel='stylesheet' href='{{ STATIC_URL }}administration/css/styles.css' />
+    <link rel='stylesheet' href='{{ STATIC_URL }}administration/css/manage_box_names.css' />
 {% endblock %}
 
 {% block body %}
     <h2>Manage Box Names</h2>
 
+    <div id='box_names'>
+        <table>
+            <tr>
+                <td>Category</td>
+                <td>Name</td>
+            </tr>
 
+            {% for box_name in box_names %}
+                <tr>
+                    <td class='categoryColumn'>
+                        <input class='originalCategory' type='hidden'
+                            value='{{ category.letter }} - {{ category.name }}' />
+                        <select class='categoryInput'>
+                            {% for category in categories %}
+                                {% if category == box_name.category %}
+                                    <option selected='selected' value='{{ category.letter }}'>
+                                        {{ category.letter }} - {{ category.name }}
+                                    </option>
+                                {% else %}
+                                    <option value='{{ category.letter }}'>
+                                        {{ category.letter }} - {{ category.name }}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td class='nameColumn'>
+                        <input class='nameInput textField' type='text'
+                            original='{{ box_name.name }}' value='{{ box_name.name }}' />
+                    </td>
+                    <td class='deleteColumn'>
+                        <a href='javascript:void(0)' class='deleteBoxName'>Delete</a>
+                    </td>
+                    <td class='saveColumn'></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <hr />
+
+    <div id='addBoxNameWrapper'>
+        <h2>Add New Box Name</h2>
+
+        <div class='addBoxNameField'>
+            <div class='label'>Category</div>
+            <select id='categorySelect'>
+                {% for category in categories %}
+                    <option value='{{ category.letter }}'>
+                        {{ category.letter }} - {{ category.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class='addBoxNameField'>
+            <div class='label'>Name</div>
+            <input type='text' id='boxNameName' class='textField' />
+        </div>
+
+        <button id='addBoxName' class='button'>Add Box Name</button>
+
+        <div class='errorMessage'><p class='requiredMessage requiredText'></p></div>
+
+        <div class='clear'></div>
+    </div>
 {% endblock %}
 
 {% block javascript %}
