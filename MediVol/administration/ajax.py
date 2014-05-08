@@ -163,9 +163,40 @@ def save_category(request, original_letter, original_name, letter, name):
             }
         )
 
+    if len(letter) > 2:
+        return simplejson.dumps(
+            { 'result': False, 'message': 'Letter field can only be two characters.' })
+
     category.letter = letter
     category.name = name
 
+    category.save()
+
+    return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def add_category(request, letter, name):
+    try:
+        category = Category.objects.get(letter=letter)
+    except Category.DoesNotExist:
+        category = None
+
+    if category is not None:
+        return simplejson.dumps({ 'result': False, 'message': 'A category with this letter already exists.' })
+
+    try:
+        category = Category.objects.get(name=name)
+    except Category.DoesNotExist:
+        category = None
+
+    if category is not None:
+        return simplejson.dumps({ 'result': False, 'message': 'A category with this name already exists.' })
+
+    if len(letter) > 2:
+        return simplejson.dumps(
+            { 'result': False, 'message': 'Letter field can only be two characters.' })
+
+    category = Category(letter=letter, name=name)
     category.save()
 
     return simplejson.dumps({ 'result': True })

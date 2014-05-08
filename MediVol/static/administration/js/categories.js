@@ -1,3 +1,18 @@
+var CATEGORY_TEMPLATE = "<tr>" +
+    "<td class='letterColumn'>" +
+        "<input class='letterInput textField' type='text'" +
+            "original='{letter}' value='{letter}' />" +
+    "</td>" +
+    "<td class='nameColumn'>" +
+        "<input class='nameInput textField' type='text'" +
+            "original='{name}' value='{name}' />" +
+    "</td>" +
+    "<td class='deleteColumn'>" +
+        "<a href='javascript:void(0)' class='deleteCategory'>Delete</a>" +
+    "</td>" +
+    "<td class='saveColumn'></td>" +
+"</tr>";
+
 function deleteCategory(cell, letter, name) {
     Dajaxice.administration.delete_category(function(response) {
         if (response.result === true) {
@@ -91,7 +106,37 @@ function setFieldChangeListener() {
     );
 }
 
+function addCategory(letter, name) {
+    Dajaxice.administration.add_category(function(response) {
+        if (response.result === true) {
+            $('.requiredMessage').hide();
+
+            var newRow = CATEGORY_TEMPLATE
+                .replace(/{letter}/gi, letter)
+                .replace(/{name}/gi, name);
+
+            $('table').append(newRow);
+
+            setDeleteCategoryButtons();
+            setFieldChangeListener();
+        } else if (response.result === false) {
+            $('.requiredMessage').html(response.message);
+            $('.requiredMessage').show();
+        }
+    }, { 'letter': letter, 'name': name });
+}
+
+function setAddCategoryButton() {
+    $('#addCategory').unbind('click').click(function() {
+        var letter = $('#categoryLetter').val();
+        var name = $('#categoryName').val();
+
+        addCategory(letter, name);
+    });
+}
+
 $(document).ready(function() {
     setDeleteCategoryButtons();
     setFieldChangeListener();
+    setAddCategoryButton();
 });

@@ -12,29 +12,6 @@
 {% block body %}
     <h2>Manage Categories</h2>
 
-    <!-- <div id='addWarehouseWrapper'>
-        <div class='addWarehouseField'>
-            <div class='label'>Name</div>
-            <input type='text' id='warehouseName' class='textField' />
-        </div>
-
-        <div class='addWarehouseField'>
-            <div class='label'>Abbreviation</div>
-            <input type='text' id='warehouseAbbreviation' class='textField' />
-        </div>
-
-        <div class='addWarehouseField'>
-            <div class='label'>Address</div>
-            <input type='text' id='warehouseAddress' class='textField' />
-        </div>
-
-        <button id='addWarehouse' class='button'>Add Warehouse</button>
-
-        <div class='errorMessage'><p class='requiredMessage requiredText'></p></div>
-
-        <div class='clear'></div>
-    </div> -->
-
     <div id='categories'>
         <table>
             <tr>
@@ -59,6 +36,28 @@
                 </tr>
             {% endfor %}
         </table>
+    </div>
+
+    <hr />
+
+    <div id='addCategoryWrapper'>
+        <h2>Add New Category</h2>
+        
+        <div class='addCategoryField'>
+            <div class='label'>Letter</div>
+            <input type='text' id='categoryLetter' class='textField' />
+        </div>
+
+        <div class='addCategoryField'>
+            <div class='label'>Name</div>
+            <input type='text' id='categoryName' class='textField' />
+        </div>
+
+        <button id='addCategory' class='button'>Add Category</button>
+
+        <div class='errorMessage'><p class='requiredMessage requiredText'></p></div>
+
+        <div class='clear'></div>
     </div>
 {% endblock %}
 
