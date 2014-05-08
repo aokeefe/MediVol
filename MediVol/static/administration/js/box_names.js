@@ -45,67 +45,68 @@ function setDeleteBoxNameButtons() {
 }
 
 function saveBoxName(cell, originalLetter, originalName, letter, name) {
-    // Dajaxice.administration.save_category(
-    //     function(response) {
-    //         if (response.result === true) {
-    //             cell.find('.letterColumn .letterInput').attr('original', letter);
-    //             cell.find('.nameColumn .nameInput').attr('original', name);
-    //             cell.find('.saveColumn').html('');
-    //         } else if (response.result === false) {
-    //             $.jAlert(response.message, 'error', null);
-    //         }
-    //     },
-    //     {
-    //         'original_letter': originalLetter,
-    //         'original_name': originalName,
-    //         'letter': letter,
-    //         'name': name
-    //     }
-    // );
+    Dajaxice.administration.save_box_name(
+        function(response) {
+            if (response.result === true) {
+                cell.find('.categoryColumn .originalCategory').val(letter);
+                cell.find('.nameColumn .nameInput').attr('original', name);
+                cell.find('.saveColumn').html('');
+            } else if (response.result === false) {
+                $.jAlert(response.message, 'error', null);
+            }
+        },
+        {
+            'original_letter': originalLetter,
+            'original_name': originalName,
+            'letter': letter,
+            'name': name
+        }
+    );
 }
 
 function setSaveButtons() {
     $('.saveChanges').unbind('click').click(function() {
-        console.log('save');
-        // var cell = $(this).parent().parent();
-        // var letter = cell.find('.letterColumn .letterInput').val();
-        // var originalLetter = cell.find('.letterColumn .letterInput').attr('original');
-        //
-        // var name = cell.find('.nameColumn .nameInput').val();
-        // var originalName = cell.find('.nameColumn .nameInput').attr('original');
-        //
-        // var message = 'Change "' + originalLetter + ' - ' + originalName +
-        //     '" to "' + letter + ' - ' + name + '"?';
-        //
-        // $.jConfirm(message, '',
-        //     function(answer) {
-        //         if (answer) {
-        //             saveCategory(cell, originalLetter, originalName, letter, name);
-        //         }
-        //     }
-        // );
+        var cell = $(event.target).parent().parent();
+
+        var letter = cell.find('.categoryColumn .categoryInput option:selected').val();
+        var originalLetter = cell.find('.categoryColumn .originalCategory').val();
+
+        var name = cell.find('.nameColumn .nameInput').val();
+        var originalName = cell.find('.nameColumn .nameInput').attr('original');
+
+        var saveColumn = cell.find('.saveColumn');
+
+        var message = 'Change "' + originalLetter + ' - ' + originalName +
+            '" to "' + letter + ' - ' + name + '"?';
+
+        $.jConfirm(message, '',
+            function(answer) {
+                if (answer) {
+                    saveBoxName(cell, originalLetter, originalName, letter, name);
+                }
+            }
+        );
     });
 }
 
 function fieldChanged(event) {
     var cell = $(event.target).parent().parent();
 
-    console.log('change');
-    // var letter = cell.find('.letterColumn .letterInput').val();
-    // var originalLetter = cell.find('.letterColumn .letterInput').attr('original');
-    //
-    // var name = cell.find('.nameColumn .nameInput').val();
-    // var originalName = cell.find('.nameColumn .nameInput').attr('original');
-    //
-    // var saveColumn = cell.find('.saveColumn');
-    //
-    // if (saveColumn.html() === '') {
-    //     saveColumn.html('<a href="javascript:void(0)" class="saveChanges">Save Changes</a>');
-    //     setSaveButtons();
-    // } else if (cell.find('.saveChanges').length === 1 &&
-    //         letter === originalLetter && name === originalName) {
-    //     saveColumn.html('');
-    // }
+    var letter = cell.find('.categoryColumn .categoryInput option:selected').val();
+    var originalLetter = cell.find('.categoryColumn .originalCategory').val();
+
+    var name = cell.find('.nameColumn .nameInput').val();
+    var originalName = cell.find('.nameColumn .nameInput').attr('original');
+
+    var saveColumn = cell.find('.saveColumn');
+
+    if (saveColumn.html() === '') {
+        saveColumn.html('<a href="javascript:void(0)" class="saveChanges">Save Changes</a>');
+        setSaveButtons();
+    } else if (cell.find('.saveChanges').length === 1 &&
+            letter === originalLetter && name === originalName) {
+        saveColumn.html('');
+    }
 }
 
 function setFieldChangeListener() {

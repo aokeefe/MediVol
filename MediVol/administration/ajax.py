@@ -219,3 +219,26 @@ def delete_box_name(request, letter, name):
     box_name.delete()
 
     return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def save_box_name(request, original_letter, original_name, letter, name):
+    try:
+        original_category = Category.objects.get(letter=original_letter)
+    except Category.DoesNotExist:
+        return simplejson.dumps({ 'result': False, 'message': 'The category with letter "' + original_letter + '" does not exist.' })
+
+    try:
+        new_category = Category.objects.get(letter=letter)
+    except Category.DoesNotExist:
+        return simplejson.dumps({ 'result': False, 'message': 'The category with letter "' + letter + '" does not exist.' })
+
+    try:
+        box_name = BoxName.objects.get(category=original_category, name=original_name)
+    except BoxName.DoesNotExist:
+        return simplejson.dumps({ 'result': False, 'message': 'The box name "' + original_name + '" does not exist.' })
+
+    box_name.category = new_category
+    box_name.name = name
+    box_name.save()
+
+    return simplejson.dumps({ 'result': True })

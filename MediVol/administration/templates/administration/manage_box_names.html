@@ -23,7 +23,7 @@
                 <tr>
                     <td class='categoryColumn'>
                         <input class='originalCategory' type='hidden'
-                            value='{{ category.letter }} - {{ category.name }}' />
+                            value='{{ box_name.category.letter }}' />
                         <select class='categoryInput'>
                             {% for category in categories %}
                                 {% if category == box_name.category %}

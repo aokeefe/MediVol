@@ -117,6 +117,9 @@ function addCategory(letter, name) {
 
             $('table').append(newRow);
 
+            $('#categoryLetter').val('');
+            $('#categoryName').val('');
+
             setDeleteCategoryButtons();
             setFieldChangeListener();
         } else if (response.result === false) {
