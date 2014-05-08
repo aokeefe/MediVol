@@ -136,10 +136,10 @@
                                 <div class='boxRight'>
                                     <h4>Price</h4>
                                     <p>
-                                        {% if order.get_cost == 0 %}
-                                            ${{ order.get_cost }}
-                                        {% else %}
+                                        {% if order.price == 0 %}
                                             <i>no prices set</i>
+                                        {% else %}
+                                            ${{ order.price|floatformat:'2' }}
                                         {% endif %}
                                     </p>
 
