@@ -1,7 +1,7 @@
 var BOX_NAME_TEMPLATE = "<tr>" +
     "<td class='categoryColumn'>" +
         "<input class='originalCategory' type='hidden'" +
-            "value='{category_letter} - {category_name}' />" +
+            "value='{category_letter}' />" +
         "<select class='categoryInput'>" +
             "{categories}" +
         "</select>" +
@@ -116,32 +116,38 @@ function setFieldChangeListener() {
 }
 
 function addBoxName(letter, name) {
-    // Dajaxice.administration.add_category(function(response) {
-    //     if (response.result === true) {
-    //         $('.requiredMessage').hide();
-    //
-    //         var newRow = CATEGORY_TEMPLATE
-    //             .replace(/{letter}/gi, letter)
-    //             .replace(/{name}/gi, name);
-    //
-    //         $('table').append(newRow);
-    //
-    //         setDeleteCategoryButtons();
-    //         setFieldChangeListener();
-    //     } else if (response.result === false) {
-    //         $('.requiredMessage').html(response.message);
-    //         $('.requiredMessage').show();
-    //     }
-    // }, { 'letter': letter, 'name': name });
+    Dajaxice.administration.add_box_name(function(response) {
+        if (response.result === true) {
+            $('.requiredMessage').hide();
+
+            var categories = $($('.categoryInput')[0]).clone();
+            categories.find('[value=' + letter + ']').attr('selected', 'selected');
+
+            var newRow = BOX_NAME_TEMPLATE
+                .replace(/{categories}/gi, categories.html())
+                .replace(/{category_letter}/gi, letter)
+                .replace(/{name}/gi, name);
+
+            $('table').append(newRow);
+
+            $($('#categorySelect option')[0]).attr('selected', 'selected');
+            $('#boxNameName').val('');
+
+            setDeleteBoxNameButtons();
+            setFieldChangeListener();
+        } else if (response.result === false) {
+            $('.requiredMessage').html(response.message);
+            $('.requiredMessage').show();
+        }
+    }, { 'letter': letter, 'name': name });
 }
 
 function setAddBoxNameButton() {
     $('#addBoxName').unbind('click').click(function() {
-        console.log('add');
-        // var letter = $('#categoryLetter').val();
-        // var name = $('#categoryName').val();
-        //
-        // addCategory(letter, name);
+        var letter = $('#categorySelect option:selected').val();
+        var name = $('#boxNameName').val();
+
+        addBoxName(letter, name);
     });
 }
 

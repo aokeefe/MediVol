@@ -242,3 +242,23 @@ def save_box_name(request, original_letter, original_name, letter, name):
     box_name.save()
 
     return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def add_box_name(request, letter, name):
+    try:
+        category = Category.objects.get(letter=letter)
+    except Category.DoesNotExist:
+        return simplejson.dumps({ 'result': False, 'message': 'This category does not exist.' })
+
+    try:
+        box_name = BoxName.objects.get(category=category, name=name)
+    except BoxName.DoesNotExist:
+        box_name = None
+
+    if box_name is not None:
+        return simplejson.dumps({ 'result': False, 'message': 'A box name with this name in this category already exists.' })
+    
+    box_name = BoxName(category=category, name=name, can_expire=True, can_count=True)
+    box_name.save()
+
+    return simplejson.dumps({ 'result': True })
