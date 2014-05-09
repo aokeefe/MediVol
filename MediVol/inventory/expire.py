@@ -64,13 +64,7 @@ for box in boxes_expiring_in_2_months:
     message += ('<li>' + str(box) + '</li>')
 message += '</ul></p>'
 
-export.write('\nBoxes with an unknown expiration:\n')
-message += ('<p>Boxes with an unknown expiration:<ul>')
-for box in boxes_unknown_expiration:
-    export.write(str(box)+'\n')
-    message += ('<li>' + str(box) + '</li>')
-message += '</ul></p>'
-
 send_message('Automated: Monthly Expiring Boxes Update', 'sxb5828@rit.edu', 'Shun', message)
 send_message('Automated: Monthly Expiring Boxes Update', 'shunmok@me.com', 'Shun', message)
 send_message('Automated: Monthly Expiring Boxes Update', 'nothingatall544@gmail.com', 'Bill', message)
+send_message('Automated: Monthly Expiring Boxes Update', 'Mike@mikelentini.com', 'Mike', message)
