@@ -15,7 +15,7 @@ def redirect(request):
     if user_group == 'Admin':
         return HttpResponseRedirect('/inventory')
     elif user_group == 'Box Transfer':
-        return HttpResponseRedirect('/inventory')
+        return HttpResponseRedirect('/inventory/box_transfer')
     if user_group == 'Guest':
         return HttpResponseRedirect('/inventory/create')
     if user_group == 'Read Only':

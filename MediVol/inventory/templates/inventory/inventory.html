@@ -13,6 +13,7 @@
     <h2 id='inventoryHeader'>Inventory</h2>
 
     {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
+        <a id='boxTransfer' href='/inventory/box_transfer'><button class='button'>Box Transfer</button></a>
         <a id='createNewBox' href='/inventory/create'><button class='button'>Create New Box</button></a>
     {% endif %}
 

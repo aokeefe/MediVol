@@ -1,27 +1,30 @@
 // Template for adding new item to the table.
-var ITEM_TEMPLATE = '<tr>' + 
-        '<td>{order_id}</td>' + 
-        '<td>{box_id}</td>' + 
-        '<td>{size}</td>' + 
-        '<td>{weight}</td>' + 
-        '<td>{contents}</td>' + 
-        '<td>{expiration}</td>' + 
-        '<td>{warehouse}</td>' + 
-        '<td><input type="checkbox" onclick="checkBoxClick({row})" {check}></td>' + 
+var ITEM_TEMPLATE = '<tr>' +
+        '<td class="tagColumn">{tags}</td>' +
+        '<td>{box_id}</td>' +
+        '<td>{size}</td>' +
+        '<td>{weight}</td>' +
+        '<td>{contents}</td>' +
+        '<td>{expiration}</td>' +
+        '<td>{warehouse}</td>' +
+        '<td><input type="checkbox" onclick="checkBoxClick({row})" {check}></td>' +
     '</tr>';
-    
-// Simple template used to insert a blank row below the table header 
+
+// Simple template used to insert a blank row below the table header
 // when there are no items in the box.
-var BLANK_BOX_ROW = "<tr id='placeholder_row'>" + 
-                    "<td></td>" + 
-                    "<td></td>" + 
-                    "<td></td>" + 
-                    "<td></td>" + 
+var BLANK_BOX_ROW = "<tr id='placeholder_row'>" +
+                    "<td class='tagColumn'></td>" +
                     "<td></td>" +
-                    "<td></td>" + 
-                    "<td></td>" + 
-                    "<td>&nbsp;</td>" + 
+                    "<td></td>" +
+                    "<td></td>" +
+                    "<td></td>" +
+                    "<td></td>" +
+                    "<td></td>" +
+                    "<td>&nbsp;</td>" +
                 "</tr>";
+
+var ORDER_TAG_TEMPLATE = '<a class="orderTag" href="/orders/review/{order_id}"' +
+    ' target="_blank">Order {order_id}</a>';
 
 var WAREHOUSE_SELECT = '<select id="{id}" onchange="warehouseChange({row},&quot;{id}&quot;)">{options}</select>';
 
@@ -176,7 +179,7 @@ function checkBoxClick(row){
         boxes[row].check = 'checked';
         if(filteredBoxes.indexOf(boxes[row]) === -1){
             filteredBoxes.push(currentBoxes[row]);
-        }      
+        }
     }
     else{
         boxes[row].check = '';
@@ -204,40 +207,38 @@ function fillTable(boxes) {
     }
     else{
         for(var i=0;i<boxes.length;i++) {
-            var order = '';
-            if(boxes[i].order_id !== ''){
-                order = '<a href="/orders/review/' + boxes[i].order_id + '">' + boxes[i].order_id + '</a>';
+            var rowString = ITEM_TEMPLATE.replace('{box_id}', '<a href="/inventory/view_box_info/' +
+                boxes[i].box_id + '">' + boxes[i].box_id + '</a>')
+                .replace('{contents}', boxes[i].contents)
+                .replace('{expiration}', boxes[i].expiration)
+                .replace('{size}', boxes[i].size)
+                .replace('{weight}', boxes[i].weight)
+                .replace('{warehouse}', boxes[i].warehouse)
+                .replace('{check}',boxes[i].check)
+                .replace('{row}',i+(currentPage*maxPerPage));
+
+            var tags = '';
+
+            if (boxes[i].order_id !== '') {
+                tags += ORDER_TAG_TEMPLATE.replace(/{order_id}/gi, boxes[i].order_id);
             }
-            $('#boxes_body').append(
-                ITEM_TEMPLATE.replace('{box_id}', '<a href="/inventory/view_box_info/' + 
-                    boxes[i].box_id + '">' + boxes[i].box_id + '</a>')
-                    .replace('{contents}', boxes[i].contents)
-                    .replace('{expiration}', boxes[i].expiration)
-                    .replace('{size}', boxes[i].size)
-                    .replace('{weight}', boxes[i].weight)
-                    .replace('{warehouse}',WAREHOUSE_SELECT
-                        .replace('<option>' + boxes[i].warehouse + '</option>',
-                        '<option selected>' + boxes[i].warehouse + '</option>')
-                        .replace('{row}',(i+currentPage*maxPerPage))
-                        .replace(/{id}/gi,'select' + (i+currentPage*maxPerPage))
-                        )
-                    .replace('{check}',boxes[i].check)
-                    .replace('{row}',i+(currentPage*maxPerPage))
-                    .replace('{order_id}',order)
-            );
+
+            rowString = rowString.replace('{tags}', tags);
+
+            $('#boxes_body').append(rowString);
         }
     }
 }
 
 
-$(document).ready(function() {    
+$(document).ready(function() {
     Dajaxice.inventory.get_warehouse_abbreviations(setWarehouses);
-    
+
     $('#max_per_page').change(function() {
         maxPerPage = $('#max_per_page option:selected').text();
         showTable();
     });
-    
+
     $('#filter_button').click(function() {
         filtered = true;
         for(var i=0;i<filteredBoxes.length;i++){
@@ -248,12 +249,12 @@ $(document).ready(function() {
         }
         showTable();
     });
-    
+
     $('#unfilter_button').click(function() {
         filtered = false;
         showTable();
     });
-    
+
     $('#next_button').click(function() {
         var boxes;
         if(filtered){
@@ -264,17 +265,17 @@ $(document).ready(function() {
         }
         if(currentPage + 1 < boxes.length/maxPerPage){
             currentPage = currentPage + 1;
-            showTable(); 
+            showTable();
         }
     });
-    
+
     $('#previous_button').click(function() {
         if(currentPage > 0){
             currentPage = currentPage - 1;
-            showTable(); 
+            showTable();
         }
     });
-    
+
     $('#idHeader').click(function() {
         if (currentSort === 'id'){
             currentBoxes = currentBoxes.reverse();
@@ -287,9 +288,9 @@ $(document).ready(function() {
             filteredBoxes = filteredBoxes.sort(sortById);
             showTable();
         }
-        
+
     });
-    
+
     $('#sizeHeader').click(function() {
         if (currentSort === 'size'){
             currentBoxes = currentBoxes.reverse();
@@ -303,7 +304,7 @@ $(document).ready(function() {
             showTable();
         }
     });
-    
+
     $('#weightHeader').click(function() {
         if (currentSort === 'weight'){
             currentBoxes = currentBoxes.reverse();
@@ -317,7 +318,7 @@ $(document).ready(function() {
             showTable();
         }
     });
-    
+
     $('#contentHeader').click(function() {
         if (currentSort === 'content'){
             currentBoxes = currentBoxes.reverse();
@@ -331,7 +332,7 @@ $(document).ready(function() {
             showTable();
         }
     });
-    
+
     $('#expHeader').click(function() {
         if (currentSort === 'exp'){
             currentBoxes = currentBoxes.reverse();
@@ -345,7 +346,7 @@ $(document).ready(function() {
             showTable();
         }
     });
-    
+
     $('#warehouseHeader').click(function(){
         if (currentSort === 'warehouse'){
             currentSort = 'warehouse2';
@@ -360,7 +361,7 @@ $(document).ready(function() {
             showTable();
         }
     });
-    
+
     $('#filterHeader').click(function(){
         if (currentSort === 'filter'){
             currentSort = 'filter2';
