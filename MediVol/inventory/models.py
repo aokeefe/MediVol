@@ -141,10 +141,11 @@ class Box(models.Model):
             print ('%s (%s)' % ('The Box did not save correctly', type(e)))
 
         if self.box_id is None:
+            self.box_id = "%0.6d" % len(Box.objects.all())
             while True:
-                self.box_id = "%0.6d" % random.randint(0,999999)
                 if not Box.objects.filter(box_id=self.box_id).exists():
                     break
+                self.box_id = "%0.6d" % (int(self.box_id) + 1)
 
         super(Box, self).save(*args, **kwargs)
 

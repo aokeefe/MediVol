@@ -4,7 +4,7 @@ from inventory.models import Box
 from import_export.to_csv import to_csv_from_array, to_array_from_csv
 from MediVol import id_generator
 
-ORDER_number_LENGTH = 5
+ORDER_NUMBER_LENGTH = 5
 
 class Customer(models.Model):
     contact_id = models.CharField(max_length=40, unique=True)
@@ -72,7 +72,7 @@ class Order(models.Model):
         (PAID_DEPOSIT, 'Deposit Paid'),
         (CANCELLED, 'Cancelled'),
     )
-    order_number = models.CharField(unique=True, max_length=ORDER_number_LENGTH)
+    order_number = models.CharField(unique=True, max_length=ORDER_NUMBER_LENGTH)
     reserved_for = models.ForeignKey(Customer, null=True)
     paid_for = models.BooleanField(default=False)
     shipped = models.BooleanField(default=False)
@@ -132,10 +132,11 @@ class Order(models.Model):
 
     def save(self, *args, **kwargs):
         if self.order_number is None or self.order_number == '':
+            self.order_number = "%0.5d" % len(Order.objects.all())
             while True:
-                self.order_number = id_generator.id_generator(ORDER_number_LENGTH)
                 if not Order.objects.filter(order_number=self.order_number).exists():
                     break
+                self.order_number = "%0.5d" % (int(self.order_number) + 1)
 
         super(Order, self).save(*args, **kwargs)
 
