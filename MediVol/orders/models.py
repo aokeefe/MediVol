@@ -138,12 +138,31 @@ class Order(models.Model):
                     break
                 self.order_number = "%0.5d" % (int(self.order_number) + 1)
 
+        if self.order_status is self.PAID:
+            for order_box in self.orderbox_set().all():
+                order_box.box.lock_out(self)
+
         super(Order, self).save(*args, **kwargs)
+
+    def get_boxes_in_order(self):
+        boxes_in_order = []
+        for order_box in self.orderbox_set.all():
+            if not order_box.removed:
+                boxes_in_order.append(order_box.box)
+        return boxes_in_order
+
+    def get_removed_boxes(self):
+        boxes_removed_from_order = []
+        for order_box in self.orderbox_set.all():
+            if order_box.removed:
+                boxes_removed_from_order.append(order_box.box)
+        return boxes_removed_from_order
 
 class OrderBox(models.Model):
     order_for = models.ForeignKey(Order)
     box = models.ForeignKey(Box)
     cost = models.FloatField(default=0.0)
+    removed = models.BooleanField(default=False)
 
     def __unicode__(self):
         return str(self.box) + " in " + str(self.order_for)

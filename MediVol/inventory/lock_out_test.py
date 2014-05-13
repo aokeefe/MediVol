@@ -41,3 +41,7 @@ box.lock_out(sOrder)
 #check that box is not in order 2 anymore
 print box.sold
 print box.orderbox_set.all()
+
+for orderbox in box.orderbox_set.all():
+	print 'Boxes in order ' + str(orderbox.order_for) + ': ' + str(orderbox.order_for.get_boxes_in_order())
+	print 'Boxes removed from order ' + str(orderbox.order_for) + ': ' + str(orderbox.order_for.get_removed_boxes())
