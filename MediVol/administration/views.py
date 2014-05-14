@@ -6,6 +6,7 @@ from django.contrib.auth.models import User, Group
 
 from administration.UserTests import UserTests
 from inventory.models import Warehouse
+from catalog.models import Category, BoxName
 from administration.models import ResetCode
 
 @login_required
@@ -51,6 +52,20 @@ def manage_warehouses(request):
     context = { 'warehouses': Warehouse.objects.all() }
 
     return render(request, 'administration/manage_warehouses.html', context)
+
+@login_required
+@user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
+def manage_categories(request):
+    context = { 'categories': Category.objects.all() }
+
+    return render(request, 'administration/manage_categories.html', context)
+
+@login_required
+@user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
+def manage_box_names(request):
+    context = { 'box_names': BoxName.objects.all(), 'categories': Category.objects.all() }
+
+    return render(request, 'administration/manage_box_names.html', context)
 
 def reset_password(request, reset_code):
     # if a user is logged in, log them out then reload the page
