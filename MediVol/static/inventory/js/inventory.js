@@ -276,8 +276,7 @@ function fillTable(boxes) {
                 order = boxes[i].order_id;
             }
 
-            var rowString = ITEM_TEMPLATE.replace('{box_id}', '<a href="/inventory/view_box_info/' +
-                boxes[i].box_id + '">' + boxes[i].box_id + '</a>')
+            var rowString = ITEM_TEMPLATE
                 .replace('{contents}', boxes[i].contents)
                 .replace('{expiration}', boxes[i].expiration)
                 .replace('{size}', boxes[i].size)
@@ -287,7 +286,7 @@ function fillTable(boxes) {
 
             var tags = '';
 
-            if (order !== false) {
+            if (order !== false && groupName === 'Admin') {
                 tags += ORDER_TAG_TEMPLATE.replace(/{order_id}/gi,order);
             }
 
@@ -299,9 +298,11 @@ function fillTable(boxes) {
                     '<option selected>' + boxes[i].warehouse + '</option>')
                     .replace('{row}',(i+currentPage*maxPerPage))
                     .replace(/{id}/gi,'select' + (i+currentPage*maxPerPage))
-                );
+                )
+                .replace('{box_id}', '<a href="/inventory/view_box_info/' +
+                    boxes[i].box_id + '">' + boxes[i].box_id + '</a>');
             } else {
-                rowString = rowString.replace('{warehouse}', boxes[i].warehouse);
+                rowString = rowString.replace('{warehouse}', boxes[i].warehouse).replace('{box_id}', boxes[i].box_id);
             }
 
             $('#boxes_body').append(rowString);
@@ -551,7 +552,7 @@ $(document).ready(function() {
     );
 
     $('#itemSearch').focus();
-	
+
     // Set the 'on change' event for the categories list.
     $('#categories').change(function() {
         var selectedCategory = $('#categories option:selected').val();
@@ -567,7 +568,7 @@ $(document).ready(function() {
         // Get the list of items for the selected box name.
         Dajaxice.orders.get_items(getItems, { 'box_name': selectedBoxName });
     });
-    
+
     // Set the 'on change' event for the items list.
     $('#items').change(function() {
         var selectedItemName = $('#items option:selected').val();
