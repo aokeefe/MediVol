@@ -7,6 +7,7 @@ function hideEditControls() {
     $('#itemNameValue').show();
     $('#boxNameValue').show();
     $('#descriptionValue').show();
+    $('#similar').show();
 
     $('#name').hide();
     $('#boxName').hide();
@@ -22,6 +23,7 @@ function showEditControls() {
     $('#itemNameValue').hide();
     $('#boxNameValue').hide();
     $('#descriptionValue').hide();
+    $('#similar').hide();
 
     $('#name').show();
     $('#boxName').show();
@@ -57,7 +59,35 @@ function saveItem() {
                 $('.requiredMessage').html('Item "' + name + '" already exists.');
                 $('.requiredMessage').show();
             } else if (returned.message === expected) {
-                window.location.reload();
+                $('#itemNameValue').html(name);
+                $('#boxNameValue').html(boxName);
+
+                if (description === '') {
+                    description = '<i>no description</i>';
+                }
+
+                $('#descriptionValue').html(description);
+
+                if (returned.similar.length > 0) {
+                    $('#similar').html('You may want to check if these items need to be changed as well: ');
+                } else {
+                    $('#similar').html('');
+                }
+
+                for (var i = 0; i < returned.similar.length; i++) {
+                    var similar = returned.similar[i];
+
+                    $('#similar').append('<a target="_blank" href="/catalog/item_info/' + similar.id + '">' +
+                        similar.box_name + ' > ' + similar.name + '</a>');
+
+                    if (i !== (returned.similar.length - 1)) {
+                        $('#similar').append(', ');
+                    } else {
+                        $('#similar').append('.');
+                    }
+                }
+
+                hideEditControls();
             }
         },
         {
@@ -93,7 +123,7 @@ function deleteItem() {
         if (returned.message === expected) {
             window.location = '/catalog/';
         } else {
-            // TODO: error message
+            $.jAlert('There was a problem deleting this item.', 'error', null);
         }
     }, { 'b_name': boxName, 'item_name': item });
 }
