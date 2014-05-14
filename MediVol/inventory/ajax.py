@@ -97,6 +97,27 @@ def get_label(request, box_id):
     box = Box.objects.get(box_id=box_id)
     return BoxLabel(box.barcode).get_image()
 
+def box_to_array(box):
+    try:
+        warehouse = box.warehouse.abbreviation
+    except AttributeError:
+        warehouse = ''
+
+    try:
+        order = OrderBox.objects.get(box=box).order_for.order_number
+    except OrderBox.DoesNotExist:
+        order = ''
+
+    return [box.get_id(),
+            box.get_box_size_display(),
+            str(box.weight) + ' lbs',
+            box.get_contents_string(),
+            box.get_expiration_display(),
+            warehouse,
+            order,
+            box.old_box_flag
+            ]
+
 @dajaxice_register(method='GET')
 def get_boxes_with_item(request, item_name, box_name):
     box = BoxName.objects.get(name=box_name)
@@ -104,49 +125,21 @@ def get_boxes_with_item(request, item_name, box_name):
     box_list = []
     boxes = []
     contents = Contents.objects.filter(item=item)
+
     for content in contents:
         if content.box_within.box_id not in boxes:
             box = content.box_within
             boxes.append(box.box_id)
-            try:
-                order = OrderBox.objects.get(box=box).order_for.order_number
-            except OrderBox.DoesNotExist:
-                order = ''
-            try:
-                warehouse = box.warehouse.abbreviation
-            except AttributeError:
-                warehouse = ''
-            temp = [box.get_id(),
-                    box.get_box_size_display(),
-                    str(box.weight) + ' lbs',
-                    box.get_contents_string(),
-                    box.get_expiration_display(),
-                    warehouse,
-                    order
-                    ]
-            box_list.append(temp)
+
+            box_list.append(box_to_array(box))
+
     return simplejson.dumps(box_list)
 
 @dajaxice_register(method='GET')
 def get_box_by_id(request, box_id):
     box = Box.get_box(box_id)
-    try:
-        order = OrderBox.objects.get(box=box).order_for.order_number
-    except OrderBox.DoesNotExist:
-        order = ''
-    try:
-        warehouse = box.warehouse.abbreviation
-    except AttributeError:
-        warehouse = ''
-    info = [box.get_id(),
-            box.box_size,
-            box.weight,
-            box.get_contents_string(),
-            box.get_expiration_display(),
-            warehouse,
-            order
-            ]
-    return simplejson.dumps(info)
+
+    return simplejson.dumps(box_to_array(box))
 
 @dajaxice_register(method='GET')
 def get_box_by_barcode(request, barcode):

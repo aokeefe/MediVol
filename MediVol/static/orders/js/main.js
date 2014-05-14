@@ -405,8 +405,8 @@ function addSingleBox(response){
             response[3],
             response[4],
             response[5],
-            response[6]
-        
+            response[6],
+            response[7]
         ));
     }
     showTable();
@@ -422,7 +422,8 @@ function setTableList(response) {
             response[i][3],
             response[i][4],
             response[i][5],
-            response[i][6]
+            response[i][6],
+            response[i][7]
             ));
         }
 
@@ -443,7 +444,7 @@ function checkBoxClick(row){
         setSelectedBox(get_selected_boxes().join(' , '));
         if(filteredBoxes.indexOf(boxes[row]) === -1){
             filteredBoxes.push(currentBoxes[row]);
-        }      
+        }
     }
     else{
         boxes[row].check = '';
@@ -488,8 +489,9 @@ function addSingleBox(response){
             response[3],
             response[4],
             response[5],
-            response[6]
-        
+            response[6],
+            response[7]
+
         ));
     }
     showTable();
@@ -505,7 +507,8 @@ function setTableList(response) {
             response[i][3],
             response[i][4],
             response[i][5],
-            response[i][6]
+            response[i][6],
+            response[i][7]
             ));
         }
 
@@ -526,7 +529,7 @@ function checkBoxClick(row){
         setSelectedBox(get_selected_boxes().join(' , '));
         if(filteredBoxes.indexOf(boxes[row]) === -1){
             filteredBoxes.push(currentBoxes[row]);
-        }      
+        }
     }
     else{
         boxes[row].check = '';
@@ -721,7 +724,7 @@ $(document).ready(function() {
     // Set the 'on change' event for the boxes list.
     $('#boxes').change(function() {
         var selectedBoxId = $('#boxes option:selected').val();
-        
+
         setSelectedBox(selectedBoxId);
 
         // Get the details of the box for the selected box id.
@@ -737,9 +740,9 @@ $(document).ready(function() {
     $('#add_box').click(function(e) {
         // Prevent button from submitting form.
         e.preventDefault();
-        
+
         var boxIds = get_selected_boxes();
-        
+
         // Remove the placeholder row if it's there.
         $('#placeholder_row').remove();
 
@@ -751,7 +754,7 @@ $(document).ready(function() {
         }
         remove_selected_rows();
         showTable();
-        
+
         setSelectedBox(false, false);
 
         $('#emptyBoxMessage').hide();

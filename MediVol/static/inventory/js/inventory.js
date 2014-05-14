@@ -17,8 +17,10 @@ var ITEM_TEMPLATE = '<tr>' +
         '<td><input type="checkbox" onclick="checkBoxClick({row})" {check}></td>' +
     '</tr>';
 
-var ORDER_TAG_TEMPLATE = '<a class="orderTag" href="/orders/review/{order_id}"' +
-    ' target="_blank">Order {order_id}</a>';
+var ORDER_TAG_TEMPLATE = '<a class="orderTag tag" href="/orders/review/{order_id}"' +
+    ' target="_blank">{order_id}</a>';
+
+var OLD_BOX_TAG = '<div class="oldBoxTag tag">Old Box</div>';
 
 // Simple template used to insert a blank row below the table header
 // when there are no items in the box.
@@ -98,7 +100,7 @@ function setWarehouses(response){
 }
 
 //object to represent one row in the table
-function boxRow(box_id, size, weight, contents, expiration, warehouse, order_id){
+function boxRow(box_id, size, weight, contents, expiration, warehouse, order_id, old_box){
     this.box_id = box_id;
     this.contents = contents;
     this.expiration = expiration;
@@ -106,6 +108,7 @@ function boxRow(box_id, size, weight, contents, expiration, warehouse, order_id)
     this.weight = weight;
     this.warehouse = warehouse;
     this.order_id = order_id;
+    this.old_box = old_box;
     this.check = '';
 }
 
@@ -117,7 +120,8 @@ function addSingleBox(response){
         response[3],
         response[4],
         response[5],
-        response[6]
+        response[6],
+        response[7]
     ));
     showTable();
 }
@@ -132,7 +136,8 @@ function setTableList(response) {
             response[i][3],
             response[i][4],
             response[i][5],
-            response[i][6]
+            response[i][6],
+            response[i][7]
         ));
     }
 
@@ -289,6 +294,10 @@ function fillTable(boxes) {
 
             if (order !== false) {
                 tags += ORDER_TAG_TEMPLATE.replace(/{order_id}/gi,order);
+            }
+
+            if (boxes[i].old_box === true) {
+                tags += OLD_BOX_TAG;
             }
 
             rowString = rowString.replace('{tags}', tags);
@@ -551,7 +560,7 @@ $(document).ready(function() {
     );
 
     $('#itemSearch').focus();
-	
+
     // Set the 'on change' event for the categories list.
     $('#categories').change(function() {
         var selectedCategory = $('#categories option:selected').val();
@@ -567,7 +576,7 @@ $(document).ready(function() {
         // Get the list of items for the selected box name.
         Dajaxice.orders.get_items(getItems, { 'box_name': selectedBoxName });
     });
-    
+
     // Set the 'on change' event for the items list.
     $('#items').change(function() {
         var selectedItemName = $('#items option:selected').val();

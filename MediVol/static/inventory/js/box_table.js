@@ -23,8 +23,10 @@ var BLANK_BOX_ROW = "<tr id='placeholder_row'>" +
                     "<td>&nbsp;</td>" +
                 "</tr>";
 
-var ORDER_TAG_TEMPLATE = '<a class="orderTag" href="/orders/review/{order_id}"' +
-    ' target="_blank">Order {order_id}</a>';
+var ORDER_TAG_TEMPLATE = '<a class="orderTag tag" href="/orders/review/{order_id}"' +
+    ' target="_blank">{order_id}</a>';
+
+var OLD_BOX_TAG = '<div class="oldBoxTag tag">Old Box</div>';
 
 var WAREHOUSE_SELECT = '<select id="{id}" onchange="warehouseChange({row},&quot;{id}&quot;)">{options}</select>';
 
@@ -49,7 +51,7 @@ function setWarehouses(response){
 }
 
 //object to represent one row in the table
-function boxRow(box_id, size, weight, contents, expiration, warehouse, order_id){
+function boxRow(box_id, size, weight, contents, expiration, warehouse, order_id, old_box){
     this.box_id = box_id;
     this.contents = contents;
     this.expiration = expiration;
@@ -57,6 +59,7 @@ function boxRow(box_id, size, weight, contents, expiration, warehouse, order_id)
     this.weight = weight;
     this.warehouse = warehouse;
     this.order_id = order_id;
+    this.old_box = old_box;
     this.check = '';
 }
 
@@ -77,7 +80,8 @@ function addSingleBox(response){
         response[3],
         response[4],
         response[5],
-        response[6]
+        response[6],
+        response[7]
     ));
     showTable();
 }
@@ -91,7 +95,8 @@ function setTableList(response) {
             response[i][3],
             response[i][4],
             response[i][5],
-            response[i][6]
+            response[i][6],
+            response[i][7]
         ));
     }
     showTable();
@@ -202,11 +207,11 @@ function warehouseChangeResponse(response){
 function fillTable(boxes) {
     $('#boxes_body').remove();
     $('#boxes_found').append('<tbody id="boxes_body"></tbody>');
-    if(boxes.length==0){
+
+    if (boxes.length === 0){
         $('#boxes_body').append(BLANK_BOX_ROW);
-    }
-    else{
-        for(var i=0;i<boxes.length;i++) {
+    } else {
+        for (var i=0;i<boxes.length;i++) {
             var rowString = ITEM_TEMPLATE.replace('{box_id}', '<a href="/inventory/view_box_info/' +
                 boxes[i].box_id + '">' + boxes[i].box_id + '</a>')
                 .replace('{contents}', boxes[i].contents)
@@ -221,6 +226,10 @@ function fillTable(boxes) {
 
             if (boxes[i].order_id !== '') {
                 tags += ORDER_TAG_TEMPLATE.replace(/{order_id}/gi, boxes[i].order_id);
+            }
+            
+            if (boxes[i].old_box === true) {
+                tags += OLD_BOX_TAG;
             }
 
             rowString = rowString.replace('{tags}', tags);
