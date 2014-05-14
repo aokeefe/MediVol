@@ -15,9 +15,15 @@ def create(request, order_id=0):
     for category in categories:
         categoryStrings.append(category.name)
 
+    order = False
+
+    if order_id != 0:
+        order = Order.objects.get(id=order_id)
+
     context = {
         'categories': sorted(categoryStrings),
         'order_id': order_id,
+        'order': order,
         'warehouses': Warehouse.objects.all()
     }
 

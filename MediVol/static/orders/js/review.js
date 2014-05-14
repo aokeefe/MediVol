@@ -8,7 +8,7 @@ function changeOrderStatus(statusChar) {
             }
         },
         {
-            'order_number': orderNumber,
+            'order_id': orderId,
             'order_status': statusChar
         }
     );
