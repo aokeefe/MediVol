@@ -292,11 +292,11 @@ function fillTable(boxes) {
 
             var tags = '';
 
-            if (order !== false) {
+            if (order !== false && groupName === 'Admin') {
                 tags += ORDER_TAG_TEMPLATE.replace(/{order_id}/gi,order);
             }
 
-            if (boxes[i].old_box === true) {
+            if (boxes[i].old_box === true && groupName === 'Admin') {
                 tags += OLD_BOX_TAG;
             }
 
