@@ -111,8 +111,8 @@ class Box(models.Model):
         order_list = self.orderbox_set.all()
         for node in order_list:
             if node not in order.orderbox_set.all():
-                #add logic to record the deleation
-                node.delete()
+                node.removed = True
+                node.save()
 
     def get_size_word(self):
         return self.SIZE_CHOICES[self.box_size]
