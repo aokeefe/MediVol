@@ -10,9 +10,9 @@
 
 {% block body %}
     <h2>Box {{ box.get_id }} </h2>
-    {% if order != None %}
+    {% if orders != None %}
         <h3 id='createdDate'>
-            In <a href='/orders/review/{{ order.order_number }}'>Order {{ order.order_number }}</a>
+            In <a href='/orders/review/{{ order.order_number }}'>{{ orders|safe }}</a>
         </h3>
     {% endif %}
     <h3 id='createdDate'>Created on {{ box.entered_date }}</h3>
