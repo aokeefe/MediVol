@@ -18,7 +18,31 @@ def create(request, order_id=0):
     context = {
         'categories': sorted(categoryStrings),
         'order_id': order_id,
-        'warehouses': Warehouse.objects.all()
+        'warehouses': Warehouse.objects.all(),
+        'box': None
+    }
+
+    return render(request, 'inventory/create.html', context)
+
+@login_required(login_url='/login/')
+@user_passes_test(UserTests.user_can_create_box, login_url='/administration/forbidden')
+def edit(request, box_id):
+    box = Box.get_box(box_id)
+
+    if box is None:
+        return render(request, 'inventory/box_not_found.html')
+
+    categories = Category.objects.all()
+    categoryStrings = []
+
+    for category in categories:
+        categoryStrings.append(category.name)
+
+    context = {
+        'categories': sorted(categoryStrings),
+        'order_id': 0,
+        'warehouses': Warehouse.objects.all(),
+        'box': box
     }
 
     return render(request, 'inventory/create.html', context)

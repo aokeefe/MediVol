@@ -1,12 +1,23 @@
 {% extends "base.html" %}
 
-{% block title %}<title>InterVol | Create Box</title>{% endblock %}
+{% block title %}
+    {% if box == None %}
+        <title>InterVol | Create Box</title>
+    {% else %}
+        <title>InterVol | Edit Box {{ box.get_id }}</title>
+    {% endif %}
+{% endblock %}
 
 {% block styles %}<link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/styles.css' />{% endblock %}
 
 {% block body %}
 
-<h2>Create Box - Step <span id='stepNumber'>1</span>/2</h2>
+{% if box == None%}
+    <h2>Create Box - Step <span id='stepNumber'>1</span>/2</h2>
+{% else %}
+    <h2>Edit Box {{ box.get_id }} - Step <span id='stepNumber'>1</span>/2</h2>
+{% endif %}
+
 {% if order_id != 0 %}
     <h3 class='forOrder'>For Order {{ order_id }}</h2>
 {% endif %}
@@ -89,13 +100,26 @@
                 <td>Count</td>
             </tr>
 
-            <tr id='placeholder_row'>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>&nbsp;</td>
-            </tr>
+            {% if box == None %}
+                <tr id='placeholder_row'>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>&nbsp;</td>
+                </tr>
+            {% else %}
+                {% for content in box.contents_set.all %}
+                    <tr>
+                        <td>{{ content.item.box_name.category.name }}</td>
+                        <td>{{ content.item.box_name.name }}</td>
+                        <td>{{ content.item.name }}</td>
+                        <td>{{ content.get_expiration_display }}</td>
+                        <td>{{ content.get_quantity_display }}</td>
+                        <td><a class="remove_item" href="javascript:void(0)">Remove</a></td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
         </table>
     </div>
 
@@ -124,7 +148,12 @@
             </div>
 
             <div class='stepTwoFieldWrapper'>
-                <input type='text' placeholder='(required)' id='initials' name='initials' class='textField' />
+                {% if box != None %}
+                    <input type='text' placeholder='(required)' value='{{ box.initials }}'
+                        id='initials' name='initials' class='textField' />
+                {% else %}
+                    <input type='text' placeholder='(required)' id='initials' name='initials' class='textField' />
+                {% endif %}
             </div>
 
             <div class='clear'></div>
@@ -136,7 +165,11 @@
             </div>
 
             <div class='stepTwoFieldWrapper'>
-                <input name='weight' id='weight' type='number' class='textField' />
+                {% if box != None %}
+                    <input name='weight' id='weight' type='number' value='{{ box.weight }}' class='textField' />
+                {% else %}
+                    <input name='weight' id='weight' type='number' class='textField' />
+                {% endif %}
             </div>
 
             <div class='clear'></div>
@@ -148,8 +181,20 @@
             </div>
 
             <div class='stepTwoFieldWrapper'>
-                <label for='small'><input type='radio' name='size' id='small' value='Small'> Small</label><br />
-                <label for='large'><input type='radio' name='size' id='large' value='Large' class='largeRadio'> Large</label>
+                {% if box != None and box.box_size == 'S' %}
+                    <label for='small'><input type='radio' checked='checked' name='size'
+                        id='small' value='Small'> Small</label><br />
+                {% else %}
+                    <label for='small'><input type='radio' name='size' id='small' value='Small'> Small</label><br />
+                {% endif %}
+
+                {% if box != None and box.box_size == 'L' %}
+                    <label for='large'><input type='radio' name='size' id='large'
+                        checked='checked' value='Large' class='largeRadio'> Large</label>
+                {% else %}
+                    <label for='large'><input type='radio' name='size' id='large'
+                        value='Large' class='largeRadio'> Large</label>
+                {% endif %}
             </div>
 
             <div class='clear'></div>
@@ -163,10 +208,18 @@
             <div class='stepTwoFieldWrapper'>
                 <select id='warehouse_options'>
                     {% for warehouse in warehouses %}
-                        {% if warehouse.is_default %}
-                            <option selected='selected' value='{{ warehouse.abbreviation }}'>{{ warehouse.name }}</option>
+                        {% if box == None %}
+                            {% if warehouse.is_default %}
+                                <option selected='selected' value='{{ warehouse.abbreviation }}'>{{ warehouse.name }}</option>
+                            {% else %}
+                                <option value='{{ warehouse.abbreviation }}'>{{ warehouse.name }}</option>
+                            {% endif %}
                         {% else %}
-                            <option value='{{ warehouse.abbreviation }}'>{{ warehouse.name }}</option>
+                            {% if warehouse == box.warehouse %}
+                                <option selected='selected' value='{{ warehouse.abbreviation }}'>{{ warehouse.name }}</option>
+                            {% else %}
+                                <option value='{{ warehouse.abbreviation }}'>{{ warehouse.name }}</option>
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
                 </select>
@@ -182,7 +235,13 @@
                 </div>
 
                 <div class='stepTwoFieldWrapper'>
-                    <textarea id='note' name='note' class='textField'></textarea>
+                    {% if box == None %}
+                        <textarea id='note' name='note' class='textField'></textarea>
+                    {% elif box != None and box.note != None %}
+                        <textarea id='note' name='note' class='textField'>{{ box.note }}</textarea>
+                    {% elif box != None and box.note == None %}
+                        <textarea id='note' name='note' class='textField'></textarea>
+                    {% endif %}
                 </div>
 
                 <div class='clear'></div>
@@ -191,7 +250,12 @@
     </div>
 
     <input type='button' id='back' class='button' value='&larr; Back' />
-    <input type='submit' id='submit' class='button' value='Create Box' />
+
+    {% if box == None %}
+        <input type='submit' id='submit' class='button' value='Create Box' />
+    {% else %}
+        <input type='submit' id='submit' class='button' value='Save Box' />
+    {% endif %}
 
     <div class='clear'></div>
 </div>
@@ -203,6 +267,12 @@
 {% block javascript %}
     <script type='text/javascript'>
         var groupName = '{{ user.groups.all.0.name }}';
+
+        {% if box == None %}
+            var boxId = 0;
+        {% else %}
+            var boxId = '{{ box.get_id }}';
+        {% endif %}
     </script>
 
     <script type='text/javascript' src='{{ STATIC_URL }}inventory/js/main.js'></script>

@@ -77,10 +77,12 @@ function createBox(response) {
         var orderId = $('#orderId').val();
 
         setTimeout(function() {
-            if (orderId === '0') {
+            if (orderId === '0' && boxId === 0) {
                 location.reload();
-            } else {
+            } else if (orderId !== '0') {
                 window.location = '/orders/create/' + orderId + '/2/' + response.box_id;
+            } else if (boxId !== 0) {
+                window.location = '/inventory/view_box_info/' + response.box_id;
             }
         }, 1);
     }
@@ -90,7 +92,7 @@ function createBox(response) {
 * Sets the event for clicking the remove button next to an item.
 */
 function setRemoveButton() {
-    $('.remove_item').click(function() {
+    $('.remove_item').unbind('click').click(function() {
         // Remove the row for the item.
         $(this).parent().parent().remove();
 
@@ -187,6 +189,10 @@ function setItemNotSelected() {
 }
 
 $(document).ready(function() {
+    if (boxId !== 0) {
+        setRemoveButton();
+    }
+
     // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
         {
@@ -453,7 +459,7 @@ $(document).ready(function() {
         var items = getAddedItems();
 
         // Can't have 0 items.
-        if (items.length == 0) {
+        if (items.length === 0) {
             return;
         }
 
@@ -467,7 +473,8 @@ $(document).ready(function() {
                 'size': size,
                 'items': items,
                 'warehouse_abbrev': warehouse,
-                'note': note
+                'note': note,
+                'box_id': boxId
             }
         );
     });

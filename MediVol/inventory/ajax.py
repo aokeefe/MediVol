@@ -44,7 +44,7 @@ Item array should be of the form:
 That is, there is an array with arrays inside it that describe the items.
 """
 @dajaxice_register(method='POST')
-def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''):
+def create_box(request, initials, weight, size, items, warehouse_abbrev, note='', box_id=None):
     htmlParser = HTMLParser()
 
     initials = htmlParser.unescape(initials)
@@ -59,11 +59,29 @@ def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''
     if note == '':
         note = None
 
-    # TODO: store note in box
-    new_box = Box(box_size=size[:1], weight=weight,
-        entered_date=datetime.today(), initials=initials.upper(), warehouse=warehouse, note=note)
+    if box_id is None or box_id == 0:
+        new_box = Box(box_size=size[:1], weight=weight,
+            entered_date=datetime.today(), initials=initials.upper(), warehouse=warehouse, note=note)
 
-    new_box.save()
+        new_box.save()
+
+        box = new_box;
+    else:
+        box = Box.get_box(box_id)
+
+        if box is None:
+            return simplejson.dumps({'result': 'False'})
+
+        box.box_size = size[:1]
+        box.weight = weight
+        box.initials = initials.upper()
+        box.warehouse = warehouse
+        box.note = note
+
+        box.save()
+
+        for content in box.contents_set.all():
+            content.delete()
 
     for item_info in items:
         # convert HTML entities in item name (e.g. &amp;)
@@ -77,7 +95,7 @@ def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''
         if expiration_date == 'Never':
             expiration_date = None
 
-        contents = Contents(box_within=new_box,
+        contents = Contents(box_within=box,
             item=Item.objects.get(name=item_info[0], box_name=BoxName.objects.get(name=item_info[3])),
             quantity=item_info[2],
             expiration=expiration_date)
@@ -87,8 +105,8 @@ def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''
     return simplejson.dumps(
         {
             'result': 'True',
-            'label': BoxLabel(new_box.barcode).get_image(),
-            'box_id': new_box.get_id()
+            'label': BoxLabel(box.barcode).get_image(),
+            'box_id': box.get_id()
         }
     )
 
