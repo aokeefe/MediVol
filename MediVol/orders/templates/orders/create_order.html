@@ -379,6 +379,7 @@
     <script type='text/javascript'>
         var orderNumber = {{ order_id }};
         var stepNum = {{ step_num }};
+        var groupName = '{{ user.groups.all.0.name }}';
     </script>
 
     <script type='text/javascript' src='{{ STATIC_URL }}inventory/js/box_table.js'></script>
