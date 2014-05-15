@@ -123,7 +123,7 @@ function deleteItem() {
         if (returned.message === expected) {
             window.location = '/catalog/';
         } else {
-            $.jAlert('There was a problem deleting this item.', 'error', null);
+            $.jAlert(returned.message, 'error', null);
         }
     }, { 'b_name': boxName, 'item_name': item });
 }
