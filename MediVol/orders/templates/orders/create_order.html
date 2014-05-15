@@ -4,7 +4,7 @@
     {% if order_id == 0 %}
         <title>Intervol | Create Order</title>
     {% else %}
-        <title>Intervol | Edit Order {{ order_id }}</title>
+        <title>Intervol | Edit {{ order.order_number }}</title>
     {% endif %}
 {% endblock %}
 
@@ -17,7 +17,7 @@
     {% if order_id == 0 %}
         <h2>Create Order - Step <span id='stepNumber'>{{ step_num }}</span>/2</h2>
     {% else %}
-        <h2>Edit Order {{ order_id }} - Step <span id='stepNumber'>{{ step_num }}</span>/2</h2>
+        <h2>Edit {{ order.order_number }} - Step <span id='stepNumber'>{{ step_num }}</span>/2</h2>
     {% endif %}
 
     {% if step_num == 1 %}
@@ -35,6 +35,23 @@
 
                 <div class='stepTwoFieldWrapper requiredText'>
                     *required
+                </div>
+
+                <div class='clear'></div>
+            </div>
+
+            <div class='stepTwoField'>
+                <div class='label'>
+                    Order Name <span class='requiredText'>*</span>
+                </div>
+
+                <div class='stepTwoFieldWrapper'>
+                    {% if order_id == 0 %}
+                        <input type='text' id='order_name' name='order_name' class='textField' />
+                    {% else %}
+                        <input type='text' id='order_name' name='order_name' class='textField'
+                             value='{{ order.order_number }}' />
+                    {% endif %}
                 </div>
 
                 <div class='clear'></div>
@@ -164,7 +181,7 @@
     </div>
 
     {% if step_num == 2 %}
-        <div id='stepTwo'>
+        <div id='stepTwo' style='display:block'>
     {% else %}
         <div id='stepTwo' style='display:none'>
     {% endif %}
@@ -355,8 +372,8 @@
                     {% if order_id == 0%}
                         <input type='text' id='price' class='textField' />
                     {% else %}
-                        {% if total_price != custom_price %}
-                            <input type='text' id='price' class='textField' value="{{ custom_price|floatformat:'2' }}" />
+                        {% if order.price != None %}
+                            <input type='text' id='price' class='textField' value="{{ order.price|floatformat:'2' }}" />
                         {% else %}
                             <input type='text' id='price' class='textField' />
                         {% endif %}

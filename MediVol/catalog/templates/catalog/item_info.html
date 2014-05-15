@@ -145,7 +145,7 @@
                                         {% if order.price == 0 %}
                                             <i>no prices set</i>
                                         {% else %}
-                                            ${{ order.price|floatformat:'2' }}
+                                            ${{ order.get_cost|floatformat:'2' }}
                                         {% endif %}
                                     </p>
 

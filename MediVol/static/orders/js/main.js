@@ -222,7 +222,7 @@ function goBack() {
         stepNum--;
         $('#stepTwo').hide();
         $('#stepOne').show();
-        $('#contact_name').focus();
+        $('#order_name').focus();
         $('#stepNumber').html(stepNum);
     }
 }
@@ -367,7 +367,7 @@ function addBoxesToOrder(forNewBox) {
             }
         },
         {
-            'order_number': orderNumber,
+            'order_id': orderNumber,
             'boxes': boxes,
             'custom_price': price
         }
@@ -631,7 +631,7 @@ $(document).ready(function() {
         }
     );
 
-    $('#contact_name').focus();
+    $('#order_name').focus();
 
     // Set the 'on change' event for the categories list.
     $('#categories').change(function() {
@@ -756,6 +756,12 @@ $(document).ready(function() {
         var missingRequired = false;
 
         // Required fields.
+        var order_name = $('#order_name').val();
+        if (order_name === '') {
+            $('#order_name').addClass('requiredTextField');
+            missingRequired = true;
+        }
+
         var contact_name = $('#contact_name').val();
         if (contact_name === '') {
             $('#contact_name').addClass('requiredTextField');
@@ -794,13 +800,15 @@ $(document).ready(function() {
         // Call the create_order AJAX function.
         Dajaxice.orders.create_order(createOrder,
             {
+                'order_name': order_name,
                 'customer_name': contact_name,
                 'customer_email': contact_email,
                 'business_name':  organization_name,
                 'business_address': organization_address,
                 'new_shipping_address': new_shipping_address,
                 'shipping_address': shipping_address,
-                'order_number': orderNumber
+                'order_name': order_name,
+                'order_id': orderNumber
             }
         );
 
