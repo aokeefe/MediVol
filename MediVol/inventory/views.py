@@ -70,15 +70,23 @@ def box_info(request, boxid):
         box_contents = box.old_contents
 
     # Search if box is related to orders.
-    try:
-        order = OrderBox.objects.get(box=box).order_for
-    except OrderBox.DoesNotExist:
-        order = None
+    order_boxes = OrderBox.objects.filter(box=box)
+
+    if len(order_boxes) == 0:
+        orders = None
+    else:
+        order_links = []
+
+        for order_box in order_boxes:
+            order_links.append('<a href="/orders/review/' + order_box.order_for.order_number +
+                '" target="_blank">' + order_box.order_for.order_number + '</a>')
+
+        orders = ', '.join(order_links)
 
     context = {
         'box': box,
         'box_contents': box_contents,
-        'order': order,
+        'orders': orders,
         'warehouses': Warehouse.objects.all()
     }
 
