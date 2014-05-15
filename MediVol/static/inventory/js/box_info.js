@@ -31,6 +31,22 @@ function changeWarehouse(newWarehouse) {
     }, { 'box_id': boxId, 'warehouse_abbreviation': newWarehouse });
 }
 
+function deleteBox(box_id) {
+    $.jConfirm('Are you sure you want to delete this box?', '',
+        function(decision) {
+            if (decision) {
+                Dajaxice.inventory.delete_box(function(response) {
+                    if (response.result === false) {
+                        $.jAlert(response.message, 'error', null);
+                    } else if (response.result === true) {
+                        window.location = '/inventory/';
+                    }
+                }, { 'box_id': box_id });
+            }
+        }
+    );
+}
+
 $(document).ready(function() {
     $('#warehouse').change(function() {
         var warehouseName = $('#warehouse option:selected').html();
