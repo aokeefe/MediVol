@@ -251,14 +251,31 @@ input[type='radio'] {
     margin-bottom: 0px !important;
 }
 
+#boxes_found {
+    margin-left: -200px;
+    width: calc(100% + 200px);
+    width: -webkit-calc(100% + 200px);
+}
+
 .tagColumn {
     border: none;
+    width: 200px;
+}
+
+.tag {
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 5px;
+    float: right;
+    margin-right: 5px;
 }
 
 .orderTag {
-    text-decoration: none;
     background-color: #ff9600;
-    border-radius: 5px;
-    padding: 5px;
+    color: #141414;
+}
+
+.oldBoxTag {
+    background-color: #ff3535;
     color: #141414;
 }

@@ -4,7 +4,7 @@ from inventory.models import Box
 from import_export.to_csv import to_csv_from_array, to_array_from_csv
 from MediVol import id_generator
 
-ORDER_NUMBER_LENGTH = 5
+ORDER_NUMBER_LENGTH = 200
 
 class Customer(models.Model):
     contact_id = models.CharField(max_length=40, unique=True)
@@ -38,7 +38,7 @@ class Customer(models.Model):
         return customer
 
     def save(self, *args, **kwargs):
-        if self.contact_id is None: 
+        if self.contact_id is None:
             self.contact_id=str(uuid.uuid4())
         elif self.contact_id == '':
             self.contact_id=str(uuid.uuid4())
@@ -120,6 +120,9 @@ class Order(models.Model):
         return ("%.1f" % order_weight)
 
     def get_cost(self):
+        if self.price is not None:
+            return self.price
+        
         order_cost = 0.0
         for order_box in self.orderbox_set.all():
             order_cost = float(order_cost) + float(order_box.cost)
@@ -129,16 +132,6 @@ class Order(models.Model):
         creation_date = str(self.creation_date).split(' ')[0]
         creation_array = creation_date.split('-')
         return creation_array[1] + '/' + creation_array[2] + '/' + creation_array[0]
-
-    def save(self, *args, **kwargs):
-        if self.order_number is None or self.order_number == '':
-            self.order_number = "%0.5d" % len(Order.objects.all())
-            while True:
-                if not Order.objects.filter(order_number=self.order_number).exists():
-                    break
-                self.order_number = "%0.5d" % (int(self.order_number) + 1)
-
-        super(Order, self).save(*args, **kwargs)
 
 class OrderBox(models.Model):
     order_for = models.ForeignKey(Order)

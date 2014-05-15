@@ -123,9 +123,9 @@ def remove_all_boxes_from_order(order):
         order_box.delete()
 
 @dajaxice_register(method='POST')
-def add_boxes_to_order(request, order_number, boxes={}, custom_price=False):
+def add_boxes_to_order(request, order_id, boxes={}, custom_price=False):
     try:
-        order = Order.objects.get(order_number=order_number)
+        order = Order.objects.get(id=order_id)
     except Order.DoesNotExist:
         return simplejson.dumps({ 'result': 0 })
 
@@ -133,8 +133,6 @@ def add_boxes_to_order(request, order_number, boxes={}, custom_price=False):
 
     if custom_price == '':
         custom_price = False
-
-    order_price = 0
 
     for box_id, box_price in boxes.iteritems():
         if box_price != '':
@@ -147,12 +145,10 @@ def add_boxes_to_order(request, order_number, boxes={}, custom_price=False):
         order_box = OrderBox(order_for=order, box=box_for_order, cost=box_price)
         order_box.save()
 
-        order_price = order_price + box_price
-
     if custom_price is not False:
         order.price = custom_price
     else:
-        order.price = order_price
+        order.price = None
 
     order.save()
 
@@ -160,8 +156,8 @@ def add_boxes_to_order(request, order_number, boxes={}, custom_price=False):
 
 # Registers order to database.
 @dajaxice_register(method='POST')
-def create_order(request, customer_name, customer_email, business_name, business_address,
-        new_shipping_address=None, shipping_address=None, order_number=0):
+def create_order(request, order_name, customer_name, customer_email, business_name, business_address,
+        new_shipping_address=None, shipping_address=None, order_id=False):
     # new_shipping_address is if they are using an address that has never
     # been used for the customer
     if new_shipping_address == '':
@@ -198,28 +194,31 @@ def create_order(request, customer_name, customer_email, business_name, business
             ship_to = ShippingAddress(customer=customer, address=shipping_address)
             ship_to.save()
 
-    if order_number == 0:
-        # Calculate order number
-        order_number = len(Order.objects.all()) + ORDER_BASE_NUMBER
-
-        new_order = Order(reserved_for=customer, ship_to=ship_to, order_number=order_number, creation_date=datetime.today())
+    if order_id is False:
+        new_order = Order(order_number=order_name, reserved_for=customer,
+            ship_to=ship_to, creation_date=datetime.today())
         new_order.save()
+
+        order = new_order
     else:
         try:
-            edited_order = Order.objects.get(order_number=order_number)
+            edited_order = Order.objects.get(id=order_id)
         except Order.DoesNotExist:
             return simplejson.dumps({ 'order_number': 0 })
 
+        edited_order.order_number = order_name
         edited_order.reserved_for = customer
         edited_order.ship_to = ship_to
         edited_order.save()
 
-    return simplejson.dumps({ 'order_number': order_number })
+        order = edited_order
+
+    return simplejson.dumps({ 'order_number': order.id })
 
 @dajaxice_register(method='POST')
-def change_order_status(request, order_number, order_status):
+def change_order_status(request, order_id, order_status):
     try:
-        order = Order.objects.get(order_number=order_number)
+        order = Order.objects.get(id=order_id)
     except Order.DoesNotExist:
         return simplejson.dumps({ 'result': 'False' })
 
@@ -258,3 +257,19 @@ def get_box_name_for_order(order):
             box_name = box.get_contents_string()
             box_string.append(box_name)
         return ','.join(box_string)
+
+@dajaxice_register(method='POST')
+def delete_order(request, order_number):
+    try:
+        order = Order.objects.get(order_number=order_number)
+    except Order.DoesNotExist:
+        return simplejson.dumps({ 'result': False })
+
+    order_boxes = OrderBox.objects.filter(order_for=order)
+
+    for order_box in order_boxes:
+        order_box.delete()
+
+    order.delete()
+
+    return simplejson.dumps({ 'result': True })
