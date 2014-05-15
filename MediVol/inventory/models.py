@@ -84,16 +84,16 @@ class Box(models.Model):
                   barcode=filtered_values[1],
 
                   box_category=Category.objects.get(letter=filtered_values[2]),
-                  
+
                   box_size=filtered_values[3],
                   weight=filtered_values[4],
                   initials=filtered_values[5],
                   note=filtered_values[6],
                   entered_date=filtered_values[7],
                   warehouse=Warehouse.objects.get(abbreviation=filtered_values[8]),
-                  
+
                   sold=filtered_values[9],
-                  
+
                   old_box_flag=filtered_values[10],
                   old_expiration=filtered_values[11],
                   old_contents=filtered_values[12],
@@ -283,15 +283,35 @@ class Contents(models.Model):
         """
         return self.item.name
 
+    def get_expiration_display(self):
+        if self.expiration is None:
+            return 'Never'
+        else:
+            formatted_expiration = self.expiration.strftime('%m/%Y')
+
+            if formatted_expiration == 'January, 1970':
+                return 'Unknown'
+            else:
+                return formatted_expiration
+
+    def get_quantity_display(self):
+        if self.quantity == 0:
+            return 'No count'
+
+        return self.quantity
+
     def get_search_results_string(self):
         return self.item.box_name.category.name + ' > ' + self.item.box_name.name + ' > ' + self.item.name + ' > Box ' + self.box_within.get_id()
 
     def save(self, *args, **kwargs):
         super(Contents, self).save(*args, **kwargs)
+
         box = self.box_within
-        item = self.item
-        box.box_category = item.box_name.category
-        box.save()
+
+        if box.box_category is None:
+            item = self.item
+            box.box_category = item.box_name.category
+            box.save()
 
     #TODO test
     def to_csv(self):

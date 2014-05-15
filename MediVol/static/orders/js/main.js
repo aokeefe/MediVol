@@ -222,7 +222,7 @@ function goBack() {
         stepNum--;
         $('#stepTwo').hide();
         $('#stepOne').show();
-        $('#contact_name').focus();
+        $('#order_name').focus();
         $('#stepNumber').html(stepNum);
     }
 }
@@ -367,15 +367,15 @@ function addBoxesToOrder(forNewBox) {
             }
         },
         {
-            'order_number': orderNumber,
+            'order_id': orderNumber,
             'boxes': boxes,
             'custom_price': price
         }
     );
 }
 
-function get_selected_boxes(){
-    var boxes = get_current_boxes();
+function getSelectedBoxes(){
+    var boxes = getCurrentBoxes();
     var selected_boxes = [];
     for(var i=0;i<boxes.length;i++){
         if(boxes[i].check !== ''){
@@ -385,8 +385,8 @@ function get_selected_boxes(){
     return selected_boxes;
 }
 
-function remove_selected_rows(){
-    var boxes = get_current_boxes();
+function removeSelectedRows(){
+    var boxes = getCurrentBoxes();
     var selected_rows = [];
     for(var i=0;i<boxes.length;i++){
         if(boxes[i].check !== ''){
@@ -398,16 +398,9 @@ function remove_selected_rows(){
 
 function addSingleBox(response){
     currentBoxes.length = 0;
-    if(boxesInOrder.indexOf(response[0]) === -1){
-        currentBoxes.push(new boxRow(response[0],
-            response[1],
-            response[2],
-            response[3],
-            response[4],
-            response[5],
-            response[6]
-        
-        ));
+
+    if (boxesInOrder.indexOf(response[0]) === -1) {
+        currentBoxes.push(BoxRow.fromResponse(response));
     }
     showTable();
 }
@@ -416,14 +409,7 @@ function setTableList(response) {
     currentBoxes.length = 0;
     for(var i=0;i<response.length;i++){
         if(boxesInOrder.indexOf(response[i][0]) === -1){
-            currentBoxes.push(new boxRow(response[i][0],
-            response[i][1],
-            response[i][2],
-            response[i][3],
-            response[i][4],
-            response[i][5],
-            response[i][6]
-            ));
+            currentBoxes.push(BoxRow.fromResponse(response[i]));
         }
 
     }
@@ -431,110 +417,69 @@ function setTableList(response) {
 }
 
 function checkBoxClick(row){
-    var boxes;
-    if(filtered){
-        boxes = filteredBoxes;
-    }
-    else{
-        boxes = currentBoxes;
-    }
+    var boxes = getCurrentBoxes();
+
     if (boxes[row].check === ''){
         boxes[row].check = 'checked';
-        setSelectedBox(get_selected_boxes().join(' , '));
-        if(filteredBoxes.indexOf(boxes[row]) === -1){
+        setSelectedBox(getSelectedBoxes().join(' , '));
+
+        if (filteredBoxes.indexOf(boxes[row]) === -1) {
             filteredBoxes.push(currentBoxes[row]);
-        }      
-    }
-    else{
-        boxes[row].check = '';
-        box_ids = get_selected_boxes();
-        if(box_ids.length != 0){
-            setSelectedBox(get_selected_boxes().join(' , '));
         }
-        else{
+    } else {
+        boxes[row].check = '';
+        box_ids = getSelectedBoxes();
+
+        if (box_ids.length !== 0){
+            setSelectedBox(getSelectedBoxes().join(' , '));
+        } else {
             setSelectedBox(false);
         }
     }
 }
 
-function get_selected_boxes(){
-    var boxes = get_current_boxes();
+function getSelectedBoxes(){
+    var boxes = getCurrentBoxes();
     var selected_boxes = [];
-    for(var i=0;i<boxes.length;i++){
-        if(boxes[i].check !== ''){
+
+    for (var i = 0; i < boxes.length; i++) {
+        if (boxes[i].check !== '') {
             selected_boxes.push(boxes[i].box_id);
-            }
         }
+    }
+
     return selected_boxes;
 }
 
-function remove_selected_rows(){
-    var boxes = get_current_boxes();
+function removeSelectedRows(){
+    var boxes = getCurrentBoxes();
     var selected_rows = [];
-    for(var i=0;i<boxes.length;i++){
-        if(boxes[i].check !== ''){
+
+    for (var i = 0; i < boxes.length; i++){
+        if (boxes[i].check !== '') {
             boxes.splice(i,1);
             i--;
         }
     }
 }
 
-function addSingleBox(response){
-    currentBoxes.length = 0;
-    if(boxesInOrder.indexOf(response[0]) === -1){
-        currentBoxes.push(new boxRow(response[0],
-            response[1],
-            response[2],
-            response[3],
-            response[4],
-            response[5],
-            response[6]
-        
-        ));
-    }
-    showTable();
-}
-
-function setTableList(response) {
-    currentBoxes.length = 0;
-    for(var i=0;i<response.length;i++){
-        if(boxesInOrder.indexOf(response[i][0]) === -1){
-            currentBoxes.push(new boxRow(response[i][0],
-            response[i][1],
-            response[i][2],
-            response[i][3],
-            response[i][4],
-            response[i][5],
-            response[i][6]
-            ));
-        }
-
-    }
-    showTable();
-}
-
 function checkBoxClick(row){
-    var boxes;
-    if(filtered){
-        boxes = filteredBoxes;
-    }
-    else{
-        boxes = currentBoxes;
-    }
+    var boxes = getCurrentBoxes();
+
     if (boxes[row].check === ''){
         boxes[row].check = 'checked';
-        setSelectedBox(get_selected_boxes().join(' , '));
-        if(filteredBoxes.indexOf(boxes[row]) === -1){
+        setSelectedBox(getSelectedBoxes().join(' , '));
+
+        if (filteredBoxes.indexOf(boxes[row]) === -1) {
             filteredBoxes.push(currentBoxes[row]);
-        }      
-    }
-    else{
-        boxes[row].check = '';
-        box_ids = get_selected_boxes();
-        if(box_ids.length != 0){
-            setSelectedBox(get_selected_boxes().join(' , '));
         }
-        else{
+    } else {
+        boxes[row].check = '';
+        box_ids = getSelectedBoxes();
+
+        if (box_ids.length !== 0) {
+            setSelectedBox(getSelectedBoxes().join(' , '));
+        } else {
             setSelectedBox(false);
         }
     }
@@ -686,7 +631,7 @@ $(document).ready(function() {
         }
     );
 
-    $('#contact_name').focus();
+    $('#order_name').focus();
 
     // Set the 'on change' event for the categories list.
     $('#categories').change(function() {
@@ -721,7 +666,7 @@ $(document).ready(function() {
     // Set the 'on change' event for the boxes list.
     $('#boxes').change(function() {
         var selectedBoxId = $('#boxes option:selected').val();
-        
+
         setSelectedBox(selectedBoxId);
 
         // Get the details of the box for the selected box id.
@@ -737,21 +682,21 @@ $(document).ready(function() {
     $('#add_box').click(function(e) {
         // Prevent button from submitting form.
         e.preventDefault();
-        
-        var boxIds = get_selected_boxes();
-        
+
+        var boxIds = getSelectedBoxes();
+
         // Remove the placeholder row if it's there.
         $('#placeholder_row').remove();
 
-        var boxes = get_current_boxes();
+        var boxes = getCurrentBoxes();
         // Add the items to the list using the boxsAdded.
         for(var i = 0;i<boxIds.length;i++){
             boxesInOrder.push(boxIds[i]);
             Dajaxice.orders.get_info(getBoxInfo, {'boxid': boxIds[i]});
         }
-        remove_selected_rows();
+        removeSelectedRows();
         showTable();
-        
+
         setSelectedBox(false, false);
 
         $('#emptyBoxMessage').hide();
@@ -811,6 +756,12 @@ $(document).ready(function() {
         var missingRequired = false;
 
         // Required fields.
+        var order_name = $('#order_name').val();
+        if (order_name === '') {
+            $('#order_name').addClass('requiredTextField');
+            missingRequired = true;
+        }
+
         var contact_name = $('#contact_name').val();
         if (contact_name === '') {
             $('#contact_name').addClass('requiredTextField');
@@ -849,13 +800,15 @@ $(document).ready(function() {
         // Call the create_order AJAX function.
         Dajaxice.orders.create_order(createOrder,
             {
+                'order_name': order_name,
                 'customer_name': contact_name,
                 'customer_email': contact_email,
                 'business_name':  organization_name,
                 'business_address': organization_address,
                 'new_shipping_address': new_shipping_address,
                 'shipping_address': shipping_address,
-                'order_number': orderNumber
+                'order_name': order_name,
+                'order_id': orderNumber
             }
         );
 

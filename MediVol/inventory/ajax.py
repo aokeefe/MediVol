@@ -44,7 +44,7 @@ Item array should be of the form:
 That is, there is an array with arrays inside it that describe the items.
 """
 @dajaxice_register(method='POST')
-def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''):
+def create_box(request, initials, weight, size, items, warehouse_abbrev, note='', box_id=None, category=None):
     htmlParser = HTMLParser()
 
     initials = htmlParser.unescape(initials)
@@ -59,11 +59,43 @@ def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''
     if note == '':
         note = None
 
-    # TODO: store note in box
-    new_box = Box(box_size=size[:1], weight=weight,
-        entered_date=datetime.today(), initials=initials.upper(), warehouse=warehouse, note=note)
+    if category == '':
+        category = None
+    else:
+        try:
+            category = Category.objects.get(name=category)
+        except Category.DoesNotExist:
+            return simplejson.dumps({'result': 'False'})
 
-    new_box.save()
+    if box_id is None or box_id == 0:
+        new_box = Box(box_size=size[:1], weight=weight,
+            entered_date=datetime.today(), initials=initials.upper(), warehouse=warehouse, note=note)
+
+        if category is not None:
+            new_box.box_category = category
+
+        new_box.save()
+
+        box = new_box;
+    else:
+        box = Box.get_box(box_id)
+
+        if box is None:
+            return simplejson.dumps({'result': 'False'})
+
+        box.box_size = size[:1]
+        box.weight = weight
+        box.initials = initials.upper()
+        box.warehouse = warehouse
+        box.note = note
+
+        if category is not None:
+            box.box_category = category
+
+        box.save()
+
+        for content in box.contents_set.all():
+            content.delete()
 
     for item_info in items:
         # convert HTML entities in item name (e.g. &amp;)
@@ -77,7 +109,7 @@ def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''
         if expiration_date == 'Never':
             expiration_date = None
 
-        contents = Contents(box_within=new_box,
+        contents = Contents(box_within=box,
             item=Item.objects.get(name=item_info[0], box_name=BoxName.objects.get(name=item_info[3])),
             quantity=item_info[2],
             expiration=expiration_date)
@@ -87,8 +119,8 @@ def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''
     return simplejson.dumps(
         {
             'result': 'True',
-            'label': BoxLabel(new_box.barcode).get_image(),
-            'box_id': new_box.get_id()
+            'label': BoxLabel(box.barcode).get_image(),
+            'box_id': box.get_id()
         }
     )
 
@@ -97,6 +129,28 @@ def get_label(request, box_id):
     box = Box.objects.get(box_id=box_id)
     return BoxLabel(box.barcode).get_image()
 
+def box_to_object(box):
+    try:
+        warehouse = box.warehouse.abbreviation
+    except AttributeError:
+        warehouse = ''
+
+    try:
+        order = OrderBox.objects.get(box=box).order_for.order_number
+    except OrderBox.DoesNotExist:
+        order = ''
+
+    return {
+        'id': box.get_id(),
+        'size': box.get_box_size_display(),
+        'weight': str(box.weight) + ' lbs',
+        'contents': box.get_contents_string(),
+        'expiration': box.get_expiration_display(),
+        'warehouse': warehouse,
+        'order_id': order,
+        'old_box': box.old_box_flag
+    }
+
 @dajaxice_register(method='GET')
 def get_boxes_with_item(request, item_name, box_name):
     box = BoxName.objects.get(name=box_name)
@@ -104,49 +158,21 @@ def get_boxes_with_item(request, item_name, box_name):
     box_list = []
     boxes = []
     contents = Contents.objects.filter(item=item)
+
     for content in contents:
         if content.box_within.box_id not in boxes:
             box = content.box_within
             boxes.append(box.box_id)
-            try:
-                order = OrderBox.objects.get(box=box).order_for.order_number
-            except OrderBox.DoesNotExist:
-                order = ''
-            try:
-                warehouse = box.warehouse.abbreviation
-            except AttributeError:
-                warehouse = ''
-            temp = [box.get_id(),
-                    box.get_box_size_display(),
-                    str(box.weight) + ' lbs',
-                    box.get_contents_string(),
-                    box.get_expiration_display(),
-                    warehouse,
-                    order
-                    ]
-            box_list.append(temp)
+
+            box_list.append(box_to_object(box))
+
     return simplejson.dumps(box_list)
 
 @dajaxice_register(method='GET')
 def get_box_by_id(request, box_id):
     box = Box.get_box(box_id)
-    try:
-        order = OrderBox.objects.get(box=box).order_for.order_number
-    except OrderBox.DoesNotExist:
-        order = ''
-    try:
-        warehouse = box.warehouse.abbreviation
-    except AttributeError:
-        warehouse = ''
-    info = [box.get_id(),
-            box.box_size,
-            box.weight,
-            box.get_contents_string(),
-            box.get_expiration_display(),
-            warehouse,
-            order
-            ]
-    return simplejson.dumps(info)
+
+    return simplejson.dumps(box_to_object(box))
 
 @dajaxice_register(method='GET')
 def get_box_by_barcode(request, barcode):
@@ -206,5 +232,19 @@ def transfer_boxes(request, boxes, warehouse_abbreviation):
         if box is not None:
             box.warehouse = warehouse
             box.save()
+
+    return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def delete_box(request, box_id):
+    box = Box.get_box(box_id)
+
+    if box is None:
+        return simplejson.dumps({ 'result': False, 'message': 'This box does not exist.' })
+
+    if len(OrderBox.objects.filter(box=box)) > 0:
+        return simplejson.dumps({ 'result': False, 'message': 'Can not delete this box because it is in an order.' })
+
+    box.delete()
 
     return simplejson.dumps({ 'result': True })

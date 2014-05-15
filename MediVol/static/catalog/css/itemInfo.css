@@ -95,3 +95,14 @@
 #expandOrders:hover, #expandBoxes:hover {
     color: #ff9600 !important;
 }
+
+#similar {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: red;
+}
+
+#similar a {
+    color: red;
+}
