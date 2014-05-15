@@ -97,7 +97,7 @@ def get_label(request, box_id):
     box = Box.objects.get(box_id=box_id)
     return BoxLabel(box.barcode).get_image()
 
-def box_to_array(box):
+def box_to_object(box):
     try:
         warehouse = box.warehouse.abbreviation
     except AttributeError:
@@ -108,15 +108,16 @@ def box_to_array(box):
     except OrderBox.DoesNotExist:
         order = ''
 
-    return [box.get_id(),
-            box.get_box_size_display(),
-            str(box.weight) + ' lbs',
-            box.get_contents_string(),
-            box.get_expiration_display(),
-            warehouse,
-            order,
-            box.old_box_flag
-            ]
+    return {
+        'id': box.get_id(),
+        'size': box.get_box_size_display(),
+        'weight': str(box.weight) + ' lbs',
+        'contents': box.get_contents_string(),
+        'expiration': box.get_expiration_display(),
+        'warehouse': warehouse,
+        'order_id': order,
+        'old_box': box.old_box_flag
+    }
 
 @dajaxice_register(method='GET')
 def get_boxes_with_item(request, item_name, box_name):
@@ -131,7 +132,7 @@ def get_boxes_with_item(request, item_name, box_name):
             box = content.box_within
             boxes.append(box.box_id)
 
-            box_list.append(box_to_array(box))
+            box_list.append(box_to_object(box))
 
     return simplejson.dumps(box_list)
 
@@ -139,7 +140,7 @@ def get_boxes_with_item(request, item_name, box_name):
 def get_box_by_id(request, box_id):
     box = Box.get_box(box_id)
 
-    return simplejson.dumps(box_to_array(box))
+    return simplejson.dumps(box_to_object(box))
 
 @dajaxice_register(method='GET')
 def get_box_by_barcode(request, barcode):
@@ -199,5 +200,19 @@ def transfer_boxes(request, boxes, warehouse_abbreviation):
         if box is not None:
             box.warehouse = warehouse
             box.save()
+
+    return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def delete_box(request, box_id):
+    box = Box.get_box(box_id)
+
+    if box is None:
+        return simplejson.dumps({ 'result': False, 'message': 'This box does not exist.' })
+
+    if len(OrderBox.objects.filter(box=box)) > 0:
+        return simplejson.dumps({ 'result': False, 'message': 'Can not delete this box because it is in an order.' })
+
+    box.delete()
 
     return simplejson.dumps({ 'result': True })
