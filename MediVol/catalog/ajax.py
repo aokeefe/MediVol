@@ -33,7 +33,15 @@ def edit_item(request, category_letter, new_box_name, old_box_name, new_item_nam
     item.description = d
     item.box_name = box_name
     item.save()
-    return simplejson.dumps({'message':'%s has been changed' % new_item_name})
+
+    similar_items = Item.objects.filter(name=old_item_name)
+    similar_items_array = []
+
+    for similar_item in similar_items:
+        similar_items_array.append({ 'id': similar_item.id, 'box_name': similar_item.box_name.name,
+            'name': similar_item.name });
+
+    return simplejson.dumps( { 'message':'%s has been changed' % new_item_name, 'similar': similar_items_array } )
 
 @dajaxice_register(method='POST')
 def create_item(request, box_name, item_name, description):

@@ -208,3 +208,17 @@ def transfer_boxes(request, boxes, warehouse_abbreviation):
             box.save()
 
     return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def delete_box(request, box_id):
+    box = Box.get_box(box_id)
+
+    if box is None:
+        return simplejson.dumps({ 'result': False, 'message': 'This box does not exist.' })
+
+    if len(OrderBox.objects.filter(box=box)) > 0:
+        return simplejson.dumps({ 'result': False, 'message': 'Can not delete this box because it is in an order.' })
+
+    box.delete()
+
+    return simplejson.dumps({ 'result': True })
