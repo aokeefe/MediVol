@@ -305,10 +305,13 @@ class Contents(models.Model):
 
     def save(self, *args, **kwargs):
         super(Contents, self).save(*args, **kwargs)
+
         box = self.box_within
-        item = self.item
-        box.box_category = item.box_name.category
-        box.save()
+
+        if box.box_category is None:
+            item = self.item
+            box.box_category = item.box_name.category
+            box.save()
 
     #TODO test
     def to_csv(self):

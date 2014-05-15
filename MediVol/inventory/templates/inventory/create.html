@@ -231,6 +231,22 @@
         {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
             <div class='stepTwoField'>
                 <div class='label'>
+                    Category
+                </div>
+
+                <div class='stepTwoFieldWrapper'>
+                    {% if box == None %}
+                        <select id='customCategory' original=''></select>
+                    {% else %}
+                        <select id='customCategory' original='{{ box.box_category.name }}'></select>
+                    {% endif %}
+                </div>
+
+                <div class='clear'></div>
+            </div>
+
+            <div class='stepTwoField'>
+                <div class='label'>
                     Note
                 </div>
 

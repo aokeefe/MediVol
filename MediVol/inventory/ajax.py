@@ -44,7 +44,7 @@ Item array should be of the form:
 That is, there is an array with arrays inside it that describe the items.
 """
 @dajaxice_register(method='POST')
-def create_box(request, initials, weight, size, items, warehouse_abbrev, note='', box_id=None):
+def create_box(request, initials, weight, size, items, warehouse_abbrev, note='', box_id=None, category=None):
     htmlParser = HTMLParser()
 
     initials = htmlParser.unescape(initials)
@@ -59,9 +59,20 @@ def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''
     if note == '':
         note = None
 
+    if category == '':
+        category = None
+    else:
+        try:
+            category = Category.objects.get(name=category)
+        except Category.DoesNotExist:
+            return simplejson.dumps({'result': 'False'})
+
     if box_id is None or box_id == 0:
         new_box = Box(box_size=size[:1], weight=weight,
             entered_date=datetime.today(), initials=initials.upper(), warehouse=warehouse, note=note)
+
+        if category is not None:
+            new_box.box_category = category
 
         new_box.save()
 
@@ -77,6 +88,9 @@ def create_box(request, initials, weight, size, items, warehouse_abbrev, note=''
         box.initials = initials.upper()
         box.warehouse = warehouse
         box.note = note
+
+        if category is not None:
+            box.box_category = category
 
         box.save()
 

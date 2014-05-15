@@ -103,6 +103,27 @@ function setRemoveButton() {
     });
 }
 
+function getAddedCategories() {
+    var categories = [];
+
+    // Go through each item in the table and add it to the items array.
+    // Each item is added as an array with the following format:
+    // [ item_name, item_expiration, item_count ]
+    $('#items_added tr').each(function(index, element) {
+        element = $(element);
+
+        if (element.attr('id') != 'placeholder_row' &&
+                element.attr('id') != 'table_header') {
+            var itemInfo = element.children('td');
+            var category = $(itemInfo[0]).html();
+
+            categories.push(category);
+        }
+    });
+
+    return categories;
+}
+
 /**
  * Returns an array of the items that have been added to the box.
  */
@@ -169,6 +190,10 @@ function goForward() {
         return;
     }
 
+    if (groupName === 'Admin') {
+        populateCustomCategory();
+    }
+
     $('#stepOne').hide();
     $('#stepTwo').show();
     $('#stepNumber').html(2);
@@ -186,6 +211,21 @@ function setItemNotSelected() {
     $('#itemSelectedMessage').removeClass('itemSelected');
     $('#itemSelectedMessage').addClass('noItemSelected');
     $('#itemSelectedMessage').html('Please select an item.');
+}
+
+function populateCustomCategory() {
+    $('#customCategory').html('');
+
+    var categories = getAddedCategories();
+    var original = $('#customCategory').attr('original');
+
+    for (var i = 0; i < categories.length; i++) {
+        if (original === categories[i]) {
+            $('#customCategory').append('<option selected="selected">' + categories[i] + '</option>');
+        } else {
+            $('#customCategory').append('<option>' + categories[i] + '</option>');
+        }
+    }
 }
 
 $(document).ready(function() {
@@ -317,7 +357,7 @@ $(document).ready(function() {
     });
 
     $('#expiration').change(function() {
-        if ($('#expiration').val() == '') {
+        if ($('#expiration').val() === '') {
             expirationCleared = true;
         }
     });
@@ -330,7 +370,7 @@ $(document).ready(function() {
         var category = $('#categories option:selected').val();
         var boxName = $('#box_names option:selected').val();
         var item = $('#items option:selected').val();
-        var expiration = ($('#expiration').val() == '') ? 'Never' : $('#expiration').val();
+        var expiration = ($('#expiration').val() === '') ? 'Never' : $('#expiration').val();
         var count = $('#count').val();
         var alreadyAddedItems = getAddedItems();
 
@@ -433,15 +473,17 @@ $(document).ready(function() {
         var weight = $('input[name=weight]').val();
         var size = $('input[name=size]:checked').val();
         var note = $('textarea[name=note]').val();
+        var category = $('#customCategory').val() || '';
+
         var missingRequired = false;
 
         // Required fields.
-        if (initials == '') {
+        if (initials === '') {
             $('input[name=initials]').addClass('requiredTextField');
             missingRequired = true;
         }
 
-        if (weight == '') {
+        if (weight === '') {
             $('input[name=weight]').addClass('requiredTextField');
             missingRequired = true;
         }
@@ -474,7 +516,8 @@ $(document).ready(function() {
                 'items': items,
                 'warehouse_abbrev': warehouse,
                 'note': note,
-                'box_id': boxId
+                'box_id': boxId,
+                'category': category
             }
         );
     });
