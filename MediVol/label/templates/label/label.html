@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+<style>
+  h1 p h3 { 
+    margin: 0;
+    padding: 0;
+    display: inline;
+  }
+</style>
+</head>
+<title>Box Label for {{box_id}} </title>
+<body> 
+<p><h1>{{box_category_letter}}</h1> </p>
+<p><h1>{{box_id}}</h1></p>
+<p><h3>Exp: {{box_expiration}}</h3></p>
+<p>{{box_category_name}}</p>
+<p>Weight: {{box_weight}} lbs. </p>
+<p>Contents: <br/> 
+{%for box_content in box_contents %} 
+  {{ box_content }}
+{% endfor %} </p>
+<p>{{box_barcode|escape|safe}}</p> 
+</body>
+</html>
