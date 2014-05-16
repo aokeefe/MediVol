@@ -27,7 +27,7 @@ function deleteOrder() {
                         }
                     },
                     {
-                        'order_number': orderNumber
+                        'order_id': orderId
                     }
                 );
             }

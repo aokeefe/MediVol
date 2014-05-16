@@ -259,9 +259,9 @@ def get_box_name_for_order(order):
         return ','.join(box_string)
 
 @dajaxice_register(method='POST')
-def delete_order(request, order_number):
+def delete_order(request, order_id):
     try:
-        order = Order.objects.get(order_number=order_number)
+        order = Order.objects.get(id=order_id)
     except Order.DoesNotExist:
         return simplejson.dumps({ 'result': False })
 
