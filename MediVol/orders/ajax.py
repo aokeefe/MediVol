@@ -168,6 +168,9 @@ def create_order(request, order_name, customer_name, customer_email, business_na
     if shipping_address == '':
         shipping_address = None;
 
+    if order_id == 0:
+        order_id = False
+
     try:
         customer = Customer.objects.get(contact_name=customer_name, business_name=business_name)
 
