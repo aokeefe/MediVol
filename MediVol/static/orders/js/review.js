@@ -35,7 +35,7 @@ function deleteOrder() {
     );
 }
 
-function downloadCVS(response){
+function downloadCSV(response){
     var csvString = response.join("\r\n");
     var a = document.createElement('a');
     a.href = 'data:text/csv;charset=UTF-8,' + encodeURIComponent(csvString);
@@ -63,6 +63,6 @@ $(document).ready(function() {
     $('.deleteOrderButton').click(deleteOrder);
     
     $('#downloadOrder').click(function() {
-        Dajaxice.orders.get_order_packing_list(downloadCVS, { 'order_id': orderId });
+        Dajaxice.orders.get_order_packing_list(downloadCSV, { 'order_id': orderId });
     });
 });

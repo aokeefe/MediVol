@@ -283,9 +283,9 @@ def get_order_packing_list(request, order_id):
         order = Order.objects.get(id=order_id)
     except Order.DoesNotExist:
         return simplejson.dumps({ 'result': 'False' })
-    cvs = []
+    csv = []
     header = '"Order Name","Box Name","Contents","Weight","Experation Date"'
-    cvs.append(header)
+    csv.append(header)
     
     orderBoxs = OrderBox.objects.filter(order_for=order)
     
@@ -296,6 +296,6 @@ def get_order_packing_list(request, order_id):
                 '"' + str(orderBox.box.weight) + '",' +
                 '"' + str(orderBox.box.get_expiration_display()) + '"')
                 
-        cvs.append(temp)
+        csv.append(temp)
             
-    return simplejson.dumps(cvs)
+    return simplejson.dumps(csv)
