@@ -276,3 +276,26 @@ def delete_order(request, order_id):
     order.delete()
 
     return simplejson.dumps({ 'result': True })
+    
+@dajaxice_register(method='POST')
+def get_order_packing_list(request, order_id):
+    try:
+        order = Order.objects.get(order_number=order_id)
+    except Order.DoesNotExist:
+        return simplejson.dumps({ 'result': 'False' })
+    cvs = []
+    header = '"Order Name","Box Name","Contents","Weight","Experation Date"'
+    cvs.append(header)
+    
+    orderBoxs = OrderBox.objects.filter(order_for=order)
+    
+    for orderBox in orderBoxs:
+        temp = ('"' + str(order.order_number) + '",' +
+                '"' + str(orderBox.box.get_most_populous_box_name()) + '",' +
+                '"' + orderBox.box.get_contents_string() + '",' +
+                '"' + str(orderBox.box.weight) + '",' +
+                '"' + str(orderBox.box.get_expiration_display()) + '"')
+                
+        cvs.append(temp)
+            
+    return simplejson.dumps(cvs)
