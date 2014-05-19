@@ -209,7 +209,7 @@ function fillTable(boxes) {
     $('#boxes_found').append('<tbody id="boxes_body"></tbody>');
 
     if(boxes.length === 0) {
-        $('#boxes_body').append(BLANK_ROW);
+        $('#boxes_body').append(BLANK_BOX_ROW);
     } else {
         for (var i = 0; i < boxes.length; i++) {
             var order = false;
