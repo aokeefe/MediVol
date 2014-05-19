@@ -93,6 +93,7 @@
 {% block javascript %}
     <script type='text/javascript'>
         var orderId = {{ order.id }};
+        var orderName = '{{ order.order_number }}';
     </script>
     <script type='text/javascript' src='{{ STATIC_URL }}orders/js/review.js'></script>
 {% endblock %}

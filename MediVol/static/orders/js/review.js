@@ -40,7 +40,7 @@ function downloadCVS(response){
     var a = document.createElement('a');
     a.href = 'data:text/csv;charset=UTF-8,' + encodeURIComponent(csvString);
     a.target = '_blank';
-    a.download = orderId + 'PackingList.csv';
+    a.download = orderName + 'PackingList.csv';
 
     document.body.appendChild(a);
     a.click();
