@@ -280,7 +280,7 @@ def delete_order(request, order_id):
 @dajaxice_register(method='POST')
 def get_order_packing_list(request, order_id):
     try:
-        order = Order.objects.get(order_number=order_id)
+        order = Order.objects.get(id=order_id)
     except Order.DoesNotExist:
         return simplejson.dumps({ 'result': 'False' })
     cvs = []
