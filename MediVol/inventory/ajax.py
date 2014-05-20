@@ -152,7 +152,7 @@ def box_to_object(box):
     }
 
 @dajaxice_register(method='GET')
-def get_boxes_with_item(request, item_name, box_name):
+def get_boxes_with_item(request, item_name, box_name, for_order_page=False):
     box = BoxName.objects.get(name=box_name)
     item = Item.objects.get(name=item_name, box_name=box)
     box_list = []
@@ -169,7 +169,7 @@ def get_boxes_with_item(request, item_name, box_name):
     return simplejson.dumps(box_list)
 
 @dajaxice_register(method='POST')
-def get_boxes_with_box_name(request, box_name):
+def get_boxes_with_box_name(request, box_name, for_order_page=False):
     box_name = BoxName.objects.get(name=box_name)
     items = Item.objects.filter(box_name=box_name)
     contents = Contents.objects.filter(item__in=items)
@@ -184,14 +184,14 @@ def get_boxes_with_box_name(request, box_name):
     return simplejson.dumps(box_list)
 
 @dajaxice_register(method='POST')
-def get_boxes_with_category(request, category_name):
+def get_boxes_with_category(request, category_name, for_order_page=False):
     category = Category.objects.get(name=category_name)
     boxes = Box.objects.filter(box_category=category)
-    
+
     box_list = []
     for box in boxes:
         box_list.append(box_to_object(box))
-    
+
     return simplejson.dumps(box_list)
 
 @dajaxice_register(method='GET')

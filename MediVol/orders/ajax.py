@@ -34,18 +34,6 @@ def get_items(request, box_name):
 
     return simplejson.dumps(sorted(items_array))
 
-# Gets all boxes associated with items
-@dajaxice_register(method='GET')
-def get_box_ids(request, item):
-    box_ids = []
-    item = Item.objects.get(name=item)
-    contents = Contents.objects.filter(item=item)
-
-    for content in contents:
-        box_ids.append(content.box_within.get_id())
-
-    return simplejson.dumps(sorted(box_ids))
-
 @dajaxice_register(method='GET')
 def get_search_results(request, query):
     results_array = Searcher.search(query=query, models=[ Category, BoxName, Item, Contents ])

@@ -407,7 +407,7 @@ function addSingleBox(response){
 
 function setTableList(response) {
     clearBoxes();
-    
+
     for(var i=0;i<response.length;i++){
         if(boxesInOrder.indexOf(response[i][0]) === -1){
             currentBoxes.push(BoxRow.fromResponse(response[i]));
@@ -612,7 +612,6 @@ $(document).ready(function() {
         var selectedItemName = $('#items option:selected').val();
 
         // Get the list of items for the selected box name.
-        //Dajaxice.orders.get_box_ids(getBoxes, { 'item': selectedItemName });
         var selectedItemName = $('#items option:selected').val();
         var selectedBoxName = $('#box_names option:selected').val();
         Dajaxice.inventory.get_boxes_with_item(setTableList, { 'item_name': selectedItemName,'box_name' : selectedBoxName });
