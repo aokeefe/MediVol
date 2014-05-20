@@ -120,7 +120,7 @@ h3 {
 }
 
 #stepOneFields {
-    width: 75%;
+    width: 100% !important;
     margin-left: auto;
     margin-right: auto;
 }

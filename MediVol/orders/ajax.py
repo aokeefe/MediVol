@@ -35,12 +35,22 @@ def get_items(request, box_name):
     return simplejson.dumps(sorted(items_array))
 
 @dajaxice_register(method='GET')
-def get_search_results(request, query):
-    results_array = Searcher.search(query=query, models=[ Category, BoxName, Item, Contents ])
+def get_search_results(request, query, for_inventory=False):
+    results_array = Searcher.search(query=query, models=[ Category, BoxName, Item, Contents ], as_objects=True)
+    results_strings = []
+
+    for result in results_array:
+        if isinstance(result, Contents):
+            if for_inventory or not for_inventory and not result.box_within.is_locked_out():
+                results_strings.append(result.get_search_results_string())
+        else:
+            results_strings.append(result.get_search_results_string())
 
     try:
         box = Box.objects.get(barcode=query)
-        results_array.insert(0, box.get_search_results_string())
+
+        if for_inventory or not for_inventory and not box.is_locked_out():
+            results_strings.insert(0, box.get_search_results_string())
     except Box.DoesNotExist as e:
         # shrug
         box = None
@@ -48,9 +58,10 @@ def get_search_results(request, query):
     boxes = Searcher.search_box_ids(query)
 
     for box in boxes:
-        results_array.insert(0, box.get_search_results_string())
+        if for_inventory or not for_inventory and not box.is_locked_out():
+            results_strings.insert(0, box.get_search_results_string())
 
-    return simplejson.dumps(results_array)
+    return simplejson.dumps(results_strings)
 
 @dajaxice_register(method='GET')
 def get_customer_search_results(request, query):
@@ -129,6 +140,9 @@ def add_boxes_to_order(request, order_id, boxes={}, custom_price=False):
             box_price = 0.00
 
         box_for_order = Box.get_box(box_id)
+
+        if box_for_order.is_locked_out():
+            continue
 
         order_box = OrderBox(order_for=order, box=box_for_order, cost=box_price)
         order_box.save()
