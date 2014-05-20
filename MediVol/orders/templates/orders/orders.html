@@ -18,33 +18,33 @@
             <tr id='table_header'>
                 <td id='idHeader'>Order ID</td>
                 <td id='statusHeader'>Status</td>
-                <td id='contentHeader'>Contents</td>
                 <td id='forHeader'>Reserved For</td>
                 <td id='dateHeader'>Created On</td>
                 <td id='priceHeader'>Price</td>
                 <td id='weightHeader'>Weight</td>
-                <td id='filterHeader'>filter</td>
             </tr>
-            <tbody id="orders_body">
-                <tr id='placeholder_row'>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>&nbsp;</td>
-                </tr>
-            </tbody>
+            {% for order in orders %}
+                <tbody id="orders_body">
+                    <tr id='placeholder_row'>
+                        <td>
+                            <a href="/orders/review/{{ order.id }}">{{ order.order_number }}</a>
+                        </td>
+                        <td>{{ order.get_order_status_display }}</td>
+                        <td>{{ order.reserved_for.contact_name }}</td>
+                        <td>{{ order.get_creation_date_display }}</td>
+                        <td>{{ order.price }}</td>
+                        <td>{{ order.get_weight }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
         </table>
     </div>
-    <select>
-        <option>All Open</option>
-        <option>Created</option>
-        <option>UnPaid</option>
-        <option>Paid</option>
-        <option>Closed</option>
+    <select id="statusSelect">
+        <option value="All Open" selected>All Open</option>
+        {% for status in statuses %}
+            <option value="{{ status.0 }}">{{ status.1 }}</option>
+        {% endfor %}
+        <option value="All Orders">All Orders</option>
     </select>
 {% endblock %}
 
