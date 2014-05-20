@@ -168,6 +168,32 @@ def get_boxes_with_item(request, item_name, box_name):
 
     return simplejson.dumps(box_list)
 
+@dajaxice_register(method='POST')
+def get_boxes_with_box_name(request, box_name):
+    box_name = BoxName.objects.get(name=box_name)
+    items = Item.objects.filter(box_name=box_name)
+    contents = Contents.objects.filter(item__in=items)
+    boxes = []
+    box_list = []
+    for content in contents:
+        if content.box_within.box_id not in boxes:
+            box = content.box_within
+            boxes.append(box.box_id)
+
+            box_list.append(box_to_object(box))
+    return simplejson.dumps(box_list)
+
+@dajaxice_register(method='POST')
+def get_boxes_with_category(request, category_name):
+    category = Category.objects.get(name=category_name)
+    boxes = Box.objects.filter(box_category=category)
+    
+    box_list = []
+    for box in boxes:
+        box_list.append(box_to_object(box))
+    
+    return simplejson.dumps(box_list)
+
 @dajaxice_register(method='GET')
 def get_box_by_id(request, box_id):
     box = Box.get_box(box_id)

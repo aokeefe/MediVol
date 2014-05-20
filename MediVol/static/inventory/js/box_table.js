@@ -73,6 +73,13 @@ BoxRow.fromResponse = function(response) {
     );
 };
 
+
+function clearBoxes() {
+    currentBoxes.length = 0;
+    filteredBoxes.length = 0;
+    filtered = false;
+}
+
 function getCurrentBoxes() {
     if (filtered) {
         return filteredBoxes;
@@ -82,15 +89,14 @@ function getCurrentBoxes() {
 }
 
 function addSingleBox(response){
-    currentBoxes.length = 0;
-
+    clearBoxes();
     currentBoxes.push(BoxRow.fromResponse(response));
 
     showTable();
 }
 
 function setTableList(response) {
-    currentBoxes.length = 0;
+    clearBoxes();
 
     for (var i = 0; i < response.length; i++) {
         currentBoxes.push(BoxRow.fromResponse(response[i]));
