@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <title>InterVol | Order {{ order.order_number }}</title>
+    <title>InterVol | {{ order.order_number }}</title>
 {% endblock %}
 
 {% block styles %}
@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-    <h2>Order {{ order.order_number }}</h2>
+    <h2>{{ order.order_number }}</h2>
 
     <div id='customerInfoWrapper'>
         <p class='contactName'>{{ order.reserved_for.contact_name }}</p>
@@ -74,14 +74,15 @@
 
     <div id='orderInfoWrapper'>
         <div id='orderInfoLeft'>
-            <a href='/orders/create/{{ order.order_number }}'>
-                <button class='button editOrderButton'>Edit Order</button>
-            </a>
+            <a href='/orders/create/{{ order.id }}'>
+                <button class='button editOrderButton'>Edit Order</button></a>
+
+            <button class='button deleteOrderButton'>Delete Order</button>
         </div>
 
         <div id='orderInfoRight'>
             <h3>Total Weight: {{ order.get_weight|floatformat:'1' }} lbs</h3>
-            <h3>Order Price: ${{ order.price|floatformat:'2' }}</h3>
+            <h3>Order Price: ${{ order.get_cost|floatformat:'2' }}</h3>
         </div>
 
         <div class='clear'></div>
@@ -90,7 +91,7 @@
 
 {% block javascript %}
     <script type='text/javascript'>
-        var orderNumber = {{ order.order_number }};
+        var orderId = {{ order.id }};
     </script>
     <script type='text/javascript' src='{{ STATIC_URL }}orders/js/review.js'></script>
 {% endblock %}

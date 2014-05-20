@@ -26,3 +26,9 @@ class UserTests:
                 user.groups.all()[0].name == 'Box Transfer' or \
                 user.groups.all()[0].name == 'Read Only'
         return False
+
+    @classmethod
+    def user_can_transfer_boxes(self, user):
+        if user.is_authenticated() and len(user.groups.all()) > 0:
+            return user.groups.all()[0].name == 'Admin' or user.groups.all()[0].name == 'Box Transfer'
+        return False

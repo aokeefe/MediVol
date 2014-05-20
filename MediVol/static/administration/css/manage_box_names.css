@@ -1,0 +1,48 @@
+#box_names {
+    margin-bottom: 50px;
+}
+
+.categoryColumn, .categoryInput {
+    width: 275px;
+}
+
+.nameInput {
+    width: 100%;
+    text-align: center;
+}
+
+.deleteColumn {
+    width: 80px;
+}
+
+.saveColumn {
+    width: 130px;
+    border: none;
+}
+
+#addBoxNameWrapper {
+    margin-top: 40px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.addBoxNameField {
+    margin-bottom: 10px;
+}
+
+.addBoxNameField .label {
+    width: 33%;
+    min-width: 120px;
+}
+
+.addBoxNameField .textField {
+    width: 65%;
+}
+
+#addBoxName {
+    float: right;
+    font-size: 1.5em;
+    margin-right: 8px;
+}

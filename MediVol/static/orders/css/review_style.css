@@ -47,7 +47,7 @@
     margin-right: 7px;
 }
 
-.editOrderButton {
+.editOrderButton, .deleteOrderButton {
     font-size: 2em;
 }
 

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>InterVol | Manage Categories</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}administration/css/styles.css' />
+    <link rel='stylesheet' href='{{ STATIC_URL }}administration/css/manage_categories.css' />
+{% endblock %}
+
+{% block body %}
+    <h2>Manage Categories</h2>
+
+    <div id='categories'>
+        <table>
+            <tr>
+                <td>Letter</td>
+                <td>Name</td>
+            </tr>
+
+            {% for category in categories %}
+                <tr>
+                    <td class='letterColumn'>
+                        <input class='letterInput textField' type='text'
+                            original='{{ category.letter }}' value='{{ category.letter }}' />
+                    </td>
+                    <td class='nameColumn'>
+                        <input class='nameInput textField' type='text'
+                            original='{{ category.name }}' value='{{ category.name }}' />
+                    </td>
+                    <td class='deleteColumn'>
+                        <a href='javascript:void(0)' class='deleteCategory'>Delete</a>
+                    </td>
+                    <td class='saveColumn'></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <hr />
+
+    <div id='addCategoryWrapper'>
+        <h2>Add New Category</h2>
+        
+        <div class='addCategoryField'>
+            <div class='label'>Letter</div>
+            <input type='text' id='categoryLetter' class='textField' />
+        </div>
+
+        <div class='addCategoryField'>
+            <div class='label'>Name</div>
+            <input type='text' id='categoryName' class='textField' />
+        </div>
+
+        <button id='addCategory' class='button'>Add Category</button>
+
+        <div class='errorMessage'><p class='requiredMessage requiredText'></p></div>
+
+        <div class='clear'></div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type='text/javascript' src='{{ STATIC_URL }}administration/js/categories.js'></script>
+{% endblock %}
