@@ -45,9 +45,6 @@ class Box(models.Model):
     entered_date = models.DateTimeField('date the box was entered', null=True)
     warehouse = models.ForeignKey(Warehouse, null=True)
 
-    #set later
-    sold = models.BooleanField(default=False)
-
     #working with old boxes
     old_box_flag = models.BooleanField(default=False)
     old_expiration = models.DateTimeField('expiration date', null=True)
@@ -92,8 +89,6 @@ class Box(models.Model):
                   entered_date=filtered_values[7],
                   warehouse=Warehouse.objects.get(abbreviation=filtered_values[8]),
 
-                  sold=filtered_values[9],
-
                   old_box_flag=filtered_values[10],
                   old_expiration=filtered_values[11],
                   old_contents=filtered_values[12],
@@ -103,10 +98,10 @@ class Box(models.Model):
         return box
 
     def is_locked_out(self):
-        order_list = self.orderbox_set.all()
+        orderbox_list = self.orderbox_set.all()
 
-        for order in order_list:
-            if order.locks_out_boxes():
+        for orderbox in orderbox_list:
+            if orderbox.order_for.locks_out_boxes():
                 return True
 
         return False
@@ -164,8 +159,6 @@ class Box(models.Model):
                   self.note,
                   str(self.entered_date),
                   self.warehouse.abbreviation,
-
-                  self.sold,
 
                   self.old_box_flag,
                   str(self.old_expiration),
