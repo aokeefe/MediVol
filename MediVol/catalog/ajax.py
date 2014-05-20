@@ -2,7 +2,46 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 
 from catalog.models import Category, BoxName, Item
+from inventory.models import Contents
 from search.Searcher import Searcher
+
+@dajaxice_register(method='GET')
+def edit_item(request, category_letter, new_box_name, old_box_name, new_item_name, old_item_name, d):
+    try:
+        old_box_name = BoxName.objects.get(name=old_box_name, category=Category.objects.get(letter=category_letter))
+    except BoxName.DoesNotExist:
+        return simplejson.dumps({'message':'%s does not exist' % old_box_name})
+
+    try:
+        item = Item.objects.get(name=old_item_name, box_name=old_box_name)
+    except Item.DoesNotExist:
+        return simplejson.dumps({'message':'%s could not be found' % old_item_name})
+
+    try:
+        box_name = BoxName.objects.get(name=new_box_name)
+    except BoxName.DoesNotExist:
+        return simplejson.dumps({'message':'%s does not exist' % new_box_name})
+
+    items_with_this_name = Item.objects.filter(name=new_item_name).filter(box_name=box_name)
+
+    if len(items_with_this_name) > 0:
+        for item_with_name in items_with_this_name:
+            if item_with_name != item:
+                return simplejson.dumps({'message':'%s already exists' % new_item_name})
+
+    item.name = new_item_name
+    item.description = d
+    item.box_name = box_name
+    item.save()
+
+    similar_items = Item.objects.filter(name=old_item_name)
+    similar_items_array = []
+
+    for similar_item in similar_items:
+        similar_items_array.append({ 'id': similar_item.id, 'box_name': similar_item.box_name.name,
+            'name': similar_item.name });
+
+    return simplejson.dumps( { 'message':'%s has been changed' % new_item_name, 'similar': similar_items_array } )
 
 @dajaxice_register(method='POST')
 def create_item(request, box_name, item_name, description):
@@ -59,12 +98,17 @@ def create_category(request, letter, name):
 
 @dajaxice_register(method='GET')
 def delete_item(request, b_name, item_name):
-    items = Item.objects.filter(name=item_name)
-    for item in items:
-        if item.box_name.name == b_name:
-            item.delete()
-            return simplejson.dumps({'message':'%s has been deleted' % item_name})
-    return simplejson.dumps({'message':'%s could not be found' % item_name})
+    try:
+        item = Item.objects.get(box_name=BoxName.objects.get(name=b_name), name=item_name)
+    except Item.DoesNotExist:
+        return simplejson.dumps({ 'message': '%s could not be found' % item_name })
+
+    if len(Contents.objects.filter(item=item)) > 0:
+        return simplejson.dumps({ 'message': 'This item could not be deleted because it is in a box.' })
+
+    item.delete()
+
+    return simplejson.dumps({ 'message': '%s has been deleted' % item_name })
 
 @dajaxice_register(method='GET')
 def delete_box_name(request, letter, name):

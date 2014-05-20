@@ -10,9 +10,9 @@
 
 {% block body %}
     <h2>Box {{ box.get_id }} </h2>
-    {% if order != None %}
+    {% if orders != None %}
         <h3 id='createdDate'>
-            In <a href='/orders/review/{{ order.order_number }}'>Order {{ order.order_number }}</a>
+            In <a href='/orders/review/{{ order.order_number }}'>{{ orders|safe }}</a>
         </h3>
     {% endif %}
     <h3 id='createdDate'>Created on {{ box.entered_date }}</h3>
@@ -72,6 +72,11 @@
             </p>
         </div>
 
+        {% if box.note != None %}
+            <h3 class='attributeLabel'>Note</h3>
+            <p class='attributeValue'>{{ box.note }}</p>
+        {% endif %}
+
         <h3 class='attributeLabel'>Contents</h3>
         {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
             <p class='attributeValue'>{{ box.get_contents_string_with_links|safe }}</p>
@@ -90,7 +95,9 @@
             </div>
 
             <div id='buttonsRight'>
+                <a href='/inventory/edit/{{ box.get_id }}'><button id="edit_box"  class='button'>Edit Box</button></a>
                 <button id="print_label" onclick="print_label('{{box.box_id }}')" class='button'>Print Label</button>
+                <button id="delete_box" onclick="deleteBox('{{box.box_id }}')" class='button'>Delete Box</button>
             </div>
         </div>
     </div>

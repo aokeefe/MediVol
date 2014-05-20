@@ -12,6 +12,8 @@ urlpatterns = patterns ('',
     url(r'^users/', manage_users),
     url(r'^backups/', manage_backups),
     url(r'^warehouses/', manage_warehouses),
+    url(r'^categories/', manage_categories),
+    url(r'^box_names/', manage_box_names),
     url(r'^reset_password/(?P<reset_code>\w+)/$', reset_password),
     url(r'^send_reset/', send_reset),
     url(r'^settings/', user_settings)

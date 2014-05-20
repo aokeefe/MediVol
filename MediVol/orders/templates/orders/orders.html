@@ -12,14 +12,42 @@
     <h2>Orders</h2>
 
     <a id='createOrder' href='/orders/create'><button class='button'>Create Order</button></a>
-
-    <ul>
-        {% for order in orders %}
-            <li><a href='/orders/review/{{ order.order_number }}'>{{ order.order_number }}</a></li>
-        {% endfor %}
-    </ul>
+<div></div>
+    <div id='tableWrapper'>
+        <table id='orders_found'>
+            <tr id='table_header'>
+                <td id='idHeader'>Order ID</td>
+                <td id='statusHeader'>Status</td>
+                <td id='contentHeader'>Contents</td>
+                <td id='forHeader'>Reserved For</td>
+                <td id='dateHeader'>Created On</td>
+                <td id='priceHeader'>Price</td>
+                <td id='weightHeader'>Weight</td>
+                <td id='filterHeader'>filter</td>
+            </tr>
+            <tbody id="orders_body">
+                <tr id='placeholder_row'>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <select>
+        <option>All Open</option>
+        <option>Created</option>
+        <option>UnPaid</option>
+        <option>Paid</option>
+        <option>Closed</option>
+    </select>
 {% endblock %}
 
 {% block javascript %}
-
+    <script type='text/javascript' src='{{ STATIC_URL }}orders/js/orders.js'></script>
 {% endblock %}

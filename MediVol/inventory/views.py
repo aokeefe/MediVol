@@ -15,10 +15,40 @@ def create(request, order_id=0):
     for category in categories:
         categoryStrings.append(category.name)
 
+    order = False
+
+    if order_id != 0:
+        order = Order.objects.get(id=order_id)
+
     context = {
         'categories': sorted(categoryStrings),
         'order_id': order_id,
-        'warehouses': Warehouse.objects.all()
+        'order': order,
+        'warehouses': Warehouse.objects.all(),
+        'box': None
+    }
+
+    return render(request, 'inventory/create.html', context)
+
+@login_required(login_url='/login/')
+@user_passes_test(UserTests.user_can_create_box, login_url='/administration/forbidden')
+def edit(request, box_id):
+    box = Box.get_box(box_id)
+
+    if box is None:
+        return render(request, 'inventory/box_not_found.html')
+
+    categories = Category.objects.all()
+    categoryStrings = []
+
+    for category in categories:
+        categoryStrings.append(category.name)
+
+    context = {
+        'categories': sorted(categoryStrings),
+        'order_id': 0,
+        'warehouses': Warehouse.objects.all(),
+        'box': box
     }
 
     return render(request, 'inventory/create.html', context)
@@ -40,15 +70,23 @@ def box_info(request, boxid):
         box_contents = box.old_contents
 
     # Search if box is related to orders.
-    try:
-        order = OrderBox.objects.get(box=box).order_for
-    except OrderBox.DoesNotExist:
-        order = None
+    order_boxes = OrderBox.objects.filter(box=box)
+
+    if len(order_boxes) == 0:
+        orders = None
+    else:
+        order_links = []
+
+        for order_box in order_boxes:
+            order_links.append('<a href="/orders/review/' + order_box.order_for.order_number +
+                '" target="_blank">' + order_box.order_for.order_number + '</a>')
+
+        orders = ', '.join(order_links)
 
     context = {
         'box': box,
         'box_contents': box_contents,
-        'order': order,
+        'orders': orders,
         'warehouses': Warehouse.objects.all()
     }
 
@@ -93,3 +131,10 @@ def inventory_view(request):
     context = { 'categories': sorted(categoryStrings) }
 
     return render(request, 'inventory/inventory.html', context)
+
+@login_required(login_url='/login/')
+@user_passes_test(UserTests.user_can_transfer_boxes, login_url='/administration/forbidden')
+def box_transfer(request):
+    context = { 'warehouses': Warehouse.objects.all() }
+
+    return render(request, 'inventory/box_transfer.html', context)

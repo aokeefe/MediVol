@@ -28,6 +28,7 @@ var boxNameToChoose = '';
 var itemToChoose = '';
 var boxToChoose = '';
 var boxesToOrder = [];
+var boxesInOrder = [];
 
 /**
 * Function for getting a specific box information
@@ -170,9 +171,10 @@ function createOrder(response) {
 /**
 * Sets the event for clicking the remove button next to an item.
 */
-function setRemoveButton() {
-    $('.remove_item').click(function() {
+function setRemoveButton(){
+    $('.remove_item').unbind('click').click(function() {
         // Remove the row for the item.
+        var id = $(this).parent().parent().children(":first").text();
         $(this).parent().parent().remove();
 
         // If there are no items, append the empty placeholder row.
@@ -181,9 +183,10 @@ function setRemoveButton() {
         }
 
         var selectedItemName = $('#items option:selected').val();
-
+        var selectedBoxName = $('#box_names option:selected').val();
+        boxesInOrder.splice(boxesInOrder.indexOf(id),1);
         if (selectedItemName !== '') {
-            Dajaxice.orders.get_box_ids(getBoxes, { 'item': selectedItemName });
+            Dajaxice.inventory.get_boxes_with_item(setTableList, { 'item_name': selectedItemName,'box_name' : selectedBoxName });
         }
     });
 }
@@ -219,7 +222,7 @@ function goBack() {
         stepNum--;
         $('#stepTwo').hide();
         $('#stepOne').show();
-        $('#contact_name').focus();
+        $('#order_name').focus();
         $('#stepNumber').html(stepNum);
     }
 }
@@ -364,11 +367,76 @@ function addBoxesToOrder(forNewBox) {
             }
         },
         {
-            'order_number': orderNumber,
+            'order_id': orderNumber,
             'boxes': boxes,
             'custom_price': price
         }
     );
+}
+
+function getSelectedBoxes(){
+    var boxes = getCurrentBoxes();
+    var selected_boxes = [];
+    for(var i=0;i<boxes.length;i++){
+        if(boxes[i].check !== ''){
+            selected_boxes.push(boxes[i].box_id);
+        }
+    }
+    return selected_boxes;
+}
+
+function removeSelectedRows(){
+    var boxes = getCurrentBoxes();
+    var selected_rows = [];
+    for(var i=0;i<boxes.length;i++){
+        if(boxes[i].check !== ''){
+            boxes.splice(i,1);
+            i--;
+        }
+    }
+}
+
+function addSingleBox(response){
+    clearBoxes();
+
+    if (boxesInOrder.indexOf(response[0]) === -1) {
+        currentBoxes.push(BoxRow.fromResponse(response));
+    }
+    showTable();
+}
+
+function setTableList(response) {
+    clearBoxes();
+    
+    for(var i=0;i<response.length;i++){
+        if(boxesInOrder.indexOf(response[i][0]) === -1){
+            currentBoxes.push(BoxRow.fromResponse(response[i]));
+        }
+
+    }
+    showTable();
+}
+
+function checkBoxClick(row){
+    var boxes = getCurrentBoxes();
+
+    if (boxes[row].check === ''){
+        boxes[row].check = 'checked';
+        setSelectedBox(getSelectedBoxes().join(' , '));
+
+        if (filteredBoxes.indexOf(boxes[row]) === -1) {
+            filteredBoxes.push(currentBoxes[row]);
+        }
+    } else {
+        boxes[row].check = '';
+        box_ids = getSelectedBoxes();
+
+        if (box_ids.length !== 0){
+            setSelectedBox(getSelectedBoxes().join(' , '));
+        } else {
+            setSelectedBox(false);
+        }
+    }
 }
 
 $(document).ready(function() {
@@ -477,10 +545,7 @@ $(document).ready(function() {
                 } else {
                     box = category.split(' ');
                     var boxId = box[1];
-
-                    $('#boxes').empty();
-                    $('#boxes').append('<option selected="selected">' + boxId + '</option>');
-                    $('#boxes').change();
+                    Dajaxice.inventory.get_box_by_id(addSingleBox, { 'box_id': boxId });
                 }
             }
         }
@@ -520,7 +585,7 @@ $(document).ready(function() {
         }
     );
 
-    $('#contact_name').focus();
+    $('#order_name').focus();
 
     // Set the 'on change' event for the categories list.
     $('#categories').change(function() {
@@ -528,6 +593,8 @@ $(document).ready(function() {
 
         // Get the list of box names for the selected category.
         Dajaxice.orders.get_box_names(getBoxNames, { 'category_name': selectedCategory });
+        Dajaxice.inventory.get_boxes_with_category(setTableList, {'category_name': selectedCategory });
+        setSelectedBox(false);
     });
 
     // Set the 'on change' event for the box names list.
@@ -536,6 +603,8 @@ $(document).ready(function() {
 
         // Get the list of items for the selected box name.
         Dajaxice.orders.get_items(getItems, { 'box_name': selectedBoxName });
+        Dajaxice.inventory.get_boxes_with_box_name(setTableList, {'box_name' : selectedBoxName });
+        setSelectedBox(false);
     });
 
     // Set the 'on change' event for the items list.
@@ -543,7 +612,11 @@ $(document).ready(function() {
         var selectedItemName = $('#items option:selected').val();
 
         // Get the list of items for the selected box name.
-        Dajaxice.orders.get_box_ids(getBoxes, { 'item': selectedItemName });
+        //Dajaxice.orders.get_box_ids(getBoxes, { 'item': selectedItemName });
+        var selectedItemName = $('#items option:selected').val();
+        var selectedBoxName = $('#box_names option:selected').val();
+        Dajaxice.inventory.get_boxes_with_item(setTableList, { 'item_name': selectedItemName,'box_name' : selectedBoxName });
+        setSelectedBox(false);
     });
 
     // Set the 'on change' event for the boxes list.
@@ -566,24 +639,20 @@ $(document).ready(function() {
         // Prevent button from submitting form.
         e.preventDefault();
 
-        var boxId = $('#boxes option:selected').val();
-
-        if (typeof(boxId) === 'undefined') {
-            return;
-        }
+        var boxIds = getSelectedBoxes();
 
         // Remove the placeholder row if it's there.
         $('#placeholder_row').remove();
 
-        // Reset the count and expiration fields.
-        $('#count').val('');
-        $('#expiration').val('');
+        var boxes = getCurrentBoxes();
+        // Add the items to the list using the boxsAdded.
+        for(var i = 0;i<boxIds.length;i++){
+            boxesInOrder.push(boxIds[i]);
+            Dajaxice.orders.get_info(getBoxInfo, {'boxid': boxIds[i]});
+        }
+        removeSelectedRows();
+        showTable();
 
-        // Add the item to the list using the boxsAdded.
-
-        Dajaxice.orders.get_info(getBoxInfo, {'boxid': boxId});
-
-        $('#boxes option:selected').remove();
         setSelectedBox(false, false);
 
         $('#emptyBoxMessage').hide();
@@ -643,6 +712,12 @@ $(document).ready(function() {
         var missingRequired = false;
 
         // Required fields.
+        var order_name = $('#order_name').val();
+        if (order_name === '') {
+            $('#order_name').addClass('requiredTextField');
+            missingRequired = true;
+        }
+
         var contact_name = $('#contact_name').val();
         if (contact_name === '') {
             $('#contact_name').addClass('requiredTextField');
@@ -681,13 +756,15 @@ $(document).ready(function() {
         // Call the create_order AJAX function.
         Dajaxice.orders.create_order(createOrder,
             {
+                'order_name': order_name,
                 'customer_name': contact_name,
                 'customer_email': contact_email,
                 'business_name':  organization_name,
                 'business_address': organization_address,
                 'new_shipping_address': new_shipping_address,
                 'shipping_address': shipping_address,
-                'order_number': orderNumber
+                'order_name': order_name,
+                'order_id': orderNumber
             }
         );
 

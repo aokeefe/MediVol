@@ -4,19 +4,20 @@
     {% if order_id == 0 %}
         <title>Intervol | Create Order</title>
     {% else %}
-        <title>Intervol | Edit Order {{ order_id }}</title>
+        <title>Intervol | Edit {{ order.order_number }}</title>
     {% endif %}
 {% endblock %}
 
 {% block styles %}
     <link rel='stylesheet' href='{{ STATIC_URL }}orders/css/style.css' />
+    <link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/styles.css' />
 {% endblock %}
 
 {% block body %}
     {% if order_id == 0 %}
         <h2>Create Order - Step <span id='stepNumber'>{{ step_num }}</span>/2</h2>
     {% else %}
-        <h2>Edit Order {{ order_id }} - Step <span id='stepNumber'>{{ step_num }}</span>/2</h2>
+        <h2>Edit {{ order.order_number }} - Step <span id='stepNumber'>{{ step_num }}</span>/2</h2>
     {% endif %}
 
     {% if step_num == 1 %}
@@ -34,6 +35,23 @@
 
                 <div class='stepTwoFieldWrapper requiredText'>
                     *required
+                </div>
+
+                <div class='clear'></div>
+            </div>
+
+            <div class='stepTwoField'>
+                <div class='label'>
+                    Order Name <span class='requiredText'>*</span>
+                </div>
+
+                <div class='stepTwoFieldWrapper'>
+                    {% if order_id == 0 %}
+                        <input type='text' id='order_name' name='order_name' class='textField' />
+                    {% else %}
+                        <input type='text' id='order_name' name='order_name' class='textField'
+                             value='{{ order.order_number }}' />
+                    {% endif %}
                 </div>
 
                 <div class='clear'></div>
@@ -163,7 +181,7 @@
     </div>
 
     {% if step_num == 2 %}
-        <div id='stepTwo'>
+        <div id='stepTwo' style='display:block'>
     {% else %}
         <div id='stepTwo' style='display:none'>
     {% endif %}
@@ -203,16 +221,55 @@
 
                 <hr id='ordersHr' />
 
-                <div class='createBoxListWrapper boxesList'>
-                    <h3>Boxes</h3>
+                <div class='clear'></div>
+            </div>
 
-                    <select id='boxes' size=10></select>
+
+
+            <div id='tableWrapper'>
+                <table id='boxes_found'>
+                    <tr id='table_header'>
+                        <td class='tagColumn'></td>
+                        <td id='idHeader'>Box ID</td>
+                        <td id='sizeHeader'>Size</td>
+                        <td id='weightHeader'>Weight</td>
+                        <td id='contentHeader'>Contents</td>
+                        <td id='expHeader'>Exp date</td>
+                        <td id='warehouseHeader'>Warehouse</td>
+                        <td id='filterHeader'>Filter/Add</td>
+                    </tr>
+                    <tbody id="boxes_body">
+                        <tr id='placeholder_row'>
+                            <td class='tagColumn'></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id='buttons'>
+                <div id='buttonsLeft'>
+                    <button type='button' id='previous_button' class='button'>&larr; Previous</button>
+                    <div id='page_numbers'>Page 0 of 0</div>
+                    <button type='button' id='next_button' class='button'>Next &rarr;</button><br /><br />
+
+                    <label for='max_per_page'>Boxes Per Page: </label>
+                    <select id='max_per_page'>
+                        <option>10</option>
+                        <option>25</option>
+                        <option>50</option>
+                    </select>
                 </div>
 
-                <div class='createBoxListWrapper boxInfo'>
-                    <h3>Box Information </h3>
-
-                    <div id='boxDetails'></div>
+                <div id='buttonsRight'>
+                    <button type='button' id='filter_button' class='button'>Filter</button>
+                    <button type='button' id='unfilter_button' class='button'>Unfilter</button>
                 </div>
 
                 <div class='clear'></div>
@@ -234,7 +291,11 @@
                 </div>
 
                 <div class='addBoxButton'>
+                    {% if order_id == 0 %}
                         <a id='create_box_link' href='javascript:void(0)'>
+                    {% else %}
+                        <a id='create_box_link' href='/inventory/create/{{ order_id }}'>
+                    {% endif %}
                             <button id='create_box' class='button'>Create and Add New Box</button>
                         </a>
                     <div class='clear'></div>
@@ -311,8 +372,8 @@
                     {% if order_id == 0%}
                         <input type='text' id='price' class='textField' />
                     {% else %}
-                        {% if total_price != custom_price %}
-                            <input type='text' id='price' class='textField' value="{{ custom_price|floatformat:'2' }}" />
+                        {% if order.price != None %}
+                            <input type='text' id='price' class='textField' value="{{ order.price|floatformat:'2' }}" />
                         {% else %}
                             <input type='text' id='price' class='textField' />
                         {% endif %}
@@ -335,7 +396,9 @@
     <script type='text/javascript'>
         var orderNumber = {{ order_id }};
         var stepNum = {{ step_num }};
+        var groupName = '{{ user.groups.all.0.name }}';
     </script>
 
+    <script type='text/javascript' src='{{ STATIC_URL }}inventory/js/box_table.js'></script>
     <script type='text/javascript' src='{{ STATIC_URL }}orders/js/main.js'></script>
 {% endblock %}

@@ -21,6 +21,11 @@
 
 #buttonsRight {
     float: right;
+    width: 35%;
+}
+
+#print_label, #delete_box {
+    float: right;
 }
 
 .attributeLabel {

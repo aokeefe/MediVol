@@ -4,11 +4,13 @@ from catalog.models import Item, Category
 from import_export.to_csv import to_csv_from_array, to_array_from_csv
 from datetime import datetime, date
 import random
-import id_generator
+from MediVol import id_generator
 
 NAME_LENGTH = 80
 ABBREV_LENGTH = 4
 ADDRESS_LENGTH = 200
+BOX_ID_LENGTH = 6
+BARCODE_LENGTH = 8
 
 class Warehouse(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
@@ -28,28 +30,32 @@ class Box(models.Model):
         (LARGE, 'Large'),
         (UNKNOWN, 'Unknown'),
     )
-    box_id = models.CharField(max_length=6, null=True, unique=True)
+    #set on save
+    box_id = models.CharField(max_length=BOX_ID_LENGTH, null=True, unique=True)
+    barcode = models.CharField(max_length=BARCODE_LENGTH, unique=True)
+
+    #set on box_contents save
     box_category = models.ForeignKey(Category, null=True)
 
+    #set on creation
     box_size = models.CharField(max_length=1, choices=SIZE_CHOICES, default=UNKNOWN, null=True)
     weight = models.DecimalField(max_digits=5, decimal_places=2, null=True)
-    barcode = models.CharField(max_length=8, unique=True)
     initials = models.CharField(max_length=5, default="")
+    note = models.CharField(max_length=300, null=True)
     entered_date = models.DateTimeField('date the box was entered', null=True)
-    old_box_flag = models.BooleanField(default=False)
+    warehouse = models.ForeignKey(Warehouse, null=True)
 
-    #None is no expiration
-    #TODO remove
+    #set later
+    sold = models.BooleanField(default=False)
+
+    #working with old boxes
+    old_box_flag = models.BooleanField(default=False)
     old_expiration = models.DateTimeField('expiration date', null=True)
     old_contents = models.CharField(max_length=300, null=True)
-    shipped_to = models.CharField(max_length=300, null=True)
-    reserved_for = models.CharField(max_length=300, null=True)
-
     #TODO: Ask Amy what this could mean
     box_date = models.DateTimeField('Box date', null=True)
     #TODO what does this mean?
     audit = models.IntegerField(default=1, null=True)
-    warehouse = models.ForeignKey(Warehouse, null=True)
 
     @classmethod
     def get_box(self, box_id_to_get):
@@ -75,22 +81,38 @@ class Box(models.Model):
     def create_from_csv(cls, csv):
         filtered_values = to_array_from_csv(csv)
         box = Box(box_id=filtered_values[0],
-                  box_category=Category.objects.get(letter=filtered_values[1]),
-                  box_size=filtered_values[2],
-                  weight=filtered_values[3],
-                  barcode=filtered_values[4],
+                  barcode=filtered_values[1],
+
+                  box_category=Category.objects.get(letter=filtered_values[2]),
+
+                  box_size=filtered_values[3],
+                  weight=filtered_values[4],
                   initials=filtered_values[5],
-                  entered_date=filtered_values[6],
-                  old_box_flag=filtered_values[7],
-                  old_expiration=filtered_values[8],
-                  old_contents=filtered_values[9],
-                  shipped_to=filtered_values[10],
-                  reserved_for=filtered_values[11],
-                  box_date=filtered_values[12],
-                  audit=filtered_values[13],
-                  warehouse=Warehouse.objects.get(abbreviation=filtered_values[14]))
+                  note=filtered_values[6],
+                  entered_date=filtered_values[7],
+                  warehouse=Warehouse.objects.get(abbreviation=filtered_values[8]),
+
+                  sold=filtered_values[9],
+
+                  old_box_flag=filtered_values[10],
+                  old_expiration=filtered_values[11],
+                  old_contents=filtered_values[12],
+                  box_date=filtered_values[13],
+                  audit=filtered_values[14])
         box.save()
         return box
+
+    def is_availible(self):
+        return not sold
+
+    #Any better name ideas?
+    def lock_out(self, order):
+        self.sold = True
+        order_list = self.orderbox_set.all()
+        for node in order_list:
+            if node not in order.orderbox_set.all():
+                #add logic to record the deleation
+                node.delete()
 
     def get_size_word(self):
         return self.SIZE_CHOICES[self.box_size]
@@ -115,14 +137,15 @@ class Box(models.Model):
                     if not Box.objects.filter(barcode=self.barcode).exists():
                         break #if the guess was unique stop
         except Exception as e:
+            #I think if this gets called, it will crash the webpage for trying to execute print
             print ('%s (%s)' % ('The Box did not save correctly', type(e)))
 
         if self.box_id is None:
-            self.box_id = id_generator.id_generator(4)
+            self.box_id = "%0.6d" % len(Box.objects.all())
             while True:
-                self.box_id = id_generator.id_generator(4)
                 if not Box.objects.filter(box_id=self.box_id).exists():
                     break
+                self.box_id = "%0.6d" % (int(self.box_id) + 1)
 
         super(Box, self).save(*args, **kwargs)
 
@@ -131,20 +154,24 @@ class Box(models.Model):
         Returns a string containing all the CSV information of the Box.  Used in creating database backups
         """
         values = [self.box_id,
+                  str(self.barcode),
+
                   self.box_category.letter,
+
                   self.box_size,
                   str(self.weight),
-                  str(self.barcode),
                   self.initials,
+                  self.note,
                   str(self.entered_date),
+                  self.warehouse.abbreviation,
+
+                  self.sold,
+
                   self.old_box_flag,
                   str(self.old_expiration),
                   self.old_contents,
-                  self.shipped_to,
-                  self.reserved_for,
                   str(self.box_date),
-                  str(self.audit),
-                  self.warehouse.abbreviation]
+                  str(self.audit)]
         return to_csv_from_array(values)
 
     def get_id(self):
@@ -256,15 +283,35 @@ class Contents(models.Model):
         """
         return self.item.name
 
+    def get_expiration_display(self):
+        if self.expiration is None:
+            return 'Never'
+        else:
+            formatted_expiration = self.expiration.strftime('%m/%Y')
+
+            if formatted_expiration == 'January, 1970':
+                return 'Unknown'
+            else:
+                return formatted_expiration
+
+    def get_quantity_display(self):
+        if self.quantity == 0:
+            return 'No count'
+
+        return self.quantity
+
     def get_search_results_string(self):
         return self.item.box_name.category.name + ' > ' + self.item.box_name.name + ' > ' + self.item.name + ' > Box ' + self.box_within.get_id()
 
     def save(self, *args, **kwargs):
         super(Contents, self).save(*args, **kwargs)
+
         box = self.box_within
-        item = self.item
-        box.box_category = item.box_name.category
-        box.save()
+
+        if box.box_category is None:
+            item = self.item
+            box.box_category = item.box_name.category
+            box.save()
 
     #TODO test
     def to_csv(self):
