@@ -198,6 +198,14 @@ def create_order(request, order_name, customer_name, customer_email, business_na
             ship_to.save()
 
     if order_id is False:
+        try:
+            new_order = Order.objects.get(order_number=order_name)
+        except Order.DoesNotExist:
+            new_order = None
+
+        if new_order is not None:
+            return simplejson.dumps({ 'result': False, 'message': 'An order with this name already exists.' })
+
         new_order = Order(order_number=order_name, reserved_for=customer,
             ship_to=ship_to, creation_date=datetime.today())
         new_order.save()
@@ -207,7 +215,7 @@ def create_order(request, order_name, customer_name, customer_email, business_na
         try:
             edited_order = Order.objects.get(id=order_id)
         except Order.DoesNotExist:
-            return simplejson.dumps({ 'order_number': 0 })
+            return simplejson.dumps({ 'result': False, 'message': 'This order does not exist.' })
 
         edited_order.order_number = order_name
         edited_order.reserved_for = customer
@@ -216,7 +224,7 @@ def create_order(request, order_name, customer_name, customer_email, business_na
 
         order = edited_order
 
-    return simplejson.dumps({ 'order_number': order.id })
+    return simplejson.dumps({ 'result': True, 'order_number': order.id })
 
 @dajaxice_register(method='POST')
 def change_order_status(request, order_id, order_status):
