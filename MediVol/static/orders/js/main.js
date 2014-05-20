@@ -380,8 +380,8 @@ function getSelectedBoxes(){
     for(var i=0;i<boxes.length;i++){
         if(boxes[i].check !== ''){
             selected_boxes.push(boxes[i].box_id);
-            }
         }
+    }
     return selected_boxes;
 }
 
@@ -397,7 +397,7 @@ function removeSelectedRows(){
 }
 
 function addSingleBox(response){
-    currentBoxes.length = 0;
+    clearBoxes();
 
     if (boxesInOrder.indexOf(response[0]) === -1) {
         currentBoxes.push(BoxRow.fromResponse(response));
@@ -406,7 +406,8 @@ function addSingleBox(response){
 }
 
 function setTableList(response) {
-    currentBoxes.length = 0;
+    clearBoxes();
+    
     for(var i=0;i<response.length;i++){
         if(boxesInOrder.indexOf(response[i][0]) === -1){
             currentBoxes.push(BoxRow.fromResponse(response[i]));
@@ -431,53 +432,6 @@ function checkBoxClick(row){
         box_ids = getSelectedBoxes();
 
         if (box_ids.length !== 0){
-            setSelectedBox(getSelectedBoxes().join(' , '));
-        } else {
-            setSelectedBox(false);
-        }
-    }
-}
-
-function getSelectedBoxes(){
-    var boxes = getCurrentBoxes();
-    var selected_boxes = [];
-
-    for (var i = 0; i < boxes.length; i++) {
-        if (boxes[i].check !== '') {
-            selected_boxes.push(boxes[i].box_id);
-        }
-    }
-
-    return selected_boxes;
-}
-
-function removeSelectedRows(){
-    var boxes = getCurrentBoxes();
-    var selected_rows = [];
-
-    for (var i = 0; i < boxes.length; i++){
-        if (boxes[i].check !== '') {
-            boxes.splice(i,1);
-            i--;
-        }
-    }
-}
-
-function checkBoxClick(row){
-    var boxes = getCurrentBoxes();
-
-    if (boxes[row].check === ''){
-        boxes[row].check = 'checked';
-        setSelectedBox(getSelectedBoxes().join(' , '));
-
-        if (filteredBoxes.indexOf(boxes[row]) === -1) {
-            filteredBoxes.push(currentBoxes[row]);
-        }
-    } else {
-        boxes[row].check = '';
-        box_ids = getSelectedBoxes();
-
-        if (box_ids.length !== 0) {
             setSelectedBox(getSelectedBoxes().join(' , '));
         } else {
             setSelectedBox(false);
@@ -639,6 +593,7 @@ $(document).ready(function() {
 
         // Get the list of box names for the selected category.
         Dajaxice.orders.get_box_names(getBoxNames, { 'category_name': selectedCategory });
+        Dajaxice.inventory.get_boxes_with_category(setTableList, {'category_name': selectedCategory });
         setSelectedBox(false);
     });
 
@@ -648,6 +603,7 @@ $(document).ready(function() {
 
         // Get the list of items for the selected box name.
         Dajaxice.orders.get_items(getItems, { 'box_name': selectedBoxName });
+        Dajaxice.inventory.get_boxes_with_box_name(setTableList, {'box_name' : selectedBoxName });
         setSelectedBox(false);
     });
 
