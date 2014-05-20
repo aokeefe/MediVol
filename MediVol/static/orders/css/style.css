@@ -187,6 +187,22 @@ h3 {
     padding-top: 27px !important;
 }
 
+#boxNotification {
+    position: relative;
+    height: inherit;
+    margin-bottom: 20px;
+    padding-bottom: 25px;
+}
+
+#dontShowAgain {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 0.5em;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .itemSelected b {
     background: none;
     color: #0d4414;

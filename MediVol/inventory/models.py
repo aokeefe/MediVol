@@ -102,17 +102,17 @@ class Box(models.Model):
         box.save()
         return box
 
-    def is_availible(self):
-        return not sold
-
-    #Any better name ideas?
-    def lock_out(self, order):
-        self.sold = True
+    def is_locked_out(self):
         order_list = self.orderbox_set.all()
-        for node in order_list:
-            if node not in order.orderbox_set.all():
-                #add logic to record the deleation
-                node.delete()
+
+        for order in order_list:
+            if order.locks_out_boxes():
+                return True
+
+        return False
+
+    def get_url(self):
+        return '<a href="/inventory/view_box_info/' + self.get_id() +'" target="_blank">' + self.get_id() + '</a>'
 
     def get_size_word(self):
         return self.SIZE_CHOICES[self.box_size]

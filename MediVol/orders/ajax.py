@@ -2,7 +2,7 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from datetime import datetime
 
-from orders.models import Order, OrderBox, Customer, ShippingAddress
+from orders.models import Order, OrderBox, Customer, ShippingAddress, LockedBoxNotification
 from orders import views as orderView
 from inventory.models import Box, Contents
 from catalog.models import Category, BoxName, Item
@@ -274,5 +274,19 @@ def delete_order(request, order_id):
         order_box.delete()
 
     order.delete()
+
+    return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def delete_locked_box_notifications(request, order_id):
+    try:
+        order = Order.objects.get(id=order_id)
+    except Order.DoesNotExist:
+        return simplejson.dumps({ 'result': False, 'message': 'This order does not exist.' })
+
+    locked_box_notifications = LockedBoxNotification.objects.filter(removed_from_order=order)
+
+    for locked_box_notification in locked_box_notifications:
+        locked_box_notification.delete()
 
     return simplejson.dumps({ 'result': True })
