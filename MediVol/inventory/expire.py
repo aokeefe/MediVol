@@ -4,6 +4,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
 from inventory.models import Box
 from notifications.notifier import send_message
 from datetime import datetime
+from django.contrib.auth.models import Group
 
 now = datetime.now(pytz.UTC)
 next_month = now.replace(now.year, (now.month % 12) + 1)
@@ -47,24 +48,26 @@ export.write('Boxes that have already expired:\n')
 message += ('<p>Boxes that have already expired:<ul>')
 for box in boxes_expired:
     export.write(str(box)+'\n')
-    message += ('<li>' + str(box) + '</li>')
+    message += ('<li><a href="http://inventory.intervol.org/inventory/view_box_info/' + str(box) + '">' + str(box) + '</a>' + '</li>')
 message += '</ul></p>'
 
 export.write('Boxes expiring next month:\n')
 message += ('<p>Boxes expiring next month:<ul>')
 for box in boxes_expiring_next_month:
     export.write(str(box)+'\n')
-    message += ('<li>' + str(box) + '</li>')
+    message += ('<li><a href="http://inventory.intervol.org/inventory/view_box_info/' + str(box) + '">' + str(box) + '</a>' + '</li>')
 message += '</ul></p>'
 
 export.write('\nBoxes expiring in 2 months:\n')
 message += ('<p>Boxes expiring in 2 months:<ul>')
 for box in boxes_expiring_in_2_months:
     export.write(str(box)+'\n')
-    message += ('<li>' + str(box) + '</li>')
+    message += ('<li><a href="http://inventory.intervol.org/inventory/view_box_info/' + str(box) + '">' + str(box) + '</a>' + '</li>')
 message += '</ul></p>'
 
-send_message('Automated: Monthly Expiring Boxes Update', 'sxb5828@rit.edu', 'Shun', message)
-send_message('Automated: Monthly Expiring Boxes Update', 'shunmok@me.com', 'Shun', message)
-send_message('Automated: Monthly Expiring Boxes Update', 'nothingatall544@gmail.com', 'Bill', message)
-send_message('Automated: Monthly Expiring Boxes Update', 'Mike@mikelentini.com', 'Mike', message)
+admins = Group.objects.get(name='Admin').user_set.all()
+
+for admin in admins: 
+  send_message('Automated: Monthly Expiring Boxes Update', admin.email, 'Admin', message)
+
+
