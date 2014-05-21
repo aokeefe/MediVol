@@ -67,9 +67,9 @@ class Order(models.Model):
     ORDER_STATUS = (
         (CREATED, 'Created'),
         (UNPAID, 'Unpaid For'),
+        (PAID_DEPOSIT, 'Deposit Paid'),
         (PAID, 'Paid For'),
         (SHIPPED, 'Shipped Out'),
-        (PAID_DEPOSIT, 'Deposit Paid'),
         (CANCELLED, 'Cancelled'),
     )
     order_number = models.CharField(unique=True, max_length=ORDER_NUMBER_LENGTH)
@@ -81,8 +81,36 @@ class Order(models.Model):
     order_status = models.CharField(max_length=1, choices=ORDER_STATUS, default=CREATED)
     price = models.FloatField(null=True)
 
+    def save(self, *args, **kwargs):
+        super(Order, self).save(*args, **kwargs)
+
+        self.lock_out_boxes()
+
     def __unicode__(self):
         return "Order " + str(self.order_number)
+
+    def locks_out_boxes(self):
+        return self.order_status == self.PAID or self.order_status == self.SHIPPED
+
+    def lock_out_boxes(self):
+        if not self.locks_out_boxes():
+            return
+
+        order_boxes = OrderBox.objects.filter(order_for=self)
+
+        for order_box in order_boxes:
+            other_order_boxes = order_box.box.orderbox_set.exclude(order_for=self)
+
+            for other_order_box in other_order_boxes:
+                try:
+                    notification = LockedBoxNotification.objects.get(removed_from_order=other_order_box.order_for,
+                        box=other_order_box.box)
+                except LockedBoxNotification.DoesNotExist:
+                    notification = LockedBoxNotification(removed_from_order=other_order_box.order_for,
+                        box=other_order_box.box)
+                    notification.save()
+
+                other_order_box.delete()
 
     def to_csv(self):
 
@@ -122,7 +150,7 @@ class Order(models.Model):
     def get_cost(self):
         if self.price is not None:
             return self.price
-        
+
         order_cost = 0.0
         for order_box in self.orderbox_set.all():
             order_cost = float(order_cost) + float(order_box.cost)
@@ -155,3 +183,7 @@ class OrderBox(models.Model):
                              cost=filtered_values[2])
         order_box.save()
         return order_box
+
+class LockedBoxNotification(models.Model):
+    removed_from_order = models.ForeignKey(Order)
+    box = models.ForeignKey(Box)
