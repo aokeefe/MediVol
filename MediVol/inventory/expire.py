@@ -4,6 +4,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MediVol.settings")
 from inventory.models import Box
 from notifications.notifier import send_message
 from datetime import datetime
+from django.contrib.auth.models import Group
 
 now = datetime.now(pytz.UTC)
 next_month = now.replace(now.year, (now.month % 12) + 1)
@@ -64,7 +65,9 @@ for box in boxes_expiring_in_2_months:
     message += ('<li><a href=http://107.161.21.242/inventory/view_box_info/' + str(box) + '>' + str(box) + '</a>' + '</li>')
 message += '</ul></p>'
 
-send_message('Automated: Monthly Expiring Boxes Update', 'sxb5828@rit.edu', 'Shun', message)
-#send_message('Automated: Monthly Expiring Boxes Update', 'shunmok@me.com', 'Shun', message)
-#send_message('Automated: Monthly Expiring Boxes Update', 'nothingatall544@gmail.com', 'Bill', message)
-#send_message('Automated: Monthly Expiring Boxes Update', 'Mike@mikelentini.com', 'Mike', message)
+admins = Group.objects.get(name='Admin').user_set.all()
+
+for admin in admins: 
+  send_message('Automated: Monthly Expiring Boxes Update', admin.email, 'Admin', message)
+
+
