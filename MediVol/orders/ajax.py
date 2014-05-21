@@ -300,3 +300,29 @@ def delete_locked_box_notifications(request, order_id):
         locked_box_notification.delete()
 
     return simplejson.dumps({ 'result': True })
+    
+@dajaxice_register(method='POST')
+def get_order_packing_list(request, order_id):
+    try:
+        order = Order.objects.get(id=order_id)
+    except Order.DoesNotExist:
+        return simplejson.dumps({ 'result': 'False' })
+    csv = []
+    header = '"Order Name","Box Name","Contents","Weight","Experation Date"'
+    csv.append(header)
+    
+    orderBoxs = OrderBox.objects.filter(order_for=order)
+    
+    for orderBox in orderBoxs:
+        temp = (get_csv_sting(order.order_number) + ',' + 
+                get_csv_sting(orderBox.box.get_most_populous_box_name()) + ',' + 
+                get_csv_sting(orderBox.box.get_contents_string()) + ',' + 
+                get_csv_sting(orderBox.box.weight) + ',' + 
+                get_csv_sting(orderBox.box.get_expiration_display()))
+                
+        csv.append(temp)
+            
+    return simplejson.dumps(csv)
+
+def get_csv_sting(value):
+    return '"' + str(value).replace('"', '""') + '"'
