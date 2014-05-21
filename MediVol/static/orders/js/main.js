@@ -165,7 +165,25 @@ function getBoxDetails(response) {
 * Callback for create_box AJAX call.
 */
 function createOrder(response) {
-    orderNumber = response.order_number;
+    if (response.result === true) {
+        orderNumber = response.order_number;
+
+        if ($('#shippingAddressesWrapper').html() !== '<i>no shipping addresses saved</i>' &&
+                new_shipping_address !== '') {
+            $('#shippingAddressesWrapper').append('<option value="' + new_shipping_address +
+                '" selected="selected">' + new_shipping_address + '</option>');
+        } else if (new_shipping_address !== '') {
+            $('#shippingAddressesWrapper').html('<select id="shippingAddresses"></select>');
+            $('#shippingAddresses').append('<option value="' + new_shipping_address +
+                '">' + new_shipping_address + '</option>');
+        }
+
+        $('.createButton').val('Save Order \u2192');
+
+        goForward();
+    } else if (response.result === false) {
+        $.jAlert(response.message, 'error', null);
+    }
 }
 
 /**
@@ -767,20 +785,6 @@ $(document).ready(function() {
                 'order_id': orderNumber
             }
         );
-
-        if ($('#shippingAddressesWrapper').html() !== '<i>no shipping addresses saved</i>' &&
-                new_shipping_address !== '') {
-            $('#shippingAddressesWrapper').append('<option value="' + new_shipping_address +
-                '" selected="selected">' + new_shipping_address + '</option>');
-        } else if (new_shipping_address !== '') {
-            $('#shippingAddressesWrapper').html('<select id="shippingAddresses"></select>');
-            $('#shippingAddresses').append('<option value="' + new_shipping_address +
-                '">' + new_shipping_address + '</option>');
-        }
-
-        $('.createButton').val('Save Order \u2192');
-
-        goForward();
     });
 
     // Set the 'on click' event for creating a box.
