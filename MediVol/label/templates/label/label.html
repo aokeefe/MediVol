@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html> 
-
 <head> 
-<style>
-  h1 p h3 { 
-    margin: 0;
-    padding: 0;
-    display: inline;
-  }
-</style>
+    <style>
+        h1 p h3 { 
+        margin: 0;
+        padding: 0;
+        display: inline;
+        }
+    </style>
 </head>
 
 <title>Box Label for {{box.box_id}} </title>
 
 <body> 
-<h1>{{box.box_category.letter}}</h1> 
+    <h1>{{box.box_category.letter}}</h1> 
 
-<h1>{{box.box_id}}</h1>
+    <h1>{{box.box_id}}</h1>
 
-<h3>Exp: {{box.get_expiration_display}}</h3>
+    <h3>Exp: {{box.get_expiration_display}}</h3>
 
-<p>{{box.box_category.name}}</p>
+    <p>{{box.box_category.name}}</p>
 
-<p>Weight: {{box.weight}} lbs. </p>
+    <p>Weight: {{box.weight}} lbs. </p>
 
-<p>Contents: <br/> 
-{%for box_content in box_contents %} 
-  {{ box_content }}
-{% endfor %} </p>
-<p>{{box_barcode|escape|safe}}</p> 
+    <p>Contents: <br/> 
+    {%for box_content in box_contents %} 
+        {{ box_content }}
+    {% endfor %} </p>
+    
+    <p>{{box_barcode|escape|safe}}</p> 
 
 </body>
-
 </html>
