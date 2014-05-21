@@ -9,13 +9,13 @@
   }
 </style>
 </head>
-<title>Box Label for {{box_id}} </title>
+<title>Box Label for {{box.box_id}} </title>
 <body> 
-<p><h1>{{box_category_letter}}</h1> </p>
-<p><h1>{{box_id}}</h1></p>
-<p><h3>Exp: {{box_expiration}}</h3></p>
-<p>{{box_category_name}}</p>
-<p>Weight: {{box_weight}} lbs. </p>
+<p><h1>{{box.box_category.letter}}</h1> </p>
+<p><h1>{{box.box_id}}</h1></p>
+<p><h3>Exp: {{box.get_expiration_display}}</h3></p>
+<p>{{box.box_category.name}}</p>
+<p>Weight: {{box.weight}} lbs. </p>
 <p>Contents: <br/> 
 {%for box_content in box_contents %} 
   {{ box_content }}
