@@ -7,37 +7,20 @@ from datetime import datetime
 from django.contrib.auth.models import Group
 
 now = datetime.now(pytz.UTC)
-next_month = now.replace(now.year, (now.month % 12) + 1)
-in_two_months = now.replace(now.year, (next_month.month % 12) + 1)
+in_six_months = now.replace(now.year, (now.month + 6) % 12)
 NO_EXP = datetime(1970,1,1,0,0,0,0,pytz.UTC)
 
-boxes_with_no_expiration = []
-boxes_unknown_expiration = []
 boxes_expired = []
-boxes_expiring_next_month = []
-boxes_expiring_in_2_months =[]
-boxes_not_expiring = []
+boxes_expiring_in_6_months = []
 
 for box in Box.objects.all():
     expiration = box.get_expiration()
 
-    if expiration is None:
-        boxes_with_no_expiration.append(box)
+    if expiration < now:
+        boxes_expired.append(box))
 
-    elif expiration == NO_EXP:
-        boxes_unknown_expiration.append(box)
-
-    elif expiration < now:
-        boxes_expired.append(box)
-
-    elif expiration < next_month:
-        boxes_expiring_next_month.append(box)
-
-    elif expiration < in_two_months:
-        boxes_expiring_in_2_months.append(box)
-
-    else:
-        boxes_not_expiring.append(box)
+    elif expiration < in_six_months:
+        boxes_expiring_in_6_months.append(box)
 
 #maintains a record on the server
 export = file(('/var/www/MediVol/records/'+str(now)).replace(' ', '_').replace(':', '_').replace('.', '_')+'.txt', 'w')
@@ -51,16 +34,9 @@ for box in boxes_expired:
     message += ('<li><a href="http://inventory.intervol.org/inventory/view_box_info/' + str(box) + '">' + str(box) + '</a>' + '</li>')
 message += '</ul></p>'
 
-export.write('Boxes expiring next month:\n')
-message += ('<p>Boxes expiring next month:<ul>')
-for box in boxes_expiring_next_month:
-    export.write(str(box)+'\n')
-    message += ('<li><a href="http://inventory.intervol.org/inventory/view_box_info/' + str(box) + '">' + str(box) + '</a>' + '</li>')
-message += '</ul></p>'
-
-export.write('\nBoxes expiring in 2 months:\n')
-message += ('<p>Boxes expiring in 2 months:<ul>')
-for box in boxes_expiring_in_2_months:
+export.write('\nBoxes expiring in 6 months:\n')
+message += ('<p>Boxes expiring in 6 months:<ul>')
+for box in boxes_expiring_in_6_months:
     export.write(str(box)+'\n')
     message += ('<li><a href="http://inventory.intervol.org/inventory/view_box_info/' + str(box) + '">' + str(box) + '</a>' + '</li>')
 message += '</ul></p>'
