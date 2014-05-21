@@ -290,12 +290,15 @@ def get_order_packing_list(request, order_id):
     orderBoxs = OrderBox.objects.filter(order_for=order)
     
     for orderBox in orderBoxs:
-        temp = ('"' + str(order.order_number) + '",' +
-                '"' + str(orderBox.box.get_most_populous_box_name()) + '",' +
-                '"' + orderBox.box.get_contents_string() + '",' +
-                '"' + str(orderBox.box.weight) + '",' +
-                '"' + str(orderBox.box.get_expiration_display()) + '"')
+        temp = (get_csv_sting(order.order_number) + ',' + 
+                get_csv_sting(orderBox.box.get_most_populous_box_name()) + ',' + 
+                get_csv_sting(orderBox.box.get_contents_string()) + ',' + 
+                get_csv_sting(orderBox.box.weight) + ',' + 
+                get_csv_sting(orderBox.box.get_expiration_display()))
                 
         csv.append(temp)
             
     return simplejson.dumps(csv)
+
+def get_csv_sting(value):
+    return '"' + str(value).replace('"', '""') + '"'
