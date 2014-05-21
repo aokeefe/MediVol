@@ -19,7 +19,7 @@ if len(Warehouse.objects.all()) == 0:
     riedman = Warehouse(name='Riedman', abbreviation='RIED', address='100 Kings Highway S', is_default=True)
     riedman.save()
 
-    clinton = Warehouse(name='Clinton', abbreviation='CLIN', address='123 Clinton Way')
+    clinton = Warehouse(name='Clinton', abbreviation='CLIN', address='1600 Clinton Ave N')
     clinton.save()
 
 # If we made the Admin group, we probably made all the groups and users already
