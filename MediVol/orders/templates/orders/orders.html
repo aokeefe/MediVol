@@ -32,8 +32,8 @@
                         <td>{{ order.get_order_status_display }}</td>
                         <td>{{ order.reserved_for.contact_name }}</td>
                         <td>{{ order.get_creation_date_display }}</td>
-                        <td>${{ order.get_cost }}</td>
-                        <td>{{ order.get_weight }} lbs</td>
+                        <td>${{ order.get_cost|floatformat:'2' }}</td>
+                        <td>{{ order.get_weight|floatformat:'1' }} lbs</td>
                     </tr>
                     {% endfor %}
                 </tbody>
