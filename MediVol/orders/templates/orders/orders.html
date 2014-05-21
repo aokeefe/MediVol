@@ -33,7 +33,7 @@
                         <td>{{ order.reserved_for.contact_name }}</td>
                         <td>{{ order.get_creation_date_display }}</td>
                         <td>${{ order.get_cost|floatformat:'2' }}</td>
-                        <td>{{ order.get_weightfloatformat:'1' }} lbs</td>
+                        <td>{{ order.get_weight|floatformat:'1' }} lbs</td>
                     </tr>
                     {% endfor %}
                 </tbody>
