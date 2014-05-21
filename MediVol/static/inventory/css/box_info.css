@@ -24,8 +24,9 @@
     width: 35%;
 }
 
-#print_label, #delete_box {
+#print_label, #delete_box, #edit_box {
     float: right;
+    width: 175px;
 }
 
 .attributeLabel {
