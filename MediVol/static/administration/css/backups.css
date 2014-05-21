@@ -19,10 +19,9 @@
     margin-bottom: 20px;
 }
 
-.downloadBackupLink {
-
-}
-
-.restoreBackupLink {
-
+#restoreCustomForm {
+    width: 47%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.5em;
 }

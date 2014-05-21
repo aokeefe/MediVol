@@ -26,7 +26,7 @@
 
     <hr />
 
-    <h2>Restore Custom Backup</h2>
+    <h2>Upload and Restore Backup</h2>
     <form id='restoreCustomForm' action='/administration/backups/' method='post' enctype='multipart/form-data'>
         {% csrf_token %}
         <input id='customField' name='customField' type='file' />
