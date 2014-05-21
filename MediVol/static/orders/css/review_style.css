@@ -47,8 +47,9 @@
     margin-right: 7px;
 }
 
-.editOrderButton, .deleteOrderButton {
+.editOrderButton, .deleteOrderButton, #downloadOrder {
     font-size: 2em;
+    width: 355px;
 }
 
 #orderStatus {
