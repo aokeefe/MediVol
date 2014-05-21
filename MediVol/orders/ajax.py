@@ -36,12 +36,15 @@ def get_items(request, box_name):
 
 @dajaxice_register(method='GET')
 def get_search_results(request, query, for_inventory=False):
-    results_array = Searcher.search(query=query, models=[ Category, BoxName, Item, Contents ], as_objects=True)
+    results_array = Searcher.search(query=query, models=[ Category, BoxName, Item, Contents, Box ], as_objects=True)
     results_strings = []
 
     for result in results_array:
         if isinstance(result, Contents):
             if for_inventory or not for_inventory and not result.box_within.is_locked_out():
+                results_strings.append(result.get_search_results_string())
+        elif isinstance(result, Box):
+            if for_inventory or not for_inventory and not result.is_locked_out():
                 results_strings.append(result.get_search_results_string())
         else:
             results_strings.append(result.get_search_results_string())
@@ -54,12 +57,6 @@ def get_search_results(request, query, for_inventory=False):
     except Box.DoesNotExist as e:
         # shrug
         box = None
-
-    boxes = Searcher.search_box_ids(query)
-
-    for box in boxes:
-        if for_inventory or not for_inventory and not box.is_locked_out():
-            results_strings.insert(0, box.get_search_results_string())
 
     return simplejson.dumps(results_strings)
 

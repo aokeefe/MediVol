@@ -5,6 +5,7 @@ class BoxIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     box_id = indexes.CharField(model_attr='box_id')
     barcode = indexes.CharField(model_attr='barcode')
+    old_contents = indexes.CharField(model_attr='old_contents', null=True)
 
     content_auto = indexes.EdgeNgramField(use_template=True)
 
