@@ -10,11 +10,11 @@ for line in file:
     line_array = line.split(' ')
     CONFIG[line_array[0].strip()] = line_array[1].strip()
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ("Amy O'Keefe", 'amy.okeefe@intervol.org'),
 )
 
 MANAGERS = ADMINS
@@ -100,7 +100,6 @@ STATICFILES_FINDERS = (
 
 # Make this unique, and don't share it with anybody.
 # TODO: move this out of the web directory
-#SECRET_KEY = 'a!mvlw&*@-im+*ywrhv7)a*#vilu59y26+2a%=592i5cm%wc=_'
 SECRET_KEY = CONFIG['DJANGO_KEY']
 
 TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
