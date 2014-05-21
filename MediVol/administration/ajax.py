@@ -1,3 +1,4 @@
+from django.db import connection
 from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from inventory.models import Warehouse
@@ -271,3 +272,14 @@ def download_sql(request, filename):
         sql_contents = backup_file.read()
 
     return simplejson.dumps({ 'result': True, 'sql_contents': sql_contents, 'filename': filename })
+
+@dajaxice_register(method='POST')
+def restore_backup(request, filename):
+    cursor = connection.cursor()
+
+    with open('/var/backups/' + filename, 'r') as backup_file:
+        sql = backup_file.read()
+
+    cursor.execute(sql)
+
+    return simplejson.dumps({ 'result': True })

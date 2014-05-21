@@ -1,3 +1,4 @@
+from django.db import connection
 from django.contrib import auth
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -47,12 +48,22 @@ def manage_users(request):
 @login_required
 @user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
 def manage_backups(request):
+    custom_restore_result = None
+
+    if request.method == 'POST':
+        sql = request.FILES['customField'].read()
+        cursor = connection.cursor()
+        cursor.execute(sql)
+        custom_restore_result = True
+
     backup_path = '/var/backups'
-    
-    backup_files = [ f for f in listdir(backup_path) if isfile(join(backup_path,f)) ]
+
+    # don't ask
+    backup_files = [ f for f in listdir(backup_path) if isfile(join(backup_path,f)) and join(backup_path,f).endswith('.sql') ]
 
     context = {
-        'backup_files': backup_files
+        'backup_files': backup_files,
+        'custom_restore_result': custom_restore_result
     }
 
     return render(request, 'administration/manage_backups.html', context)
