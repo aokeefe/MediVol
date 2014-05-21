@@ -76,7 +76,7 @@ $(document).ready(function() {
                     // It is an array of relevant search results which we pass
                     // to the 'response' callback.
                     response(returned);
-                }, { 'query': request.term });
+                }, { 'query': request.term, 'for_inventory': true });
             },
             // This is just a setting so that the autocomplete plugin doesn't
             // add any messages next to our search field.

@@ -120,7 +120,7 @@ h3 {
 }
 
 #stepOneFields {
-    width: 75%;
+    width: 100% !important;
     margin-left: auto;
     margin-right: auto;
 }
@@ -185,6 +185,22 @@ h3 {
     border: 1px solid #2ad641;
     color: #0f5018;
     padding-top: 27px !important;
+}
+
+#boxNotification {
+    position: relative;
+    height: inherit;
+    margin-bottom: 20px;
+    padding-bottom: 25px;
+}
+
+#dontShowAgain {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 0.5em;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .itemSelected b {

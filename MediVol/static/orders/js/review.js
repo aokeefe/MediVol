@@ -35,6 +35,19 @@ function deleteOrder() {
     );
 }
 
+function dontShowAgain() {
+    Dajaxice.orders.delete_locked_box_notifications(
+        function(response) {
+            if (response.result === true) {
+                $('#boxNotification').slideUp();
+            } else if (response.result === false) {
+                $.jAlert(response.message, 'error', null);
+            }
+        },
+        { 'order_id': orderId }
+    );
+}
+
 $(document).ready(function() {
     $('#orderStatus').change(function() {
         var statusChar = $('#orderStatus option:selected').val();
@@ -50,4 +63,6 @@ $(document).ready(function() {
     });
 
     $('.deleteOrderButton').click(deleteOrder);
+
+    $('#dontShowAgain').click(dontShowAgain);
 });
