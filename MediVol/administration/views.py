@@ -9,6 +9,9 @@ from inventory.models import Warehouse
 from catalog.models import Category, BoxName
 from administration.models import ResetCode
 
+from os import listdir
+from os.path import isfile, join
+
 @login_required
 def redirect(request):
     user_group = request.user.groups.all()[0].name
@@ -44,7 +47,15 @@ def manage_users(request):
 @login_required
 @user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
 def manage_backups(request):
-    return render(request, 'administration/manage_backups.html')
+    backup_path = '/var/backups'
+    
+    backup_files = [ f for f in listdir(backup_path) if isfile(join(backup_path,f)) ]
+
+    context = {
+        'backup_files': backup_files
+    }
+
+    return render(request, 'administration/manage_backups.html', context)
 
 @login_required
 @user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')

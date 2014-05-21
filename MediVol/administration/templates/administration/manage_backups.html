@@ -6,4 +6,16 @@
 
 {% block body %}
     <h2>Manage Database Backups</h2>
+
+    <p>Here are the last 30 days of backups. All files are in "day-month-year" format.</p>
+
+    <ul>
+        {% for backup_file in backup_files %}
+            <li><a href='javascript:void(0)' class='backupLink'>{{ backup_file }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block javascript %}
+    <script type='text/javascript' src='{{ STATIC_URL }}administration/js/backups.js'></script>
 {% endblock %}

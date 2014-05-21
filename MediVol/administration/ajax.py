@@ -257,8 +257,17 @@ def add_box_name(request, letter, name):
 
     if box_name is not None:
         return simplejson.dumps({ 'result': False, 'message': 'A box name with this name in this category already exists.' })
-    
+
     box_name = BoxName(category=category, name=name, can_expire=True, can_count=True)
     box_name.save()
 
     return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def download_sql(request, filename):
+    sql_contents = ''
+
+    with open('/var/backups/' + filename, 'r') as backup_file:
+        sql_contents = backup_file.read()
+
+    return simplejson.dumps({ 'result': True, 'sql_contents': sql_contents, 'filename': filename })
