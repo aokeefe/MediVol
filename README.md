@@ -30,3 +30,4 @@ Important Urls
 * localhost:8888/inventory/view_box_info/barcode/<barcode> - View a box info by its barcode
 * localhost:8888/orders/create - Orders create
 * localhost:8888/orders/review/<order_number> - Review Order page
+* localhost:8888/lable/create/<box_barcode> - One time page for printing labels

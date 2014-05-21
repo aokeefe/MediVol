@@ -3,13 +3,15 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from administration.UserTests import UserTests
 
 from catalog.models import Category
-from orders.models import Order, OrderBox
+from orders.models import Order, OrderBox, LockedBoxNotification
 from inventory.models import Box
 
 @login_required(login_url='/login/')
 @user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
 def orders_home(request):
-    context = { 'orders': Order.objects.all() }
+    choices = Order._meta.get_field('order_status').choices
+    orders = Order.objects.exclude(order_status='F').exclude(order_status='S')
+    context = { 'orders': orders, 'statuses': choices}
 
     return render(request, 'orders/orders.html', context)
 
@@ -83,11 +85,23 @@ def order_review(request, orderid):
 
     boxes = []
     box_orderbox_pair = []
+    locked_boxes = LockedBoxNotification.objects.filter(removed_from_order=order)
+
+    if locked_boxes.count() == 0:
+        locked_boxes = None
+    else:
+        locked_box_strings = []
+
+        for locked_box in locked_boxes:
+            locked_box_strings.append(locked_box.box.get_url())
+
+        locked_boxes = ', '.join(locked_box_strings)
 
     response = {
         'order_boxes': OrderBox.objects.filter(order_for=order),
         'order': order,
-        'order_statuses': Order.ORDER_STATUS
+        'order_statuses': Order.ORDER_STATUS,
+        'locked_boxes': locked_boxes
     }
 
     return render(request, 'orders/review_order.html', response)

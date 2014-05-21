@@ -35,6 +35,19 @@ function deleteOrder() {
     );
 }
 
+function dontShowAgain() {
+    Dajaxice.orders.delete_locked_box_notifications(
+        function(response) {
+            if (response.result === true) {
+                $('#boxNotification').slideUp();
+            } else if (response.result === false) {
+                $.jAlert(response.message, 'error', null);
+            }
+        },
+        { 'order_id': orderId }
+    );
+}
+
 function downloadCSV(response){
     var csvString = response.join("\r\n");
     var a = document.createElement('a');
@@ -61,6 +74,8 @@ $(document).ready(function() {
     });
 
     $('.deleteOrderButton').click(deleteOrder);
+
+    $('#dontShowAgain').click(dontShowAgain);
     
     $('#downloadOrder').click(function() {
         Dajaxice.orders.get_order_packing_list(downloadCSV, { 'order_id': orderId });

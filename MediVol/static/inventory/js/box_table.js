@@ -34,7 +34,7 @@ var currentBoxes = [];
 var filteredBoxes = [];
 var currentSort = '';
 var currentPage = 0;
-var maxPerPage = $('#max_per_page option:selected').text();
+var maxPerPage = Number($('#max_per_page option:selected').text());
 var filtered = false;
 
 function setWarehouses(response){
@@ -73,6 +73,13 @@ BoxRow.fromResponse = function(response) {
     );
 };
 
+
+function clearBoxes() {
+    currentBoxes.length = 0;
+    filteredBoxes.length = 0;
+    filtered = false;
+}
+
 function getCurrentBoxes() {
     if (filtered) {
         return filteredBoxes;
@@ -82,15 +89,14 @@ function getCurrentBoxes() {
 }
 
 function addSingleBox(response){
-    currentBoxes.length = 0;
-
+    clearBoxes();
     currentBoxes.push(BoxRow.fromResponse(response));
 
     showTable();
 }
 
 function setTableList(response) {
-    currentBoxes.length = 0;
+    clearBoxes();
 
     for (var i = 0; i < response.length; i++) {
         currentBoxes.push(BoxRow.fromResponse(response[i]));
@@ -209,7 +215,7 @@ function fillTable(boxes) {
     $('#boxes_found').append('<tbody id="boxes_body"></tbody>');
 
     if(boxes.length === 0) {
-        $('#boxes_body').append(BLANK_ROW);
+        $('#boxes_body').append(BLANK_BOX_ROW);
     } else {
         for (var i = 0; i < boxes.length; i++) {
             var order = false;
@@ -263,7 +269,7 @@ $(document).ready(function() {
     Dajaxice.inventory.get_warehouse_abbreviations(setWarehouses);
 
     $('#max_per_page').change(function() {
-        maxPerPage = $('#max_per_page option:selected').text();
+        maxPerPage = Number($('#max_per_page option:selected').text());
         showTable();
     });
 

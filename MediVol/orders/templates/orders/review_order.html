@@ -12,6 +12,15 @@
 {% block body %}
     <h2>{{ order.order_number }}</h2>
 
+    {% if locked_boxes != None %}
+        <div id='boxNotification' class='noItemSelected'>
+            <div id='dontShowAgain'>Don't show again</div>
+            The following boxes are no longer available to this order:
+
+            {{ locked_boxes|safe }}
+        </div>
+    {% endif %}
+
     <div id='customerInfoWrapper'>
         <p class='contactName'>{{ order.reserved_for.contact_name }}</p>
         <p class='businessName'>{{ order.reserved_for.business_name }}</p>

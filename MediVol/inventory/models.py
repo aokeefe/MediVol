@@ -45,9 +45,6 @@ class Box(models.Model):
     entered_date = models.DateTimeField('date the box was entered', null=True)
     warehouse = models.ForeignKey(Warehouse, null=True)
 
-    #set later
-    sold = models.BooleanField(default=False)
-
     #working with old boxes
     old_box_flag = models.BooleanField(default=False)
     old_expiration = models.DateTimeField('expiration date', null=True)
@@ -92,8 +89,6 @@ class Box(models.Model):
                   entered_date=filtered_values[7],
                   warehouse=Warehouse.objects.get(abbreviation=filtered_values[8]),
 
-                  sold=filtered_values[9],
-
                   old_box_flag=filtered_values[10],
                   old_expiration=filtered_values[11],
                   old_contents=filtered_values[12],
@@ -102,17 +97,17 @@ class Box(models.Model):
         box.save()
         return box
 
-    def is_availible(self):
-        return not sold
+    def is_locked_out(self):
+        orderbox_list = self.orderbox_set.all()
 
-    #Any better name ideas?
-    def lock_out(self, order):
-        self.sold = True
-        order_list = self.orderbox_set.all()
-        for node in order_list:
-            if node not in order.orderbox_set.all():
-                #add logic to record the deleation
-                node.delete()
+        for orderbox in orderbox_list:
+            if orderbox.order_for.locks_out_boxes():
+                return True
+
+        return False
+
+    def get_url(self):
+        return '<a href="/inventory/view_box_info/' + self.get_id() +'" target="_blank">' + self.get_id() + '</a>'
 
     def get_size_word(self):
         return self.SIZE_CHOICES[self.box_size]
@@ -164,8 +159,6 @@ class Box(models.Model):
                   self.note,
                   str(self.entered_date),
                   self.warehouse.abbreviation,
-
-                  self.sold,
 
                   self.old_box_flag,
                   str(self.old_expiration),
@@ -229,7 +222,10 @@ class Box(models.Model):
                 return formatted_expiration
 
     def get_search_results_string(self):
-        return 'Box ' + self.get_id()
+        if self.old_box_flag:
+            return 'Box ' + self.get_id() + ' (Old Box. Contents: "' + self.old_contents + '")'
+        else:
+            return 'Box ' + self.get_id()
 
     def get_contents_string(self, with_links=False):
         if self.old_contents is None:

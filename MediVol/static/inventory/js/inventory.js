@@ -52,7 +52,6 @@ function getItems(response) {
 
 $(document).ready(function() {
     // This sets up the google-style autocomplete field.
-    // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
         {
             autoFocus: true,
@@ -76,7 +75,7 @@ $(document).ready(function() {
                     // It is an array of relevant search results which we pass
                     // to the 'response' callback.
                     response(returned);
-                }, { 'query': request.term });
+                }, { 'query': request.term, 'for_inventory': true });
             },
             // This is just a setting so that the autocomplete plugin doesn't
             // add any messages next to our search field.
@@ -157,6 +156,10 @@ $(document).ready(function() {
 
         // Get the list of box names for the selected category.
         Dajaxice.orders.get_box_names(getBoxNames, { 'category_name': selectedCategory });
+
+        if (boxNameToChoose === '' && itemToChoose === '') {
+            Dajaxice.inventory.get_boxes_with_category(setTableList, {'category_name': selectedCategory });
+        }
     });
 
     // Set the 'on change' event for the box names list.
@@ -165,6 +168,10 @@ $(document).ready(function() {
 
         // Get the list of items for the selected box name.
         Dajaxice.orders.get_items(getItems, { 'box_name': selectedBoxName });
+
+        if (itemToChoose === '') {
+            Dajaxice.inventory.get_boxes_with_box_name(setTableList, {'box_name' : selectedBoxName });
+        }
     });
 
     // Set the 'on change' event for the items list.
