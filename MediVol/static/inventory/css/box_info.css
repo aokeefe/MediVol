@@ -43,6 +43,10 @@
     width: 50%;
 }
 
+.fullWidth {
+    width: 100%;
+}
+
 #warehouse {
     font-size: 1em;
 }
