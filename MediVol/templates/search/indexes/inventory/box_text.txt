@@ -1,2 +1,5 @@
 {{ object.box_id }}
 {{ object.barcode }}
+{% if object.old_box_flag and object.old_contents != None %}
+    {{ object.old_contents }}
+{% endif %}
