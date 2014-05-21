@@ -59,7 +59,7 @@ class BoxLabel(Drawing):
     """
     def get_image(self):
         data = b64encode(renderPM.drawToString(self, fmt = 'PNG'))
-        return '<img src="data:image/png;base64,{0}">'.format(data)
+        return '<img src="data:image/png;base64,{0}"/>'.format(data)
 
 """
 Used to get code128 type barcodes, text_vale is barcode string, width, height, and fontSize defalt to values that work 
@@ -77,7 +77,7 @@ class BarcodeGen(Drawing):
     """
     def get_image(self):
         data = b64encode(renderPM.drawToString(self, fmt = 'PNG'))
-        return '<img src="data:image/png;base64,{0}">'.format(data)
+        return "<img src='data:image/png;base64,{0}'>".format(data) 
     
     """
     Saves barcode to filesystem

@@ -38,4 +38,7 @@ urlpatterns = patterns('',
 
     #Routing for Catalog
     url(r'^catalog/', include('catalog.urls')),
+
+    #Routing for Labels 
+    url(r'^label/', include('label.urls')),
 )
