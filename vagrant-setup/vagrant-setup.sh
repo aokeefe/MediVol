@@ -14,11 +14,16 @@ sudo apt-get install vim -y;
 printf "\nInstalling apache2...";
 sudo apt-get install apache2 -y;
 
-printf "\nInstalling apache python mod..."; 
-sudo apt-get install libapache2-mod-wsgi -y; 
+printf "\nInstalling apache python mod...";
+sudo apt-get install libapache2-mod-wsgi -y;
 
 printf "\nEnabling ssl on apache...";
-sudo a2enmod ssl; 
+sudo a2enmod ssl;
+
+if [ -f /var/config.txt ];
+then
+sudo cp /var/www/config.txt /var/config.txt;
+fi
 
 if [ -f /etc/apache2/sites-available/default ];
 then
@@ -43,7 +48,7 @@ sudo service apache2 reload;
 fi
 
 printf "\nRestarting apache...";
-sudo service apache2 restart; 
+sudo service apache2 restart;
 
 printf "\nInstalling php5...";
 sudo apt-get install php5 -y;
