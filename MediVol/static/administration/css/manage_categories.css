@@ -1,0 +1,52 @@
+#categories {
+    margin-bottom: 50px;
+}
+
+.letterColumn, .letterInput {
+    width: 75px;
+}
+
+.letterInput {
+    text-align: center;
+}
+
+.nameInput {
+    width: 100%;
+    text-align: center;
+}
+
+.deleteColumn {
+    width: 80px;
+}
+
+.saveColumn {
+    width: 130px;
+    border: none;
+}
+
+#addCategoryWrapper {
+    margin-top: 40px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.addCategoryField {
+    margin-bottom: 10px;
+}
+
+.addCategoryField .label {
+    width: 33%;
+    min-width: 120px;
+}
+
+.addCategoryField .textField {
+    width: 65%;
+}
+
+#addCategory {
+    float: right;
+    font-size: 1.5em;
+    margin-right: 8px;
+}

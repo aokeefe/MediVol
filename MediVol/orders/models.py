@@ -4,7 +4,7 @@ from inventory.models import Box
 from import_export.to_csv import to_csv_from_array, to_array_from_csv
 from MediVol import id_generator
 
-ORDER_number_LENGTH = 5
+ORDER_NUMBER_LENGTH = 200
 
 class Customer(models.Model):
     contact_id = models.CharField(max_length=40, unique=True)
@@ -38,7 +38,7 @@ class Customer(models.Model):
         return customer
 
     def save(self, *args, **kwargs):
-        if self.contact_id is None: 
+        if self.contact_id is None:
             self.contact_id=str(uuid.uuid4())
         elif self.contact_id == '':
             self.contact_id=str(uuid.uuid4())
@@ -72,7 +72,7 @@ class Order(models.Model):
         (PAID_DEPOSIT, 'Deposit Paid'),
         (CANCELLED, 'Cancelled'),
     )
-    order_number = models.CharField(unique=True, max_length=ORDER_number_LENGTH)
+    order_number = models.CharField(unique=True, max_length=ORDER_NUMBER_LENGTH)
     reserved_for = models.ForeignKey(Customer, null=True)
     paid_for = models.BooleanField(default=False)
     shipped = models.BooleanField(default=False)
@@ -120,6 +120,9 @@ class Order(models.Model):
         return ("%.1f" % order_weight)
 
     def get_cost(self):
+        if self.price is not None:
+            return self.price
+        
         order_cost = 0.0
         for order_box in self.orderbox_set.all():
             order_cost = float(order_cost) + float(order_box.cost)
@@ -130,22 +133,13 @@ class Order(models.Model):
         creation_array = creation_date.split('-')
         return creation_array[1] + '/' + creation_array[2] + '/' + creation_array[0]
 
-    def save(self, *args, **kwargs):
-        if self.order_number is None:
-            while True:
-                self.order_number = id_generator.id_generator(ORDER_number_LENGTH)
-                if not Order.objects.filter(order_number=self.order_number).exists():
-                    break
-
-        super(Order, self).save(*args, **kwargs)
-
 class OrderBox(models.Model):
     order_for = models.ForeignKey(Order)
     box = models.ForeignKey(Box)
     cost = models.FloatField(default=0.0)
 
     def __unicode__(self):
-        return str(self.box) + " in order " + str(self.order_for)
+        return str(self.box) + " in " + str(self.order_for)
 
     def to_csv(self):
         values = [self.order_for.order_number,

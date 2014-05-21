@@ -4,19 +4,20 @@
     {% if order_id == 0 %}
         <title>Intervol | Create Order</title>
     {% else %}
-        <title>Intervol | Edit Order {{ order_id }}</title>
+        <title>Intervol | Edit {{ order.order_number }}</title>
     {% endif %}
 {% endblock %}
 
 {% block styles %}
     <link rel='stylesheet' href='{{ STATIC_URL }}orders/css/style.css' />
+    <link rel='stylesheet' href='{{ STATIC_URL }}inventory/css/styles.css' />
 {% endblock %}
 
 {% block body %}
     {% if order_id == 0 %}
         <h2>Create Order - Step <span id='stepNumber'>{{ step_num }}</span>/2</h2>
     {% else %}
-        <h2>Edit Order {{ order_id }} - Step <span id='stepNumber'>{{ step_num }}</span>/2</h2>
+        <h2>Edit {{ order.order_number }} - Step <span id='stepNumber'>{{ step_num }}</span>/2</h2>
     {% endif %}
 
     {% if step_num == 1 %}
@@ -34,6 +35,23 @@
 
                 <div class='stepTwoFieldWrapper requiredText'>
                     *required
+                </div>
+
+                <div class='clear'></div>
+            </div>
+
+            <div class='stepTwoField'>
+                <div class='label'>
+                    Order Name <span class='requiredText'>*</span>
+                </div>
+
+                <div class='stepTwoFieldWrapper'>
+                    {% if order_id == 0 %}
+                        <input type='text' id='order_name' name='order_name' class='textField' />
+                    {% else %}
+                        <input type='text' id='order_name' name='order_name' class='textField'
+                             value='{{ order.order_number }}' />
+                    {% endif %}
                 </div>
 
                 <div class='clear'></div>
@@ -163,7 +181,7 @@
     </div>
 
     {% if step_num == 2 %}
-        <div id='stepTwo'>
+        <div id='stepTwo' style='display:block'>
     {% else %}
         <div id='stepTwo' style='display:none'>
     {% endif %}
@@ -211,7 +229,7 @@
             <div id='tableWrapper'>
                 <table id='boxes_found'>
                     <tr id='table_header'>
-                        <td></td>
+                        <td class='tagColumn'></td>
                         <td id='idHeader'>Box ID</td>
                         <td id='sizeHeader'>Size</td>
                         <td id='weightHeader'>Weight</td>
@@ -222,7 +240,7 @@
                     </tr>
                     <tbody id="boxes_body">
                         <tr id='placeholder_row'>
-                            <td></td>
+                            <td class='tagColumn'></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -234,20 +252,28 @@
                     </tbody>
                 </table>
             </div>
+
             <div id='buttons'>
-                <button type="button" id="previous_button">previous</button>
-                <div id="page_numbers">Page 0 of 0</div>
-                <button type="button" id="next_button">next</button>
-                <button type="button" id="filter_button">filter</button>
-                <button type="button" id="unfilter_button">unfilter</button>
-                <select id="max_per_page">
-                    <option>10</option>
-                    <option>25</option>
-                    <option>50</option>
-                </select>
+                <div id='buttonsLeft'>
+                    <button type='button' id='previous_button' class='button'>&larr; Previous</button>
+                    <div id='page_numbers'>Page 0 of 0</div>
+                    <button type='button' id='next_button' class='button'>Next &rarr;</button><br /><br />
+
+                    <label for='max_per_page'>Boxes Per Page: </label>
+                    <select id='max_per_page'>
+                        <option>10</option>
+                        <option>25</option>
+                        <option>50</option>
+                    </select>
+                </div>
+
+                <div id='buttonsRight'>
+                    <button type='button' id='filter_button' class='button'>Filter</button>
+                    <button type='button' id='unfilter_button' class='button'>Unfilter</button>
+                </div>
+
+                <div class='clear'></div>
             </div>
-
-
 
             <div id='itemSelectedMessage' class='noItemSelected'>
                 Please select a box.
@@ -346,8 +372,8 @@
                     {% if order_id == 0%}
                         <input type='text' id='price' class='textField' />
                     {% else %}
-                        {% if total_price != custom_price %}
-                            <input type='text' id='price' class='textField' value="{{ custom_price|floatformat:'2' }}" />
+                        {% if order.price != None %}
+                            <input type='text' id='price' class='textField' value="{{ order.price|floatformat:'2' }}" />
                         {% else %}
                             <input type='text' id='price' class='textField' />
                         {% endif %}
@@ -370,6 +396,7 @@
     <script type='text/javascript'>
         var orderNumber = {{ order_id }};
         var stepNum = {{ step_num }};
+        var groupName = '{{ user.groups.all.0.name }}';
     </script>
 
     <script type='text/javascript' src='{{ STATIC_URL }}inventory/js/box_table.js'></script>

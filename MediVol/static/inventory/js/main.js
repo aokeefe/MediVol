@@ -77,10 +77,12 @@ function createBox(response) {
         var orderId = $('#orderId').val();
 
         setTimeout(function() {
-            if (orderId === '0') {
+            if (orderId === '0' && boxId === 0) {
                 location.reload();
-            } else {
+            } else if (orderId !== '0') {
                 window.location = '/orders/create/' + orderId + '/2/' + response.box_id;
+            } else if (boxId !== 0) {
+                window.location = '/inventory/view_box_info/' + response.box_id;
             }
         }, 1);
     }
@@ -90,7 +92,7 @@ function createBox(response) {
 * Sets the event for clicking the remove button next to an item.
 */
 function setRemoveButton() {
-    $('.remove_item').click(function() {
+    $('.remove_item').unbind('click').click(function() {
         // Remove the row for the item.
         $(this).parent().parent().remove();
 
@@ -99,6 +101,27 @@ function setRemoveButton() {
             $('#items_added').append(BLANK_ROW);
         }
     });
+}
+
+function getAddedCategories() {
+    var categories = [];
+
+    // Go through each item in the table and add it to the items array.
+    // Each item is added as an array with the following format:
+    // [ item_name, item_expiration, item_count ]
+    $('#items_added tr').each(function(index, element) {
+        element = $(element);
+
+        if (element.attr('id') != 'placeholder_row' &&
+                element.attr('id') != 'table_header') {
+            var itemInfo = element.children('td');
+            var category = $(itemInfo[0]).html();
+
+            categories.push(category);
+        }
+    });
+
+    return categories;
 }
 
 /**
@@ -127,7 +150,6 @@ function getAddedItems() {
             }
 
             if (expiration != 'Never') {
-                console.log(expiration);
                 var expirationArray = expiration.split('/');
                 expiration = expirationArray[1] + '-' + expirationArray[0] + '-01';
             }
@@ -168,6 +190,10 @@ function goForward() {
         return;
     }
 
+    if (groupName === 'Admin') {
+        populateCustomCategory();
+    }
+
     $('#stepOne').hide();
     $('#stepTwo').show();
     $('#stepNumber').html(2);
@@ -187,7 +213,26 @@ function setItemNotSelected() {
     $('#itemSelectedMessage').html('Please select an item.');
 }
 
+function populateCustomCategory() {
+    $('#customCategory').html('');
+
+    var categories = getAddedCategories();
+    var original = $('#customCategory').attr('original');
+
+    for (var i = 0; i < categories.length; i++) {
+        if (original === categories[i]) {
+            $('#customCategory').append('<option selected="selected">' + categories[i] + '</option>');
+        } else {
+            $('#customCategory').append('<option>' + categories[i] + '</option>');
+        }
+    }
+}
+
 $(document).ready(function() {
+    if (boxId !== 0) {
+        setRemoveButton();
+    }
+
     // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
         {
@@ -312,7 +357,7 @@ $(document).ready(function() {
     });
 
     $('#expiration').change(function() {
-        if ($('#expiration').val() == '') {
+        if ($('#expiration').val() === '') {
             expirationCleared = true;
         }
     });
@@ -325,7 +370,7 @@ $(document).ready(function() {
         var category = $('#categories option:selected').val();
         var boxName = $('#box_names option:selected').val();
         var item = $('#items option:selected').val();
-        var expiration = ($('#expiration').val() == '') ? 'Never' : $('#expiration').val();
+        var expiration = ($('#expiration').val() === '') ? 'Never' : $('#expiration').val();
         var count = $('#count').val();
         var alreadyAddedItems = getAddedItems();
 
@@ -428,15 +473,17 @@ $(document).ready(function() {
         var weight = $('input[name=weight]').val();
         var size = $('input[name=size]:checked').val();
         var note = $('textarea[name=note]').val();
+        var category = $('#customCategory').val() || '';
+
         var missingRequired = false;
 
         // Required fields.
-        if (initials == '') {
+        if (initials === '') {
             $('input[name=initials]').addClass('requiredTextField');
             missingRequired = true;
         }
 
-        if (weight == '') {
+        if (weight === '') {
             $('input[name=weight]').addClass('requiredTextField');
             missingRequired = true;
         }
@@ -454,7 +501,7 @@ $(document).ready(function() {
         var items = getAddedItems();
 
         // Can't have 0 items.
-        if (items.length == 0) {
+        if (items.length === 0) {
             return;
         }
 
@@ -468,7 +515,9 @@ $(document).ready(function() {
                 'size': size,
                 'items': items,
                 'warehouse_abbrev': warehouse,
-                'note': note
+                'note': note,
+                'box_id': boxId,
+                'category': category
             }
         );
     });

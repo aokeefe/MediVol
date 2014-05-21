@@ -2,6 +2,7 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from inventory.models import Warehouse
 from administration.models import ResetCode
+from catalog.models import Category, BoxName, Item
 from django.contrib.auth.models import User, Group
 from django.core.validators import validate_email
 from notifications.notifier import send_message
@@ -125,3 +126,139 @@ def change_email(request, new_email):
     send_message('InterVol Email Changed', request.user.email, request.user.username, message)
 
     return True
+
+@dajaxice_register(method='POST')
+def delete_category(request, letter, name):
+    try:
+        category = Category.objects.get(letter=letter, name=name)
+    except Category.DoesNotExist:
+        return simplejson.dumps(
+            {
+                'result': False,
+                'message': '"' + letter + ' - ' + name + '" category does not exist.'
+            }
+        )
+
+    if len(BoxName.objects.filter(category=category)) > 0:
+        return simplejson.dumps(
+            {
+                'result': False,
+                'message': '"' + letter + ' - ' + name + '" category could not be deleted because it still has Box Names in it.'
+            }
+        )
+
+    category.delete()
+
+    return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def save_category(request, original_letter, original_name, letter, name):
+    try:
+        category = Category.objects.get(letter=original_letter, name=original_name)
+    except Category.DoesNotExist:
+        return simplejson.dumps(
+            {
+                'result': False,
+                'message': '"' + original_letter + ' - ' + original_name + '" category does not exist.'
+            }
+        )
+
+    if len(letter) > 2:
+        return simplejson.dumps(
+            { 'result': False, 'message': 'Letter field can only be two characters.' })
+
+    category.letter = letter
+    category.name = name
+
+    category.save()
+
+    return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def add_category(request, letter, name):
+    try:
+        category = Category.objects.get(letter=letter)
+    except Category.DoesNotExist:
+        category = None
+
+    if category is not None:
+        return simplejson.dumps({ 'result': False, 'message': 'A category with this letter already exists.' })
+
+    try:
+        category = Category.objects.get(name=name)
+    except Category.DoesNotExist:
+        category = None
+
+    if category is not None:
+        return simplejson.dumps({ 'result': False, 'message': 'A category with this name already exists.' })
+
+    if len(letter) > 2:
+        return simplejson.dumps(
+            { 'result': False, 'message': 'Letter field can only be two characters.' })
+
+    category = Category(letter=letter, name=name)
+    category.save()
+
+    return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def delete_box_name(request, letter, name):
+    try:
+        category = Category.objects.get(letter=letter)
+    except Category.DoesNotExist:
+        return simplejson.dumps({ 'result': False, 'message': 'The category does not exist.' })
+
+    try:
+        box_name = BoxName.objects.get(category=category, name=name)
+    except BoxName.DoesNotExist:
+        return simplejson.dumps({ 'result': False, 'message': 'The box name "' + name + '" does not exist.' })
+
+    if len(Item.objects.filter(box_name=box_name)) > 0:
+        return simplejson.dumps({ 'result': False, 'message': 'The box name "' + name + '" could not be deleted because there are still items in it.' })
+
+    box_name.delete()
+
+    return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def save_box_name(request, original_letter, original_name, letter, name):
+    try:
+        original_category = Category.objects.get(letter=original_letter)
+    except Category.DoesNotExist:
+        return simplejson.dumps({ 'result': False, 'message': 'The category with letter "' + original_letter + '" does not exist.' })
+
+    try:
+        new_category = Category.objects.get(letter=letter)
+    except Category.DoesNotExist:
+        return simplejson.dumps({ 'result': False, 'message': 'The category with letter "' + letter + '" does not exist.' })
+
+    try:
+        box_name = BoxName.objects.get(category=original_category, name=original_name)
+    except BoxName.DoesNotExist:
+        return simplejson.dumps({ 'result': False, 'message': 'The box name "' + original_name + '" does not exist.' })
+
+    box_name.category = new_category
+    box_name.name = name
+    box_name.save()
+
+    return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def add_box_name(request, letter, name):
+    try:
+        category = Category.objects.get(letter=letter)
+    except Category.DoesNotExist:
+        return simplejson.dumps({ 'result': False, 'message': 'This category does not exist.' })
+
+    try:
+        box_name = BoxName.objects.get(category=category, name=name)
+    except BoxName.DoesNotExist:
+        box_name = None
+
+    if box_name is not None:
+        return simplejson.dumps({ 'result': False, 'message': 'A box name with this name in this category already exists.' })
+    
+    box_name = BoxName(category=category, name=name, can_expire=True, can_count=True)
+    box_name.save()
+
+    return simplejson.dumps({ 'result': True })

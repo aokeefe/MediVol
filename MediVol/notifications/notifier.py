@@ -19,7 +19,7 @@ def send_message(subject, recipient_email, recipient_name, message):
 
     try:
         mandrill_client = mandrill.Mandrill(api_key)
-        message = {'from_email': sender_email, 'from_name': 'MediVol Test User', 'global_merge_vars': [{'content': 'merge1 content', 'name': 'merge1'}], 'headers': {'Reply-To': sender_email}, 'html': message, 'important': False, 'inline_css': None, 'subject': subject, 'to': [{'email': recipient_email, 'name': recipient_name, 'type': 'to'}], 'track_clicks': None, 'track_opens': None, 'tracking_domain': None, 'url_strip_qs': None, 'view_content_link': None}
+        message = {'from_email': sender_email, 'from_name': 'Intervol automation bot', 'global_merge_vars': [{'content': 'merge1 content', 'name': 'merge1'}], 'headers': {'Reply-To': sender_email}, 'html': message, 'important': False, 'inline_css': None, 'subject': subject, 'to': [{'email': recipient_email, 'name': recipient_name, 'type': 'to'}], 'track_clicks': None, 'track_opens': None, 'tracking_domain': None, 'url_strip_qs': None, 'view_content_link': None}
 
         response = mandrill_client.messages.send(message=message, async=False, ip_pool='Main Pool')
         print('Response from Mandrill API')

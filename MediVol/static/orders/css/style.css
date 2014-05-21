@@ -126,7 +126,7 @@ h3 {
 }
 
 #stepTwoFields {
-    width: 480px;
+    width: 480px !important;
     margin-left: auto;
     margin-right: auto;
 }
@@ -177,14 +177,14 @@ h3 {
     background-color: #ff3535;
     border: 1px solid #ff5151;
     color: #4b1111;
-    padding-top: 27px;
+    padding-top: 27px !important;
 }
 
 .itemSelected {
     background-color: #2ad141;
     border: 1px solid #2ad641;
     color: #0f5018;
-    padding-top: 27px;
+    padding-top: 27px !important;
 }
 
 .itemSelected b {
@@ -242,7 +242,7 @@ input[type='radio'] {
 }
 
 .label {
-    width: 230px;
+    width: 230px !important;
 }
 
 .textField {
