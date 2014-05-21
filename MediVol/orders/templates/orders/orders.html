@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block styles %}
-
+    <link rel='stylesheet' href='{{ STATIC_URL }}orders/css/orders.css' />
 {% endblock %}
 
 {% block body %}
@@ -32,13 +32,15 @@
                         <td>{{ order.get_order_status_display }}</td>
                         <td>{{ order.reserved_for.contact_name }}</td>
                         <td>{{ order.get_creation_date_display }}</td>
-                        <td>{{ order.price }}</td>
-                        <td>{{ order.get_weight }}</td>
+                        <td>${{ order.get_cost }}</td>
+                        <td>{{ order.get_weight }} lbs</td>
                     </tr>
                     {% endfor %}
                 </tbody>
         </table>
     </div>
+
+    <label id='statusSelectLabel' for='statusSelect'>Show</label>
     <select id="statusSelect">
         <option value="All Open" selected="selected">All Open</option>
         {% for status in statuses %}

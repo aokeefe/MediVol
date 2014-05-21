@@ -4,15 +4,13 @@ var ORDER_TEMPLATE = '<tr>' +
         '<td>{status}</td>' +
         '<td>{order_for}</td>' +
         '<td>{date}</td>' +
-        '<td>{price}</td>' +
-        '<td>{weight}</td>' +
+        '<td>${price}</td>' +
+        '<td>{weight} lbs</td>' +
     '</tr>';
 
 // Simple template used to insert a blank row below the table header
 // when there are no items in the box.
 var BLANK_ROW = "<tr id='placeholder_row'>" +
-                    "<td></td>" +
-                    "<td></td>" +
                     "<td></td>" +
                     "<td></td>" +
                     "<td></td>" +
@@ -26,7 +24,7 @@ var STATUS_DROP_DOWN = '<select>{options}</select>';
 var STATUS_SELECT = '<select id="{id}" onchange="statusChange({row},&quot;{id}&quot;)">{options}</select>';
 
 var currentOrders = [];
-       
+
 function orderRow(order_id, order_name, status, order_for, date, price, weight){
     this.order_id = order_id;
     this.order_name = order_name;
@@ -84,7 +82,6 @@ $(document).ready(function() {
             else{
                 Dajaxice.orders.get_all_orders_with_status(setTable,{'status': selected});
             }
-            
+
     });
 });
-
