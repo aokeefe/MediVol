@@ -222,7 +222,10 @@ class Box(models.Model):
                 return formatted_expiration
 
     def get_search_results_string(self):
-        return 'Box ' + self.get_id()
+        if self.old_box_flag:
+            return 'Box ' + self.get_id() + ' (Old Box. Contents: "' + self.old_contents + '")'
+        else:
+            return 'Box ' + self.get_id()
 
     def get_contents_string(self, with_links=False):
         if self.old_contents is None:

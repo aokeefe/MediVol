@@ -52,7 +52,6 @@ function getItems(response) {
 
 $(document).ready(function() {
     // This sets up the google-style autocomplete field.
-    // This sets up the google-style autocomplete field.
     $('#itemSearch').autocomplete(
         {
             autoFocus: true,
