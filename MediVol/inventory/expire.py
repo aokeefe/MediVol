@@ -16,11 +16,12 @@ boxes_expiring_in_6_months = []
 for box in Box.objects.all():
     expiration = box.get_expiration()
 
-    if expiration < now:
-        boxes_expired.append(box))
-
-    elif expiration < in_six_months:
-        boxes_expiring_in_6_months.append(box)
+    if expiration is not None:
+        if expiration < now:
+            boxes_expired.append(box)
+    
+        elif expiration < in_six_months:
+            boxes_expiring_in_6_months.append(box)
 
 #maintains a record on the server
 export = file(('/var/www/MediVol/records/'+str(now)).replace(' ', '_').replace(':', '_').replace('.', '_')+'.txt', 'w')
