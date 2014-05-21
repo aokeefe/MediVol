@@ -2,7 +2,7 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from datetime import datetime
 
-from orders.models import Order, OrderBox, Customer, ShippingAddress
+from orders.models import Order, OrderBox, Customer, ShippingAddress, LockedBoxNotification
 from orders import views as orderView
 from inventory.models import Box, Contents
 from catalog.models import Category, BoxName, Item
@@ -34,25 +34,23 @@ def get_items(request, box_name):
 
     return simplejson.dumps(sorted(items_array))
 
-# Gets all boxes associated with items
 @dajaxice_register(method='GET')
-def get_box_ids(request, item):
-    box_ids = []
-    item = Item.objects.get(name=item)
-    contents = Contents.objects.filter(item=item)
+def get_search_results(request, query, for_inventory=False):
+    results_array = Searcher.search(query=query, models=[ Category, BoxName, Item, Contents ], as_objects=True)
+    results_strings = []
 
-    for content in contents:
-        box_ids.append(content.box_within.get_id())
-
-    return simplejson.dumps(sorted(box_ids))
-
-@dajaxice_register(method='GET')
-def get_search_results(request, query):
-    results_array = Searcher.search(query=query, models=[ Category, BoxName, Item, Contents ])
+    for result in results_array:
+        if isinstance(result, Contents):
+            if for_inventory or not for_inventory and not result.box_within.is_locked_out():
+                results_strings.append(result.get_search_results_string())
+        else:
+            results_strings.append(result.get_search_results_string())
 
     try:
         box = Box.objects.get(barcode=query)
-        results_array.insert(0, box.get_search_results_string())
+
+        if for_inventory or not for_inventory and not box.is_locked_out():
+            results_strings.insert(0, box.get_search_results_string())
     except Box.DoesNotExist as e:
         # shrug
         box = None
@@ -60,9 +58,10 @@ def get_search_results(request, query):
     boxes = Searcher.search_box_ids(query)
 
     for box in boxes:
-        results_array.insert(0, box.get_search_results_string())
+        if for_inventory or not for_inventory and not box.is_locked_out():
+            results_strings.insert(0, box.get_search_results_string())
 
-    return simplejson.dumps(results_array)
+    return simplejson.dumps(results_strings)
 
 @dajaxice_register(method='GET')
 def get_customer_search_results(request, query):
@@ -141,6 +140,9 @@ def add_boxes_to_order(request, order_id, boxes={}, custom_price=False):
             box_price = 0.00
 
         box_for_order = Box.get_box(box_id)
+
+        if box_for_order.is_locked_out():
+            continue
 
         order_box = OrderBox(order_for=order, box=box_for_order, cost=box_price)
         order_box.save()
@@ -282,5 +284,19 @@ def delete_order(request, order_id):
         order_box.delete()
 
     order.delete()
+
+    return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def delete_locked_box_notifications(request, order_id):
+    try:
+        order = Order.objects.get(id=order_id)
+    except Order.DoesNotExist:
+        return simplejson.dumps({ 'result': False, 'message': 'This order does not exist.' })
+
+    locked_box_notifications = LockedBoxNotification.objects.filter(removed_from_order=order)
+
+    for locked_box_notification in locked_box_notifications:
+        locked_box_notification.delete()
 
     return simplejson.dumps({ 'result': True })

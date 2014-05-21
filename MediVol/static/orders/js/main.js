@@ -204,7 +204,13 @@ function setRemoveButton(){
         var selectedBoxName = $('#box_names option:selected').val();
         boxesInOrder.splice(boxesInOrder.indexOf(id),1);
         if (selectedItemName !== '') {
-            Dajaxice.inventory.get_boxes_with_item(setTableList, { 'item_name': selectedItemName,'box_name' : selectedBoxName });
+            Dajaxice.inventory.get_boxes_with_item(setTableList,
+                {
+                    'item_name': selectedItemName,
+                    'box_name' : selectedBoxName,
+                    'for_order_page': true
+                }
+            );
         }
     });
 }
@@ -425,7 +431,7 @@ function addSingleBox(response){
 
 function setTableList(response) {
     clearBoxes();
-    
+
     for(var i=0;i<response.length;i++){
         if(boxesInOrder.indexOf(response[i][0]) === -1){
             currentBoxes.push(BoxRow.fromResponse(response[i]));
@@ -611,7 +617,12 @@ $(document).ready(function() {
 
         // Get the list of box names for the selected category.
         Dajaxice.orders.get_box_names(getBoxNames, { 'category_name': selectedCategory });
-        Dajaxice.inventory.get_boxes_with_category(setTableList, {'category_name': selectedCategory });
+        Dajaxice.inventory.get_boxes_with_category(setTableList,
+            {
+                'category_name': selectedCategory,
+                'for_order_page': true
+            }
+        );
         setSelectedBox(false);
     });
 
@@ -621,7 +632,12 @@ $(document).ready(function() {
 
         // Get the list of items for the selected box name.
         Dajaxice.orders.get_items(getItems, { 'box_name': selectedBoxName });
-        Dajaxice.inventory.get_boxes_with_box_name(setTableList, {'box_name' : selectedBoxName });
+        Dajaxice.inventory.get_boxes_with_box_name(setTableList,
+            {
+                'box_name' : selectedBoxName,
+                'for_order_page': true
+            }
+        );
         setSelectedBox(false);
     });
 
@@ -630,10 +646,15 @@ $(document).ready(function() {
         var selectedItemName = $('#items option:selected').val();
 
         // Get the list of items for the selected box name.
-        //Dajaxice.orders.get_box_ids(getBoxes, { 'item': selectedItemName });
         var selectedItemName = $('#items option:selected').val();
         var selectedBoxName = $('#box_names option:selected').val();
-        Dajaxice.inventory.get_boxes_with_item(setTableList, { 'item_name': selectedItemName,'box_name' : selectedBoxName });
+        Dajaxice.inventory.get_boxes_with_item(setTableList,
+            {
+                'item_name': selectedItemName,
+                'box_name' : selectedBoxName,
+                'for_order_page': true
+            }
+        );
         setSelectedBox(false);
     });
 

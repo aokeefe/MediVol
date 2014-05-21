@@ -8,5 +8,5 @@ urlpatterns = patterns ('',
     url(r'^create/(?P<order_id>\w+)/$', create_order),
     url(r'^create/(?P<order_id>\w+)/(?P<step_num>\d{1})/$', create_order),
     url(r'^create/(?P<order_id>\w+)/(?P<step_num>\d{1})/(?P<box_to_add>\w+)/$', create_order),
-    url(r'^review/(?P<orderid>\w+)/$', order_review, name='review_order')
+    url(r'^review/(?P<orderid>[\w\s]+)/$', order_review, name='review_order')
 )

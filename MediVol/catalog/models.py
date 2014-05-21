@@ -97,3 +97,6 @@ class Item(models.Model):
     
     def get_search_results_string(self):
         return self.box_name.category.name + ' > ' + self.box_name.name + ' > ' + self.name
+
+    class Meta:
+        unique_together=('name', 'box_name')
