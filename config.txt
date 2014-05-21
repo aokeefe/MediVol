@@ -1,0 +1,4 @@
+DJANGO_KEY a!mvlw&*@-im+*ywrhv7)a*#vilu59y26+2a%=592i5cm%wc=_
+DATABASE_NAME MediVolDB
+DATABASE_USER root
+DATABASE_PASSWORD root

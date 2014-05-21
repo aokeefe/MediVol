@@ -15,7 +15,10 @@
             In <a href='/orders/review/{{ order.order_number }}'>{{ orders|safe }}</a>
         </h3>
     {% endif %}
-    <h3 id='createdDate'>Created on {{ box.entered_date }}</h3>
+
+    {% if box.entered_date != None %}
+        <h3 id='createdDate'>Created on {{ box.entered_date }}</h3>
+    {% endif %}
 
     <div id='boxInfoWrapper'>
         <div class='attributeWrapper'>
@@ -40,10 +43,15 @@
             {% endif %}
             <div class='clear'></div>
         </div>
-
         <div class='attributeWrapper'>
             <h3 class='attributeLabel'>Entered By</h3>
-            <p class='attributeValue'>{{ box.initials }}</p>
+            <p class='attributeValue'>
+                {% if box.initials == '' %}
+                    Unknown
+                {% else %}
+                    {{ box.initials }}
+                {% endif %}
+            </p>
             <div class='clear'></div>
         </div>
 
@@ -73,33 +81,41 @@
         </div>
 
         {% if box.note != None %}
-            <h3 class='attributeLabel'>Note</h3>
-            <p class='attributeValue'>{{ box.note }}</p>
-        {% endif %}
-
-        <h3 class='attributeLabel'>Contents</h3>
-        {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
-            <p class='attributeValue'>{{ box.get_contents_string_with_links|safe }}</p>
-        {% else %}
-            <p class='attributeValue'>{{ box.get_contents_string }}</p>
-        {% endif %}
-
-        {% if box.shipped_to != None and box.shipped_to != '' %}
-            <h3 class='attributeLabel'>Shipped To</h3>
-            <p class='attributeValue'>{{ box.shipped_to }}</p>
-        {% endif %}
-
-        <div id='boxInfoButtons'>
-            <div id='buttonsLeft'>
-                <a href='/inventory/'><button class='button'>&larr; Back to Inventory</button></a>
+            <div class='attributeWrapper fullWidth'>
+                <h3 class='attributeLabel'>Note</h3>
+                <p class='attributeValue'>{{ box.note }}</p>
             </div>
+        {% endif %}
 
-            <div id='buttonsRight'>
-                <a href='/inventory/edit/{{ box.get_id }}'><button id="edit_box"  class='button'>Edit Box</button></a>
-                <button id="print_label" onclick="print_label('{{box.box_id }}')" class='button'>Print Label</button>
-                <button id="delete_box" onclick="deleteBox('{{box.box_id }}')" class='button'>Delete Box</button>
-            </div>
+        <div class='attributeWrapper fullWidth'>
+            <h3 class='attributeLabel'>Contents</h3>
+            {% if user.is_authenticated and user.groups.all.0.name == 'Admin' %}
+                <p class='attributeValue'>{{ box.get_contents_string_with_links|safe }}</p>
+            {% else %}
+                <p class='attributeValue'>{{ box.get_contents_string }}</p>
+            {% endif %}
+
+            {% if box.shipped_to != None and box.shipped_to != '' %}
+                <h3 class='attributeLabel'>Shipped To</h3>
+                <p class='attributeValue'>{{ box.shipped_to }}</p>
+            {% endif %}
         </div>
+
+        <div class='clear'></div>
+    </div>
+
+    <div id='boxInfoButtons'>
+        <div id='buttonsLeft'>
+            <a href='/inventory/'><button class='button'>&larr; Back to Inventory</button></a>
+        </div>
+
+        <div id='buttonsRight'>
+            <a href='/inventory/edit/{{ box.get_id }}'><button id="edit_box"  class='button'>Edit Box</button></a>
+            <button id="print_label" onclick="print_label('{{box.box_id }}')" class='button'>Print Label</button>
+            <button id="delete_box" onclick="deleteBox('{{box.box_id }}')" class='button'>Delete Box</button>
+        </div>
+
+        <div class='clear'></div>
     </div>
 {% endblock %}
 

@@ -255,7 +255,7 @@ def get_all_open_orders(request):
 def get_all_orders_with_status(request, status):
     orders = Order.objects.filter(order_status=status)
     order_list = get_order_table_list_from_orders(orders)
-    
+
     return simplejson.dumps(order_list)
 
 def get_order_table_list_from_orders(orders):
@@ -266,7 +266,7 @@ def get_order_table_list_from_orders(orders):
                 order.get_order_status_display(),
                 order.reserved_for.contact_name,
                 order.get_creation_date_display(),
-                order.get_cost(),
+                '%.2f' % order.get_cost(),
                 order.get_weight()]
         order_list.append(temp)
     return order_list
@@ -300,3 +300,29 @@ def delete_locked_box_notifications(request, order_id):
         locked_box_notification.delete()
 
     return simplejson.dumps({ 'result': True })
+
+@dajaxice_register(method='POST')
+def get_order_packing_list(request, order_id):
+    try:
+        order = Order.objects.get(id=order_id)
+    except Order.DoesNotExist:
+        return simplejson.dumps({ 'result': 'False' })
+    csv = []
+    header = '"Order Name","Box Name","Contents","Weight","Expiration Date"'
+    csv.append(header)
+
+    orderBoxs = OrderBox.objects.filter(order_for=order)
+
+    for orderBox in orderBoxs:
+        temp = (get_csv_string(order.order_number) + ',' +
+                get_csv_string(orderBox.box.get_most_populous_box_name()) + ',' +
+                get_csv_string(orderBox.box.get_contents_string()) + ',' +
+                get_csv_string(orderBox.box.weight) + ',' +
+                get_csv_string(orderBox.box.get_expiration_display()))
+
+        csv.append(temp)
+
+    return simplejson.dumps(csv)
+
+def get_csv_string(value):
+    return '"' + str(value).replace('"', '""') + '"'

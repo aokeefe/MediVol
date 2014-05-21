@@ -256,6 +256,16 @@ class Box(models.Model):
 
     def get_contents_string_with_links(self):
         return self.get_contents_string(True)
+    
+    def get_most_populous_box_name(self):
+        most_populous = ''
+        highest_quantity = 0;
+        contents = Contents.objects.filter(box_within=self)
+        for content in contents:
+            if content.quantity >= highest_quantity or most_populous == '':
+                highest_quantity = content.quantity
+                most_populous = content.item.box_name.name
+        return most_populous
 
 class Contents(models.Model):
     box_within = models.ForeignKey(Box)

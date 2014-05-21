@@ -59,7 +59,7 @@ def create_order(request, order_id=0, step_num=1, box_to_add='0'):
         'categories': sorted(categoryStrings),
         'order_id': order_id,
         'order': order,
-        'num_address': num_addresses,
+        'num_addresses': num_addresses,
         'num_boxes': num_boxes,
         'total_price': '%.2f' % total_price,
         'custom_price': '%.2f' % custom_price,

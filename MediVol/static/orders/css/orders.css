@@ -1,0 +1,18 @@
+#orders_body tr td {
+    font-weight: 400;
+}
+
+#tableWrapper {
+    margin-bottom: 20px;
+}
+
+#statusSelect, #statusSelectLabel {
+    font-size: 1.1em;
+}
+
+#createOrder {
+    float: right;
+    font-size: 2em;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
