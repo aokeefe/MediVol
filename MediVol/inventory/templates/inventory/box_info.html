@@ -101,17 +101,21 @@
             {% endif %}
         </div>
 
-        <div id='boxInfoButtons'>
-            <div id='buttonsLeft'>
-                <a href='/inventory/'><button class='button'>&larr; Back to Inventory</button></a>
-            </div>
+        <div class='clear'></div>
+    </div>
 
-            <div id='buttonsRight'>
-                <a href='/inventory/edit/{{ box.get_id }}'><button id="edit_box"  class='button'>Edit Box</button></a>
-                <button id="print_label" onclick="print_label('{{box.box_id }}')" class='button'>Print Label</button>
-                <button id="delete_box" onclick="deleteBox('{{box.box_id }}')" class='button'>Delete Box</button>
-            </div>
+    <div id='boxInfoButtons'>
+        <div id='buttonsLeft'>
+            <a href='/inventory/'><button class='button'>&larr; Back to Inventory</button></a>
         </div>
+
+        <div id='buttonsRight'>
+            <a href='/inventory/edit/{{ box.get_id }}'><button id="edit_box"  class='button'>Edit Box</button></a>
+            <button id="print_label" onclick="print_label('{{box.box_id }}')" class='button'>Print Label</button>
+            <button id="delete_box" onclick="deleteBox('{{box.box_id }}')" class='button'>Delete Box</button>
+        </div>
+
+        <div class='clear'></div>
     </div>
 {% endblock %}
 
