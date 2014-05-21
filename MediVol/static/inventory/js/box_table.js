@@ -34,7 +34,7 @@ var currentBoxes = [];
 var filteredBoxes = [];
 var currentSort = '';
 var currentPage = 0;
-var maxPerPage = $('#max_per_page option:selected').text();
+var maxPerPage = Number($('#max_per_page option:selected').text());
 var filtered = false;
 
 function setWarehouses(response){
@@ -269,7 +269,7 @@ $(document).ready(function() {
     Dajaxice.inventory.get_warehouse_abbreviations(setWarehouses);
 
     $('#max_per_page').change(function() {
-        maxPerPage = $('#max_per_page option:selected').text();
+        maxPerPage = Number($('#max_per_page option:selected').text());
         showTable();
     });
 
