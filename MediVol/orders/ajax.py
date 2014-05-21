@@ -267,7 +267,7 @@ def get_order_table_list_from_orders(orders):
                 order.reserved_for.contact_name,
                 order.get_creation_date_display(),
                 '%.2f' % order.get_cost(),
-                '%.1f' % order.get_weight()]
+                order.get_weight()]
         order_list.append(temp)
     return order_list
 
@@ -308,21 +308,21 @@ def get_order_packing_list(request, order_id):
     except Order.DoesNotExist:
         return simplejson.dumps({ 'result': 'False' })
     csv = []
-    header = '"Order Name","Box Name","Contents","Weight","Experation Date"'
+    header = '"Order Name","Box Name","Contents","Weight","Expiration Date"'
     csv.append(header)
 
     orderBoxs = OrderBox.objects.filter(order_for=order)
 
     for orderBox in orderBoxs:
-        temp = (get_csv_sting(order.order_number) + ',' +
-                get_csv_sting(orderBox.box.get_most_populous_box_name()) + ',' +
-                get_csv_sting(orderBox.box.get_contents_string()) + ',' +
-                get_csv_sting(orderBox.box.weight) + ',' +
-                get_csv_sting(orderBox.box.get_expiration_display()))
+        temp = (get_csv_string(order.order_number) + ',' +
+                get_csv_string(orderBox.box.get_most_populous_box_name()) + ',' +
+                get_csv_string(orderBox.box.get_contents_string()) + ',' +
+                get_csv_string(orderBox.box.weight) + ',' +
+                get_csv_string(orderBox.box.get_expiration_display()))
 
         csv.append(temp)
 
     return simplejson.dumps(csv)
 
-def get_csv_sting(value):
+def get_csv_string(value):
     return '"' + str(value).replace('"', '""') + '"'
