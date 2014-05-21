@@ -168,6 +168,8 @@ function createOrder(response) {
     if (response.result === true) {
         orderNumber = response.order_number;
 
+        var new_shipping_address = $('#shipping_address').val();
+
         if ($('#shippingAddressesWrapper').html() !== '<i>no shipping addresses saved</i>' &&
                 new_shipping_address !== '') {
             $('#shippingAddressesWrapper').append('<option value="' + new_shipping_address +
