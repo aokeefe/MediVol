@@ -47,24 +47,24 @@ export.write('Boxes that have already expired:\n')
 message += ('<p>Boxes that have already expired:<ul>')
 for box in boxes_expired:
     export.write(str(box)+'\n')
-    message += ('<li>' + str(box) + '</li>')
+    message += ('<li><a href=http://107.161.21.242/inventory/view_box_info/' + str(box) + '>' + str(box) + '</a>' + '</li>')
 message += '</ul></p>'
 
 export.write('Boxes expiring next month:\n')
 message += ('<p>Boxes expiring next month:<ul>')
 for box in boxes_expiring_next_month:
     export.write(str(box)+'\n')
-    message += ('<li>' + str(box) + '</li>')
+    message += ('<li><a href=http://107.161.21.242/inventory/view_box_info/' + str(box) + '>' + str(box) + '</a>' + '</li>')
 message += '</ul></p>'
 
 export.write('\nBoxes expiring in 2 months:\n')
 message += ('<p>Boxes expiring in 2 months:<ul>')
 for box in boxes_expiring_in_2_months:
     export.write(str(box)+'\n')
-    message += ('<li>' + str(box) + '</li>')
+    message += ('<li><a href=http://107.161.21.242/inventory/view_box_info/' + str(box) + '>' + str(box) + '</a>' + '</li>')
 message += '</ul></p>'
 
 send_message('Automated: Monthly Expiring Boxes Update', 'sxb5828@rit.edu', 'Shun', message)
-send_message('Automated: Monthly Expiring Boxes Update', 'shunmok@me.com', 'Shun', message)
-send_message('Automated: Monthly Expiring Boxes Update', 'nothingatall544@gmail.com', 'Bill', message)
-send_message('Automated: Monthly Expiring Boxes Update', 'Mike@mikelentini.com', 'Mike', message)
+#send_message('Automated: Monthly Expiring Boxes Update', 'shunmok@me.com', 'Shun', message)
+#send_message('Automated: Monthly Expiring Boxes Update', 'nothingatall544@gmail.com', 'Bill', message)
+#send_message('Automated: Monthly Expiring Boxes Update', 'Mike@mikelentini.com', 'Mike', message)
