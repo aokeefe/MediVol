@@ -23,9 +23,9 @@
                 <td id='priceHeader'>Price</td>
                 <td id='weightHeader'>Weight</td>
             </tr>
-            {% for order in orders %}
                 <tbody id="orders_body">
-                    <tr id='placeholder_row'>
+                    {% for order in orders %}
+                    <tr id='order{{ order.id }}'>
                         <td>
                             <a href="/orders/review/{{ order.id }}">{{ order.order_number }}</a>
                         </td>
@@ -35,12 +35,12 @@
                         <td>{{ order.price }}</td>
                         <td>{{ order.get_weight }}</td>
                     </tr>
+                    {% endfor %}
                 </tbody>
-            {% endfor %}
         </table>
     </div>
     <select id="statusSelect">
-        <option value="All Open" selected>All Open</option>
+        <option value="All Open" selected="selected">All Open</option>
         {% for status in statuses %}
             <option value="{{ status.0 }}">{{ status.1 }}</option>
         {% endfor %}
