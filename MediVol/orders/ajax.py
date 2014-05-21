@@ -36,12 +36,15 @@ def get_items(request, box_name):
 
 @dajaxice_register(method='GET')
 def get_search_results(request, query, for_inventory=False):
-    results_array = Searcher.search(query=query, models=[ Category, BoxName, Item, Contents ], as_objects=True)
+    results_array = Searcher.search(query=query, models=[ Category, BoxName, Item, Contents, Box ], as_objects=True)
     results_strings = []
 
     for result in results_array:
         if isinstance(result, Contents):
             if for_inventory or not for_inventory and not result.box_within.is_locked_out():
+                results_strings.append(result.get_search_results_string())
+        elif isinstance(result, Box):
+            if for_inventory or not for_inventory and not result.is_locked_out():
                 results_strings.append(result.get_search_results_string())
         else:
             results_strings.append(result.get_search_results_string())
@@ -54,12 +57,6 @@ def get_search_results(request, query, for_inventory=False):
     except Box.DoesNotExist as e:
         # shrug
         box = None
-
-    boxes = Searcher.search_box_ids(query)
-
-    for box in boxes:
-        if for_inventory or not for_inventory and not box.is_locked_out():
-            results_strings.insert(0, box.get_search_results_string())
 
     return simplejson.dumps(results_strings)
 
@@ -241,35 +238,38 @@ def change_order_status(request, order_id, order_status):
     return simplejson.dumps({ 'result': 'True' })
 
 @dajaxice_register(method='POST')
-def get_orders(request):
+def get_all_orders(request):
     orders = Order.objects.all()
+    order_list = get_order_table_list_from_orders(orders)
+
+    return simplejson.dumps(order_list)
+
+@dajaxice_register(method='POST')
+def get_all_open_orders(request):
+    orders = Order.objects.exclude(order_status='F').exclude(order_status='S')
+    order_list = get_order_table_list_from_orders(orders)
+
+    return simplejson.dumps(order_list)
+
+@dajaxice_register(method='POST')
+def get_all_orders_with_status(request, status):
+    orders = Order.objects.filter(order_status=status)
+    order_list = get_order_table_list_from_orders(orders)
+    
+    return simplejson.dumps(order_list)
+
+def get_order_table_list_from_orders(orders):
     order_list = []
     for order in orders:
-        boxes = OrderBox.objects.filter(order_for=order)
-        box_ids = []
-        for box in boxes:
-            box_ids.append(box.box.get_id())
-        temp = [order.order_number,
-                order.order_status,
-                box_ids,
+        temp = [order.id,
+                order.order_number,
+                order.get_order_status_display(),
                 order.reserved_for.contact_name,
                 order.get_creation_date_display(),
                 order.get_cost(),
                 order.get_weight()]
         order_list.append(temp)
-    return simplejson.dumps(order_list)
-
-#helper method
-def get_box_name_for_order(order):
-    boxes = OrderBox.objects.filter(order_for=order)
-    box_string = []
-    if boxes.len() < 0:
-        return 'none'
-    else:
-        for box in boxes:
-            box_name = box.get_contents_string()
-            box_string.append(box_name)
-        return ','.join(box_string)
+    return order_list
 
 @dajaxice_register(method='POST')
 def delete_order(request, order_id):
