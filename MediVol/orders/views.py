@@ -9,7 +9,9 @@ from inventory.models import Box
 @login_required(login_url='/login/')
 @user_passes_test(UserTests.user_is_admin, login_url='/administration/forbidden')
 def orders_home(request):
-    context = { 'orders': Order.objects.all() }
+    choices = Order._meta.get_field('order_status').choices
+    orders = Order.objects.exclude(order_status='F').exclude(order_status='S')
+    context = { 'orders': orders, 'statuses': choices}
 
     return render(request, 'orders/orders.html', context)
 
