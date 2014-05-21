@@ -48,6 +48,17 @@ function dontShowAgain() {
     );
 }
 
+function downloadCSV(response){
+    var csvString = response.join("\r\n");
+    var a = document.createElement('a');
+    a.href = 'data:text/csv;charset=UTF-8,' + encodeURIComponent(csvString);
+    a.target = '_blank';
+    a.download = orderName + 'PackingList.csv';
+
+    document.body.appendChild(a);
+    a.click();
+}
+
 $(document).ready(function() {
     $('#orderStatus').change(function() {
         var statusChar = $('#orderStatus option:selected').val();
@@ -65,4 +76,8 @@ $(document).ready(function() {
     $('.deleteOrderButton').click(deleteOrder);
 
     $('#dontShowAgain').click(dontShowAgain);
+    
+    $('#downloadOrder').click(function() {
+        Dajaxice.orders.get_order_packing_list(downloadCSV, { 'order_id': orderId });
+    });
 });

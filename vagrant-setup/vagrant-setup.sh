@@ -20,7 +20,7 @@ sudo apt-get install libapache2-mod-wsgi -y;
 printf "\nEnabling ssl on apache...";
 sudo a2enmod ssl;
 
-if [ -f /var/config.txt ];
+if [ ! -f /var/config.txt ];
 then
 sudo cp /var/www/config.txt /var/config.txt;
 fi
