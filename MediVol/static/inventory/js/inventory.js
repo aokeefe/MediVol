@@ -157,7 +157,10 @@ $(document).ready(function() {
 
         // Get the list of box names for the selected category.
         Dajaxice.orders.get_box_names(getBoxNames, { 'category_name': selectedCategory });
-        Dajaxice.inventory.get_boxes_with_category(setTableList, {'category_name': selectedCategory });
+
+        if (boxNameToChoose === '' && itemToChoose === '') {
+            Dajaxice.inventory.get_boxes_with_category(setTableList, {'category_name': selectedCategory });
+        }
     });
 
     // Set the 'on change' event for the box names list.
@@ -166,7 +169,10 @@ $(document).ready(function() {
 
         // Get the list of items for the selected box name.
         Dajaxice.orders.get_items(getItems, { 'box_name': selectedBoxName });
-        Dajaxice.inventory.get_boxes_with_box_name(setTableList, {'box_name' : selectedBoxName });
+
+        if (itemToChoose === '') {
+            Dajaxice.inventory.get_boxes_with_box_name(setTableList, {'box_name' : selectedBoxName });
+        }
     });
 
     // Set the 'on change' event for the items list.
