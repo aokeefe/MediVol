@@ -4,6 +4,48 @@
     <title>InterVol | Manage Database Backups</title>
 {% endblock %}
 
+{% block styles %}
+    <link rel='stylesheet' href='{{ STATIC_URL }}administration/css/backups.css' />
+{% endblock %}
+
 {% block body %}
     <h2>Manage Database Backups</h2>
+
+    <p class='backupText'>Here are the last 30 days of backups. All files are in "day-month-year" format.</p>
+
+    <ul>
+        {% for backup_file in backup_files %}
+            <div class='backupWrapper'>
+                <div class='backupName'>{{ backup_file }}</div>
+                <button class='downloadBackupLink button' filename='{{ backup_file }}'>Download</button>
+                <button class='restoreBackupLink button' filename='{{ backup_file }}'>Restore</button>
+                <div class='clear'></div>
+            </div>
+        {% endfor %}
+    </ul>
+
+    <hr />
+
+    <h2>Upload and Restore Backup</h2>
+    <form id='restoreCustomForm' action='/administration/backups/' method='post' enctype='multipart/form-data'>
+        {% csrf_token %}
+        <input id='customField' name='customField' type='file' />
+        <input id='customRestoreButton' name='customRestoreButton' type='button' class='button' value='Restore' />
+    </form>
+{% endblock %}
+
+{% block javascript %}
+    <script type='text/javascript'>
+        {% if custom_restore_result != None %}
+            $(document).ready(function() {
+                {% if custom_restore_result == True %}
+                    $.jAlert('The database restore was successful.', '', null);
+                {% elif custom_restore_result == False %}
+                    $.jAlert('There was a problem restoring this database backup.', 'error', null);
+                {% endif %}
+            });
+        {% endif %}
+    </script>
+
+    <script type='text/javascript' src='{{ STATIC_URL }}administration/js/backups.js'></script>
 {% endblock %}

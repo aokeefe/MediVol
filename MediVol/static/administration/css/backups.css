@@ -1,0 +1,27 @@
+.backupText {
+    text-align: center;
+}
+
+.backupWrapper {
+    width: 63%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.backupName, .downloadBackupLink, .restoreBackupLink {
+    float: left;
+    font-size: 1.5em;
+}
+
+.backupName {
+    padding-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+#restoreCustomForm {
+    width: 47%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.5em;
+}
