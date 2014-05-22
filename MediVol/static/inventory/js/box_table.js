@@ -48,14 +48,14 @@ function setWarehouses(response){
 }
 
 //object to represent one row in the table
-function BoxRow(box_id, size, weight, contents, expiration, warehouse, order_id, old_box) {
+function BoxRow(box_id, size, weight, contents, expiration, warehouse, orders, old_box) {
     this.box_id = box_id;
     this.size = size;
     this.weight = weight;
     this.contents = contents;
     this.expiration = expiration;
     this.warehouse = warehouse;
-    this.order_id = order_id;
+    this.orders = orders;
     this.old_box = old_box;
     this.check = '';
 }
@@ -68,7 +68,7 @@ BoxRow.fromResponse = function(response) {
         response.contents,
         response.expiration,
         response.warehouse,
-        response.order_id,
+        response.orders,
         response.old_box
     );
 };
@@ -218,11 +218,7 @@ function fillTable(boxes) {
         $('#boxes_body').append(BLANK_BOX_ROW);
     } else {
         for (var i = 0; i < boxes.length; i++) {
-            var order = false;
-
-            if (boxes[i].order_id !== ''){
-                order = boxes[i].order_id;
-            }
+            var orders = boxes[i].orders;
 
             var rowString = ITEM_TEMPLATE
                 .replace('{box_id}', '<a href="/inventory/view_box_info/' +
@@ -236,8 +232,8 @@ function fillTable(boxes) {
 
             var tags = '';
 
-            if (order !== false) {
-                tags += ORDER_TAG_TEMPLATE.replace(/{order_id}/gi,order);
+            for (var j = 0; j < orders.length; j++) {
+                tags += ORDER_TAG_TEMPLATE.replace(/{order_id}/gi, orders[j]);
             }
 
             if (boxes[i].old_box === true) {

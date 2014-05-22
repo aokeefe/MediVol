@@ -135,10 +135,11 @@ def box_to_object(box):
     except AttributeError:
         warehouse = ''
 
-    try:
-        order = OrderBox.objects.get(box=box).order_for.order_number
-    except OrderBox.DoesNotExist:
-        order = ''
+    order_boxes = OrderBox.objects.filter(box=box)
+    orders = []
+
+    for order_box in order_boxes:
+        orders.append(order_box.order_for.order_number)
 
     return {
         'id': box.get_id(),
@@ -147,7 +148,7 @@ def box_to_object(box):
         'contents': box.get_contents_string(),
         'expiration': box.get_expiration_display(),
         'warehouse': warehouse,
-        'order_id': order,
+        'orders': orders,
         'old_box': box.old_box_flag
     }
 
