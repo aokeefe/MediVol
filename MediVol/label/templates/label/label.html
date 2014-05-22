@@ -1,34 +1,44 @@
 <!DOCTYPE html>
-<html> 
-<head> 
-    <style>
-        h1 p h3 { 
-        margin: 0;
-        padding: 0;
-        display: inline;
-        }
-    </style>
-</head>
+<html>
+    <head>
+        <style>
+            html, body {
+                width: 200px;
+            }
 
-<title>Box Label for {{box.box_id}} </title>
+            h1 p h3 {
+                margin: 0;
+                padding: 0;
+                display: inline;
+            }
+        </style>
+    </head>
 
-<body> 
-    <h1>{{box.box_category.letter}}</h1> 
+    <title>Box Label for {{box.box_id}} </title>
 
-    <h1>{{box.box_id}}</h1>
+    <body>
+        <h1>{{box.box_category.letter}}</h1>
 
-    <h3>Exp: {{box.get_expiration_display}}</h3>
+        <h1>{{box.box_id}}</h1>
 
-    <p>{{box.box_category.name}}</p>
+        <h3>Exp: {{box.get_expiration_display}}</h3>
 
-    <p>Weight: {{box.weight}} lbs. </p>
+        <p>{{box.box_category.name}}</p>
 
-    <p>Contents: <br/> 
-    {%for box_content in box_contents %} 
-        {{ box_content }}
-    {% endfor %} </p>
-    
-    <p>{{box_barcode|escape|safe}}</p> 
+        <p>Weight: {{box.weight}} lbs. </p>
 
-</body>
+        <p>Contents: <br/>
+        {% if box.old_contents != None %}
+            {{ box.old_contents }}
+        {% else %}
+            {%for box_content in box_contents %}
+                {{ box_content }}
+            {% endfor %}
+        {% endif %}
+        </p>
+
+        <p>{{box_barcode|escape|safe}}</p>
+
+        <script type='text/javascript'>window.print();</script>
+    </body>
 </html>
