@@ -149,7 +149,7 @@ class Order(models.Model):
 
     def get_cost(self):
         if self.price is not None:
-            return self.price
+            return ('%.2f' % self.price)
 
         order_cost = 0.0
         for order_box in self.orderbox_set.all():

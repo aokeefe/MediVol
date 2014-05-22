@@ -266,7 +266,7 @@ def get_order_table_list_from_orders(orders):
                 order.get_order_status_display(),
                 order.reserved_for.contact_name,
                 order.get_creation_date_display(),
-                '%.2f' % order.get_cost(),
+                order.get_cost(),
                 order.get_weight()]
         order_list.append(temp)
     return order_list
