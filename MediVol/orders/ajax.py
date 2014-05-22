@@ -58,6 +58,12 @@ def get_search_results(request, query, for_inventory=False):
         # shrug
         box = None
 
+    boxes = Searcher.search_box_ids(query)
+
+    for box in boxes:
+        if for_inventory or not for_inventory and not box.is_locked_out():
+            results_strings.insert(0, box.get_search_results_string())
+
     return simplejson.dumps(results_strings)
 
 @dajaxice_register(method='GET')
